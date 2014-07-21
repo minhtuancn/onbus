@@ -50,8 +50,25 @@ class db {
         return $str;
     }
     function throw_ex($e){  
-      throw new Exception($e);  
+        throw new Exception($e);  
     }  
+    function logError($arrLog){
+        $time = date('d-m-Y H:i:s');
+         ////put content to file
+        $createdTime = date('Y/m/d');
+
+        // path to log folder
+        $logFolder = "../logs/errors/$createdTime";
+
+        // If not existed => create it
+        if (!is_dir($logFolder)) mkdir($logFolder, 0777, true);
+        // path to log file
+        $logFile = $logFolder . "/error_model.log";
+        // Put content in it
+        $fp   = fopen($logFile, 'a');
+        fwrite($fp, json_encode($arrLog)."\r\n");
+        fclose($fp);     
+    }
     function stripUnicode($str) {
         if (!$str)
             return false;

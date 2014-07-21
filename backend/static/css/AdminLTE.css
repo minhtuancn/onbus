@@ -3403,3 +3403,9 @@ fieldset[disabled] .btn-vk.active {
   background-color: #ffffff;
 }
 div.button{padding:10px;}
+#thanhphantrang{text-align:right;clear:both;padding-right:20px;margin-top:10px;margin-bottom:10px}
+#thanhphantrang a {padding: 3px 7px;margin-right:3px;font-weight:bold;border:1px solid #CCCCCC;border-radius:4px;text-decoration:none;color:#333}
+#thanhphantrang a.selected,#thanhphantrang a:hover{
+  background-color:#0099FF;
+  color:#FFFFFF;
+}

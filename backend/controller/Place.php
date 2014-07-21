@@ -1,5 +1,5 @@
 <?php 
-$url = "../index.php?mod=place&action=list";
+$url = "../index.php?mod=place&act=list";
 require_once "../model/place.php";
 $model = new Place;
 
