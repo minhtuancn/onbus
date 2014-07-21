@@ -28,12 +28,14 @@ class Place extends Db {
     }
     function insertPlace($place_name_vi,$place_name_en,$place_name_safe_vi,$place_name_safe_en){
         try{
-            $sql = "INSERT INTO place VALUES(NULL,'$place_name_vi','$place_name_safe_vi','$place_name_en','$place_name_safe_en',1)";
+            $time = time();
+            $sql = "INSERT INTO place VALUES(NULL,'$place_name_vi','$place_name_safe_vi','$place_name_en','$place_name_safe_en',$time,$time,1)";
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());       
-        }catch(Exception $ex){
-            var_dump($ex->getMessage());die;
+        }catch(Exception $ex){            
+            $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Place','function' => 'insertPlace' , 'error'=>$ex->getMessage(),'sql'=>$sql);
+            $this->logError($arrLog);
         }
-    }
+    }    
 
 }
 
