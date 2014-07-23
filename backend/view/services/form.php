@@ -1,9 +1,9 @@
 <?php 
-if(isset($_GET['place_id'])){
-    $place_id = (int) $_GET['place_id'];
-    require_once "model/Place.php";
-    $model = new Place;
-    $detail = $model->getDetailPlace($place_id);
+if(isset($_GET['service_id'])){
+    $service_id = (int) $_GET['service_id'];
+    require_once "model/Services.php";
+    $model = new Services;
+    $detail = $model->getDetailService($service_id);
 }
 ?>
 <section class="content-header">    
@@ -14,14 +14,14 @@ if(isset($_GET['place_id'])){
 </section>
 <div class="row">
     <div class="col-md-8">
-        <form method="post" action="controller/Place.php">            
+        <form method="post" action="controller/Services.php">            
         <!-- Custom Tabs -->
         <button class="btn btn-primary btn-sm">Danh sách</button>
         <div style="clear:both;margin-bottom:10px"></div>
          <div class="box-header">
-                <h3 class="box-title"><?php echo ($place_id > 0) ? "Cập nhật" : "Tạo mới" ?> địa điểm</h3>
-                <?php if($place_id> 0){ ?>
-                <input type="hidden" value="<?php echo $place_id; ?>" name="place_id" />
+                <h3 class="box-title"><?php echo ($service_id > 0) ? "Cập nhật" : "Tạo mới" ?> tiện ích nhà xe</h3>
+                <?php if($service_id> 0){ ?>
+                <input type="hidden" value="<?php echo $service_id; ?>" name="service_id" />
                 <?php } ?>
             </div><!-- /.box-header -->
         <div class="nav-tabs-custom">
@@ -39,14 +39,14 @@ if(isset($_GET['place_id'])){
                 <div id="tab_1" class="tab-pane active">
                     <div class="form-group">
                         <label>Tên</label>
-                        <input type="text" name="place_name_vi" class="form-control required" value="<?php echo isset($detail['place_name_vi'])  ? $detail['place_name_vi'] : "" ?>"/>
+                        <input type="text" name="service_name_vi" class="form-control required" value="<?php echo isset($detail['service_name_vi'])  ? $detail['service_name_vi'] : "" ?>"/>
                     </div>
                    
                 </div><!-- /.tab-pane -->
                 <div id="tab_2" class="tab-pane">
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="text" name="place_name_en" class="form-control required" value="<?php echo isset($detail['place_name_en'])  ? $detail['place_name_en'] : "" ?>">
+                        <input type="text" name="service_name_en" class="form-control required" value="<?php echo isset($detail['service_name_en'])  ? $detail['service_name_en'] : "" ?>">
                     </div>
                 </div><!-- /.tab-pane -->
             </div><!-- /.tab-content -->
