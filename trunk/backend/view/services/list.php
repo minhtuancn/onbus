@@ -38,7 +38,7 @@ $list = $model->getListServiceByStatus($status, $offset, LIMIT);
         <div class="box">
            
             <div class="box-body">
-                <table class="table table-bordered">
+                <table class="table table-bordered table-striped">
                     <tbody><tr>
                         <th style="width: 10px">No.</th>
                         <th>Tên VI</th>

@@ -10,18 +10,15 @@ if (isset($_GET['status']) && $_GET['status'] > 0) {
     $status = -1;
 }
 
-$listTotal = $model->getListPlaceByStatus($status, -1, -1);
+$arrTotal = $model->getListPlaceByStatus($status, -1, -1);
 
-$total_record = mysql_num_rows($listTotal);
-
-$total_page = ceil($total_record / LIMIT);
+$total_page = ceil($arrTotal['total'] / LIMIT);
 
 $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
 
 $offset = LIMIT * ($page - 1);
 
-$list = $model->getListPlaceByStatus($status, $offset, LIMIT);
-
+$arrList = $model->getListPlaceByStatus($status, $offset, LIMIT);
 ?>
 <section class="content-header">    
     <ol class="breadcrumb">
@@ -38,23 +35,25 @@ $list = $model->getListPlaceByStatus($status, $offset, LIMIT);
         <div class="box">
            
             <div class="box-body">
-                <table class="table table-bordered">
+                <table class="table table-bordered table-striped">
                     <tbody><tr>
                         <th style="width: 10px">No.</th>
                         <th>Tên VI</th>
                         <th>Tên EN</th>
+                        <th>Địa chỉ</th>
                         <th>Ngày tạo</th>                        
                         <th style="width: 40px">Action</th>
                     </tr>
                     <?php
-                    $i = ($page-1) * LIMIT;;
-                    while ($row = mysql_fetch_assoc($list)) {                       
+                    $i = ($page-1) * LIMIT;                    
+                    foreach($arrList['data'] as $row){
                     $i++;
                     ?>
                     <tr>
                         <td><?php echo $i; ?></td>
                         <td><?php echo $row['place_name_vi']; ?></td>
                         <td><?php echo $row['place_name_en']; ?></td>
+                        <td><?php echo $row['address_vi']; ?></td>
                         <td><?php echo date('d-m-Y',$row['creation_time']); ?></td>                        
                         <td style="white-space:nowrap">
                             <a href="index.php?mod=place&act=form&place_id=<?php echo $row['place_id']; ?>">
