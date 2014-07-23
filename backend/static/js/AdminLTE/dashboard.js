@@ -8,27 +8,114 @@
 $(function() {
     "use strict";
     $('button.btnSave').click(function(){        
-        var flag = false;
+        var flag = true;
         $('input.required').each(function(){
             var value = $.trim($(this).val());            
+
             if(value == ''){
                 alert('Vui lòng nhập đầy đủ thông tin tiếng Anh và tiếng Việt.');
                 $(this).focus();
+                flag = false;
                 return false;
-            }else{
-                flag = true;
             }
-        });
-        $('select.required').each(function(){
+        });    
+         $('select.required').each(function(){
             var value = $.trim($(this).val());            
+
             if(value == 0){
-                alert('Vui lòng nhập đầy đủ thông tin tiếng Anh và tiếng Việt.');                
+                alert('Vui lòng nhập đầy đủ thông tin tiếng Anh và tiếng Việt.');
+                $(this).focus();
+                flag = false;
                 return false;
-            }else{
-                flag = true;
             }
-        });            
+        });  
+         $('textarea.required').each(function(){
+            var value = $.trim($(this).val());            
+
+            if(value == ''){
+                alert('Vui lòng nhập đầy đủ thông tin tiếng Anh và tiếng Việt.');
+                $(this).focus();
+                flag = false;
+                return false;
+            }
+        });       
         return flag;
+    });
+    $('a.link_delete').click(function(){
+        var obj = $(this);
+        var alias = obj.attr('alias');
+        if(confirm('Bạn chắc chắn xóa "' + alias +'"" ?')){
+            var mod =  obj.attr('mod');
+            var id = obj.attr('id');
+            $.ajax({
+                url: "Controller/Delete.php",
+                type: "POST",
+                async: true,
+                data: {
+                    'id' : id,
+                    'mod' : mod
+                },
+                success: function(data){
+                    alert('Xóa thành công!');
+                    obj.parent().parent().remove();
+                }
+            });
+        }else{
+            return false;
+        }
+    });
+
+    $('#upload_images').ajaxForm({
+        beforeSend: function() {                
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+                       
+        },
+        complete: function(data) {       
+            var arrRes = JSON.parse(data.responseText); 
+            alert(arrRes['thongbao']);
+            $("#hinhanh").html(arrRes['text'] + arrRes['str_hinhanh']);
+            $( "#div_upload" ).dialog('close');   
+            $('#btnSaveImage').show();          
+        }
+    }); 
+    $("#btnUpload").click(function(){
+        $("#div_upload" ).dialog({
+            modal: true,
+            title: 'Upload images',
+            width: 370,
+            draggable: true,
+            resizable: false            
+        });
+    });
+    $("#add_images").click(function(){
+        $( "#wrapper_input_files" ).append("<input type='file' name='images[]' /><br />");
+    });
+    $('a.xoa_image_upload').click(function(){
+        var obj = $(this);
+        var src = obj.attr('src');
+        if(confirm("Remove ảnh này?")){
+            var str_hinh_anh = $('#str_hinh_anh').val();
+            alert(str_hinhanh);
+        }else{
+            return false;
+        }
+    });
+    $('#btnSaveImageToNhaXe').click(function(){
+        var str_hinh_anh = $("#str_hinh_anh").val();
+        var nhaxe_id = $('#nhaxe_id').val();
+         $.ajax({
+                url: "Controller/Saveimage.php",
+                type: "POST",
+                async: true,
+                data: {
+                    'str_hinh_anh' : str_hinh_anh,
+                    'nhaxe_id' : nhaxe_id
+                },
+                success: function(data){
+                    
+                }
+            });    
     });
     //Make the dashboard widgets sortable Using jquery UI
     $(".connectedSortable").sortable({

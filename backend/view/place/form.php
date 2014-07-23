@@ -38,15 +38,23 @@ if(isset($_GET['place_id'])){
             <div class="tab-content">
                 <div id="tab_1" class="tab-pane active">
                     <div class="form-group">
-                        <label>Tên</label>
+                        <label>Tên <span class="required"> ( * ) </span></label>
                         <input type="text" name="place_name_vi" class="form-control required" value="<?php echo isset($detail['place_name_vi'])  ? $detail['place_name_vi'] : "" ?>"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Địa chỉ <span class="required"> ( * ) </span></label>
+                        <textarea rows="3" class="form-control required" name="address_vi"><?php if(isset($detail['address_vi'])) echo $detail['address_vi']; ?></textarea>
                     </div>
                    
                 </div><!-- /.tab-pane -->
                 <div id="tab_2" class="tab-pane">
                     <div class="form-group">
-                        <label>Name</label>
+                        <label>Tên <span class="required"> ( * ) </span></label>
                         <input type="text" name="place_name_en" class="form-control required" value="<?php echo isset($detail['place_name_en'])  ? $detail['place_name_en'] : "" ?>">
+                    </div>
+                    <div class="form-group">
+                        <label>Địa chỉ <span class="required"> ( * ) </span></label>
+                        <textarea rows="3" class="form-control required" name="address_en"><?php if(isset($detail['address_en'])) echo $detail['address_en']; ?></textarea>
                     </div>
                 </div><!-- /.tab-pane -->
             </div><!-- /.tab-content -->

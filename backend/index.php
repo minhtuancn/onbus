@@ -1,12 +1,10 @@
 <?php
-
 include "defined.php"; 
 $mod='';
 if(isset($_GET['mod']))
 {
     $mod = $_GET['mod'];
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -63,7 +61,7 @@ if(isset($_GET['mod']))
                     <?php                           
                      $act = $_GET['act'];         
                     
-                    if ($mod=="") include "module/report/list.php";
+                    if ($mod=="") include "view/nhaxe/list.php";
                     else include "view/".$mod.'/'.$act.'.php';                         
 
                     ?>  
@@ -75,9 +73,11 @@ if(isset($_GET['mod']))
 
 
         <!-- jQuery 2.0.2 -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+       <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <!-- jQuery UI 1.10.3 -->
-        <script src="<?php echo STATIC_URL; ?>js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
+        
+        <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+        <script src="<?php echo STATIC_URL; ?>js/form.js" type="text/javascript"></script>
         <!-- Bootstrap -->
         <script src="<?php echo STATIC_URL; ?>js/bootstrap.min.js" type="text/javascript"></script>
         <!-- Morris.js charts -->
@@ -104,6 +104,21 @@ if(isset($_GET['mod']))
         
         <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
         <script src="<?php echo STATIC_URL; ?>js/AdminLTE/dashboard.js" type="text/javascript"></script>        
-
+<div id="div_upload" style="display:none">
+    <form id="upload_images" method="post" enctype="multipart/form-data" enctype="multipart/form-data" action="Controller/Upload.php">
+        <div style="margin: auto;">       
+            <div style="text-align:center"><img src="static/img/add.jpg" id="add_images" width="32" title="Thêm hình ảnh" alt="Thêm hình ảnh" /></div>
+            <div id="wrapper_input_files">
+                <input type="file" name="images[]" /><br />
+                <input type="file" name="images[]" /><br />
+                <input type="file" name="images[]" /><br />
+            </div>            
+            <div class="clear"></div>
+            <button class="btn btn-danger btn-sm"  type="submit" id="btn_upload_images">Upload</button>       
+               
+        </div>
+        
+    </form>
+</div>
     </body>
 </html>
