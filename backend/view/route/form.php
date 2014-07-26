@@ -1,8 +1,19 @@
 <?php 
 require_once "model/Place.php";
 require_once "model/Route.php";
+
 $modelPlace = new Place;
 $modelRoute = new Route;
+
+/* get ds nha xe */
+
+require_once "model/Nhaxe.php";
+$modelNhaxe = new Nhaxe;
+$arrNhaxe = $modelNhaxe->getListNhaxe('',-1, -1, -1);
+$arrListNhaxe = $arrNhaxe['data'];
+
+/* end get ds nha xe */
+
 $arrListPlace = $modelPlace->getListPlaceByStatus(1,-1,-1);
 if(isset($_GET['route_id'])){
     $route_id = (int) $_GET['route_id'];
@@ -29,8 +40,7 @@ if(isset($_GET['route_id'])){
                 <input type="hidden" value="<?php echo $route_id; ?>" name="route_id" />
                 <?php } ?>
             </div><!-- /.box-header -->
-        <div class="nav-tabs-custom">
-            
+        <div class="nav-tabs-custom">            
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#tab_1">
                     <img src="<?php echo STATIC_URL?>img/vi.png"/>
@@ -56,6 +66,23 @@ if(isset($_GET['route_id'])){
                 </div><!-- /.tab-pane -->
             </div><!-- /.tab-content -->
             <div class="button">
+                <div class="form-group">
+                    <label>Nhà xe <span class="required"> ( * ) </span></label>
+                    <select class="form-control required" name="nhaxe_id">
+                        <option value="0">---chọn---</option>
+                        <?php 
+                        if(!empty($arrListNhaxe)){
+                            foreach ($arrListNhaxe as $key => $value) {
+                                ?>
+                                <option value='<?php echo $value['nhaxe_id']; ?>'
+                                    <?php if(isset($detail['nhaxe_id']) && $detail['nhaxe_id'] == $value['nhaxe_id']) echo "selected";?>
+                                    ><?php echo $value['nhaxe_name_vi']; ?></option>     
+                                <?php
+                            }
+                        }
+                        ?>                            
+                    </select>
+                </div>
                 <div class="form-group">
                     <label>Điểm xuất phát<span class="required"> ( * ) </span></label>
                     <select class="form-control required" name="place_id_start">

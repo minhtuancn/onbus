@@ -3410,3 +3410,8 @@ div.button{padding:10px;}
   color:#FFFFFF;
 }
 span.required{color:red;margin-top: 3px}
+td.error_data{color:red;font-style: italic;font-weight: bold}
+.col_sm_nowrap {white-space: nowrap;width: 1%}
+div.box_search{padding:10px;text-align:right;background-color:#CCC}
+input.text_search{width:200px;border:1px solid #ccc;height: 25px}
+select.select_search{border:1px solid #ccc;height: 25px}

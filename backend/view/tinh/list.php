@@ -11,14 +11,14 @@ if (isset($_GET['status']) && $_GET['status'] > 0) {
 }
 
 $arrTotal = $model->getListTinhByStatus($status, -1, -1);
-
-$total_page = ceil($arrTotal['total'] / LIMIT);
+$limit = 64;
+$total_page = ceil($arrTotal['total'] / $limit);
 
 $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
 
-$offset = LIMIT * ($page - 1);
+$offset = $limit * ($page - 1);
 
-$arrList = $model->getListTinhByStatus($status, $offset, LIMIT);
+$arrList = $model->getListTinhByStatus($status, $offset, $limit);
 ?>
 <section class="content-header">    
     <ol class="breadcrumb">
@@ -44,7 +44,7 @@ $arrList = $model->getListTinhByStatus($status, $offset, LIMIT);
                         <th style="width: 40px">Action</th>
                     </tr>
                     <?php
-                    $i = ($page-1) * LIMIT;                    
+                    $i = ($page-1) * $limit;                    
                     foreach($arrList['data'] as $row){
                     $i++;
                     ?>

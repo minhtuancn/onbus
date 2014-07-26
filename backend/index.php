@@ -14,6 +14,7 @@ if(isset($_GET['mod']))
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- bootstrap 3.0.2 -->
         <link href="<?php echo STATIC_URL; ?>css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        
         <!-- font Awesome -->
         <link href="<?php echo STATIC_URL; ?>css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <!-- Ionicons -->
@@ -30,6 +31,11 @@ if(isset($_GET['mod']))
         <link href="<?php echo STATIC_URL; ?>css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
         <link href="<?php echo STATIC_URL; ?>css/AdminLTE.css" rel="stylesheet" type="text/css" />
+          <!-- jQuery 2.0.2 -->
+       <script src="<?php echo STATIC_URL; ?>js/jquery-1.10.2.js"></script>
+        <!-- jQuery UI 1.10.3 -->
+        
+        <script src="<?php echo STATIC_URL; ?>js/jquery-ui.js"></script>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -72,16 +78,12 @@ if(isset($_GET['mod']))
         <!-- add new calendar event modal -->
 
 
-        <!-- jQuery 2.0.2 -->
-       <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-        <!-- jQuery UI 1.10.3 -->
-        
-        <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+      
         <script src="<?php echo STATIC_URL; ?>js/form.js" type="text/javascript"></script>
         <!-- Bootstrap -->
         <script src="<?php echo STATIC_URL; ?>js/bootstrap.min.js" type="text/javascript"></script>
         <!-- Morris.js charts -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="<?php echo STATIC_URL; ?>js/raphael-min.js"></script>
         
         <!-- Sparkline -->
         <script src="<?php echo STATIC_URL; ?>js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
