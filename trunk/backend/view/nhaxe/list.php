@@ -35,9 +35,10 @@ $arrList = $model->getListNhaxe($keyword,$hot,$offset, $limit);
             </div><!-- /.box-header -->
         <div class="box">
             <div class="box_search">
-                <input type="hidden" name="mod" value="nhaxe" />
-                <input type="hidden" name="act" value="list" />
+                
                 <form method="get" id="form_search" name="form_search">
+                    <input type="hidden" name="mod" value="nhaxe" />
+                    <input type="hidden" name="act" value="list" />
                     Tên nhà xe &nbsp;<input type="text" class="text_search" name="keyword" value="<?php echo (trim($keyword)!='') ? $keyword: ""; ?>" /> 
                     &nbsp;&nbsp;&nbsp;Loại 
                     <select name="hot" class="event_change select_search">
