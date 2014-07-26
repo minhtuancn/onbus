@@ -11,16 +11,29 @@ class Route extends Db {
     }
    
 
-    function getListRouteByStatus($status=-1,$offset = -1, $limit = -1) {
+    function getListRoute($nhaxe_id=-1,$keyword='',$place_id_start=-1,$place_id_end=-1,$offset = -1, $limit = -1) {
         $arrResult = array();
-        $sql = "SELECT * FROM route WHERE (status = $status OR $status = -1)  AND status > 0 ";
-        if ($limit > 0 && $offset >= 0)
-            $sql .= " LIMIT $offset,$limit";
-        $rs = mysql_query($sql) or die(mysql_error());
-        while($row = mysql_fetch_assoc($rs)){
-            $arrResult['data'][] = $row; 
+        try{
+            $sql = "SELECT * FROM route WHERE status > 0 
+            AND (nhaxe_id = $nhaxe_id OR $nhaxe_id = -1 ) AND (place_id_start = $place_id_start OR $place_id_start = -1)
+            AND (place_id_end = $place_id_end OR $place_id_end = -1) ";
+            if(trim($keyword)!=''){
+                $sql.= " AND route_name_vi LIKE '%".$keyword."%' "; 
+            }
+            if ($limit > 0 && $offset >= 0)
+                $sql .= " LIMIT $offset,$limit";  
+
+            $rs = mysql_query($sql) or $this->throw_ex(mysql_error());  
+            while($row = mysql_fetch_assoc($rs)){
+                $arrResult['data'][] = $row; 
+            }
+            $arrResult['total'] = mysql_num_rows($rs);
+
+        }catch(Exception $ex){            
+            $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Route','function' => 'getListRoute' , 'error'=>$ex->getMessage(),'sql'=>$sql);
+            $this->logError($arrLog);
         }
-        $arrResult['total'] = mysql_num_rows($rs);
+        
         return $arrResult;
     }    
     function updateStatus($id,$status) {        

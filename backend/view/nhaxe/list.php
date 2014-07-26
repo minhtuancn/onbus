@@ -26,12 +26,7 @@ $offset = $limit * ($page - 1);
 
 $arrList = $model->getListNhaxe($keyword,$hot,$offset, $limit);
 ?>
-<section class="content-header">    
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-    </ol>
-</section>
+
 <div class="row">
     <div class="col-md-12">
     <button class="btn btn-primary btn-sm right" onclick="location.href='index.php?mod=nhaxe&act=form'">Tạo mới</button>        
