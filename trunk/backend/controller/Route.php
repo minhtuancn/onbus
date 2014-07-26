@@ -14,12 +14,13 @@ $description = $_POST['description'];
 $place_id_start = (int) $_POST['place_id_start'];
 
 $place_id_end = (int) $_POST['place_id_end'];
+$nhaxe_id = (int) $_POST['nhaxe_id'];
 
 if($route_id > 0) {	
-	$model->updateRoute($route_id,$route_name_vi,$route_name_en,$route_name_safe_vi,$route_name_safe_en,$description,$place_id_start,$place_id_end);
+	$model->updateRoute($route_id,$nhaxe_id,$route_name_vi,$route_name_en,$route_name_safe_vi,$route_name_safe_en,$description,$place_id_start,$place_id_end);
 	header('location:'.$url);
 }else{
-	$model->insertRoute($route_name_vi,$route_name_en,$route_name_safe_vi,$route_name_safe_en,$description,$place_id_start,$place_id_end);
+	$model->insertRoute($nhaxe_id,$route_name_vi,$route_name_en,$route_name_safe_vi,$route_name_safe_en,$description,$place_id_start,$place_id_end);
 	header('location:'.$url);
 }
 

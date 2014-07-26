@@ -20,8 +20,7 @@ $(function() {
             }
         });    
          $('select.required').each(function(){
-            var value = $.trim($(this).val());            
-
+            var value = $(this).val();                      
             if(value == 0){
                 alert('Vui lòng nhập đầy đủ thông tin tiếng Anh và tiếng Việt.');
                 $(this).focus();
@@ -30,8 +29,7 @@ $(function() {
             }
         });  
          $('textarea.required').each(function(){
-            var value = $.trim($(this).val());            
-
+            var value = $.trim($(this).val());                        
             if(value == ''){
                 alert('Vui lòng nhập đầy đủ thông tin tiếng Anh và tiếng Việt.');
                 $(this).focus();
@@ -55,8 +53,7 @@ $(function() {
                     'id' : id,
                     'mod' : mod
                 },
-                success: function(data){
-                    alert('Xóa thành công!');
+                success: function(data){                    
                     obj.parent().parent().remove();
                 }
             });
@@ -113,9 +110,20 @@ $(function() {
                     'nhaxe_id' : nhaxe_id
                 },
                 success: function(data){
-                    
+                    $('#str_hinh_anh').val('');
+                    $('#hinhanh').html('');
+                    $('#btnSaveImage').hide();
+                    window.location.reload();
                 }
             });    
+    });
+    $('select.event_change').change(function(){
+        $('#form_search').submit();
+    });
+    $('input.text_search').keypress(function (e) {
+      if (e.which == 13) {
+        $('#form_search').submit();
+      }
     });
     //Make the dashboard widgets sortable Using jquery UI
     $(".connectedSortable").sortable({

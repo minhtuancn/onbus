@@ -3,7 +3,14 @@ require_once "model/Route.php";
 $model = new Route;
 require_once "model/Place.php";
 $modelPlace = new Place;
+require_once "model/Nhaxe.php";
+$modelNhaxe = new Nhaxe;
 $link = "index.php?mod=route&act=list";
+
+/* get ds nha xe */
+
+$arrNhaxe = $modelNhaxe->getListNhaxe('',-1, -1, -1);
+/* end get ds nha xe */
 
 if (isset($_GET['status']) && $_GET['status'] > 0) {
     $lang_id = (int) $_GET['status'];      
@@ -23,6 +30,7 @@ $offset = LIMIT * ($page - 1);
 $arrList = $model->getListRouteByStatus($status, $offset, LIMIT);
 
 ?>
+<link href="<?php echo STATIC_URL; ?>css/jquery-ui.css" rel="stylesheet" type="text/css" />
 <section class="content-header">    
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -36,13 +44,41 @@ $arrList = $model->getListRouteByStatus($status, $offset, LIMIT);
                 <h3 class="box-title">Danh sách chuyến xe</h3>
             </div><!-- /.box-header -->
         <div class="box">
-           
+           <div class="box_search">                 
+                    Nhà xe 
+                    <select name="nhaxe_id" class="select_search">
+                        <option value="0">Tất cả</option>
+                        <?php
+                        foreach ($arrNhaxe['data'] as $value) {
+                            ?>
+                            <option value='<?php echo $value['nhaxe_id']; ?>'
+                                <?php if(isset($_GET['nhaxe_id']) && $_GET['nhaxe_id'] == $value['nhaxe_id']) echo "selected";?>
+                                ><?php echo $value['nhaxe_name_vi']; ?></option>     
+                        <?php
+                        } 
+                        ?>    
+                    </select>
+                    &nbsp;&nbsp;&nbsp;
+                   Tên chuyến xe &nbsp;<input type="text" class="text_search" name="keyword" value="<?php echo (trim($keyword)!='') ? $keyword: ""; ?>" /> 
+                    &nbsp;&nbsp;&nbsp;Điểm đi 
+                    <input type="hidden" name="place_id_start" id="place_id_start" />
+                    <input type="text" name="diem_xp" id="diem_xp" />
+                    &nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;Điểm đến
+                    <input type="hidden" name="place_id_end" id="place_id_end" />
+                    <input type="text" name="diem_den" id="diem_den" />
+                    &nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-primary btn-sm right" id="btnSearch" type="button">Tìm kiếm</button>
+                
+            </div>
             <div class="box-body">
+
                 <table class="table table-bordered table-striped">
                     <tbody><tr>
                         <th style="width: 10px">No.</th>
-                        <th>Tên VI</th>
-                        <th>Tên EN</th>
+                        <th>Nhà xe</th>
+                        <th>Tên <img src="<?php echo STATIC_URL?>img/vi.png"/></th>
+                        <th>Tên <img src="<?php echo STATIC_URL?>img/uk_.png"/></th>
                         <th>Điểm xuất phát</th>
                         <th>Điểm đến</th>
                         <th>Ngày tạo</th>                        
@@ -55,6 +91,7 @@ $arrList = $model->getListRouteByStatus($status, $offset, LIMIT);
                     ?>
                     <tr>
                         <td><?php echo $i; ?></td>
+                        <td><?php echo $modelNhaxe->getNhaxeNameByID($row['nhaxe_id']); ?></td>
                         <td><?php echo $row['route_name_vi']; ?></td>
                         <td><?php echo $row['route_name_en']; ?></td>
                         <td><?php echo $modelPlace->getPlaceNameByID($row['place_id_start']); ?></td>
@@ -88,3 +125,59 @@ $arrList = $model->getListRouteByStatus($status, $offset, LIMIT);
     </div><!-- /.col -->
    
 </div>
+<?php 
+$arrListPlace = $modelPlace->getListPlaceByStatus(1,-1,-1);
+
+?>
+ <script>
+  $(function() {
+
+    var arrPlace = [
+    <?php foreach($arrListPlace['data'] as $place){ ?> 
+      {
+        value: "<?php echo $place['place_id']; ?>",
+        label: "<?php echo $place['place_name_vi']; ?>",
+      
+      },
+      <?php } ?>
+      
+    ];
+ 
+    $("#diem_xp" ).autocomplete({
+      minLength: 0,
+      source: arrPlace,
+      focus: function( event, ui ) {
+        $( "#diem_xp" ).val( ui.item.label );
+        return false;
+      },
+      select: function( event, ui ) {
+        $( "#diem_xp" ).val( ui.item.label );
+        $( "#place_id_start" ).val( ui.item.value );      
+        return false;
+      }
+    })
+    .autocomplete( "instance" )._renderItem = function( ul, item ) {
+      return $( "<li>" )
+        .append(item.label)
+        .appendTo( ul );
+    };
+    $("#diem_den" ).autocomplete({
+      minLength: 0,
+      source: arrPlace,
+      focus: function( event, ui ) {
+        $( "#diem_den" ).val( ui.item.label );
+        return false;
+      },
+      select: function( event, ui ) {
+        $( "#diem_den" ).val( ui.item.label );
+        $( "#place_id_end" ).val( ui.item.value );      
+        return false;
+      }
+    })
+    .autocomplete( "instance" )._renderItem = function( ul, item ) {
+      return $( "<li>" )
+        .append(item.label)
+        .appendTo( ul );
+    };
+  });
+  </script>

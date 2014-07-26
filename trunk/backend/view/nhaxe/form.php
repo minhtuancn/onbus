@@ -34,16 +34,16 @@ function SetFileField( fileUrl, data ){
     <div class="col-md-8">
         <form method="post" action="controller/Nhaxe.php">            
         <!-- Custom Tabs -->
-        <button class="btn btn-primary btn-sm">Danh sách</button>
+        <button class="btn btn-primary btn-sm" onclick="location.href='index.php?mod=nhaxe&act=list'">Danh sách nhà xe</button>
         <div style="clear:both;margin-bottom:10px"></div>
          <div class="box-header">
-                <h3 class="box-title"><?php echo ($nhaxe_id > 0) ? "Cập nhật" : "Tạo mới" ?> nhà xe</h3>
+                <h3 class="box-title"><?php echo ($nhaxe_id > 0) ? "Cập nhật" : "Tạo mới" ?> nhà xe <?php echo ($nhaxe_id > 0) ? " : ".$detail['nhaxe_name_vi'] : ""; ?></h3>
                 <?php if($nhaxe_id> 0){ ?>
                 <input type="hidden" value="<?php echo $nhaxe_id; ?>" name="nhaxe_id" />
                 <?php } ?>
             </div><!-- /.box-header -->
         <div class="nav-tabs-custom">
-            
+
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#tab_1">
                     <img src="<?php echo STATIC_URL?>img/vi.png"/>
@@ -85,6 +85,12 @@ function SetFileField( fileUrl, data ){
                 </div><!-- /.tab-pane -->
             </div><!-- /.tab-content -->
             <div class="button">
+                <div class="checkbox" style="margin-bottom:20px">
+                <label class="">
+                    <input type="checkbox" name="hot" value="1" <?php echo ($detail['hot']==1) ? "checked" : ""; ?> />               
+                    <strong>NHÀ XE UY TÍN</strong>
+                </label>                                                
+                </div>
                 <div class="form-group">
                     <label>Số điện thoại <span class="required"> ( * ) </span></label>
                     <input type="text" name="phone" class="form-control required" value="<?php echo isset($detail['phone'])  ? $detail['phone'] : "" ?>">
@@ -92,7 +98,7 @@ function SetFileField( fileUrl, data ){
                 <div class="form-group">
                     <label>Logo/Hình đại diện &nbsp;&nbsp;&nbsp;</label>
                     <input type="hidden" name="image_url" id="image_url" class="form-control required" value="<?php echo isset($detail['image_url'])  ? $detail['image_url'] : "" ?>">
-                    <img src="" id="hinh_dai_dien" width="200" style="display:none;margin-top:5px"/>
+                    <img src="<?php echo isset($detail['image_url'])  ? "../".$detail['image_url'] : "" ?>" id="hinh_dai_dien" width="400" style="<?php echo isset($detail['image_url'])  ? "" : "display:none;" ?>margin-top:5px"/>
                     <button class="btn btn-primary" type="button" onclick="BrowseServer('Images:/','image_url')" >Chọn ảnh</button>
                 </div>
             </div>

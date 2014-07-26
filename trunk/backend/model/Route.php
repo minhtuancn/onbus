@@ -32,10 +32,11 @@ class Route extends Db {
         mysql_query($sql) or die(mysql_error() . $sql);
     }
 
-    function updateRoute($id,$route_name_vi,$route_name_en,$route_name_safe_vi,$route_name_safe_en,$description,$place_id_start,$place_id_end) {        
+    function updateRoute($id,$nhaxe_id,$route_name_vi,$route_name_en,$route_name_safe_vi,$route_name_safe_en,$description,$place_id_start,$place_id_end) {        
         $time = time();
         $sql = "UPDATE route
                     SET route_name_vi = '$route_name_vi',
+                    nhaxe_id = $nhaxe_id,
                     route_name_en = '$route_name_en',
                     route_name_safe_vi  = '$route_name_safe_vi',
                     route_name_safe_en = '$route_name_safe_en',
@@ -46,10 +47,10 @@ class Route extends Db {
                     WHERE route_id = $id ";
         mysql_query($sql) or die(mysql_error() . $sql);
     }
-    function insertRoute($route_name_vi,$route_name_en,$route_name_safe_vi,$route_name_safe_en,$description,$place_id_start,$place_id_end){
+    function insertRoute($nhaxe_id,$route_name_vi,$route_name_en,$route_name_safe_vi,$route_name_safe_en,$description,$place_id_start,$place_id_end){
         try{
             $time = time();
-            $sql = "INSERT INTO route VALUES(NULL,'$route_name_vi','$route_name_safe_vi','$route_name_en','$route_name_safe_en','$description',$place_id_start,$place_id_end,$time,$time,1)";
+            $sql = "INSERT INTO route VALUES(NULL,$nhaxe_id,'$route_name_vi','$route_name_safe_vi','$route_name_en','$route_name_safe_en','$description',$place_id_start,$place_id_end,$time,$time,1)";
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());       
         }catch(Exception $ex){            
             $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Route','function' => 'insertRoute' , 'error'=>$ex->getMessage(),'sql'=>$sql);
