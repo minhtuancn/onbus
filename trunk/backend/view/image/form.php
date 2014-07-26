@@ -6,12 +6,6 @@ if(isset($_GET['time_id'])){
     $detail = $model->getDetailTime($time_id);
 }
 ?>
-<section class="content-header">    
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-    </ol>
-</section>
 <div class="row">
     <div class="col-md-8">
         

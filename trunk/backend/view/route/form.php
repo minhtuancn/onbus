@@ -22,12 +22,6 @@ if(isset($_GET['route_id'])){
     $detail = $model->getDetailRoute($route_id);
 }
 ?>
-<section class="content-header">    
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-    </ol>
-</section>
 <div class="row">
     <div class="col-md-8">
         <form method="post" action="controller/Route.php">            

@@ -26,12 +26,6 @@ $offset = $limit * ($page - 1);
 
 $arrList = $model->getListBranchByNhaxe($nhaxe_id, $offset, $limit);
 ?>
-<section class="content-header">    
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-    </ol>
-</section>
 <div class="row">
     <div class="col-md-12">
     <button class="btn btn-primary btn-sm right" 

@@ -24,12 +24,6 @@ function SetFileField( fileUrl, data ){
     $('#hinh_dai_dien').attr('src','../' + fileUrl).show();
 }
 </script>
-<section class="content-header">    
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-    </ol>
-</section>
 <div class="row">
     <div class="col-md-8">
         <form method="post" action="controller/Nhaxe.php">            

@@ -15,12 +15,6 @@ if(isset($_GET['branch_id'])){
 require_once "model/Tinh.php";
 $modelTinh = new Tinh;
 ?>
-<section class="content-header">    
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-    </ol>
-</section>
 <div class="row">
     <div class="col-md-8">
         <form method="post" action="controller/Branch.php">            

@@ -27,12 +27,6 @@ $offset = 8 * ($page - 1);
 $list = $model->getListImageByNhaxe($nhaxe_id, $offset, 8);
 
 ?>
-<section class="content-header">    
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-    </ol>
-</section>
 <div class="row">
     <div class="col-md-12">
     <button class="btn btn-primary btn-sm right" 
