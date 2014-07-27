@@ -14,7 +14,7 @@ $arrNhaxe = $modelNhaxe->getListNhaxe('',-1, -1, -1);
 
 /* get ds place */
 $arrListPlaceKey = array();
-$arrListPlace = $modelPlace->getListPlaceByStatus(1,-1,-1);
+$arrListPlace = $modelPlace->getListPlace(-1,-1,'',-1,-1);
 if(!empty($arrListPlace)){
     foreach ($arrListPlace['data'] as $value) {
         $arrListPlaceKey[$value['place_id']] = $value;
@@ -67,7 +67,7 @@ $arrList = $model->getListRoute($nhaxe_id,$keyword,$place_id_start,$place_id_end
                 <h3 class="box-title">Danh sách chuyến xe</h3>
             </div><!-- /.box-header -->
         <div class="box">
-           <div class="box_search">                 
+            <div class="box_search">                 
                     Nhà xe 
                     <select name="nhaxe_id" class="select_search" id="nhaxe_id">
                         <option value="0">Tất cả</option>
@@ -156,7 +156,7 @@ $arrList = $model->getListRoute($nhaxe_id,$keyword,$place_id_start,$place_id_end
     </div><!-- /.col -->
    
 </div>
- <script>
+ <script type="text/javascript">
   $(function() {
 
     var arrPlace = [

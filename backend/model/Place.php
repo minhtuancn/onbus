@@ -18,9 +18,12 @@ class Place extends Db {
     }
    
 
-    function getListPlaceByStatus($status=-1,$offset = -1, $limit = -1) {
+    function getListPlace($mien_id = -1, $tinh_id=-1,$keyword='',$offset = -1, $limit = -1) {
         $arrResult = array();
-        $sql = "SELECT * FROM place WHERE (status = $status OR $status = -1)  AND status > 0 ";
+        $sql = "SELECT * FROM place WHERE (mien_id = $mien_id OR $mien_id = -1) AND (tinh_id = $tinh_id OR $tinh_id = -1)  AND status > 0 ";
+        if(trim($keyword)!=''){
+            $sql.= " AND place_name_vi LIKE '%".$keyword."%' "; 
+        }
         if ($limit > 0 && $offset >= 0)
             $sql .= " LIMIT $offset,$limit";
         $rs = mysql_query($sql) or die(mysql_error());
@@ -39,11 +42,13 @@ class Place extends Db {
         mysql_query($sql) or die(mysql_error() . $sql);
     }
 
-    function updatePlace($id,$place_name_vi,$place_name_en,$place_name_safe_vi,$place_name_safe_en,$address_vi,$address_en) {        
+    function updatePlace($id,$tinh_id,$mien_id,$place_name_vi,$place_name_en,$place_name_safe_vi,$place_name_safe_en,$address_vi,$address_en) {        
         $time = time();
         $sql = "UPDATE place
                     SET place_name_vi = '$place_name_vi',
                     place_name_en = '$place_name_en',
+                    tinh_id = $tinh_id,
+                    mien_id = $mien_id,
                     place_name_safe_vi  = '$place_name_safe_vi',
                     place_name_safe_en = '$place_name_safe_en',
                     address_vi  = '$address_vi',
@@ -52,10 +57,10 @@ class Place extends Db {
                     WHERE place_id = $id ";
         mysql_query($sql) or die(mysql_error() . $sql);
     }
-    function insertPlace($place_name_vi,$place_name_en,$place_name_safe_vi,$place_name_safe_en,$address_vi,$address_en){
+    function insertPlace($tinh_id,$mien_id,$place_name_vi,$place_name_en,$place_name_safe_vi,$place_name_safe_en,$address_vi,$address_en){
         try{
             $time = time();
-            $sql = "INSERT INTO place VALUES(NULL,'$place_name_vi','$place_name_safe_vi','$place_name_en','$place_name_safe_en','$address_vi','$address_en',$time,$time,1)";
+            $sql = "INSERT INTO place VALUES(NULL,$tinh_id,$mien_id,'$place_name_vi','$place_name_safe_vi','$place_name_en','$place_name_safe_en','$address_vi','$address_en',$time,$time,1)";
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());       
         }catch(Exception $ex){            
             $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Place','function' => 'insertPlace' , 'error'=>$ex->getMessage(),'sql'=>$sql);
