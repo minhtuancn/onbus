@@ -1,9 +1,9 @@
 <?php 
-if(isset($_GET['place_id'])){
-    $place_id = (int) $_GET['place_id'];
-    require_once "model/Place.php";
-    $model = new Place;
-    $detail = $model->getDetailPlace($place_id);
+if(isset($_GET['ticket_id'])){
+    $ticket_id = (int) $_GET['ticket_id'];
+    require_once "model/Ticket.php";
+    $model = new Ticket;
+    $detail = $model->getDetailTicket($ticket_id);
 }
 require_once "model/Tinh.php";
 $modelTinh = new Tinh;
@@ -35,9 +35,10 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
         <div style="clear:both;margin-bottom:10px"></div>
          <div class="box-header">
                 <h3 class="box-title"><?php echo ($place_id > 0) ? "Cập nhật" : "Tạo mới" ?> vé </h3>
-                <?php if($place_id> 0){ ?>
-                <input type="hidden" value="<?php echo $place_id; ?>" name="place_id" />
+                <?php if($ticket_id> 0){ ?>
+                <input type="hidden" value="<?php echo $ticket_id; ?>" name="ticket_id" />
                 <?php } ?>
+                <input name="is_new" value="0" id="is_new" type="hidden" />
             </div><!-- /.box-header -->
             
         <div class="nav-tabs-custom">
@@ -45,9 +46,9 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
                 <div class="form-group">
                     <label>Loại vé <span class="required"> ( * ) </span></label> 
                     <div class="radio">
-                        <input name="type" class="required" type="radio" value="1" checked/> &nbsp; Vé 1 chiều
+                        <input name="type" class="required" type="radio" value="1" <?php echo $detail['type'] == 1 ? "checked" : ""; ?>/> &nbsp; Vé 1 chiều
                         &nbsp;&nbsp;&nbsp;
-                        <input name="type" class="required" type="radio" value="2" /> &nbsp; Vé khứ hồi
+                        <input name="type" class="required" type="radio" value="2" <?php echo $detail['type'] == 2 ? "checked" : ""; ?>/> &nbsp; Vé khứ hồi
                     </div>
                 </div> 
                 <div class="form-group">
@@ -57,7 +58,7 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
                          <?php if(!empty($arrListNhaxe['data'])){
                             foreach ($arrListNhaxe['data'] as $value) {
                                 ?>
-                                <option value="<?php echo $value['nhaxe_id']; ?>"><?php echo $value['nhaxe_name_vi']; ?></option> 
+                                <option <?php echo $detail['nhaxe_id'] == $value['nhaxe_id'] ? "selected" : ""; ?> value="<?php echo $value['nhaxe_id']; ?>"><?php echo $value['nhaxe_name_vi']; ?></option> 
                                 <?php 
                             }}
                             ?>                           
@@ -73,7 +74,7 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Số lượng vé</label>
-                            <input type="text" name="amount" id="amount" class="form-control required" value="<?php echo isset($detail['price'])  ? $detail['price'] : "" ?>"/>                             
+                            <input type="text" name="amount" id="amount" class="form-control required" value="<?php echo isset($detail['amount'])  ? $detail['amount'] : "" ?>"/>                             
                         </div> 
                     </div>
                 </div>   
@@ -81,13 +82,13 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Ngày đi<span class="required"> ( * ) </span></label>
-                            <input type="text" name="date_start" id="date_start" class="form-control required" value="<?php echo isset($detail['date_start'])  ? $detail['date_start'] : "" ?>"/>                             
+                            <input type="text" name="date_start" id="date_start" class="form-control required" value="<?php echo $detail['date_start'] > 0  ? date('d-m-Y',$detail['date_start']) : "" ?>"/>                             
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Ngày về</label>
-                            <input type="text" name="date_end" id="date_end" class="form-control" value="<?php echo isset($detail['date_end'])  ? $detail['date_end'] : "" ?>"/>                             
+                            <input type="text" name="date_end" id="date_end" class="form-control" value="<?php echo ($detail['date_end'] > 0)  ? date('d-m-Y',$detail['date_end']) : "" ?>"/>                             
                         </div> 
                     </div>
                 </div>
@@ -152,7 +153,9 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
                         <option value="0">---chọn---</option> 
                          <?php while($car = mysql_fetch_assoc($arrCar)){
                                 ?>
-                                <option value="<?php echo $car['type_id']; ?>"><?php echo $car['type_name_vi']; ?></option> 
+                                <option value="<?php echo $car['type_id']; ?>"
+                                    <?php echo $detail['car_type'] == $car['type_id'] ? "selected" : ""; ?>
+                                    ><?php echo $car['type_name_vi']; ?></option> 
                                 <?php 
                             }
                             ?>                           
@@ -170,12 +173,12 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
                             <label>Số trạm dừng</label>
                             <select class="form-control" name="stop" id="stop">
                                 <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
+                                <option value="1" <?php echo $detail['stop'] == 1 ? "selected" : ""; ?>>1</option>
+                                <option value="2" <?php echo $detail['stop'] == 2 ? "selected" : ""; ?>>2</option>
+                                <option value="3" <?php echo $detail['stop'] == 3 ? "selected" : ""; ?>>3</option>
+                                <option value="4" <?php echo $detail['stop'] == 4 ? "selected" : ""; ?>>4</option>
+                                <option value="5" <?php echo $detail['stop'] == 5 ? "selected" : ""; ?>>5</option>
+                                <option value="6" <?php echo $detail['stop'] == 6 ? "selected" : ""; ?>>6</option>
                             </select>
                         </div> 
                     </div>
@@ -214,7 +217,7 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
     </form>
 </div>
 <script type="text/javascript">
-function getPlaceByTinh(tinh_id,obj){
+function getPlaceByTinh(tinh_id,obj,value){
     $.ajax({
             url: "Controller/Place.php",
             type: "POST",
@@ -225,6 +228,9 @@ function getPlaceByTinh(tinh_id,obj){
             },
             success: function(data){                    
                 $('#' + obj).html(data);
+                if(value > 0){
+                    $('#' + obj).val(value);
+                }
             }
         });
 }
@@ -232,7 +238,7 @@ $(function(){
     $('#date_start,#date_end').datepicker({
         showOtherMonths: true,
         selectOtherMonths: true,
-        dateFormat :'dd/mm/yy'
+        dateFormat :'dd-mm-yy'
     });
 });
     
@@ -269,7 +275,7 @@ $(function(){
       select: function( event, ui ) {
         $( "#noi_di" ).val( ui.item.label );
         $( "#tinh_id_start" ).val( ui.item.value );
-        getPlaceByTinh(ui.item.value,'place_id_start');      
+        getPlaceByTinh(ui.item.value,'place_id_start',0);      
         return false;
       }
     })
@@ -288,7 +294,7 @@ $(function(){
       select: function( event, ui ) {
         $( "#noi_den" ).val( ui.item.label );
         $( "#tinh_id_end" ).val( ui.item.value );  
-        getPlaceByTinh(ui.item.value,'place_id_end');    
+        getPlaceByTinh(ui.item.value,'place_id_end',0);    
         return false;
       }
     })
@@ -297,7 +303,14 @@ $(function(){
         .append(item.label)
         .appendTo( ul );
     };
-
+    <?php if($detail['tinh_id_start'] > 0){ ?>
+        getPlaceByTinh(<?php echo $detail['tinh_id_start']; ?>,'place_id_start',<?php echo $detail['place_id_start']; ?>);  
+        $('#place_id_start').val(<?php echo $detail['place_id_start']; ?>);
+    <?php } ?>
+    <?php if($detail['tinh_id_end'] > 0){ ?>
+        getPlaceByTinh(<?php echo $detail['tinh_id_end']; ?>,'place_id_end',<?php echo $detail['place_id_end']; ?>);  
+        $('#place_id_end').val(<?php echo $detail['place_id_end']; ?>);
+    <?php } ?>
   });
     
   </script>
