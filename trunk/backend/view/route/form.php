@@ -1,20 +1,11 @@
 <?php 
-require_once "model/Place.php";
+require_once "model/Tinh.php";
 require_once "model/Route.php";
 
-$modelPlace = new Place;
+$modelTinh = new Tinh;
 $modelRoute = new Route;
 
-/* get ds nha xe */
-
-require_once "model/Nhaxe.php";
-$modelNhaxe = new Nhaxe;
-$arrNhaxe = $modelNhaxe->getListNhaxe('',-1, -1, -1);
-$arrListNhaxe = $arrNhaxe['data'];
-
-/* end get ds nha xe */
-
-$arrListPlace = $modelPlace->getListPlaceByStatus(1,-1,-1);
+$arrListTinh = $modelTinh->getListTinh(-1,'',-1,-1,-1);
 if(isset($_GET['route_id'])){
     $route_id = (int) $_GET['route_id'];
     require_once "model/Route.php";
@@ -29,7 +20,7 @@ if(isset($_GET['route_id'])){
         <button class="btn btn-primary btn-sm">Danh sách</button>
         <div style="clear:both;margin-bottom:10px"></div>
          <div class="box-header">
-                <h3 class="box-title"><?php echo ($route_id > 0) ? "Cập nhật" : "Tạo mới" ?> chuyến xe</h3>
+                <h3 class="box-title"><?php echo ($route_id > 0) ? "Cập nhật" : "Tạo mới" ?> tuyến đường</h3>
                 <?php if($route_id> 0){ ?>
                 <input type="hidden" value="<?php echo $route_id; ?>" name="route_id" />
                 <?php } ?>
@@ -59,35 +50,18 @@ if(isset($_GET['route_id'])){
                     </div>
                 </div><!-- /.tab-pane -->
             </div><!-- /.tab-content -->
-            <div class="button">
+            <div class="button">                
                 <div class="form-group">
-                    <label>Nhà xe <span class="required"> ( * ) </span></label>
-                    <select class="form-control required" name="nhaxe_id">
-                        <option value="0">---chọn---</option>
-                        <?php 
-                        if(!empty($arrListNhaxe)){
-                            foreach ($arrListNhaxe as $key => $value) {
-                                ?>
-                                <option value='<?php echo $value['nhaxe_id']; ?>'
-                                    <?php if(isset($detail['nhaxe_id']) && $detail['nhaxe_id'] == $value['nhaxe_id']) echo "selected";?>
-                                    ><?php echo $value['nhaxe_name_vi']; ?></option>     
-                                <?php
-                            }
-                        }
-                        ?>                            
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Điểm xuất phát<span class="required"> ( * ) </span></label>
-                    <select class="form-control required" name="place_id_start">
+                    <label>Nơi đi<span class="required"> ( * ) </span></label>
+                    <select class="form-control required" name="tinh_id_start">
                         <option value='0'>---chọn---</option>   
                         <?php 
-                        if(!empty($arrListPlace['data'])){
-                            foreach ($arrListPlace['data'] as $key => $value) {
+                        if(!empty($arrListTinh['data'])){
+                            foreach ($arrListTinh['data'] as $key => $value) {
                                 ?>
-                                <option value='<?php echo $value['place_id']; ?>'
-                                    <?php if(isset($detail['place_id_start']) && $detail['place_id_start'] == $value['place_id']) echo "selected";?>
-                                    ><?php echo $value['place_name_vi']; ?></option>     
+                                <option value='<?php echo $value['tinh_id']; ?>'
+                                    <?php if(isset($detail['tinh_id_start']) && $detail['tinh_id_start'] == $value['tinh_id']) echo "selected";?>
+                                    ><?php echo $value['tinh_name_vi']; ?></option>     
                                 <?php
                             }
                         }
@@ -95,21 +69,27 @@ if(isset($_GET['route_id'])){
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Điểm đến <span class="required"> ( * ) </span></label>
-                    <select class="form-control required" name="place_id_end">
+                    <label>Nơi đến <span class="required"> ( * ) </span></label>
+                    <select class="form-control required" name="tinh_id_end">
                         <option value="0">---chọn---</option>
                         <?php 
-                        if(!empty($arrListPlace['data'])){
-                            foreach ($arrListPlace['data'] as $key => $value) {
+                        if(!empty($arrListTinh['data'])){
+                            foreach ($arrListTinh['data'] as $key => $value) {
                                 ?>
-                                <option value='<?php echo $value['place_id']; ?>'
-                                    <?php if(isset($detail['place_id_end']) && $detail['place_id_end'] == $value['place_id']) echo "selected";?>
-                                    ><?php echo $value['place_name_vi']; ?></option>     
+                                <option value='<?php echo $value['tinh_id']; ?>'
+                                    <?php if(isset($detail['tinh_id_end']) && $detail['tinh_id_end'] == $value['tinh_id']) echo "selected";?>
+                                    ><?php echo $value['tinh_name_vi']; ?></option>     
                                 <?php
                             }
                         }
                         ?>                            
                     </select>
+                </div>
+                <div class="checkbox" style="margin-bottom:20px">
+                <label class="">
+                    <input type="checkbox" name="hot" value="1" <?php echo ($detail['hot']==1) ? "checked" : ""; ?> />               
+                    <strong>TUYẾN ĐƯỜNG PHỔ BIẾN</strong>
+                </label>                                                
                 </div>
                 <div class="form-group">
                     <label>Mô tả</label>

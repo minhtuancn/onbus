@@ -91,7 +91,7 @@ function SetFileField( fileUrl, data ){
                 </div>
                 <div class="form-group">
                     <label>Logo/Hình đại diện &nbsp;&nbsp;&nbsp;</label>
-                    <input type="hidden" name="image_url" id="image_url" class="form-control required" value="<?php echo isset($detail['image_url'])  ? $detail['image_url'] : "" ?>">
+                    <input type="hidden" name="image_url" id="image_url" class="form-control" value="<?php echo isset($detail['image_url'])  ? $detail['image_url'] : "" ?>">
                     <img src="<?php echo isset($detail['image_url'])  ? "../".$detail['image_url'] : "" ?>" id="hinh_dai_dien" width="400" style="<?php echo isset($detail['image_url'])  ? "" : "display:none;" ?>margin-top:5px"/>
                     <button class="btn btn-primary" type="button" onclick="BrowseServer('Images:/','image_url')" >Chọn ảnh</button>
                 </div>

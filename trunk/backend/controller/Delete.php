@@ -26,6 +26,12 @@ elseif($mod=='image'){
 elseif($mod=='branch'){
 	$pk = 'branch_id';
 }
+elseif($mod=='ticket'){
+	$pk = 'ticket_id';
+}
+elseif($mod=='car_type'){
+	$pk = 'type_id';
+}
 $time = time();
 $sql = "UPDATE ".$mod."
                     SET status = 0,                 
