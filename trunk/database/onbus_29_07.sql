@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Jul 28, 2014 at 12:11 AM
+-- Generation Time: Jul 29, 2014 at 01:26 AM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.6
 
@@ -70,11 +70,8 @@ CREATE TABLE `car_type` (
 -- Dumping data for table `car_type`
 -- 
 
-INSERT INTO `car_type` VALUES (1, 'Giường nằm 39 chỗ', 'Giường nằm 39 chỗ', 1406441869, 1406441869, 1);
-INSERT INTO `car_type` VALUES (2, 'Ghế ngồi 29 chỗ', 'Ghế ngồi 29 chỗ', 1406441980, 1406441980, 1);
-INSERT INTO `car_type` VALUES (3, 'Ghế ngồi 45 chỗ', 'Ghế ngồi 45 chỗ', 1406441993, 1406441993, 1);
-INSERT INTO `car_type` VALUES (4, 'Giường nằm 40 chỗ', 'Giường nằm 40 chỗ', 1406442005, 1406442005, 1);
-INSERT INTO `car_type` VALUES (5, 'Ghế ngồi 16 chỗ', 'Ghế ngồi 16 chỗ', 1406442058, 1406442058, 1);
+INSERT INTO `car_type` VALUES (1, 'Giường nằm', 'Giường nằm', 1406441869, 1406441869, 1);
+INSERT INTO `car_type` VALUES (2, 'Ghế ngồi', 'Ghế ngồi', 1406441980, 1406441980, 1);
 
 -- --------------------------------------------------------
 
@@ -208,7 +205,7 @@ CREATE TABLE `nhaxe` (
   `hot` tinyint(1) NOT NULL default '0',
   `status` tinyint(1) NOT NULL,
   PRIMARY KEY  (`nhaxe_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 
 -- 
 -- Dumping data for table `nhaxe`
@@ -216,6 +213,16 @@ CREATE TABLE `nhaxe` (
 
 INSERT INTO `nhaxe` VALUES (1, 'Hoàng Long', 'hoang-long', 'Hoàng Long', 'hoang-long', 'Ngô Quyền, TP. Hải Phòng', 'Ngô Quyền, TP. Hải Phòng', '0917492306', 'Giới thiệu nhà xe Hoàng Long', 'Giới thiệu nhà xe Hoàng Long', 'upload/images/nha-xe/hoanlong.jpg', 1406092248, 1406360902, 1, 1);
 INSERT INTO `nhaxe` VALUES (2, 'Phương Trang', 'phuong-trang', 'Phuong Trang', 'phuong-trang', '123 Pham Ngu Lao', '123 Pham Ngu Lao', '091857453256', 'safdsg dfsg d h d', 'safgsghjgj j j fjf', 'upload/images/nha-xe/Koala.jpg', 1406356401, 1406363369, 1, 1);
+INSERT INTO `nhaxe` VALUES (7, 'Mai Linh', 'mai-linh', 'Mai Linh', 'mai-linh', '123 abc', '123 abc', '0917492306', 'adsfadsf', 'sdfasdf', 'upload/images/nha-xe/Lighthouse.jpg', 1406565130, 1406565130, 1, 1);
+INSERT INTO `nhaxe` VALUES (8, 'Vietbus', 'vietbus', 'Vietbus', 'vietbus', 'Vietbus', 'Vietbus', '0986388413', 'Vietbus', 'Vietbus', 'upload/images/nha-xe/Desert.jpg', 1406565185, 1406565185, 1, 1);
+INSERT INTO `nhaxe` VALUES (9, 'Sao Việt', 'sao-viet', 'Sao Việt', 'sao-viet', 'Sao Việt', 'Sao Việt', '08768743342', 'Sao Việt', 'Sao Việt', 'upload/images/Hydrangeas.jpg', 1406565224, 1406565224, 1, 1);
+INSERT INTO `nhaxe` VALUES (10, 'Phương Nam', 'phuong-nam', 'Phương Nam', 'phuong-nam', 'Phương Nam', 'Phương Nam', '0876874342', 'Phương Nam', 'Phương Nam', '', 1406565293, 1406565293, 1, 1);
+INSERT INTO `nhaxe` VALUES (11, 'Danatransco', 'danatransco', 'Danatransco', 'danatransco', 'Danatransco', 'Danatransco', '09832134551', 'Danatransco', 'Danatransco', '', 1406565317, 1406565317, 1, 1);
+INSERT INTO `nhaxe` VALUES (12, 'Livitrans', 'livitrans', 'Livitrans', 'livitrans', 'Livitrans', 'Livitrans', '0917492306', 'Livitrans', 'Livitrans', '', 1406565345, 1406565345, 0, 1);
+INSERT INTO `nhaxe` VALUES (13, 'Minh Tâm', 'minh-tam', 'Minh Tâm', 'minh-tam', 'Minh Tâm', 'Minh Tâm', '0685684562', 'Minh Tâm', 'Minh Tâm', '', 1406565376, 1406565376, 0, 1);
+INSERT INTO `nhaxe` VALUES (14, 'Kumo', 'kumo', 'Kumo', 'kumo', 'Kumo', 'Kumo', '0753523535', 'Kumo', 'Kumo', '', 1406565393, 1406565393, 0, 1);
+INSERT INTO `nhaxe` VALUES (15, 'KaLong', 'kalong', 'KaLong', 'kalong', 'KaLong', 'KaLong', '0123144354', 'KaLong', 'KaLong', '', 1406565417, 1406565417, 0, 1);
+INSERT INTO `nhaxe` VALUES (16, 'Superdong', 'superdong', 'Superdong', 'superdong', 'Superdong', 'Superdong', '0876874342', 'Superdong', 'Superdong', '', 1406565441, 1406565441, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -237,7 +244,7 @@ CREATE TABLE `place` (
   `update_time` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL,
   PRIMARY KEY  (`place_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=37 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=40 ;
 
 -- 
 -- Dumping data for table `place`
@@ -276,9 +283,12 @@ INSERT INTO `place` VALUES (30, 13, 2, 'Mũi Né', 'mui-ne', 'Mui Ne', 'mui-ne',
 INSERT INTO `place` VALUES (31, 14, 3, 'Bến xe Mỹ Đình', 'ben-xe-my-dinh', 'Ben xe My Dinh', 'ben-xe-my-dinh', '20 Phạm Hùng, Mỹ Đình - Từ Liêm - Hà Nội', '20 Phạm Hùng, Mỹ Đình - Từ Liêm - Hà Nội', 1406087381, 1406434823, 1);
 INSERT INTO `place` VALUES (32, 14, 3, 'Bến xe Giáp Bát', 'ben-xe-giap-bat', 'Bến xe Giáp Bát', 'ben-xe-giap-bat', 'Km6 đường Giải phóng - Hoàng Mai - Hà Nội', 'Km6 đường Giải phóng - Hoàng Mai - Hà Nội', 1406087506, 1406434831, 1);
 INSERT INTO `place` VALUES (33, 20, 3, 'Bến xe Quỳnh Côi', 'ben-xe-quynh-coi', 'Bến xe Quỳnh Côi', 'ben-xe-quynh-coi', 'Thị trấn Quỳnh Côi - Quỳnh Phụ - Thái Bình', 'Thị trấn Quỳnh Côi - Quỳnh Phụ - Thái Bình', 1406087555, 1406434793, 1);
-INSERT INTO `place` VALUES (34, 0, 0, 'Cửa Ông', 'cua-ong', 'Cửa Ông', 'cua-ong', 'Phường Cửa Ông - Cẩm Phả - Quảng Ninh', 'Phường Cửa Ông - Cẩm Phả - Quảng Ninh', 1406087609, 1406087609, 1);
-INSERT INTO `place` VALUES (35, 0, 0, '', '', '', '', '', '', 1406435084, 1406435084, 1);
-INSERT INTO `place` VALUES (36, 0, 0, '', '', '', '', '', '', 1406446266, 1406446266, 1);
+INSERT INTO `place` VALUES (34, 0, 0, 'Cửa Ông', 'cua-ong', 'Cửa Ông', 'cua-ong', 'Phường Cửa Ông - Cẩm Phả - Quảng Ninh', 'Phường Cửa Ông - Cẩm Phả - Quảng Ninh', 1406087609, 1406566351, 0);
+INSERT INTO `place` VALUES (35, 0, 0, '', '', '', '', '', '', 1406435084, 1406566349, 0);
+INSERT INTO `place` VALUES (36, 0, 0, '', '', '', '', '', '', 1406446266, 1406566347, 0);
+INSERT INTO `place` VALUES (37, 9, 2, 'Bưu Điện Cam Ranh', 'buu-dien-cam-ranh', 'Bưu Điện Cam Ranh', 'buu-dien-cam-ranh', '01 Nguyễn Trọng Kỷ, P.Cam Lợi - Cam Ranh - Khánh Hòa', '01 Nguyễn Trọng Kỷ, P.Cam Lợi - Cam Ranh - Khánh Hòa', 1406566193, 1406566193, 1);
+INSERT INTO `place` VALUES (38, 13, 2, 'Mũi Né', 'mui-ne', 'Mũi Né', 'mui-ne', '20 Huỳnh Thúc Kháng, P. Hàm Tiến - Phan Thiết - Bình Thuận', '20 Huỳnh Thúc Kháng, P. Hàm Tiến - Phan Thiết - Bình Thuận', 1406566256, 1406566288, 0);
+INSERT INTO `place` VALUES (39, 13, 2, 'Văn phòng Bình Thuận', 'van-phong-binh-thuan', 'Văn phòng Bình Thuận', 'van-phong-binh-thuan', '18 khu phố 2 Trường Chinh, P. Xuân An - Phan Thiết - Bình Thuận', '18 khu phố 2 Trường Chinh, P. Xuân An - Phan Thiết - Bình Thuận', 1406566334, 1406566334, 1);
 
 -- --------------------------------------------------------
 
@@ -288,29 +298,35 @@ INSERT INTO `place` VALUES (36, 0, 0, '', '', '', '', '', '', 1406446266, 140644
 
 CREATE TABLE `route` (
   `route_id` int(11) NOT NULL auto_increment,
-  `nhaxe_id` int(11) NOT NULL,
   `route_name_vi` varchar(255) NOT NULL,
   `route_name_safe_vi` varchar(255) NOT NULL,
   `route_name_en` varchar(255) NOT NULL,
   `route_name_safe_en` varchar(255) NOT NULL,
+  `hot` tinyint(1) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `place_id_start` int(11) NOT NULL,
-  `place_id_end` int(11) NOT NULL,
+  `tinh_id_start` int(11) NOT NULL,
+  `tinh_id_end` int(11) NOT NULL,
   `creation_time` int(11) NOT NULL,
   `update_time` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL,
   PRIMARY KEY  (`route_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 -- 
 -- Dumping data for table `route`
 -- 
 
-INSERT INTO `route` VALUES (1, 1, 'Sài Gòn - Hà Nội', 'sai-gon-ha-noi', 'Sai Gon - Ha Noi', 'sai-gon-ha-noi', 'Tuyến xe từ Sài Gòn đi Hà Nội.', 12, 26, 1406084756, 1406341967, 0);
-INSERT INTO `route` VALUES (3, 2, 'Sài Gòn - Nha Trang', 'sai-gon-nha-trang', 'Sai Gon - Nha Trang', 'sai-gon-nha-trang', 'Chuyến xe từ Sài gòn đi Nha Trang', 27, 14, 1406085862, 1406371302, 1);
-INSERT INTO `route` VALUES (4, 1, 'Sài Gòn - Phan Thiết, Bình Thuận', 'sai-gon-phan-thiet-binh-thuan', 'Sài Gòn - Phan Thiết, Bình Thuận', 'sai-gon-phan-thiet-binh-thuan', 'Chuyến xe SG đi Phan Thiết\r\n', 12, 30, 1406087441, 1406087441, 1);
-INSERT INTO `route` VALUES (5, 1, 'Hà Nội - Thái Bình', 'ha-noi-thai-binh', 'Hà Nội - Thái Bình', 'ha-noi-thai-binh', 'Hà Nội đi Thái Bình', 32, 33, 1406087578, 1406102278, 0);
-INSERT INTO `route` VALUES (6, 1, 'Hà Nội - Quảng Ninh', 'ha-noi-quang-ninh', 'Hà Nội - Quảng Ninh', 'ha-noi-quang-ninh', 'Hà Nội đi Quảng Ninh', 31, 34, 1406087650, 1406087650, 1);
+INSERT INTO `route` VALUES (1, 'Sài Gòn - Hà Nội', 'sai-gon-ha-noi', 'Sai Gon - Ha Noi', 'sai-gon-ha-noi', 0, 'Tuyến xe từ Sài Gòn đi Hà Nội.', 12, 26, 1406084756, 1406341967, 0);
+INSERT INTO `route` VALUES (3, 'Sài Gòn - Khánh Hòa', 'sai-gon-khanh-hoa', 'Sai Gon - Nha Trang', 'sai-gon-nha-trang', 1, 'Chuyến xe từ Sài gòn đi Khánh Hòa\r\n', 1, 9, 1406085862, 1406567714, 1);
+INSERT INTO `route` VALUES (4, 'Sài Gòn - Phan Thiết, Bình Thuận', 'sai-gon-phan-thiet-binh-thuan', 'Sài Gòn - Phan Thiết, Bình Thuận', 'sai-gon-phan-thiet-binh-thuan', 0, 'Chuyến xe SG đi Phan Thiết\r\n', 1, 13, 1406087441, 1406567220, 1);
+INSERT INTO `route` VALUES (5, 'Hà Nội - Thái Bình', 'ha-noi-thai-binh', 'Hà Nội - Thái Bình', 'ha-noi-thai-binh', 0, 'Hà Nội đi Thái Bình', 32, 33, 1406087578, 1406102278, 0);
+INSERT INTO `route` VALUES (6, 'Hà Nội - Quảng Ninh', 'ha-noi-quang-ninh', 'Hà Nội - Quảng Ninh', 'ha-noi-quang-ninh', 0, 'Hà Nội đi Quảng Ninh', 16, 16, 1406087650, 1406567242, 1);
+INSERT INTO `route` VALUES (7, 'Sài Gòn - Hà Nội', 'sai-gon-ha-noi', 'Sài Gòn - Hà Nội', 'sai-gon-ha-noi', 1, 'SG di HN', 1, 14, 1406567574, 1406567574, 1);
+INSERT INTO `route` VALUES (8, 'Sài Gòn - Cần Thơ', 'sai-gon-can-tho', 'Sài Gòn - Cần Thơ', 'sai-gon-can-tho', 1, 'Sài Gòn - Cần Thơ', 1, 2, 1406567609, 1406567609, 1);
+INSERT INTO `route` VALUES (9, 'Sài Gòn - Đà Lạt', 'sai-gon-da-lat', 'Sài Gòn - Đà Lạt', 'sai-gon-da-lat', 1, 'Sài Gòn - Đà Lạt', 1, 11, 1406567671, 1406567671, 1);
+INSERT INTO `route` VALUES (10, 'Hà Nội - Đà Nẵng', 'ha-noi-da-nang', 'Hà Nội - Đà Nẵng', 'ha-noi-da-nang', 1, 'Hà Nội - Đà Nẵng', 14, 7, 1406567702, 1406567702, 1);
+INSERT INTO `route` VALUES (11, 'Sài Gòn - Đà Nẵng', 'sai-gon-da-nang', 'Sài Gòn - Đà Nẵng', 'sai-gon-da-nang', 1, 'Sài Gòn - Đà Nẵng', 1, 7, 1406567744, 1406567744, 1);
+INSERT INTO `route` VALUES (12, 'Huế - Hà Nội', 'hue-ha-noi', 'Huế - Hà Nội', 'hue-ha-noi', 0, 'Huế - Hà Nội', 10, 14, 1406567865, 1406567865, 1);
 
 -- --------------------------------------------------------
 
@@ -342,6 +358,31 @@ INSERT INTO `services` VALUES (3, 'Khăn lạnh', 'khan-lanh', 'Cold towels', 'c
 -- --------------------------------------------------------
 
 -- 
+-- Table structure for table `service_ticket`
+-- 
+
+CREATE TABLE `service_ticket` (
+  `ticket_id` int(11) NOT NULL,
+  `service_id` int(11) NOT NULL,
+  PRIMARY KEY  (`ticket_id`,`service_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- 
+-- Dumping data for table `service_ticket`
+-- 
+
+INSERT INTO `service_ticket` VALUES (1, 1);
+INSERT INTO `service_ticket` VALUES (1, 2);
+INSERT INTO `service_ticket` VALUES (3, 1);
+INSERT INTO `service_ticket` VALUES (3, 2);
+INSERT INTO `service_ticket` VALUES (3, 3);
+INSERT INTO `service_ticket` VALUES (5, 1);
+INSERT INTO `service_ticket` VALUES (5, 2);
+INSERT INTO `service_ticket` VALUES (5, 3);
+
+-- --------------------------------------------------------
+
+-- 
 -- Table structure for table `ticket`
 -- 
 
@@ -365,15 +406,18 @@ CREATE TABLE `ticket` (
   `update_time` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL,
   PRIMARY KEY  (`ticket_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 -- 
 -- Dumping data for table `ticket`
 -- 
 
-INSERT INTO `ticket` VALUES (1, 1, 1, 14, 12, 26, 800000, 1, '8 gio 30 phut', 14, 3, 3, '', 1406390400, 1406563200, 1406459045, 1406459045, 1);
-INSERT INTO `ticket` VALUES (2, 1, 1, 14, 12, 26, 800000, 2, '8 gio 30 phut', 14, 3, 3, '', 1406390400, 1406563200, 1406459835, 1406459835, 1);
-INSERT INTO `ticket` VALUES (3, 1, 1, 14, 27, 32, 800000, 2, '8 gio 30 phut', 14, 3, 3, '', 1406390400, 1406563200, 1406460978, 1406460978, 1);
+INSERT INTO `ticket` VALUES (1, 1, 1, 14, 27, 32, 800000, 1, '8 gio 30 phut', 14, 1, 3, '', 1406390400, 1406390400, 1406459045, 1406459045, 1);
+INSERT INTO `ticket` VALUES (2, 2, 1, 14, 12, 26, 800000, 1, '8 gio 30 phut', 14, 1, 3, '', 1406390400, 1406390400, 1406459835, 1406459835, 1);
+INSERT INTO `ticket` VALUES (3, 7, 1, 14, 27, 31, 750000, 1, '8 gio 30 phut', 14, 1, 3, '', 1406390400, 1406390400, 1406460978, 1406460978, 1);
+INSERT INTO `ticket` VALUES (4, 0, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, '', 0, 0, 1406556196, 1406559340, 0);
+INSERT INTO `ticket` VALUES (5, 10, 1, 14, 12, 32, 800000, 1, '8 gio 30 phut', 14, 2, 3, '', 1406390400, 1406390400, 1406564167, 1406564167, 1);
+INSERT INTO `ticket` VALUES (6, 9, 1, 14, 12, 31, 455000, 1, '8 gio 30 phut', 23, 1, 3, '', 1406476800, 1406476800, 1406565829, 1406565829, 1);
 
 -- --------------------------------------------------------
 
@@ -401,6 +445,42 @@ INSERT INTO `time_start` VALUES (3, '6:00 AM', '', 1406078650, 1406078650, 1);
 INSERT INTO `time_start` VALUES (4, '07:00 AM', '', 1406078692, 1406078894, 1);
 INSERT INTO `time_start` VALUES (5, '08:00 AM', '', 1406078810, 1406078900, 1);
 INSERT INTO `time_start` VALUES (6, '09:00 AM', '', 1406078818, 1406078946, 1);
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `time_ticket`
+-- 
+
+CREATE TABLE `time_ticket` (
+  `ticket_id` int(11) NOT NULL,
+  `time_id` int(11) NOT NULL,
+  PRIMARY KEY  (`ticket_id`,`time_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- 
+-- Dumping data for table `time_ticket`
+-- 
+
+INSERT INTO `time_ticket` VALUES (1, 1);
+INSERT INTO `time_ticket` VALUES (1, 2);
+INSERT INTO `time_ticket` VALUES (1, 3);
+INSERT INTO `time_ticket` VALUES (1, 5);
+INSERT INTO `time_ticket` VALUES (1, 6);
+INSERT INTO `time_ticket` VALUES (3, 1);
+INSERT INTO `time_ticket` VALUES (3, 2);
+INSERT INTO `time_ticket` VALUES (3, 3);
+INSERT INTO `time_ticket` VALUES (3, 4);
+INSERT INTO `time_ticket` VALUES (3, 5);
+INSERT INTO `time_ticket` VALUES (3, 6);
+INSERT INTO `time_ticket` VALUES (5, 1);
+INSERT INTO `time_ticket` VALUES (5, 2);
+INSERT INTO `time_ticket` VALUES (6, 1);
+INSERT INTO `time_ticket` VALUES (6, 2);
+INSERT INTO `time_ticket` VALUES (6, 3);
+INSERT INTO `time_ticket` VALUES (6, 4);
+INSERT INTO `time_ticket` VALUES (6, 5);
+INSERT INTO `time_ticket` VALUES (6, 6);
 
 -- --------------------------------------------------------
 
