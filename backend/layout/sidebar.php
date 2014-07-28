@@ -38,7 +38,7 @@
         </li>
         <li>
             <a href="<?php echo BASE_URL; ?>route&act=list">
-                <i class="fa fa-th"></i> <span>Chuyến xe</span> <!--<small class="badge pull-right bg-green">new</small>-->
+                <i class="fa fa-th"></i> <span>Tuyến đường</span> <!--<small class="badge pull-right bg-green">new</small>-->
             </a>
         </li>
         <li class="treeview <?php if(in_array($mod,array('place','tinh','coupon','hot_place','services','time_start'))) echo "active"; ?>" >

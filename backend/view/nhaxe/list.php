@@ -3,7 +3,7 @@ require_once "model/Nhaxe.php";
 $model = new Nhaxe;
 $link = "index.php?mod=nhaxe&act=list";
 
-if (isset($_GET['hot']) && $_GET['hot'] > 0) {
+if (isset($_GET['hot']) && $_GET['hot'] > -1) {
     $hot = (int) $_GET['hot'];      
     $link.="&hot=$hot";
 } else {
@@ -43,7 +43,8 @@ $arrList = $model->getListNhaxe($keyword,$hot,$offset, $limit);
                     &nbsp;&nbsp;&nbsp;Loại 
                     <select name="hot" class="event_change select_search">
                         <option value="-1">Tất cả</option>  
-                        <option value="1" <?php echo ($hot==1) ? "selected" : ""; ?>>Nhà xe uy tín</option>        
+                        <option value="0" <?php echo ($hot==0) ? "selected" : ""; ?>>Bình thường</option>   
+                        <option value="1" <?php echo ($hot==1) ? "selected" : ""; ?>>Uy tín</option>        
                     </select>
                     &nbsp;&nbsp;&nbsp;
                     <button class="btn btn-primary btn-sm right" type="submit">Tìm kiếm</button>
@@ -69,7 +70,10 @@ $arrList = $model->getListNhaxe($keyword,$hot,$offset, $limit);
                     ?>
                     <tr>
                         <td><?php echo $i; ?></td>
-                        <td><?php echo $row['nhaxe_name_vi']; ?> 
+                        <td>
+                            <a href="index.php?mod=nhaxe&act=form&nhaxe_id=<?php echo $row['nhaxe_id']; ?>">
+                                <?php echo $row['nhaxe_name_vi']; ?> 
+                            </a>
                             <?php if($row['hot']==1) { ?>
                             &nbsp;&nbsp;&nbsp;<img src="static/img/ok.gif" width="20" alt="Nhà xe uy tín" title="Nhà xe uy tín"/>
                             <?php } ?>

@@ -11,12 +11,13 @@ class Route extends Db {
     }
    
 
-    function getListRoute($nhaxe_id=-1,$keyword='',$place_id_start=-1,$place_id_end=-1,$offset = -1, $limit = -1) {
+    function getListRoute($keyword='',$tinh_id_start=-1,$tinh_id_end=-1,$hot=-1,$offset = -1, $limit = -1) {
         $arrResult = array();
         try{
             $sql = "SELECT * FROM route WHERE status > 0 
-            AND (nhaxe_id = $nhaxe_id OR $nhaxe_id = -1 ) AND (place_id_start = $place_id_start OR $place_id_start = -1)
-            AND (place_id_end = $place_id_end OR $place_id_end = -1) ";
+            AND  (tinh_id_start = $tinh_id_start OR $tinh_id_start = -1)
+            AND  (hot = $hot OR $hot = -1)
+            AND (tinh_id_end = $tinh_id_end OR $tinh_id_end = -1) ";
             if(trim($keyword)!=''){
                 $sql.= " AND route_name_vi LIKE '%".$keyword."%' "; 
             }
@@ -45,25 +46,25 @@ class Route extends Db {
         mysql_query($sql) or die(mysql_error() . $sql);
     }
 
-    function updateRoute($id,$nhaxe_id,$route_name_vi,$route_name_en,$route_name_safe_vi,$route_name_safe_en,$description,$place_id_start,$place_id_end) {        
+    function updateRoute($id,$route_name_vi,$route_name_en,$route_name_safe_vi,$route_name_safe_en,$hot,$description,$tinh_id_start,$tinh_id_end) {        
         $time = time();
         $sql = "UPDATE route
-                    SET route_name_vi = '$route_name_vi',
-                    nhaxe_id = $nhaxe_id,
+                    SET route_name_vi = '$route_name_vi',                    
                     route_name_en = '$route_name_en',
                     route_name_safe_vi  = '$route_name_safe_vi',
                     route_name_safe_en = '$route_name_safe_en',
                     update_time =  $time,
                     description = '$description',
-                    place_id_start =  $place_id_start,
-                    place_id_end =  $place_id_end
+                    tinh_id_start =  $tinh_id_start,
+                    tinh_id_end =  $tinh_id_end,
+                    hot = $hot
                     WHERE route_id = $id ";
         mysql_query($sql) or die(mysql_error() . $sql);
     }
-    function insertRoute($nhaxe_id,$route_name_vi,$route_name_en,$route_name_safe_vi,$route_name_safe_en,$description,$place_id_start,$place_id_end){
+    function insertRoute($route_name_vi,$route_name_en,$route_name_safe_vi,$route_name_safe_en,$hot,$description,$tinh_id_start,$tinh_id_end){
         try{
             $time = time();
-            $sql = "INSERT INTO route VALUES(NULL,$nhaxe_id,'$route_name_vi','$route_name_safe_vi','$route_name_en','$route_name_safe_en','$description',$place_id_start,$place_id_end,$time,$time,1)";
+            $sql = "INSERT INTO route VALUES(NULL,'$route_name_vi','$route_name_safe_vi','$route_name_en','$route_name_safe_en',$hot,'$description',$tinh_id_start,$tinh_id_end,$time,$time,1)";
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());       
         }catch(Exception $ex){            
             $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Route','function' => 'insertRoute' , 'error'=>$ex->getMessage(),'sql'=>$sql);

@@ -9,7 +9,12 @@ class Car extends Db {
         $row = mysql_fetch_assoc($rs);
         return $row;
     }
-   
+    function getCarNameByID($id) {
+        $sql = "SELECT type_name_vi FROM car_type WHERE type_id = $id";
+        $rs = mysql_query($sql) or die(mysql_error());
+        $row = mysql_fetch_assoc($rs);
+        return $row['type_name_vi'];
+    }
 
     function getListCarByStatus($status=-1,$offset = -1, $limit = -1) {
         $sql = "SELECT * FROM car_type WHERE (status = $status OR $status = -1)  AND status > 0 ";

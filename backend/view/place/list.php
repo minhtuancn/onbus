@@ -83,7 +83,11 @@ $arrList = $model->getListPlace($mien_id,$tinh_id,$keyword,$offset, LIMIT);
                     <tr>
                         <td><?php echo $i; ?></td>
                         <td><?php echo $modelTinh->getTinhNameByID($row['tinh_id']); ?></td>
-                        <td><?php echo $row['place_name_vi']; ?></td>
+                        <td>
+                            <a href="index.php?mod=place&act=form&place_id=<?php echo $row['place_id']; ?>">
+                                <?php echo $row['place_name_vi']; ?>
+                            </a>
+                        </td>
                         <td><?php echo $row['place_name_en']; ?></td>
                         <td><?php echo $row['address_vi']; ?></td>
                         <td><?php echo date('d-m-Y',$row['creation_time']); ?></td>                        
