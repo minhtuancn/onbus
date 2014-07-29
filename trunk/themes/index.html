@@ -74,17 +74,7 @@
                         </ul>
                     </div>
                     <div class="wrap-frm-search">
-                	<form>
-                    <ul class="menu triptype clearfix">
-						<li class="oneway">
-                        	<input data-ticket="type-1" id="ticket-1" type="radio" name="ticket-type" />
-							<label for="ticket-1">Vé 1 chiều</label>
-						</li>
-						<li class="return selected">
-	                        <input type="radio" data-ticket="type-2" id="ticket-2" name="ticket-type" checked="checked" />
-							<label for="ticket-2">Vé khứ hồi</label>
-						</li>
-					</ul>
+                	<form>                    
                 	<div class="left item-search">
                         <label for="departPlace">Điểm khởi hành</label>
                         <input id="departPlace" type="text" class="form-control input-txt place ui-autocomplete-input" placeholder="Default input" accesskey="1" tabindex="1" autocomplete="off">
@@ -134,30 +124,27 @@
 							</div>
                         </div>
                     </div>
+                    
                     <div class="left item-search">
+						<label for="departPlace">Nhà xe</label>
+						<select class="form-control input-sm left">
+							<option selected="selected">Hoàng Long</option>
+							<option>Vietbus</option>
+							<option>Danatranco</option>
+							<option>Vietbus</option>
+							<option>Phương Nam</option>
+							<option>Vietbus</option>
+							<option>Kumo</option>
+						</select>
+					</div>
+					<div class="right item-search">
                         <label for="departPlace">Ngày đi</label>
                         <input id="departDate" type="text" class="input-txt date form-control" placeholder="Chọn ngày đi" accesskey="3" tabindex="3" />
 
                     </div>
-                    <div class="right item-search ticket-2">
-                        <label for="departPlace">Ngày về</label>
-                        <input id="returnDate" type="text" class="input-txt date form-control" placeholder="Chọn ngày về" accesskey="4" tabindex="4" />
-
-                    </div>
                     <div class="btn-search-ticket">
 	                    <button type="button" class="btn btn-warning right btn-blue">Tìm vé xe</button>
-                        <div class="left item-search">
-                            <label for="departPlace">Nhà xe</label>
-                            <select class="form-control input-sm left">
-                            	<option selected="selected">Hoàng Long</option>
-                                <option>Vietbus</option>
-                                <option>Danatranco</option>
-                                <option>Vietbus</option>
-                                <option>Phương Nam</option>
-                                <option>Vietbus</option>
-                                <option>Kumo</option>
-                            </select>
-                        </div>
+                        
                     </div>
                     <div class="clear"></div>
                 </form>
