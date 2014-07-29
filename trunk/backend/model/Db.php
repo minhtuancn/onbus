@@ -149,7 +149,7 @@ class db {
             header("location:index.php");
         }
         else
-            header("location:dangnhap.php"); //fail
+            header("location:login.php"); //fail
 	} 
 
 //function Login
