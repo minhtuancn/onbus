@@ -1,9 +1,7 @@
 <?php
 class db {
 
-    private $host = "localhost";
-    //private $user = "the4f6df_palmy";
-    //private $pass = "UoHsv[akqMWz";
+    private $host = "localhost";   
     private $user = "root";
     private $pass = "root";
     private $db = "onbus";
