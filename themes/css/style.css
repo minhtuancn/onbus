@@ -2498,7 +2498,7 @@ div.cell_header {
 	border-top:5px solid #8c3778;
 }
 .wrap-frm-search form {
-	padding:20px 30px;
+	padding: 40px 30px 81px 30px;
 }
 ul.triptype {
 	display: block;
