@@ -41,7 +41,7 @@ class Promotion extends Db {
         mysql_query($sql) or die(mysql_error() . $sql);
     }
 
-    function updatePromotion($id,$title,$title_safe_vi,$title_en,$title_safe_en,$description_vi,$description_en,$image_url,$content_vi,$content_en,$hot){
+    function updatePromotion($id,$title_vi,$title_safe_vi,$title_en,$title_safe_en,$description_vi,$description_en,$image_url,$content_vi,$content_en,$hot){
         $time = time();
         $sql = "UPDATE promotion
                     SET title_vi = '$title_vi',
@@ -58,11 +58,11 @@ class Promotion extends Db {
                     WHERE promotion_id = $id ";
         mysql_query($sql) or die(mysql_error() . $sql);
     }
-    function insertPromotion($title,$title_safe_vi,$title_en,$title_safe_en,$description_vi,$description_en,$image_url,$content_vi,$content_en,$hot){
+    function insertPromotion($title_vi,$title_safe_vi,$title_en,$title_safe_en,$description_vi,$description_en,$image_url,$content_vi,$content_en,$hot){
         try{
             $time = time();
             $sql = "INSERT INTO promotion VALUES(NULL,'$title_vi','$title_safe_vi','$title_en','$title_safe_en','$description_vi','$description_en','$image_url',
-                '$content_vi','$content_en','$image_url',$hot,$time,$time,1)";
+                '$content_vi','$content_en',$hot,$time,$time,1)";
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());       
         }catch(Exception $ex){            
             $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Promotion','function' => 'insertPromotion' , 'error'=>$ex->getMessage(),'sql'=>$sql);
