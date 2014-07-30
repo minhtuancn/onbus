@@ -142,10 +142,10 @@ class db {
         $row = mysql_num_rows($user);
         if ($row == 1) {//success
             $chitiet = mysql_fetch_assoc($user);
-            $_SESSION['user_id'] = $chitiet['idUser'];
+            $_SESSION['user_id'] = $chitiet['user_id'];
             $_SESSION['email'] = $chitiet['email'];
             $_SESSION['fullname'] = $chitiet['fullname'];
-            $_SESSION['group'] = $chitiet['group'];
+            $_SESSION['group_id'] = $chitiet['group_id'];
             header("location:index.php");
         }
         else
