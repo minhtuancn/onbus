@@ -22,7 +22,7 @@ $hot = (int) $_POST['hot'];
 
 $category_id = 1;
 
-$image_url = $model->processData($_POST['image_url']);
+$image_url = str_replace("../", "", $model->processData($_POST['image_url']));
 
 if($article_id > 0) {	
 
