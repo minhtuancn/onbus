@@ -155,7 +155,8 @@ function SetFileField( fileUrl, data ){
 var editor = CKEDITOR.replace( 'content',{
     uiColor : '#9AB8F3',
     language:'vi',
-    skin:'kama',
+    height:400,
+    skin:'office2003',
     filebrowserImageBrowseUrl : 'static/ckfinder/ckfinder.html?Type=Images',
     filebrowserFlashBrowseUrl : 'static/ckfinder/ckfinder.html?Type=Flash',
     filebrowserImageUploadUrl : 'static/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
