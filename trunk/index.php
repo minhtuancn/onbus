@@ -94,7 +94,7 @@ $arrRoute = $modelRoute->getListRoute('',-1,-1,1, 0, 8);
                 	<form action="search.php" method="GET">                    
                 	<div class="left item-search">
                         <label for="departPlace">Nơi đi</label>
-                        <input type="hidden" name="vstart" value="" id="vstart"/>
+                        <input type="hidden" name="vstart" value="1" id="vstart"/>
                         <input id="departPlace" type="text" class="form-control input-txt place ui-autocomplete-input" accesskey="1" tabindex="1" autocomplete="off">
                         <div id="departPlaceSelector" class="place-selector rounded-5 clearfix" style="display: none;">
                             <div class="inner rel-pos">
@@ -117,7 +117,7 @@ $arrRoute = $modelRoute->getListRoute('',-1,-1,1, 0, 8);
                     </div>
                     <div class="right item-search">
                         <label for="departPlace">Nơi đến</label>
-                        <input type="hidden" name="vend" value="" id="vend"/>
+                        <input type="hidden" name="vend" value="14" id="vend"/>
                         <input id="destination" type="text" class="form-control input-txt place ui-autocomplete-input" accesskey="1" tabindex="1" autocomplete="off">
                         <div id="destinationSelector" class="place-selector rounded-5 clearfix" style="display: none;">
                             <div class="inner rel-pos">
