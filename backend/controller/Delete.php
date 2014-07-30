@@ -70,6 +70,11 @@ elseif($mod=='articles'){
 	$pk = 'article_id';
 
 }
+elseif($mod=='users'){
+
+	$pk = 'user_id';
+
+}
 
 $time = time();
 
