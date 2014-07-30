@@ -2498,7 +2498,7 @@ div.cell_header {
 	border-top:5px solid #8c3778;
 }
 .wrap-frm-search form {
-	padding: 40px 30px 81px 30px;
+	padding:20px 30px;
 }
 ul.triptype {
 	display: block;
@@ -2910,7 +2910,7 @@ button.medium {
 	margin:0px auto 0px;
 }
 #searchFormMini .field input.date {
-	width:190px;
+	width:120px;
 }
 #searchFormMini .field.search .medium {
 	height:auto;
@@ -4077,7 +4077,7 @@ body span.icon-font:before {
 #content.wide {
 	float: left;
 	display: inline;
-	width: 790px;
+	width: 805px;
 }
 .post {
 	clear: both;
@@ -4142,7 +4142,7 @@ body span.icon-font:before {
 .post-content {
 	float: right;
 	display: inline;
-	width: 490px;
+	width: 505px;
 	padding-bottom: 5px;
 }
 .post-content {
@@ -4206,7 +4206,8 @@ body span.icon-font:before {
 #sidebar2 {
 	float: right;
 	display: inline;
-	width: 280px;
+	width: 260px;
+	position:relative;
 }
 #ad-bigbox img {
 	width:100%;
@@ -4532,7 +4533,7 @@ ul.sliders-wrap-inner li img {
 }
 .wrap-img-slider {
 	float:right;
-	width:460px;
+	width: 475px;
 	height:300px;
 }
 .wrap-img-slider img {
@@ -4740,4 +4741,145 @@ ul.sliders-wrap-inner li img {
 	background: linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffab23', endColorstr='#ffec64', GradientType=0);
 	background-color: #ffab23;
+}
+.sliding-track {
+	top: 0;
+	position: absolute;
+	height: 100%;
+	width: inherit;
+	overflow: visible;
+}
+.sliding-box {
+	position: absolute;
+	width: inherit;
+	top: 0;
+}
+.sliding-box.fixed {
+	position: fixed;
+	top: 20px;
+}
+.round-cor-top {
+	-webkit-border-radius: 8px 8px 0 0;
+	-moz-border-radius: 8px 8px 0 0;
+	-ms-border-radius: 8px 8px 0 0;
+	-o-border-radius: 8px 8px 0 0;
+	border-radius: 8px 8px 0 0;
+}
+.bg-orange {
+	background: #F90;
+	color: #FFF;
+}
+.box-head {
+	margin: 0;
+	padding: 13px 15px;
+	font: 500 1.1em/100% 'arial';
+	text-transform: uppercase;
+}
+.round-cor-bottom {
+	-webkit-border-radius: 0 0 8px 8px;
+	-moz-border-radius: 0 0 8px 8px;
+	-ms-border-radius: 0 0 8px 8px;
+	-o-border-radius: 0 0 8px 8px;
+	border-radius: 0 0 8px 8px;
+}
+.pricebar {
+	border: 1px solid #D8E4F0;
+	background: #FFF;
+}
+.no-border {
+	border: none;
+	border-bottom: none !important;
+}
+.box-row {
+	border-bottom: 1px solid #D8E4F0;
+	padding: 10px 15px;
+	overflow: hidden;
+	display: block;
+	margin-bottom: 0;
+}
+.pricebar h3 {
+	background: url(images/arrow_box_blue_sprite.png) no-repeat 0 0;
+	position: relative;
+	margin-bottom: 0;
+	font-size: .9em;
+	cursor: pointer;
+	padding-left: 20px;
+	line-height: 14px;
+}
+.pricebar .price {
+	font-weight: bold;
+}
+.pricebar h3 span.price, .pricebar .subtotal span.price {
+	float: right;
+	white-space: nowrap;
+	position: absolute;
+	right: 0;
+}
+.pricebar h3.active {
+	background: url(images/arrow_box_blue_sprite.png) no-repeat 0 -42px;
+}
+.pricebar table {
+	margin-bottom: 0;
+	margin-top: 10px;
+	width:100%;
+}
+.pricebar td {
+	vertical-align: bottom;
+	font-size:.9em;
+	padding: 10px 0px 0px;
+}
+.pricebar td:first-child {
+	font-weight: bold;
+}
+.pricebar td:first-child+td {
+	text-align: right;
+}
+.pricebar .total-price {
+	margin: 5px 15px 20px;
+	font-size: 16px;
+	font-weight: bold;
+}
+.block-payment-bank .form-group .enterdetailstd8 span.wrap-img{
+	width: 165px;
+}
+.block-payment-bank .form-group .enterdetailstd8 span.wrap-img img{
+	background:none;
+}
+input[type=radio], input[type=checkbox] {
+	margin: 2px 0 0;
+}
+.dvdonkh{
+	padding-left:20px;
+	margin-top:20px;
+	overflow:hidden;
+}
+.form-horizontal .dvdonkh .form-group{
+	margin-left:0px;
+}
+.form-horizontal .dvdonkh .control-label{
+	padding-left:0px;
+	width:10%;
+}
+.dvdonkh.hide{
+	max-height: 0;
+	-moz-transition-duration: 0.5s;
+	-webkit-transition-duration: 0.5s;
+	-o-transition-duration: 0.5s;
+	transition-duration: 0.5s;
+	-moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+	-webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+	-o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+	display:block !important;
+}
+.dvdonkh.show{
+	-moz-transition-duration: 0.8s;
+    -webkit-transition-duration: 0.8s;
+    -o-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+    -moz-transition-timing-function: ease-in;
+    -webkit-transition-timing-function: ease-in;
+    -o-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+	max-height: 9999px;
 }
