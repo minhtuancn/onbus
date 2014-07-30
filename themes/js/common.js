@@ -23,4 +23,32 @@ $(document).ready(function() {
             placement: 'bottom'
         });
     }
+    $('#check_show_dvdonkh').on('change', function() {
+        var _this = $(this),
+            $boxShow = _this.parents('.donkhach').find('.dvdonkh');
+        $boxShow.toggleClass('hide').toggleClass('show');
+        /*if (_this.is(':checked')) {
+            //check
+            $boxShow.toggleClass('hide').toggleClass('show');
+        } else {
+            //uncheck
+            $boxShow.toggleClass('hide').toggleClass('show');
+        }*/
+    });
+    var $item = $('.sliding-box'),
+        topItem = $item.offset().top;
+
+    $(window).on('scroll', function() {
+        var topW = window.scrollY;
+        if (topItem <= topW) {
+            $item.addClass('fixed');
+        } else {
+            $item.removeClass('fixed');
+        }
+    });
 });
+var $obj = {
+    scrollFixed: function(item) {
+
+    }
+}
