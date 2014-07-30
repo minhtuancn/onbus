@@ -14,7 +14,7 @@
 
         <div class="pull-left info">
 
-            <p>Hello, Jane</p>            
+            <p>Hello, Admin</p>            
 
         </div>
 
@@ -89,6 +89,15 @@
             <a href="<?php echo BASE_URL; ?>articles&act=list">
 
                 <i class="fa fa-th"></i> <span>Tin tức</span> <!--<small class="badge pull-right bg-green">new</small>-->
+
+            </a>
+
+        </li>
+        <li>
+
+            <a href="<?php echo BASE_URL; ?>promotion&act=list">
+
+                <i class="fa fa-th"></i> <span>Khuyến mãi</span> <!--<small class="badge pull-right bg-green">new</small>-->
 
             </a>
 
