@@ -175,7 +175,7 @@ $arrList = $model->getListArticle($keyword,$lang_id,$hot,$offset, $limit);
                         </td>
 
                         <td>
-                        <?php $url_image = ($row['image_url']) ? "../".$row['image_url'] : STATIC_URL."img/noimage.gif"; ?>
+                        <?php $url_image = ($row['image_url']) ? "../".str_replace("images","_thumbs/Images", $row['image_url']) : STATIC_URL."img/noimage.gif"; ?>
                         <img src="<?php echo $url_image; ?>" width="120" /></td>
                             
                         <td style="vertical-align:top"><?php echo $row['description']; ?></td>
