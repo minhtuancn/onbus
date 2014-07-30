@@ -1,66 +1,42 @@
 <?php
 
-require_once "model/Place.php";
+require_once "model/Promotion.php";
 
-$model = new Place;
+$model = new Promotion;
 
-$link = "index.php?mod=place&act=list";
+$link = "index.php?mod=promotion&act=list";
 
+if (isset($_GET['hot']) && $_GET['hot'] > -1) {
 
+    $hot = (int) $_GET['hot'];      
 
-require_once "model/Tinh.php";
-
-$modelTinh = new Tinh;
-
-
-
-if (isset($_GET['mien_id']) && $_GET['mien_id'] > 0) {
-
-    $mien_id = (int) $_GET['mien_id'];      
-
-    $link.="&mien_id=$mien_id";
+    $link.="&hot=$hot";
 
 } else {
 
-    $mien_id = -1;
+    $hot = -1;
 
 }
 
-if (isset($_GET['tinh_id']) && $_GET['tinh_id'] > 0) {
+if(isset($_GET['keyword'])){
 
-    $tinh_id = (int) $_GET['tinh_id'];      
+    $keyword = $model->processData($_GET['keyword']);
 
-    $link.="&tinh_id=$tinh_id";
+    $link.='&keyword='.$keyword;
 
-} else {
+}else{
 
-    $tinh_id = -1;
-
-}
-
-
-
-if (isset($_GET['keyword']) && trim($_GET['keyword']) != '') {
-
-    $keyword = $_GET['keyword'];      
-
-    $link.="&keyword=$keyword";
-
-} else {
-
-    $keyword = '';
+    $keyword='';
 
 }
 
+$limit = 20;
+
+$arrTotal = $model->getListPromotion($keyword,$hot, -1, -1);
 
 
 
-
-$arrTotal = $model->getListPlace($mien_id,$tinh_id,$keyword, -1, -1);
-
-
-
-$total_page = ceil($arrTotal['total'] / LIMIT);
+$total_page = ceil($arrTotal['total'] / $limit);
 
 
 
@@ -68,65 +44,60 @@ $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
 
 
 
-$offset = LIMIT * ($page - 1);
+$offset = $limit * ($page - 1);
 
 
 
-$arrList = $model->getListPlace($mien_id,$tinh_id,$keyword,$offset, LIMIT);
+$arrList = $model->getListPromotion($keyword,$hot,$offset, $limit);
 
 ?>
+
+
 
 <div class="row">
 
     <div class="col-md-12">
 
-    <button class="btn btn-primary btn-sm right" onclick="location.href='index.php?mod=place&act=form'">Tạo mới</button>        
+    <button class="btn btn-primary btn-sm right" onclick="location.href='index.php?mod=promotion&act=form'">Tạo mới</button>        
 
          <div class="box-header">
 
-                <h3 class="box-title">Danh sách điểm xp/điểm đến</h3>
+                <h3 class="box-title">Danh sách khuyến mãi</h3>
 
             </div><!-- /.box-header -->
 
         <div class="box">
 
-            <div class="box_search">                 
-
-                    Miền 
-
-                    <select class="select_search" name="mien_id" id="mien_id">
-
-                        <option value="0">---Tất cả---</option>
-
-                        <option value="1" <?php echo ($_GET['mien_id']==1) ? "selected" : ""; ?>>Miền Nam</option>
-
-                        <option value="2" <?php echo ($_GET['mien_id']==2) ? "selected" : ""; ?>>Miền Trung - Tây Nguyên</option>
-
-                        <option value="3" <?php echo ($_GET['mien_id']==3) ? "selected" : ""; ?>>Miền Bắc</option>                                           
-
-                    </select>
-
-                    &nbsp;&nbsp;&nbsp;
-
-                    Nơi đi/nơi đến 
-
-                    <select class="select_search" style="width:170px" name="tinh_id" id="tinh_id">
-
-                        <option value="0">---Tất cả---</option>                        
-
-                    </select>
-
-                    &nbsp;&nbsp;&nbsp;
-
-                   Tên  &nbsp;
-
-                   <input type="text" class="text_search" id="keyword" name="keyword" value="<?php echo (trim($keyword)!='') ? $keyword: ""; ?>" /> 
-
-                    &nbsp;&nbsp;&nbsp;
-
-                    <button class="btn btn-primary btn-sm right" id="btnSearch" type="button">Tìm kiếm</button>
+            <div class="box_search">
 
                 
+
+                <form method="get" id="form_search" name="form_search">
+
+                    <input type="hidden" name="mod" value="promotion" />
+
+                    <input type="hidden" name="act" value="list" />
+
+                    Tiêu đề &nbsp;<input type="text" class="text_search" name="keyword" value="<?php echo (trim($keyword)!='') ? $keyword: ""; ?>" /> 
+
+                   
+                    &nbsp;&nbsp;&nbsp;Loại 
+
+                    <select name="hot" class="event_change select_search">
+
+                        <option value="-1">Tất cả</option>  
+
+                        <option value="0" <?php echo ($hot==0) ? "selected" : ""; ?>>Bình thường</option>   
+
+                        <option value="1" <?php echo ($hot==1) ? "selected" : ""; ?>>Tin Hot</option>        
+
+                    </select>
+
+                    &nbsp;&nbsp;&nbsp;
+
+                    <button class="btn btn-primary btn-sm right" type="submit">Tìm kiếm</button>
+
+                </form>
 
             </div>
 
@@ -138,23 +109,22 @@ $arrList = $model->getListPlace($mien_id,$tinh_id,$keyword,$offset, LIMIT);
 
                         <th style="width: 10px">No.</th>
 
-                        <th style="width:150px;white-space:nowrap">Nơi đi/nơi đến</th>
+                        <th width="300">Tiêu đề</th>
 
-                        <th>Tên <img src="<?php echo STATIC_URL?>img/vi.png"/></th>
+                        <th width="140">Ảnh đại diện</th>
+                        <th>Mô tả ngắn</th>
 
-                        <th>Tên <img src="<?php echo STATIC_URL?>img/uk_.png"/></th>
-
-                        <th>Địa chỉ</th>
-
-                        <th>Ngày tạo</th>                        
+                        <th width="140">Ngày tạo</th>                                               
 
                         <th style="width: 40px">Action</th>
 
                     </tr>
 
                     <?php
-                    if(!empty($arrList['data'])){
-                    $i = ($page-1) * LIMIT;                    
+
+                    $i = ($page-1) * $limit; 
+
+                    if(!empty($arrList['data'])){                   
 
                     foreach($arrList['data'] as $row){
 
@@ -166,33 +136,38 @@ $arrList = $model->getListPlace($mien_id,$tinh_id,$keyword,$offset, LIMIT);
 
                         <td><?php echo $i; ?></td>
 
-                        <td><?php echo $modelTinh->getTinhNameByID($row['tinh_id']); ?></td>
-
                         <td>
 
-                            <a href="index.php?mod=place&act=form&place_id=<?php echo $row['place_id']; ?>">
+                            <a href="index.php?mod=promotion&act=form&promotion_id=<?php echo $row['promotion_id']; ?>">
 
-                                <?php echo $row['place_name_vi']; ?>
+                                <?php echo $row['title_vi']; ?> 
 
                             </a>
 
+                            <?php if($row['hot']==1) { ?>
+
+                            &nbsp;&nbsp;&nbsp;<img src="static/img/ok.gif" width="20" alt="Tin hot" title="Tin hot"/>
+
+                            <?php } ?>
+
                         </td>
 
-                        <td><?php echo $row['place_name_en']; ?></td>
+                        <td>
+                        <?php $url_image = ($row['image_url']) ? "../".str_replace("images","_thumbs/Images", $row['image_url']) : STATIC_URL."img/noimage.gif"; ?>
+                        <img src="<?php echo $url_image; ?>" width="120" /></td>
+                            
+                        <td style="vertical-align:top"><?php echo $row['description_vi']; ?></td>
+                        <td><?php echo date('d-m-Y',$row['creation_time']); ?></td>                                             
 
-                        <td><?php echo $row['address_vi']; ?></td>
+                        <td style="white-space:nowrap">                            
 
-                        <td><?php echo date('d-m-Y',$row['creation_time']); ?></td>                        
-
-                        <td style="white-space:nowrap">
-
-                            <a href="index.php?mod=place&act=form&place_id=<?php echo $row['place_id']; ?>">
+                            <a href="index.php?mod=promotion&act=form&promotion_id=<?php echo $row['promotion_id']; ?>">
 
                                 <i class="fa fa-fw fa-edit"></i>
 
                             </a>
 
-                            <a href="javascript:;" alias="<?php echo $row['place_name_vi']; ?>" id="<?php echo $row['place_id']; ?>" mod="place" class="link_delete" >    
+                            <a href="javascript:;" alias="<?php echo $row['title']; ?>" id="<?php echo $row['promotion_id']; ?>" mod="promotion" class="link_delete" >    
 
                                 <i class="fa fa-fw fa-trash-o"></i>
 
@@ -208,11 +183,12 @@ $arrList = $model->getListPlace($mien_id,$tinh_id,$keyword,$offset, LIMIT);
 
                     <tr>
 
-                        <td colspan="7" class="error_data">Không tìm thấy dữ liệu!</td>
+                        <td colspan="8" class="error_data">Không tìm thấy dữ liệu!</td>
 
                     </tr>
 
-                    <?php } ?>  
+                    <?php } ?>
+
                 </tbody></table>
 
             </div><!-- /.box-body -->
@@ -246,137 +222,3 @@ $arrList = $model->getListPlace($mien_id,$tinh_id,$keyword,$offset, LIMIT);
    
 
 </div>
-
-<script type="text/javascript">
-
-$(function(){    
-
-    $('#mien_id').change(function(){
-
-        var mien_id = $(this).val();        
-
-        $.ajax({
-
-            url: "controller/Tinh.php",
-
-            type: "POST",
-
-            async: true,
-
-            data: {
-
-                'mien_id' : mien_id,
-
-                'act' : "getTinhByMien"
-
-            },
-
-            success: function(data){                    
-
-                $('#tinh_id').html(data);
-
-            }
-
-        });
-
-    });
-
-
-
-});
-
-$(function(){
-
-    <?php if($mien_id>0) {?>
-
-        $.ajax({
-
-            url: "controller/Tinh.php",
-
-            type: "POST",
-
-            async: true,
-
-            data: {
-
-                'mien_id' : <?php echo $mien_id; ?>,
-
-                'act' : "getTinhByMien"
-
-            },
-
-            success: function(data){                    
-
-                $('#tinh_id').html(data);
-
-                <?php if($tinh_id>0) {?>
-
-                    $('#tinh_id').val(<?php echo $tinh_id; ?>);
-
-                <?php } ?>
-
-            }
-
-        });
-
-    <?php } ?>
-
-    $('#tinh_id').change(function(){
-
-        search();
-
-    });
-
-    $('#btnSearch').click(function(){
-
-        search();
-
-    });
-
-    $('#keyword').keypress(function (e) {
-
-      if (e.which == 13) {
-
-        search();
-
-      }
-
-    });
-
-});   
-
-function search(){
-
-    var str_link = "index.php?mod=place&act=list";
-
-    var tmp = $('#tinh_id').val();
-
-    if(tmp > 0){
-
-        str_link += "&tinh_id=" + tmp ;
-
-    }
-
-    tmp = $('#mien_id').val();
-
-    if(tmp > 0){
-
-        str_link += "&mien_id=" + tmp ;
-
-    }
-
-    tmp = $.trim($('#keyword').val());
-
-    if(tmp != ''){
-
-        str_link += "&keyword=" + tmp ;   
-
-    }    
-
-    location.href= str_link;
-
-}       
-
-
-
-</script>
