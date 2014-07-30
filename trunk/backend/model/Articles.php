@@ -2,7 +2,7 @@
 
 require_once "Db.php";
 
-class Article extends Db {
+class Articles extends Db {
 
     function getDetailArticle($article_id) {
         $sql = "SELECT * FROM article WHERE article_id = $article_id";
