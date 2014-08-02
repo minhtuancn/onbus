@@ -73,12 +73,13 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
 ?>
 
 <link href="<?php echo STATIC_URL; ?>css/jquery-ui.css" rel="stylesheet" type="text/css" />
-
+<link rel="stylesheet" type="text/css" href="<?php echo STATIC_URL; ?>css/mdp.css">     
+<script type="text/javascript" src="<?php echo STATIC_URL; ?>js/jquery-ui.multidatespicker.js"></script>
 <div class="row">
 
     <form method="post" action="controller/Ticket.php">
 
-    <div class="col-md-6">                   
+    <div class="col-md-7">                   
 
         <!-- Custom Tabs -->
 
@@ -104,55 +105,62 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
 
         <div class="nav-tabs-custom">
 
-            <div class="button">
+            <div class="button">                                 
 
-                <input type="hidden" name="type" value="1" />       
+                <div class="row">
 
-                <!--
+                    <div class="col-md-6">
 
-                <div class="form-group">
+                        <div class="form-group">
 
-                    <label>Loại vé <span class="required"> ( * ) </span></label> 
+                            <label>Loại vé <span class="required"> ( * ) </span></label> 
 
-                    <div class="radio">
+                            <select class="form-control" name="type" id="type">
 
-                        <input name="type" class="required" type="radio" value="1" <?php echo $detail['type'] == 1 ? "checked" : ""; ?>/> &nbsp; Vé 1 chiều
+                                <option value="0">--chọn--</option>
 
-                        &nbsp;&nbsp;&nbsp;
+                                <option value="1" <?php echo $detail['type'] == 1 ? "selected" : ""; ?>>Vé 1 chiều</option>
 
-                        <input name="type" class="required" type="radio" value="2" <?php echo $detail['type'] == 2 ? "checked" : ""; ?>/> &nbsp; Vé khứ hồi
+                                <option value="2" <?php echo $detail['stop'] == 2 ? "selected" : ""; ?>>Vé khứ hồi</option>                      
+
+                            </select>                    
+
+                        </div>   
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+
+                            <label>Nhà xe<span class="required"> ( * ) </span></label>
+
+                            <select class="form-control required" name="nhaxe_id" id="nhaxe_id">
+
+                                <option value="0">---chọn---</option> 
+
+                                 <?php if(!empty($arrListNhaxe['data'])){
+
+                                    foreach ($arrListNhaxe['data'] as $value) {
+
+                                        ?>
+
+                                        <option <?php echo $detail['nhaxe_id'] == $value['nhaxe_id'] ? "selected" : ""; ?> value="<?php echo $value['nhaxe_id']; ?>"><?php echo $value['nhaxe_name_vi']; ?></option> 
+
+                                        <?php 
+
+                                    }}
+
+                                    ?>                           
+
+                            </select>
+
+                        </div> 
 
                     </div>
 
                 </div> 
 
-            -->
-
-                <div class="form-group">
-
-                    <label>Nhà xe<span class="required"> ( * ) </span></label>
-
-                    <select class="form-control required" name="nhaxe_id" id="nhaxe_id">
-
-                        <option value="0">---chọn---</option> 
-
-                         <?php if(!empty($arrListNhaxe['data'])){
-
-                            foreach ($arrListNhaxe['data'] as $value) {
-
-                                ?>
-
-                                <option <?php echo $detail['nhaxe_id'] == $value['nhaxe_id'] ? "selected" : ""; ?> value="<?php echo $value['nhaxe_id']; ?>"><?php echo $value['nhaxe_name_vi']; ?></option> 
-
-                                <?php 
-
-                            }}
-
-                            ?>                           
-
-                    </select>
-
-                </div>
 
                 <div class="row">
 
@@ -184,65 +192,39 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
 
                 <div class="row">
 
-                    <div class="col-md-6">
+                    <div class="col-md-6 ngaydi" >
 
                         <div class="form-group">
 
                             <label>Ngày đi<span class="required"> ( * ) </span></label>
-
-                            <input type="text" name="date_start" id="date_start" class="form-control required" value="<?php echo $detail['date_start'] > 0  ? date('d-m-Y',$detail['date_start']) : "" ?>"/>                             
+                             <div id="div_ngaydi"></div>    
+                            <input type="hidden" name="date_start" id="date_start"  class="form-control required" value="<?php echo $detail['date_start'] > 0  ? date('d-m-Y',$detail['date_start']) : "" ?>"/>                             
 
                         </div>
 
                     </div>
 
-                    <!--
+                    
 
-                    <div class="col-md-6">
+                    <div class="col-md-6 ngayve">
 
                         <div class="form-group">
 
                             <label>Ngày về</label>
-
-                            <input type="text" name="date_end" id="date_end" class="form-control" value="<?php echo ($detail['date_end'] > 0)  ? date('d-m-Y',$detail['date_end']) : "" ?>"/>                             
+                            <div id="div_ngayve"></div>
+                            <input type="hidden" name="date_end" id="date_end" class="form-control" value="<?php echo ($detail['date_end'] > 0)  ? date('d-m-Y',$detail['date_end']) : "" ?>"/>                             
 
                         </div> 
 
                     </div>
 
-                -->
+                
 
 
 
                 </div>
 
-                <div class="form-group">
-
-                        <label>Loại xe<span class="required"> ( * ) </span></label>
-
-                        <select class="form-control required" name="car_type" id="car_type">
-
-                            <option value="0">---chọn---</option> 
-
-                             <?php while($car = mysql_fetch_assoc($arrCar)){
-
-                                    ?>
-
-                                    <option value="<?php echo $car['type_id']; ?>"
-
-                                        <?php echo $detail['car_type'] == $car['type_id'] ? "selected" : ""; ?>
-
-                                        ><?php echo $car['type_name_vi']; ?></option> 
-
-                                    <?php 
-
-                                }
-
-                                ?>                           
-
-                        </select>
-
-                    </div>
+               
 
                  
 
@@ -262,7 +244,7 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
 
     </div><!-- /.col -->  
 
-        <div class="col-md-6">                   
+        <div class="col-md-5">                   
 
             <!-- Custom Tabs -->
 
@@ -355,7 +337,33 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
                     </div> 
 
                     
+                 <div class="form-group">
 
+                        <label>Loại xe<span class="required"> ( * ) </span></label>
+
+                        <select class="form-control required" name="car_type" id="car_type">
+
+                            <option value="0">---chọn---</option> 
+
+                             <?php while($car = mysql_fetch_assoc($arrCar)){
+
+                                    ?>
+
+                                    <option value="<?php echo $car['type_id']; ?>"
+
+                                        <?php echo $detail['car_type'] == $car['type_id'] ? "selected" : ""; ?>
+
+                                        ><?php echo $car['type_name_vi']; ?></option> 
+
+                                    <?php 
+
+                                }
+
+                                ?>                           
+
+                        </select>
+
+                    </div>    
                 <div class="row">
 
                     <div class="col-md-6">
@@ -415,16 +423,16 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
             <div class="form-group" style="padding-top:5px">
 
                 <label>Tiện ích đi kèm &nbsp;</label>
-
+                <input type="checkbox" id="service_all" /> &nbsp; Tất cả &nbsp;&nbsp;
                 <?php while($ser = mysql_fetch_assoc($arrService)){
 
                     ?>
-
+                 
                 <input 
 
                 <?php if(!empty($arrServiceTicket) && in_array($ser['service_id'], $arrServiceTicket)) echo "checked"; ?>
 
-                 type="checkbox" name="services[]" value="<?php echo $ser['service_id']; ?>"/> &nbsp; <?php echo $ser['service_name_vi']; ?>  &nbsp;&nbsp;&nbsp; 
+                 type="checkbox" name="services[]" class="services" value="<?php echo $ser['service_id']; ?>"/> &nbsp; <?php echo $ser['service_name_vi']; ?>  &nbsp;&nbsp;&nbsp; 
 
                     
 
@@ -439,7 +447,7 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
             <div class="form-group" style="padding-top:5px">
 
                 <label>Giờ khởi hành <span class="required"> ( * ) </span>&nbsp;</label>
-
+                <input type="checkbox" id="time_all" /> &nbsp; Tất cả &nbsp;&nbsp;
                 <?php while($time = mysql_fetch_assoc($arrTime)){
 
                     ?>
@@ -448,7 +456,7 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
 
                 <?php if(!empty($arrTimeTicket) && in_array($time['time_id'], $arrTimeTicket)) echo "checked"; ?>
 
-                type="checkbox" name="time_start[]" value="<?php echo $time['time_id']; ?>"/> <?php echo $time['time_start']; ?>  &nbsp;&nbsp;&nbsp; 
+                type="checkbox" name="time_start[]" class="time_start" value="<?php echo $time['time_id']; ?>"/> <?php echo $time['time_start']; ?>  &nbsp;&nbsp;&nbsp; 
 
                     
 
@@ -462,7 +470,7 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
 
             <div class="button">
 
-                <button class="btn btn-primary btnSave" type="submit">Save</button>
+                <button class="btn btn-primary btnSave" type="submit" onclick="return checkDate(); ">Save</button>
 
                 <button class="btn btn-primary" type="reset">Cancel</button>
 
@@ -509,18 +517,66 @@ function getPlaceByTinh(tinh_id,obj,value){
         });
 
 }
-
+function checkDate(){
+    if($('#type').val()==2){
+         var fromDate = $("input#date_start").val();
+         var toDate = $("input#date_end").val();
+         if(fromDate > toDate){
+            alert("Ngày về không hợp lệ.");
+            return false;
+         }
+    }    
+}
 $(function(){    
+    $('.ngayve,.ngaydi').hide();    
+    var today = new Date();
+    $('#div_ngaydi').multiDatesPicker({
+        minDate: new Date(),
+        altField: '#date_start',
+        dateFormat: "dd-mm-yy",
+        beforeShow: function() {
 
-    $('#date_start,#date_end').datepicker({
+                    var $toDateInput = $("input#todate");
+                    var fromDate = $("input#fromdate").datepicker("getDate");
+                    var toDate = $toDateInput.datepicker("getDate");
+                    var afterFromDate;
 
-        showOtherMonths: true,
-
-        selectOtherMonths: true,
-
-        dateFormat :'dd-mm-yy'
-
+                    if (fromDate) {
+                        if (!toDate || (toDate <= fromDate)) {
+                            afterFromDate = new Date(fromDate.toUTCString());
+                            afterFromDate.setDate(afterFromDate.getDate());
+                            $toDateInput.datepicker("setDate", afterFromDate);
+                        }
+                        $toDateInput.datepicker("option", "minDate", fromDate);
+                    }
+                },             
     });
+
+    $('#div_ngayve').multiDatesPicker({
+        minDate: new Date(),
+        altField: '#date_end',
+        dateFormat: "dd-mm-yy",
+        maxPicks: 1
+    });
+    $('#type').change(function(){
+        if($(this).val()==2){
+            $('.ngayve,.ngaydi').show();
+            
+            $('#div_ngaydi').multiDatesPicker({
+                resetDates : 'picked',
+                setDate : null,
+                maxPicks : 1,
+               
+            });                    
+        }
+        if($(this).val()==1){
+            $('.ngayve').hide();
+            $('.ngaydi').show();             
+        }
+        if($(this).val()==0){
+            $('.ngayve,.ngaydi').hide();
+        }
+    });    
 
 });
 
