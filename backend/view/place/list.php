@@ -6,38 +6,21 @@ $model = new Place;
 
 $link = "index.php?mod=place&act=list";
 
-
-
 require_once "model/Tinh.php";
 
 $modelTinh = new Tinh;
 
+if (isset($_GET['nhaxe_id']) && $_GET['nhaxe_id'] > 0) {
 
+    $nhaxe_id = (int) $_GET['nhaxe_id'];      
 
-if (isset($_GET['mien_id']) && $_GET['mien_id'] > 0) {
-
-    $mien_id = (int) $_GET['mien_id'];      
-
-    $link.="&mien_id=$mien_id";
+    $link.="&nhaxe_id=$nhaxe_id";
 
 } else {
 
-    $mien_id = -1;
+    $nhaxe_id = -1;
 
 }
-
-if (isset($_GET['tinh_id']) && $_GET['tinh_id'] > 0) {
-
-    $tinh_id = (int) $_GET['tinh_id'];      
-
-    $link.="&tinh_id=$tinh_id";
-
-} else {
-
-    $tinh_id = -1;
-
-}
-
 
 
 if (isset($_GET['keyword']) && trim($_GET['keyword']) != '') {
@@ -52,11 +35,7 @@ if (isset($_GET['keyword']) && trim($_GET['keyword']) != '') {
 
 }
 
-
-
-
-
-$arrTotal = $model->getListPlace($mien_id,$tinh_id,$keyword, -1, -1);
+$arrTotal = $model->getListPlace($nhaxe_id,$keyword, -1, -1);
 
 
 
@@ -72,7 +51,14 @@ $offset = LIMIT * ($page - 1);
 
 
 
-$arrList = $model->getListPlace($mien_id,$tinh_id,$keyword,$offset, LIMIT);
+$arrList = $model->getListPlace($nhaxe_id,$keyword,$offset, LIMIT);
+
+// list nha xe
+require_once "model/Nhaxe.php";
+
+$modelNhaxe = new Nhaxe;
+
+$arrListNhaxe = $modelNhaxe->getListNhaxe('',-1, -1, -1);
 
 ?>
 
@@ -92,29 +78,27 @@ $arrList = $model->getListPlace($mien_id,$tinh_id,$keyword,$offset, LIMIT);
 
             <div class="box_search">                 
 
-                    Miền 
+                    Nhà xe 
 
-                    <select class="select_search" name="mien_id" id="mien_id">
+                    <select class="select_search" name="nhaxe_id" id="nhaxe_id">
 
                         <option value="0">---Tất cả---</option>
 
-                        <option value="1" <?php echo ($_GET['mien_id']==1) ? "selected" : ""; ?>>Miền Nam</option>
+                        <?php if(!empty($arrListNhaxe['data'])){
 
-                        <option value="2" <?php echo ($_GET['mien_id']==2) ? "selected" : ""; ?>>Miền Trung - Tây Nguyên</option>
+                            foreach ($arrListNhaxe['data'] as $value) {
 
-                        <option value="3" <?php echo ($_GET['mien_id']==3) ? "selected" : ""; ?>>Miền Bắc</option>                                           
+                                ?>
 
-                    </select>
+                                <option <?php echo $_GET['nhaxe_id'] == $value['nhaxe_id'] ? "selected" : ""; ?> value="<?php echo $value['nhaxe_id']; ?>"><?php echo $value['nhaxe_name_vi']; ?></option> 
 
-                    &nbsp;&nbsp;&nbsp;
+                                <?php 
 
-                    Nơi đi/nơi đến 
+                            }}
 
-                    <select class="select_search" style="width:170px" name="tinh_id" id="tinh_id">
+                            ?>                                          
 
-                        <option value="0">---Tất cả---</option>                        
-
-                    </select>
+                    </select>                   
 
                     &nbsp;&nbsp;&nbsp;
 
@@ -138,7 +122,7 @@ $arrList = $model->getListPlace($mien_id,$tinh_id,$keyword,$offset, LIMIT);
 
                         <th style="width: 10px">No.</th>
 
-                        <th style="width:150px;white-space:nowrap">Nơi đi/nơi đến</th>
+                        <th style="width:150px;white-space:nowrap">Nhà xe</th>
 
                         <th>Tên <img src="<?php echo STATIC_URL?>img/vi.png"/></th>
 
@@ -166,7 +150,7 @@ $arrList = $model->getListPlace($mien_id,$tinh_id,$keyword,$offset, LIMIT);
 
                         <td><?php echo $i; ?></td>
 
-                        <td><?php echo $modelTinh->getTinhNameByID($row['tinh_id']); ?></td>
+                        <td><?php echo $modelNhaxe->getNhaxeNameByID($row['nhaxe_id']); ?></td>
 
                         <td>
 
@@ -249,79 +233,10 @@ $arrList = $model->getListPlace($mien_id,$tinh_id,$keyword,$offset, LIMIT);
 
 <script type="text/javascript">
 
-$(function(){    
-
-    $('#mien_id').change(function(){
-
-        var mien_id = $(this).val();        
-
-        $.ajax({
-
-            url: "controller/Tinh.php",
-
-            type: "POST",
-
-            async: true,
-
-            data: {
-
-                'mien_id' : mien_id,
-
-                'act' : "getTinhByMien"
-
-            },
-
-            success: function(data){                    
-
-                $('#tinh_id').html(data);
-
-            }
-
-        });
-
-    });
-
-
-
-});
-
 $(function(){
+    
 
-    <?php if($mien_id>0) {?>
-
-        $.ajax({
-
-            url: "controller/Tinh.php",
-
-            type: "POST",
-
-            async: true,
-
-            data: {
-
-                'mien_id' : <?php echo $mien_id; ?>,
-
-                'act' : "getTinhByMien"
-
-            },
-
-            success: function(data){                    
-
-                $('#tinh_id').html(data);
-
-                <?php if($tinh_id>0) {?>
-
-                    $('#tinh_id').val(<?php echo $tinh_id; ?>);
-
-                <?php } ?>
-
-            }
-
-        });
-
-    <?php } ?>
-
-    $('#tinh_id').change(function(){
+    $('#nhaxe_id').change(function(){
 
         search();
 
@@ -349,22 +264,14 @@ function search(){
 
     var str_link = "index.php?mod=place&act=list";
 
-    var tmp = $('#tinh_id').val();
+    var tmp = $('#nhaxe_id').val();
 
     if(tmp > 0){
 
-        str_link += "&tinh_id=" + tmp ;
+        str_link += "&nhaxe_id=" + tmp ;
 
     }
-
-    tmp = $('#mien_id').val();
-
-    if(tmp > 0){
-
-        str_link += "&mien_id=" + tmp ;
-
-    }
-
+   
     tmp = $.trim($('#keyword').val());
 
     if(tmp != ''){

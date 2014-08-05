@@ -16,6 +16,13 @@ require_once "model/Tinh.php";
 
 $modelTinh = new Tinh;
 
+// list nha xe
+require_once "model/Nhaxe.php";
+
+$modelNhaxe = new Nhaxe;
+
+$arrListNhaxe = $modelNhaxe->getListNhaxe('',-1, -1, -1);
+
 ?>
 
 <div class="row">
@@ -46,33 +53,28 @@ $modelTinh = new Tinh;
 
         <div class="nav-tabs-custom">
 
-            <div class="button">
+            <div class="button">                  
 
                 <div class="form-group">
 
-                    <label>Miền <span class="required"> ( * ) </span></label>
+                    <label>Nhà xe<span class="required"> ( * ) </span></label>
 
-                    <select class="form-control required" name="mien_id" id="mien_id">
+                    <select class="form-control required" name="nhaxe_id" id="nhaxe_id">
 
-                        <option value="0">---chọn---</option>
+                        <option value="0">---chọn---</option>    
+                        <?php if(!empty($arrListNhaxe['data'])){
 
-                        <option value="1" <?php echo ($detail['mien_id']==1) ? "selected" : ""; ?>>Miền Nam</option>
+                            foreach ($arrListNhaxe['data'] as $value) {
 
-                        <option value="2" <?php echo ($detail['mien_id']==2) ? "selected" : ""; ?>>Miền Trung - Tây Nguyên</option>
+                                ?>
 
-                        <option value="3" <?php echo ($detail['mien_id']==3) ? "selected" : ""; ?>>Miền Bắc</option>                                           
+                                <option <?php echo $detail['nhaxe_id'] == $value['nhaxe_id'] ? "selected" : ""; ?> value="<?php echo $value['nhaxe_id']; ?>"><?php echo $value['nhaxe_name_vi']; ?></option> 
 
-                    </select>
+                                <?php 
 
-                </div>   
+                            }}
 
-                <div class="form-group">
-
-                    <label>Nơi đi/nơi đến <span class="required"> ( * ) </span></label>
-
-                    <select class="form-control required" name="tinh_id" id="tinh_id">
-
-                        <option value="0">---chọn---</option>                                 
+                            ?>                               
 
                     </select>
 

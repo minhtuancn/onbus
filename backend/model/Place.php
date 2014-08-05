@@ -49,11 +49,11 @@ class Place extends Db {
 
 
 
-    function getListPlace($mien_id = -1, $tinh_id=-1,$keyword='',$offset = -1, $limit = -1) {
+    function getListPlace($nhaxe_id=-1,$keyword='',$offset = -1, $limit = -1) {
 
         $arrResult = array();
 
-        $sql = "SELECT * FROM place WHERE (mien_id = $mien_id OR $mien_id = -1) AND (tinh_id = $tinh_id OR $tinh_id = -1)  AND status > 0 ";
+        $sql = "SELECT * FROM place WHERE (nhaxe_id = $nhaxe_id OR $nhaxe_id = -1) AND status > 0 ";
 
         if(trim($keyword)!=''){
 
@@ -97,7 +97,7 @@ class Place extends Db {
 
 
 
-    function updatePlace($id,$tinh_id,$mien_id,$place_name_vi,$place_name_en,$place_name_safe_vi,$place_name_safe_en,$address_vi,$address_en) {        
+    function updatePlace($id,$nhaxe_id,$place_name_vi,$place_name_en,$place_name_safe_vi,$place_name_safe_en,$address_vi,$address_en) {        
 
         $time = time();
 
@@ -107,10 +107,8 @@ class Place extends Db {
 
                     place_name_en = '$place_name_en',
 
-                    tinh_id = $tinh_id,
-
-                    mien_id = $mien_id,
-
+                    nhaxe_id = $nhaxe_id,
+                   
                     place_name_safe_vi  = '$place_name_safe_vi',
 
                     place_name_safe_en = '$place_name_safe_en',
@@ -127,13 +125,13 @@ class Place extends Db {
 
     }
 
-    function insertPlace($tinh_id,$mien_id,$place_name_vi,$place_name_en,$place_name_safe_vi,$place_name_safe_en,$address_vi,$address_en){
+    function insertPlace($nhaxe_id,$place_name_vi,$place_name_en,$place_name_safe_vi,$place_name_safe_en,$address_vi,$address_en){
 
         try{
 
             $time = time();
 
-            $sql = "INSERT INTO place VALUES(NULL,$tinh_id,$mien_id,'$place_name_vi','$place_name_safe_vi','$place_name_en','$place_name_safe_en','$address_vi','$address_en',$time,$time,1)";
+            $sql = "INSERT INTO place VALUES(NULL,$nhaxe_id,'$place_name_vi','$place_name_safe_vi','$place_name_en','$place_name_safe_en','$address_vi','$address_en',$time,$time,1)";
 
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());       
 

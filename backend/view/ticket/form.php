@@ -107,60 +107,36 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
 
             <div class="button">                                 
 
-                <div class="row">
+                
+					<div class="form-group">
 
-                    <div class="col-md-6">
+						<label>Nhà xe<span class="required"> ( * ) </span></label>
 
-                        <div class="form-group">
+						<select class="form-control required" name="nhaxe_id" id="nhaxe_id">
 
-                            <label>Loại vé <span class="required"> ( * ) </span></label> 
+							<option value="0">---chọn---</option> 
 
-                            <select class="form-control" name="type" id="type">
+							 <?php if(!empty($arrListNhaxe['data'])){
 
-                                <option value="0">--chọn--</option>
+								foreach ($arrListNhaxe['data'] as $value) {
 
-                                <option value="1" <?php echo $detail['type'] == 1 ? "selected" : ""; ?>>Vé 1 chiều</option>
+									?>
 
-                                <option value="2" <?php echo $detail['stop'] == 2 ? "selected" : ""; ?>>Vé khứ hồi</option>                      
+									<option <?php echo $detail['nhaxe_id'] == $value['nhaxe_id'] ? "selected" : ""; ?> value="<?php echo $value['nhaxe_id']; ?>"><?php echo $value['nhaxe_name_vi']; ?></option> 
 
-                            </select>                    
+									<?php 
 
-                        </div>   
+								}}
 
-                    </div>
+								?>                           
 
-                    <div class="col-md-6">
+						</select>
 
-                        <div class="form-group">
-
-                            <label>Nhà xe<span class="required"> ( * ) </span></label>
-
-                            <select class="form-control required" name="nhaxe_id" id="nhaxe_id">
-
-                                <option value="0">---chọn---</option> 
-
-                                 <?php if(!empty($arrListNhaxe['data'])){
-
-                                    foreach ($arrListNhaxe['data'] as $value) {
-
-                                        ?>
-
-                                        <option <?php echo $detail['nhaxe_id'] == $value['nhaxe_id'] ? "selected" : ""; ?> value="<?php echo $value['nhaxe_id']; ?>"><?php echo $value['nhaxe_name_vi']; ?></option> 
-
-                                        <?php 
-
-                                    }}
-
-                                    ?>                           
-
-                            </select>
-
-                        </div> 
-
-                    </div>
+					
+                    
 
                 </div> 
-
+				
 
                 <div class="row">
 
@@ -206,36 +182,20 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
 
                     
 
-                    <div class="col-md-6 ngayve">
+                    <div class="col-md-6">
 
                         <div class="form-group">
 
-                            <label>Ngày về</label>
-                            <div id="div_ngayve"></div>
-                            <input type="hidden" name="date_end" id="date_end" class="form-control" value="<?php echo ($detail['date_end'] > 0)  ? date('d-m-Y',$detail['date_end']) : "" ?>"/>                             
+                            <label>Lịch full month (cách nhau bằng dấu " ; " VD : 8;9)</label>                            
+                            <input type="text" name="month" id="month" class="form-control" />                             
 
                         </div> 
 
                     </div>
 
-                
-
-
-
                 </div>
 
-               
-
-                 
-
             </div>
-
-    
-
-            
-
-          
-
            
 
         </div><!-- nav-tabs-custom -->
@@ -470,7 +430,7 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
 
             <div class="button">
 
-                <button class="btn btn-primary btnSave" type="submit" onclick="return checkDate(); ">Save</button>
+                <button class="btn btn-primary btnSave" type="submit" >Save</button>
 
                 <button class="btn btn-primary" type="reset">Cancel</button>
 
@@ -484,7 +444,7 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
 
 <script type="text/javascript">
 
-function getPlaceByTinh(tinh_id,obj,value){
+function getPlaceByNhaxe(nhaxe_id,obj,value){
 
     $.ajax({
 
@@ -496,9 +456,9 @@ function getPlaceByTinh(tinh_id,obj,value){
 
             data: {
 
-                'tinh_id' : tinh_id,
+                'nhaxe_id' : nhaxe_id,
 
-                'act' : "getPlaceByTinh"
+                'act' : "getPlaceByNhaxe"
 
             },
 
@@ -517,18 +477,9 @@ function getPlaceByTinh(tinh_id,obj,value){
         });
 
 }
-function checkDate(){
-    if($('#type').val()==2){
-         var fromDate = $("input#date_start").val();
-         var toDate = $("input#date_end").val();
-         if(fromDate > toDate){
-            alert("Ngày về không hợp lệ.");
-            return false;
-         }
-    }    
-}
+
 $(function(){    
-    $('.ngayve,.ngaydi').hide();    
+       
     var today = new Date();
     $('#div_ngaydi').multiDatesPicker({
         minDate: new Date(),
@@ -550,32 +501,6 @@ $(function(){
                         $toDateInput.datepicker("option", "minDate", fromDate);
                     }
                 },             
-    });
-
-    $('#div_ngayve').multiDatesPicker({
-        minDate: new Date(),
-        altField: '#date_end',
-        dateFormat: "dd-mm-yy",
-        maxPicks: 1
-    });
-    $('#type').change(function(){
-        if($(this).val()==2){
-            $('.ngayve,.ngaydi').show();
-            
-            $('#div_ngaydi').multiDatesPicker({
-                resetDates : 'picked',
-                setDate : null,
-                maxPicks : 1,
-               
-            });                    
-        }
-        if($(this).val()==1){
-            $('.ngayve').hide();
-            $('.ngaydi').show();             
-        }
-        if($(this).val()==0){
-            $('.ngayve,.ngaydi').hide();
-        }
     });    
 
 });
@@ -648,7 +573,7 @@ $(function(){
 
         $( "#tinh_id_start" ).val( ui.item.value );
 
-        getPlaceByTinh(ui.item.value,'place_id_start',0);      
+        getPlaceByNhaxe(ui.item.value,'place_id_start',0);      
 
         return false;
 
@@ -686,7 +611,7 @@ $(function(){
 
         $( "#tinh_id_end" ).val( ui.item.value );  
 
-        getPlaceByTinh(ui.item.value,'place_id_end',0);    
+        getPlaceByNhaxe(ui.item.value,'place_id_end',0);    
 
         return false;
 
@@ -706,7 +631,7 @@ $(function(){
 
     <?php if($detail['tinh_id_start'] > 0){ ?>
 
-        getPlaceByTinh(<?php echo $detail['tinh_id_start']; ?>,'place_id_start',<?php echo $detail['place_id_start']; ?>);  
+        getPlaceByNhaxe(<?php echo $detail['tinh_id_start']; ?>,'place_id_start',<?php echo $detail['place_id_start']; ?>);  
 
         $('#place_id_start').val(<?php echo $detail['place_id_start']; ?>);
 
@@ -714,7 +639,7 @@ $(function(){
 
     <?php if($detail['tinh_id_end'] > 0){ ?>
 
-        getPlaceByTinh(<?php echo $detail['tinh_id_end']; ?>,'place_id_end',<?php echo $detail['place_id_end']; ?>);  
+        getPlaceByNhaxe(<?php echo $detail['tinh_id_end']; ?>,'place_id_end',<?php echo $detail['place_id_end']; ?>);  
 
         $('#place_id_end').val(<?php echo $detail['place_id_end']; ?>);
 
