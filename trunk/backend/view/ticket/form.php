@@ -137,34 +137,75 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
 
                 </div> 
 				
-
                 <div class="row">
 
-                    <div class="col-md-6">
+                        <div class="col-md-6">
 
-                        <div class="form-group">
+                            <div class="form-group">
 
-                            <label>Giá vé<span class="required"> ( * ) </span></label>
+                                <label>Nơi đi<span class="required"> ( * ) </span></label>
 
-                            <input type="text" name="price" id="price" class="form-control required" value="<?php echo isset($detail['price'])  ? $detail['price'] : "" ?>"/>                             
+                                <input type="text" name="noi_di" id="noi_di" class="form-control required" value="<?php echo isset($detail['tinh_id_start']) ? $arrListTinhKey[$detail['tinh_id_start']]['tinh_name_vi'] : ""; ?>"/>         
 
-                        </div> 
+                                <input type="hidden" id="tinh_id_start" name="tinh_id_start" value="<?php echo isset($detail['tinh_id_start'])  ? $detail['tinh_id_start'] : "" ?>"/>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+
+                                <label>Xuất phát<span class="required"> ( * ) </span></label>
+
+                                <select class="form-control required" name="place_id_start" id="place_id_start">
+
+                                    <option value="0">---chọn---</option> 
+
+                                                                
+
+                                </select>
+
+                            </div>
+
+                        </div>
 
                     </div>
+                    <div class="row">
 
-                    <div class="col-md-6">
+                        <div class="col-md-6">
 
-                        <div class="form-group">
+                            <div class="form-group">
 
-                            <label>Số lượng vé</label>
+                                <label>Nơi đến<span class="required"> ( * ) </span></label>
 
-                            <input type="text" name="amount" id="amount" class="form-control required" value="<?php echo isset($detail['amount'])  ? $detail['amount'] : "" ?>"/>                             
+                                <input type="text" name="noi_den" id="noi_den" class="form-control required" value="<?php echo isset($detail['tinh_id_end']) ? $arrListTinhKey[$detail['tinh_id_end']]['tinh_name_vi'] : ""; ?>"/>         
 
-                        </div> 
+                                <input type="hidden" id="tinh_id_end" name="tinh_id_end" value="<?php echo isset($detail['tinh_id_end'])  ? $detail['tinh_id_end'] : "" ?>"/>
 
-                    </div>
+                            </div> 
 
-                </div>   
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+
+                                <label>Điểm đến<span class="required"> ( * ) </span></label>
+
+                                <select class="form-control required" name="place_id_end" id="place_id_end">
+
+                                    <option value="0">---chọn---</option>                                                    
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </div>  
+                   
 
                 <div class="row">
 
@@ -172,9 +213,13 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
 
                         <div class="form-group">
 
-                            <label>Ngày đi<span class="required"> ( * ) </span></label>
+                            <label>Ngày đi</label>
                              <div id="div_ngaydi"></div>    
-                            <input type="hidden" name="date_start" id="date_start"  class="form-control required" value="<?php echo $detail['date_start'] > 0  ? date('d-m-Y',$detail['date_start']) : "" ?>"/>                             
+                             <?php if($detail['date_start']){?>
+                             <input type="text" name="date_start_update" id="date_start_update"  class="form-control" value="<?php echo $detail['date_start'] > 0  ? date('d-m-Y',$detail['date_start']) : "" ?>"/>                             
+                             <?php }else{ ?>
+                            <input type="hidden" name="date_start" id="date_start"  class="form-control" value=""/>                             
+                            <?php } ?>
 
                         </div>
 
@@ -183,14 +228,14 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
                     
 
                     <div class="col-md-6">
-
+                    <?php if(!isset($detail['date_start'])){?>
                         <div class="form-group">
 
-                            <label>Lịch full month (cách nhau bằng dấu " ; " VD : 8;9)</label>                            
+                            <label>Lịch full month <br />(mỗi tháng cách nhau bằng dấu " ; " ) <br />VD : 8;9 </label>                            
                             <input type="text" name="month" id="month" class="form-control" />                             
 
                         </div> 
-
+                        <?php } ?>
                     </div>
 
                 </div>
@@ -225,78 +270,33 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
             <div class="nav-tabs-custom" style="margin-top:30px" >
 
                 <div class="button">
-
                     <div class="row">
 
-                        <div class="col-md-6">
+                    <div class="col-md-6">
 
-                            <div class="form-group">
+                        <div class="form-group">
 
-                                <label>Nơi đi<span class="required"> ( * ) </span></label>
+                            <label>Giá vé<span class="required"> ( * ) </span></label>
 
-                                <input type="text" name="noi_di" id="noi_di" class="form-control required" value="<?php echo isset($detail['tinh_id_start']) ? $arrListTinhKey[$detail['tinh_id_start']]['tinh_name_vi'] : ""; ?>"/>         
+                            <input type="text" name="price" id="price" class="form-control required" value="<?php echo isset($detail['price'])  ? $detail['price'] : "" ?>"/>                             
 
-                                <input type="hidden" id="tinh_id_start" name="tinh_id_start" value="<?php echo isset($detail['tinh_id_start'])  ? $detail['tinh_id_start'] : "" ?>"/>
+                        </div> 
 
-                            </div>
+                    </div>
 
-                        </div>
+                    <div class="col-md-6">
 
-                        <div class="col-md-6">
+                        <div class="form-group">
 
-                            <div class="form-group">
+                            <label>Số lượng vé</label>
 
-                                <label>Xuất phát<span class="required"> ( * ) </span></label>
+                            <input type="text" name="amount" id="amount" class="form-control required" value="<?php echo isset($detail['amount'])  ? $detail['amount'] : "" ?>"/>                             
 
-                                <select class="form-control required" name="place_id_start" id="place_id_start">
+                        </div> 
 
-                                    <option value="0">---chọn---</option> 
+                    </div>
 
-                                                                
-
-                                </select>
-
-                            </div>
-
-                        </div>
-
-                    </div> 
-
-                    <div class="row">
-
-                        <div class="col-md-6">
-
-                            <div class="form-group">
-
-                                <label>Nơi đến<span class="required"> ( * ) </span></label>
-
-                                <input type="text" name="noi_den" id="noi_den" class="form-control required" value="<?php echo isset($detail['tinh_id_end']) ? $arrListTinhKey[$detail['tinh_id_end']]['tinh_name_vi'] : ""; ?>"/>         
-
-                                <input type="hidden" id="tinh_id_end" name="tinh_id_end" value="<?php echo isset($detail['tinh_id_end'])  ? $detail['tinh_id_end'] : "" ?>"/>
-
-                            </div> 
-
-                        </div>
-
-                        <div class="col-md-6">
-
-                            <div class="form-group">
-
-                                <label>Điểm đến<span class="required"> ( * ) </span></label>
-
-                                <select class="form-control required" name="place_id_end" id="place_id_end">
-
-                                    <option value="0">---chọn---</option>                                                    
-
-                                </select>
-
-                            </div>
-
-                        </div>
-
-                    </div> 
-
-                    
+                </div>
                  <div class="form-group">
 
                         <label>Loại xe<span class="required"> ( * ) </span></label>
@@ -430,7 +430,7 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
 
             <div class="button">
 
-                <button class="btn btn-primary btnSave" type="submit" >Save</button>
+                <button class="btn btn-primary btnSave" type="submit" <?php if(!isset($detail['ticket_id'])) { ?> onclick="return checkngay(); " <?php } ?> >Save</button>
 
                 <button class="btn btn-primary" type="reset">Cancel</button>
 
@@ -441,9 +441,16 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
     </form>
 
 </div>
-
+<script type="text/javascript" src=<?php echo STATIC_URL?>js/number.js></script>
 <script type="text/javascript">
-
+function checkngay(){
+    var ngaydi = $.trim($('#date_start').val());
+    var month = $.trim($('#month').val());
+    if(ngaydi == '' && month ==''){
+        alert('Chọn ngày đi hoặc lịch lặp lại theo tháng!');
+        return false;
+    }
+}
 function getPlaceByNhaxe(nhaxe_id,obj,value){
 
     $.ajax({
@@ -479,29 +486,20 @@ function getPlaceByNhaxe(nhaxe_id,obj,value){
 }
 
 $(function(){    
-       
+    $('#price,#amount').number( true ); 
     var today = new Date();
+    <?php if($detail['date_start']) { ?>
+    $('#date_start_update').datepicker({
+        minDate: new Date(),        
+        dateFormat: "dd-mm-yy"                
+    });
+    <?php }else{ ?>
     $('#div_ngaydi').multiDatesPicker({
         minDate: new Date(),
         altField: '#date_start',
-        dateFormat: "dd-mm-yy",
-        beforeShow: function() {
-
-                    var $toDateInput = $("input#todate");
-                    var fromDate = $("input#fromdate").datepicker("getDate");
-                    var toDate = $toDateInput.datepicker("getDate");
-                    var afterFromDate;
-
-                    if (fromDate) {
-                        if (!toDate || (toDate <= fromDate)) {
-                            afterFromDate = new Date(fromDate.toUTCString());
-                            afterFromDate.setDate(afterFromDate.getDate());
-                            $toDateInput.datepicker("setDate", afterFromDate);
-                        }
-                        $toDateInput.datepicker("option", "minDate", fromDate);
-                    }
-                },             
+        dateFormat: "dd-mm-yy"                
     });    
+    <?php } ?>
 
 });
 
@@ -573,7 +571,7 @@ $(function(){
 
         $( "#tinh_id_start" ).val( ui.item.value );
 
-        getPlaceByNhaxe(ui.item.value,'place_id_start',0);      
+              
 
         return false;
 
@@ -610,9 +608,7 @@ $(function(){
         $( "#noi_den" ).val( ui.item.label );
 
         $( "#tinh_id_end" ).val( ui.item.value );  
-
-        getPlaceByNhaxe(ui.item.value,'place_id_end',0);    
-
+        
         return false;
 
       }
@@ -629,21 +625,24 @@ $(function(){
 
     };
 
-    <?php if($detail['tinh_id_start'] > 0){ ?>
 
-        getPlaceByNhaxe(<?php echo $detail['tinh_id_start']; ?>,'place_id_start',<?php echo $detail['place_id_start']; ?>);  
+
+    <?php if($detail['nhaxe_id'] > 0){ ?>
+
+        getPlaceByNhaxe(<?php echo $detail['nhaxe_id']; ?>,'place_id_start',<?php echo $detail['place_id_start']; ?>);  
 
         $('#place_id_start').val(<?php echo $detail['place_id_start']; ?>);
 
-    <?php } ?>
-
-    <?php if($detail['tinh_id_end'] > 0){ ?>
-
-        getPlaceByNhaxe(<?php echo $detail['tinh_id_end']; ?>,'place_id_end',<?php echo $detail['place_id_end']; ?>);  
+        getPlaceByNhaxe(<?php echo $detail['nhaxe_id']; ?>,'place_id_end',<?php echo $detail['place_id_end']; ?>);  
 
         $('#place_id_end').val(<?php echo $detail['place_id_end']; ?>);
 
     <?php } ?>
+    $('#nhaxe_id').change(function(){
+        getPlaceByNhaxe($(this).val(),'place_id_start',0);
+        getPlaceByNhaxe($(this).val(),'place_id_end',0);
+    });
+    
 
   });
 

@@ -34,7 +34,7 @@ class Ticket extends Db {
         try{
             $sql = "SELECT * FROM ticket WHERE status > 0 
             AND (nhaxe_id = $nhaxe_id OR $nhaxe_id = -1 ) AND (tinh_id_start = $tinh_id_start OR $tinh_id_start = -1)
-            AND (tinh_id_end = $tinh_id_end OR $tinh_id_end = -1)  AND (date_start = $date_start OR $date_start = -1) ";            
+            AND (tinh_id_end = $tinh_id_end OR $tinh_id_end = -1)  AND (date_start = $date_start OR $date_start = -1)  ORDER BY update_time DESC ";            
             if ($limit > 0 && $offset >= 0)
                 $sql .= " LIMIT $offset,$limit";  
             
@@ -60,25 +60,24 @@ class Ticket extends Db {
         mysql_query($sql) or die(mysql_error() . $sql);
     }
 
-    function updateTicket($ticket_id,$nhaxe_id,$tinh_id_start,$tinh_id_end,$place_id_start,$place_id_end,$price,$type,$duration,$amount,$car_type,$stop,$note,$date_start,$date_end,$arrSer,$arrTime) {        
-        $time = time();
+    function updateTicket($ticket_id,$nhaxe_id,$tinh_id_start,$tinh_id_end,$place_id_start,$place_id_end,$price,$type,$duration,$amount,$car_type,$stop,$note,$date_start,$arrSer,$arrTime) {        
+        $time = time();                
         try{
-        $sql = "UPDATE ticket
-                    SET nhaxe_id = $nhaxe_id,
-                    tinh_id_start = $tinh_id_start,
-                    tinh_id_end = $tinh_id_end,
-                    place_id_start = $place_id_start,
-                    place_id_end = $place_id_end,
-                    price = '$price',
-                    type  = '$type',
-                    duration = '$duration',
-                    amount =  $amount,
-                    car_type = '$car_type',
-                    stop =  $stop,
-                    note =  '$note',
-                    date_start = $date_start,
-                    date_end = $date_end
-                    WHERE ticket_id = $ticket_id ";
+            $sql = "UPDATE ticket
+                        SET nhaxe_id = $nhaxe_id,
+                        tinh_id_start = $tinh_id_start,
+                        tinh_id_end = $tinh_id_end,
+                        place_id_start = $place_id_start,
+                        place_id_end = $place_id_end,
+                        price = '$price',
+                        type  = '$type',
+                        duration = '$duration',
+                        amount =  $amount,
+                        car_type = '$car_type',
+                        stop =  $stop,
+                        note =  '$note',
+                        date_start = $date_start                        
+                        WHERE ticket_id = $ticket_id ";
             mysql_query($sql) or $this->throw_ex(mysql_error());  
 
             if(!empty($arrTime)){
@@ -99,27 +98,34 @@ class Ticket extends Db {
             $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Ticket','function' => 'updateTicket' , 'error'=>$ex->getMessage(),'sql'=>$sql);
             $this->logError($arrLog);
         }
+
+            
     }
-    function insertTicket($nhaxe_id,$tinh_id_start,$tinh_id_end,$place_id_start,$place_id_end,$price,$type,$duration,$amount,$car_type,$stop,$note,$date_start,$date_end,$arrSer,$arrTime){
-        try{
-            $time = time();
-            $sql = "INSERT INTO ticket VALUES(NULL,$nhaxe_id,$tinh_id_start,$tinh_id_end,$place_id_start,$place_id_end,'$price',$type,'$duration',
-                $amount,$car_type,$stop,'$note','$date_start','$date_end',$time,$time,1)";        
-            $rs = mysql_query($sql) or $this->throw_ex(mysql_error());  
-            $ticket_id = mysql_insert_id();
-            if(!empty($arrTime)){
-                foreach ($arrTime as $time_id) {
-                    $this->insertTimeTicket($ticket_id,$time_id);
+    function insertTicket($nhaxe_id,$tinh_id_start,$tinh_id_end,$place_id_start,$place_id_end,$price,$type,$duration,$amount,$car_type,$stop,$note,$arrSer,$arrTime,$arrDates){        
+        if(!empty($arrDates)){
+            foreach ($arrDates as $datestart) {
+                $date_start = strtotime($datestart);
+                try{
+                    $time = time();
+                    $sql = "INSERT INTO ticket VALUES(NULL,$nhaxe_id,$tinh_id_start,$tinh_id_end,$place_id_start,$place_id_end,'$price',$type,'$duration',
+                        $amount,$car_type,$stop,'$note','$date_start',$time,$time,1)";        
+                    $rs = mysql_query($sql) or $this->throw_ex(mysql_error());  
+                    $ticket_id = mysql_insert_id();
+                    if(!empty($arrTime)){
+                        foreach ($arrTime as $time_id) {
+                            $this->insertTimeTicket($ticket_id,$time_id);
+                        }
+                    } 
+                    if(!empty($arrSer)){
+                        foreach ($arrSer as $service_id) {
+                            $this->insertServiceTicket($ticket_id,$service_id);
+                        }
+                    }    
+                }catch(Exception $ex){            
+                    $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Ticket','function' => 'insertTicket' , 'error'=>$ex->getMessage(),'sql'=>$sql);
+                    $this->logError($arrLog);
                 }
-            } 
-            if(!empty($arrSer)){
-                foreach ($arrSer as $service_id) {
-                    $this->insertTimeTicket($ticket_id,$service_id);
-                }
-            }    
-        }catch(Exception $ex){            
-            $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Ticket','function' => 'insertTicket' , 'error'=>$ex->getMessage(),'sql'=>$sql);
-            $this->logError($arrLog);
+            }
         }
     }    
 
