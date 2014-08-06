@@ -14,7 +14,7 @@
 
         <div class="pull-left info">
 
-            <p>Hello, Admin</p>            
+            <p>Hello, <?php echo $_SESSION['fullname']; ?></p>            
 
         </div>
 
