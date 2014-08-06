@@ -102,6 +102,7 @@
             </a>
 
         </li>
+        <?php if($_SESSION['user_id']==1) { ?>
         <li>
 
             <a href="<?php echo BASE_URL; ?>user&act=list">
@@ -111,6 +112,7 @@
             </a>
 
         </li>
+        <?php } ?>
 
         <li class="treeview <?php if(in_array($mod,array('place','tinh','coupon','hot_place','services','time_start'))) echo "active"; ?>" >
 
