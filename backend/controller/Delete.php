@@ -1,5 +1,8 @@
 <?php 
-
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+}  
 $url = "../index.php?mod=place&act=list";
 
 require_once "../model/Db.php";
@@ -77,12 +80,13 @@ elseif($mod=='users'){
 }
 
 $time = time();
-
+$user_id = $_SESSION['user_id'];
 $sql = "UPDATE ".$mod."
 
                     SET status = 0,                 
 
-                    update_time =  $time         
+                    update_time =  $time,
+                    user_id = $user_id         
 
                     WHERE ".$pk." = ".$id;
 

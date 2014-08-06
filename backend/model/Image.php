@@ -1,6 +1,9 @@
 <?php
 require_once "Db.php";
-
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+}  
 class Image extends Db {
 
     function getDetailImage($id) {
@@ -28,8 +31,9 @@ class Image extends Db {
    
     function insertImage($image_url,$nhaxe_id){
         try{
+            $user_id = $_SESSION['user_id'];
             $time = time();
-            $sql = "INSERT INTO image VALUES(NULL,$nhaxe_id,'$image_url',$time,$time,1)";
+            $sql = "INSERT INTO image VALUES(NULL,$nhaxe_id,'$image_url',$time,$time,1,$user_id)";
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());       
         }catch(Exception $ex){            
             $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Image','function' => 'insertImage' , 'error'=>$ex->getMessage(),'sql'=>$sql);

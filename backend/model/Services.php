@@ -1,7 +1,10 @@
 <?php
 
 require_once "Db.php";
-
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+}  
 
 
 class Services extends Db {
@@ -69,7 +72,7 @@ class Services extends Db {
     function updateService($id,$service_name_vi,$service_name_en,$service_name_safe_vi,$service_name_safe_en) {        
 
         $time = time();
-
+        $user_id = $_SESSION['user_id'];
         $sql = "UPDATE services
 
                     SET service_name_vi = '$service_name_vi',
@@ -80,7 +83,8 @@ class Services extends Db {
 
                     service_name_safe_en = '$service_name_safe_en',
 
-                    update_time =  $time         
+                    update_time =  $time  ,
+                    user_id = $user_id       
 
                     WHERE service_id = $id ";
 
@@ -91,10 +95,10 @@ class Services extends Db {
     function insertService($service_name_vi,$service_name_en,$service_name_safe_vi,$service_name_safe_en){
 
         try{
-
+            $user_id = $_SESSION['user_id'];
             $time = time();
 
-            $sql = "INSERT INTO services VALUES(NULL,'$service_name_vi','$service_name_safe_vi','$service_name_en','$service_name_safe_en',NULL,$time,$time,1)";
+            $sql = "INSERT INTO services VALUES(NULL,'$service_name_vi','$service_name_safe_vi','$service_name_en','$service_name_safe_en',NULL,$time,$time,1,$user_id)";
 
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());       
 

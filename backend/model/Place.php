@@ -1,8 +1,10 @@
 <?php
 
 require_once "Db.php";
-
-
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+}  
 
 class Place extends Db {
 
@@ -100,7 +102,7 @@ class Place extends Db {
     function updatePlace($id,$nhaxe_id,$place_name_vi,$place_name_en,$place_name_safe_vi,$place_name_safe_en,$address_vi,$address_en) {        
 
         $time = time();
-
+        $user_id = $_SESSION['user_id'];
         $sql = "UPDATE place
 
                     SET place_name_vi = '$place_name_vi',
@@ -117,7 +119,10 @@ class Place extends Db {
 
                     address_en = '$address_en',
 
-                    update_time =  $time         
+                    update_time =  $time,
+
+                    user_id = $user_id   
+
 
                     WHERE place_id = $id ";
 
@@ -128,10 +133,10 @@ class Place extends Db {
     function insertPlace($nhaxe_id,$place_name_vi,$place_name_en,$place_name_safe_vi,$place_name_safe_en,$address_vi,$address_en){
 
         try{
-
+            $user_id = $_SESSION['user_id'];
             $time = time();
 
-            $sql = "INSERT INTO place VALUES(NULL,$nhaxe_id,'$place_name_vi','$place_name_safe_vi','$place_name_en','$place_name_safe_en','$address_vi','$address_en',$time,$time,1)";
+            $sql = "INSERT INTO place VALUES(NULL,$nhaxe_id,'$place_name_vi','$place_name_safe_vi','$place_name_en','$place_name_safe_en','$address_vi','$address_en',$time,$time,1,$user_id)";
 
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());       
 

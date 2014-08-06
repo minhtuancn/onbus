@@ -1,6 +1,9 @@
 <?php
 require_once "Db.php";
-
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+}  
 class Car extends Db {
 
     function getDetailCar($id) {
@@ -32,19 +35,21 @@ class Car extends Db {
         mysql_query($sql) or die(mysql_error() . $sql);
     }
 
-    function updateCar($id,$type_name_vi,$type_name_en) {        
+    function updateCar($id,$type_name_vi,$type_name_en) {
+        $user_id = $_SESSION['user_id'];        
         $time = time();
         $sql = "UPDATE car_type
                     SET type_name_vi = '$type_name_vi',                  
                     type_name_en = '$type_name_en',
-                    update_time =  $time         
+                    update_time =  $time,
+                    user_id = $user_id         
                     WHERE type_id = $id ";
         mysql_query($sql) or die(mysql_error() . $sql);
     }
     function insertCar($type_name_vi,$type_name_en){
         try{
             $time = time();
-            $sql = "INSERT INTO car_type VALUES(NULL,'$type_name_vi','$type_name_en',$time,$time,1)";
+            $sql = "INSERT INTO car_type VALUES(NULL,'$type_name_vi','$type_name_en',$time,$time,1,$user_id)";
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());       
         }catch(Exception $ex){            
             $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Car','function' => 'insertCar' , 'error'=>$ex->getMessage(),'sql'=>$sql);

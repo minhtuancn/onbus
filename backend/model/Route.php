@@ -1,6 +1,9 @@
 <?php
 require_once "Db.php";
-
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+}  
 class Route extends Db {
 
     function getDetailRoute($id) {
@@ -48,6 +51,7 @@ class Route extends Db {
 
     function updateRoute($id,$route_name_vi,$route_name_en,$route_name_safe_vi,$route_name_safe_en,$hot,$description,$tinh_id_start,$tinh_id_end,$distance,$duration) {        
         $time = time();
+        $user_id = $_SESSION['user_id'];
         $sql = "UPDATE route
                     SET route_name_vi = '$route_name_vi',                    
                     route_name_en = '$route_name_en',
@@ -59,14 +63,16 @@ class Route extends Db {
                     tinh_id_end =  $tinh_id_end,
                     distance =  '$distance',
                     duration =  '$duration',
-                    hot = $hot
+                    hot = $hot,
+                    user_id = $user_id
                     WHERE route_id = $id ";
         mysql_query($sql) or die(mysql_error() . $sql);
     }
     function insertRoute($route_name_vi,$route_name_en,$route_name_safe_vi,$route_name_safe_en,$hot,$description,$tinh_id_start,$tinh_id_end,$distance,$duration){
         try{
+            $user_id = $_SESSION['user_id'];
             $time = time();
-            $sql = "INSERT INTO route VALUES(NULL,'$route_name_vi','$route_name_safe_vi','$route_name_en','$route_name_safe_en',$hot,'$description',$tinh_id_start,$tinh_id_end,'$distance','$duration',$time,$time,1)";
+            $sql = "INSERT INTO route VALUES(NULL,'$route_name_vi','$route_name_safe_vi','$route_name_en','$route_name_safe_en',$hot,'$description',$tinh_id_start,$tinh_id_end,'$distance','$duration',$time,$time,1,$user_id)";
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());       
         }catch(Exception $ex){            
             $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Route','function' => 'insertRoute' , 'error'=>$ex->getMessage(),'sql'=>$sql);
