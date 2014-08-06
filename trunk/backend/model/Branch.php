@@ -1,6 +1,9 @@
 <?php
 require_once "Db.php";
-
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+}  
 class Branch extends Db {
 
     function getDetailBranch($id) {
@@ -41,6 +44,7 @@ class Branch extends Db {
 
     function updateBranch($id,$branch_name_vi,$branch_name_en,$branch_name_safe_vi,$branch_name_safe_en,$address_vi,$address_en,$phone,$tinh_id){
         $time = time();
+        $user_id = $_SESSION['user_id'];
         $sql = "UPDATE branch
                     SET branch_name_vi = '$branch_name_vi',
                     branch_name_en = '$branch_name_en',
@@ -50,14 +54,16 @@ class Branch extends Db {
                     address_en = '$address_en',
                     phone  = '$phone',                    
                     tinh_id = $tinh_id,
-                    update_time =  $time         
+                    update_time =  $time ,
+                    user_id = $user_id
                     WHERE branch_id = $id ";
         mysql_query($sql) or die(mysql_error() . $sql);
     }
     function insertBranch($nhaxe_id,$branch_name_vi,$branch_name_en,$tinh_id,$address_vi,$address_en,$phone,$branch_name_safe_vi,$branch_name_safe_en){
         try{
+            $user_id = $_SESSION['user_id'];
             $time = time();
-            $sql = "INSERT INTO branch VALUES(NULL,$nhaxe_id,'$branch_name_vi','$branch_name_safe_vi','$branch_name_en','$branch_name_safe_en','$tinh_id','$address_vi','$address_en','$phone',$time,$time,1)";
+            $sql = "INSERT INTO branch VALUES(NULL,$nhaxe_id,'$branch_name_vi','$branch_name_safe_vi','$branch_name_en','$branch_name_safe_en','$tinh_id','$address_vi','$address_en','$phone',$time,$time,1,$user_id)";
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());       
         }catch(Exception $ex){            
             $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Branch','function' => 'insertBranch' , 'error'=>$ex->getMessage(),'sql'=>$sql);

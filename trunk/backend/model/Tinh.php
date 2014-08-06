@@ -1,6 +1,9 @@
 <?php
 require_once "Db.php";
-
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+}  
 class Tinh extends Db {
 
     function getDetailTinh($id) {
@@ -44,7 +47,7 @@ class Tinh extends Db {
 
     function updateTinh($id,$tinh_name_vi,$tinh_name_en,$tinh_name_safe_vi,$tinh_name_safe_en,$mien_id,$hot,$image_url,$price_between) {        
         $time = time();
-
+        $user_id = $_SESSION['user_id'];
         $image_url = trim($image_url) == '' ? NULL : $image_url;
         $price_between = trim($price_between) == '' ? NULL : $price_between;
         
@@ -57,14 +60,16 @@ class Tinh extends Db {
         if($image_url!=NULL)   $sql.= ",image_url = '$image_url' ,";         
         if($price_between!=NULL)   $sql.= ",price_between = '$price_between' ,";                           
                     $sql .="mien_id = $mien_id,                   
-                    update_time =  $time         
+                    update_time =  $time,
+                    user_id = $user_id         
                     WHERE tinh_id = $id ";                    
         mysql_query($sql) or die(mysql_error() . $sql);
     }
     function insertTinh($tinh_name_vi,$tinh_name_en,$tinh_name_safe_vi,$tinh_name_safe_en,$mien_id,$hot,$image_url,$price_between){
         try{
+            $user_id = $_SESSION['user_id'];
             $time = time();
-            $sql = "INSERT INTO tinh VALUES(NULL,'$tinh_name_vi','$tinh_name_safe_vi','$tinh_name_en','$tinh_name_safe_en',$mien_id,$hot,'$image_url','$price_between',1,$time,$time,1)";
+            $sql = "INSERT INTO tinh VALUES(NULL,'$tinh_name_vi','$tinh_name_safe_vi','$tinh_name_en','$tinh_name_safe_en',$mien_id,$hot,'$image_url','$price_between',1,$time,$time,1,$user_id)";
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());       
         }catch(Exception $ex){            
             $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Tinh','function' => 'insertTinh' , 'error'=>$ex->getMessage(),'sql'=>$sql);
