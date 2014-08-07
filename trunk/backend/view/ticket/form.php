@@ -77,14 +77,14 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
 <script type="text/javascript" src="<?php echo STATIC_URL; ?>js/jquery-ui.multidatespicker.js"></script>
 <div class="row">
 
-    <form method="post" action="controller/Ticket.php">
+    
 
     <div class="col-md-7">                   
 
         <!-- Custom Tabs -->
 
         <button class="btn btn-primary btn-sm" onclick="location.href='index.php?mod=ticket&act=list'">Danh sách vé</button>
-
+<form method="post" action="controller/Ticket.php">
         <div style="clear:both;margin-bottom:10px"></div>
 
          <div class="box-header">
@@ -290,7 +290,7 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
 
                             <label>Số lượng vé</label>
 
-                            <input type="text" name="amount" id="amount" class="form-control required" value="<?php echo isset($detail['amount'])  ? $detail['amount'] : "" ?>"/>                             
+                            <input type="text" name="amount" id="amount" class="form-control" value="<?php echo isset($detail['amount'])  ? $detail['amount'] : "" ?>"/>                             
 
                         </div> 
 

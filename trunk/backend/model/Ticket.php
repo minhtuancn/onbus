@@ -37,7 +37,8 @@ class Ticket extends Db {
         try{
             $sql = "SELECT * FROM ticket WHERE status > 0 
             AND (nhaxe_id = $nhaxe_id OR $nhaxe_id = -1 ) AND (tinh_id_start = $tinh_id_start OR $tinh_id_start = -1)
-            AND (tinh_id_end = $tinh_id_end OR $tinh_id_end = -1)  AND (date_start = $date_start OR $date_start = -1)  ORDER BY update_time DESC ";            
+            AND (tinh_id_end = $tinh_id_end OR $tinh_id_end = -1) AND (date_start = $date_start OR $date_start = -1)  ORDER BY update_time DESC ";            
+              
             if ($limit > 0 && $offset >= 0)
                 $sql .= " LIMIT $offset,$limit";  
             
@@ -110,7 +111,7 @@ class Ticket extends Db {
 
             
     }
-    function insertTicket($nhaxe_id,$tinh_id_start,$tinh_id_end,$place_id_start,$place_id_end,$price,$type,$duration,$amount,$car_type,$stop,$note,$arrSer,$arrTime,$arrDates,$key_all){        
+    function insertTicket($nhaxe_id,$tinh_id_start,$tinh_id_end,$place_id_start,$place_id_end,$price,$type,$duration,$amount,$car_type,$stop,$note,$arrSer,$arrTime,$arrDates,$key_all,$str_month){        
         $user_id = $_SESSION['user_id'];
         if(!empty($arrDates)){
             foreach ($arrDates as $datestart) {
@@ -119,7 +120,7 @@ class Ticket extends Db {
                     $time = time();
                     $sql = "INSERT INTO ticket VALUES(NULL,$nhaxe_id,$tinh_id_start,$tinh_id_end,$place_id_start,$place_id_end,
                         '$price',$type,'$duration',
-                        $amount,$car_type,$stop,'$note','$date_start',$time,$time,1,$user_id,$key_all)";        
+                        $amount,$car_type,$stop,'$note','$date_start',$time,$time,1,$user_id,'$key_all','$str_month')";        
                     $rs = mysql_query($sql) or $this->throw_ex(mysql_error());  
                     $ticket_id = mysql_insert_id();
                     if(!empty($arrTime)){
