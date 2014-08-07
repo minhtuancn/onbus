@@ -80,8 +80,12 @@ class Ticket extends Db {
                         car_type = '$car_type',
                         stop =  $stop,
                         note =  '$note',
-                        date_start = $date_start,
-                        user_id = $user_id                      
+                        update_time = $time, ";
+                    if($date_start > 0) {     
+                        $sql .= " date_start = $date_start, ";
+                    }
+
+                    $sql.=" user_id = $user_id                      
                         WHERE ticket_id = $ticket_id ";
             mysql_query($sql) or $this->throw_ex(mysql_error());  
 
@@ -106,7 +110,7 @@ class Ticket extends Db {
 
             
     }
-    function insertTicket($nhaxe_id,$tinh_id_start,$tinh_id_end,$place_id_start,$place_id_end,$price,$type,$duration,$amount,$car_type,$stop,$note,$arrSer,$arrTime,$arrDates){        
+    function insertTicket($nhaxe_id,$tinh_id_start,$tinh_id_end,$place_id_start,$place_id_end,$price,$type,$duration,$amount,$car_type,$stop,$note,$arrSer,$arrTime,$arrDates,$key_all){        
         $user_id = $_SESSION['user_id'];
         if(!empty($arrDates)){
             foreach ($arrDates as $datestart) {
@@ -115,7 +119,7 @@ class Ticket extends Db {
                     $time = time();
                     $sql = "INSERT INTO ticket VALUES(NULL,$nhaxe_id,$tinh_id_start,$tinh_id_end,$place_id_start,$place_id_end,
                         '$price',$type,'$duration',
-                        $amount,$car_type,$stop,'$note','$date_start',$time,$time,1,$user_id)";        
+                        $amount,$car_type,$stop,'$note','$date_start',$time,$time,1,$user_id,$key_all)";        
                     $rs = mysql_query($sql) or $this->throw_ex(mysql_error());  
                     $ticket_id = mysql_insert_id();
                     if(!empty($arrTime)){

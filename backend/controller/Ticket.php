@@ -7,8 +7,14 @@ require_once "../model/Ticket.php";
 $model = new Ticket;
 
 $ticket_id = (int) $_POST['ticket_id'];
+if($ticket_id>0){
+	$old_detail = $model->getDetailTicket($ticket_id);
+	$key_all_old = $old_detail['key_all'];	
+}
 
 $is_new = (int) $_POST['is_new'];
+
+$update_all = (int) $_POST['update_all'];
 
 $arrSer  = $_POST['services'];
 
@@ -43,8 +49,9 @@ $duration = $model->processData($_POST['duration']);
 $note = $model->processData($_POST['note']);
 
 $str_month =  trim($model->processData($_POST['month']));
-
+$key_all = (int) $_SESSION['user_id'].time();	
 if($str_month!=''){
+	
 	$arrMonth = explode(';', $str_month);
 	$arrDates = array();
 	foreach ($arrMonth as $month) {
@@ -72,17 +79,27 @@ if($str_month!=''){
 	$arrDates = explode(',', $date_start);
 }
 
-if($ticket_id > 0) {		
+if($ticket_id > 0) {
+	if($update_all ==1 ){
+		$sql  = "SELECT ticket_id FROM ticket WHERE key_all = '$key_all_old' ";
+		$rs = mysql_query($sql);
 
-	$model->updateTicket($ticket_id,$nhaxe_id,$tinh_id_start,$tinh_id_end,$place_id_start,$place_id_end,$price,$type,$duration,$amount,$car_type,$stop,$note,$date_start_update,$arrSer,$arrTime);
-
+		while($row = mysql_fetch_assoc($rs)){
+			$ticket_id_update =  $row['ticket_id'];
+			$date_start_update = -1;
+			$model->updateTicket($ticket_id_update,$nhaxe_id,$tinh_id_start,$tinh_id_end,$place_id_start,$place_id_end,$price,$type,$duration,$amount,$car_type,$stop,$note,$date_start_update,$arrSer,$arrTime);
+		}
+		
+	}else{ 
+		$model->updateTicket($ticket_id,$nhaxe_id,$tinh_id_start,$tinh_id_end,$place_id_start,$place_id_end,$price,$type,$duration,$amount,$car_type,$stop,$note,$date_start_update,$arrSer,$arrTime);
+	}
 	header('location:'.$url);
 
 }else{
 
 	if($is_new == 0){
 
-		$model->insertTicket($nhaxe_id,$tinh_id_start,$tinh_id_end,$place_id_start,$place_id_end,$price,$type,$duration,$amount,$car_type,$stop,$note,$arrSer,$arrTime,$arrDates);
+		$model->insertTicket($nhaxe_id,$tinh_id_start,$tinh_id_end,$place_id_start,$place_id_end,$price,$type,$duration,$amount,$car_type,$stop,$note,$arrSer,$arrTime,$arrDates,$key_all);
 
 		header('location:'.$url);
 
