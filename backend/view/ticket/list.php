@@ -21,7 +21,7 @@ require_once "model/Car.php";
 $modelCar = new Car;
 
 $link = "index.php?mod=ticket&act=list";
-
+$page_show = 20;
 
 
 /* get ds nha xe */
@@ -360,7 +360,7 @@ $arrList = $model->getListTicket($nhaxe_id,$tinh_id_start,$tinh_id_end,$ngaydi,$
 
                 </ul>-->
 
-                <?php echo $model->phantrang($page, PAGE_SHOW, $total_page, $link); ?>
+                <?php echo $model->phantrang($page, $page_show, $total_page, $link); ?>
 
             </div>
 

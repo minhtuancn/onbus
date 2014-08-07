@@ -9,7 +9,7 @@ $model = new Ticket;
 $ticket_id = (int) $_POST['ticket_id'];
 if($ticket_id>0){
 	$old_detail = $model->getDetailTicket($ticket_id);
-	$key_all_old = $old_detail['key_all'];	
+	$key_all_old = $old_detail['key_all'];		
 }
 
 $is_new = (int) $_POST['is_new'];
@@ -49,7 +49,8 @@ $duration = $model->processData($_POST['duration']);
 $note = $model->processData($_POST['note']);
 
 $str_month =  trim($model->processData($_POST['month']));
-$key_all = (int) $_SESSION['user_id'].time();	
+$key_all = md5(time());	
+
 if($str_month!=''){
 	
 	$arrMonth = explode(';', $str_month);
@@ -99,7 +100,7 @@ if($ticket_id > 0) {
 
 	if($is_new == 0){
 
-		$model->insertTicket($nhaxe_id,$tinh_id_start,$tinh_id_end,$place_id_start,$place_id_end,$price,$type,$duration,$amount,$car_type,$stop,$note,$arrSer,$arrTime,$arrDates,$key_all);
+		$model->insertTicket($nhaxe_id,$tinh_id_start,$tinh_id_end,$place_id_start,$place_id_end,$price,$type,$duration,$amount,$car_type,$stop,$note,$arrSer,$arrTime,$arrDates,$key_all,$str_month);
 
 		header('location:'.$url);
 
