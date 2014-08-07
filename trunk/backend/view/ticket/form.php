@@ -427,6 +427,19 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
                 ?>    
 
             </div>
+            <?php if(isset($detail['ticket_id'])) { ?>
+            <div class="checkbox" style="margin-bottom:20px">
+
+                <label class="">
+
+                    <input type="checkbox" name="update_all" value="1" />               
+
+                    <strong style="color:red">Cập nhật tất cả các vé tương tự trong tháng</strong>
+
+                </label>                                                
+
+            </div>
+            <?php } ?>
 
             <div class="button">
 
