@@ -12,6 +12,7 @@ $arrNhaXeUyTin = $modelNhaxe->getListNhaxe('',1,0,8);
 $arrNhaXe = $modelNhaxe->getListNhaxe('',-1,-1,-1);
 
 $arrNoidi = $modelTinh->getListTinh(-1,'',-1,-1, -1);
+$arrDiemDenHot = $modelTinh->getListTinh(-1,'',1,0, 9);
 
 $arrRoute = $modelRoute->getListRoute('',-1,-1,1, 0, 8);
 
@@ -225,15 +226,10 @@ $arrRoute = $modelRoute->getListRoute('',-1,-1,1, 0, 8);
             <div class="dd-hd right box-common-border">
                 <h1>TOP điểm đến hấp dẫn nhất (Giá từ 120,000đ)</h1>
                 <ul>
-                    <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/generic.jpg" /><span>Kuala Lumpur, Malaysia</span></a></li>
-                    <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/lax.jpg" /><span>Kuala Lumpur, Malaysia</span></a></li>
-                    <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/lpa.jpg" /><span>Kuala Lumpur, Malaysia</span></a></li>
-                    <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/generic.jpg" /><span>Kuala Lumpur, Malaysia</span></a></li>
-                    <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/generic.jpg" /><span>Kuala Lumpur, Malaysia</span></a></li>
-                    <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/lax.jpg" /><span>Kuala Lumpur, Malaysia</span></a></li>
-                    <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/lpa.jpg" /><span>Kuala Lumpur, Malaysia</span></a></li>
-                    <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/generic.jpg" /><span>Kuala Lumpur, Malaysia</span></a></li>
-                    <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/generic.jpg" /><span>Kuala Lumpur, Malaysia</span></a></li>
+                    <?php foreach ($arrDiemDenHot['data'] as $key => $value) {
+                        ?>
+                    <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/generic.jpg" /><span><?php echo $value['tinh_name_'.$lang]?></span></a></li>
+                    <?php } ?>
                 </ul>
             </div>
             <div class="clear"></div>
