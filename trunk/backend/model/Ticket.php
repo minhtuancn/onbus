@@ -32,12 +32,14 @@ class Ticket extends Db {
         return $arrResult;
     } 
 
-    function getListTicket($nhaxe_id=-1,$tinh_id_start=-1,$tinh_id_end=-1,$date_start=-1,$offset = -1, $limit = -1) {
+    function getListTicket($nhaxe_id=-1,$tinh_id_start=-1,$tinh_id_end=-1,$date_start=-1,$offset = -1, $limit = -1,$type=1) {
         $arrResult = array();
         try{
             $sql = "SELECT * FROM ticket WHERE status > 0 
             AND (nhaxe_id = $nhaxe_id OR $nhaxe_id = -1 ) AND (tinh_id_start = $tinh_id_start OR $tinh_id_start = -1)
-            AND (tinh_id_end = $tinh_id_end OR $tinh_id_end = -1) AND (date_start = $date_start OR $date_start = -1)  ORDER BY update_time DESC ";            
+            AND (tinh_id_end = $tinh_id_end OR $tinh_id_end = -1) AND (date_start = $date_start OR $date_start = -1)";
+            if($type==2) $sql.=" GROUP BY key_all "  ;
+             $sql.="ORDER BY update_time ASC ";            
               
             if ($limit > 0 && $offset >= 0)
                 $sql .= " LIMIT $offset,$limit";  

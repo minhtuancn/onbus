@@ -20,7 +20,7 @@ require_once "model/Car.php";
 
 $modelCar = new Car;
 
-$link = "index.php?mod=ticket&act=list";
+$link = "index.php?mod=ticket&act=listshort";
 $page_show = 10;
 
 
@@ -128,7 +128,7 @@ if (isset($_GET['tinh_id_end']) && $_GET['tinh_id_end'] > 0) {
 
 
 
-$arrTotal = $model->getListTicket($nhaxe_id,$tinh_id_start,$tinh_id_end,$ngaydi, -1, -1);
+$arrTotal = $model->getListTicket($nhaxe_id,$tinh_id_start,$tinh_id_end,$ngaydi, -1, -1,2);
 
 
 
@@ -144,7 +144,7 @@ $offset = LIMIT * ($page - 1);
 
 
 
-$arrList = $model->getListTicket($nhaxe_id,$tinh_id_start,$tinh_id_end,$ngaydi,$offset, LIMIT);
+$arrList = $model->getListTicket($nhaxe_id,$tinh_id_start,$tinh_id_end,$ngaydi,$offset, LIMIT,2);
 
 
 
@@ -157,11 +157,10 @@ $arrList = $model->getListTicket($nhaxe_id,$tinh_id_start,$tinh_id_end,$ngaydi,$
     <div class="col-md-12">
 
     <button class="btn btn-primary btn-sm right" onclick="location.href='index.php?mod=ticket&act=form'">Tạo mới</button>        
-    <button class="btn btn-primary btn-sm right" onclick="location.href='index.php?mod=ticket&act=listshort'">Danh sách vé rút gọn</button>        
-
+    <button class="btn btn-primary btn-sm right" onclick="location.href='index.php?mod=ticket&act=list'">Danh sách vé chi tiết</button>        
          <div class="box-header">
 
-                <h3 class="box-title">Danh sách vé</h3>
+                <h3 class="box-title">Danh sách vé rút gọn</h3>
 
             </div><!-- /.box-header -->
 

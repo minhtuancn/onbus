@@ -99,7 +99,7 @@ if($ticket_id > 0) {
 }else{
 
 	if($is_new == 0){
-
+		//var_dump($arrSer,$arrTime);die;
 		$model->insertTicket($nhaxe_id,$tinh_id_start,$tinh_id_end,$place_id_start,$place_id_end,$price,$type,$duration,$amount,$car_type,$stop,$note,$arrSer,$arrTime,$arrDates,$key_all,$str_month);
 
 		header('location:'.$url);
