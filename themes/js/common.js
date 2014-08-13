@@ -40,6 +40,7 @@ $(document).ready(function() {
         hWrap = $('.ticket-options').length > 0 ? $('.ticket-options').height() : 0,
         topWrap = $('.ticket-options').length > 0 ? $('.ticket-options').offset().top : 0,
         hW = $(window).outerHeight();
+
     $(window).on('scroll', function() {
         var topW = window.scrollY,
             x = topW + hItem - topWrap;
@@ -49,7 +50,9 @@ $(document).ready(function() {
                 $item.next('.col_margin_left').css('margin-left', wItem + 'px');
                 $item.parent('.block-subpage-col').css('background', '#1F1F1F');
             }
-        } else {
+        }else if(topItem <= topW && $('#payment').length > 0){
+            $item.addClass('fixed');
+        }else {
             $item.removeClass('fixed');
             if ($item.next('.col_margin_left').length > 0 && $item.parent('.block-subpage-col').length > 0) {
                 $item.next('.col_margin_left').css('margin-left', '0px');
@@ -57,6 +60,7 @@ $(document).ready(function() {
             }
         }
     });
+
     $('.show_map').click(function(e) {
         e.preventDefault();
         var _this = $(this),

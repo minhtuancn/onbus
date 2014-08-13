@@ -53,156 +53,314 @@
     </header>    
     <div id="wrapper-container" class="w-center">
 		<!-- InstanceBeginEditable name="Container" -->
-  <div id="mid">
-    <div id="mid-inner">
-      <div id="content" class="content wide">
-      	<div class="payment-infor">
-        <form class="form-horizontal" role="form">
-            <div class="enterdetailsdiv">
-            	<h3 class="tp-bluebox-header">
-                                    <span class="icon-users icon-1-5x icon-blue"></span>&nbsp;
-                                    Thông tin hành khách</h3>
-				<div class="tp-bluebox-content">
-                    <div class="tp-bluebox-row"><div class="notification info">Xin vui lòng điền các thông tin cá nhân của hành khách, tất cả sẽ được hiển thị ở phần vé bên dưới. Có thể sử dụng thông tin của một người để đại diện cho nhiều hành khách.</div></div>
-                    <div class="tp-bluebox-row clearfix passenger-info">
-                          <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">Họ Tên*</label>
-                            <div class="col-sm-10">
-                              <input type="email" class="form-control" id="inputEmail3" placeholder="Họ tên">
+ 		<div id="payment">
+        	<div class="left w_825">
+            	<form class="form-horizontal" role="form">
+            	<div class="box_payment">
+                	<div class="title_payment">
+                    	<h3>Contact information and passenger detail</h3>
+                    </div>
+                    <div class="content_payment">
+                    	<div class="left w_385">
+                        	<div class="radio">
+                            	<label class="checkbox-inline">
+                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                As a Guest
+                              </label>
                             </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">Số điện thoại*</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" id="inputPassword3" placeholder="Số điện thoại liên hệ">
+                            <div class="radio">
+                              <label class="checkbox-inline">
+                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                                Sign in to My Onbus
+                              </label>
                             </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">Email*</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" id="inputPassword3" placeholder="Email">
-                            </div>
-                          </div>
-                          <div class="note-pay">
-                            Lưu ý: mã giảm giá của quý khách không được áp dụng cùng với các chương trình khuyến mãi khác của onbus.vn, và chỉ được áp dụng khi clik vào nút " sử dụng mã khuyến mãi" bên dưới
-                          </div>
-                          <div class="discount">
-                            <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">Discount Code</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" id="inputPassword3" placeholder="Mã giảm giá">
-                            </div>
-                          </div>
-                          </div>
-                          <div class="donkhach">
-                                <span><i></i>Chọn dịch vụ trung chuyển từ Onbus.vn</span>
-                                <label class="checkbox-inline">
-                                  <input type="checkbox" id="check_show_dvdonkh" value="option1">Đón khách tận nhà và đưa khách đến nơi khởi hành
-                                </label>
-                                <div class="dvdonkh hide">
-                                	<div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">Nơi đón:</label>
-                                        <div class="col-sm-10">
-                                          <input type="text" class="form-control" id="inputPassword3" placeholder="Nhập địa chỉ đón khách hàng...">
-                                        </div>
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">Ghi chú:</label>
-                                        <div class="col-sm-10">
-                                        	<textarea class="form-control" rows="3" placeholder="Ghi chú địa điểm và yêu cầu khách hàng..."></textarea>
-                                        </div>
-                                      </div>
+                        </div>
+                        <div class="right w_440">
+	                            <span class="request_txt">*Required Fieds</span>
+                              <div class="form-group">
+                                <label class="col-sm-2 control-label">*Name:</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="">
                                 </div>
-                          </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">*Email:</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="">
+                                </div>
+                              </div>
+                              <div class="form-group frm_inline_box">
+                                <label for="" class="col-sm-2 control-label">*Phone</label>
+                                <div class="col-sm-10">
+                                	<select class="form-control">
+                                    	<option>Vietnam (+84)</option>
+                                    </select>
+                                    <input type="text" class="form-control">
+                                </div>
+                              </div>
+                        </div>
+                        <div class="clear"></div>
                     </div>
                 </div>
-            </div>
-            <div class="blockbox enterdetailsdiv">
-            	<h3 class="tp-bluebox-header">
-                                    <span class="icon-users icon-1-5x icon-blue"></span>&nbsp;Chi tiết thanh toán			</h3>
-				<div class="tp-bluebox-content block-payment-bank">
-                  <div class="tp-bluebox-row">
-                    <div class="total-pending">TOTAL PENDING: <span>350.000<span>VNĐ</span></span></div>
-                    <p>Kindly choose one of the available payment options:</p>
-                  </div>
-                    <div class="tp-bluebox-row clearfix passenger-info">
-                        
-                          <div class="form-group">
-                            <label class="radio-inline col-sm-2 control-label">
-                              <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Ngân lượng
-                            </label>
-                            <div class="col-sm-10">
-                              <div class="enterdetailstd8">
-                                  <span class="wrap-img"><img src="images/721373428404168.png" /></span>
-                                  <span>Cổng thanh toán ngân lượng</span>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="radio-inline col-sm-2 control-label">
-                              <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Paypal
-                            </label>
-                            <div class="col-sm-10">
-                              <div class="enterdetailstd8">
-                                    <img alt="Paypal" title="Paypal" src="images/icon-paypal.jpg">
-                                    <img alt="Visa" title="Visa" src="images/icon-visa.jpg">
-                                    <img alt="MasterCard" title="MasterCard" src="images/icon-mcard.jpg">
-                                    <img alt="American Express" title="American Express" src="images/icon-amex.jpg">
-                                    <span>Accept Paypal, Visa, Mastercard, American Express, Diners Club and UnionPay (China).<i>*Note: For Australian/European credit card holder, please select this payment option.</i></span>
-                              </div>
-                            </div>
-                          </div>
-                          <label class="checkbox-inline accept-book">
-                                  <input type="checkbox" id="inlineCheckbox1" value="option1">Tôi đồng ý với <a href="#">các điều khoản và chính sách</a> đặt vé xe tại onbus.vn
-                                </label>
-    
+                <div class="box_payment">
+                	<div class="title_payment">
+                    	<h3>Promotion code</h3>
                     </div>
-                </div>                                    
+                    <div class="content_payment">
+                    	<div class="form-group">
+                        <label for="" class="col-sm-4 control-label">Please enter promotion code:</label>
+                        <div class="col-sm-5">
+                          <input type="text" class="form-control" id="">
+                        </div>
+                      </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="box_payment">
+                	<div class="title_payment">
+                    	<h3>Onbus pickup</h3>
+                    </div>
+                    <div class="content_payment">
+                    	<div class="left w_385">
+                        	<div class="radio">
+                              <label class="checkbox-inline">
+                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                As a Guest
+                              </label>
+                            </div>
+                            <div class="radio">
+                              <label class="checkbox-inline">
+                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                                Sign in to My Onbus
+                              </label>
+                            </div>
+                        </div>
+                        <div class="right w_440">
+	                            <span class="request_txt">*Required Fieds</span>
+                              <div class="form-group">
+                                <label class="col-sm-2 control-label">*Name:</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">*Email:</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="">
+                                </div>
+                              </div>
+                              <div class="form-group frm_inline_box">
+                                <label for="" class="col-sm-2 control-label">*Phone</label>
+                                <div class="col-sm-10">
+                                	<select class="form-control">
+                                    	<option>Vietnam (+84)</option>
+                                    </select>
+                                    <input type="text" class="form-control">
+                                </div>
+                              </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="box_payment">
+                	<div class="title_payment">
+                    	<h3>Select payment and Billing information</h3>
+                    </div>
+                    <div class="content_payment">
+                    	<div class="left w_385">
+                        	<div class="radio">
+                              <label class="checkbox-inline">
+                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                	PAY LATER - DOOR TO DOOR
+                              </label>
+                            </div>
+                            <div class="radio">
+                              <label class="checkbox-inline">
+                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                                INTERNATIONAL PAYMENT CARD
+                              </label>
+                            </div>
+                        </div>
+                        <div class="right w_440">
+	                            <span class="txt_gray">Thanh toán tại nhà với chi phí đính kèm 1$</span>
+                              <div class="form-group">
+                                <label class="col-sm-2 control-label">*Address</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="">
+                                </div>
+                              </div>
+                              
+                              <div class="form-group frm_inline_box">
+                                <label for="" class="col-sm-2 control-label">*Contact Phone</label>
+                                <div class="col-sm-10">
+                                	<select class="form-control">
+                                    	<option>Vietnam (+84)</option>
+                                    </select>
+                                    <input type="text" class="form-control">
+                                </div>
+                              </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="box_payment payment_money">
+                	<div class="title_payment">
+                    	<h3>Select payment and Billing information</h3>
+                    </div>
+                    <div class="content_payment">
+                    	<div class="left w_385">
+                        	<div class="radio">
+                              <label class="checkbox-inline">
+                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                	PAY LATER - DOOR TO DOOR
+                              </label>
+                            </div>
+                            <div class="radio">
+                              <label class="checkbox-inline">
+                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                                INTERNATIONAL PAYMENT CARD
+                              </label>
+                            </div>
+                            <div class="sucu_payment">
+                            	<img src="images/bg_payment.png" />
+                            </div>
+                        </div>
+                        <div class="right w_440">
+                              <div class="form-group">
+                                <label class="col-sm-2 control-label">*Name</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">*Credit Card Type</label>
+                                <div class="col-sm-5">
+                                	<select class="form-control">
+                                    	<option selected="selected">---</option>
+                                    </select>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label class="col-sm-2 control-label">*Credit Card Number:</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="">
+                                </div>
+                              </div>
+                              <div class="form-group frm_inline_box">
+                                <label for="" class="col-sm-2 control-label">*Credit Card Type</label>
+                                <div class="col-sm-10">
+                                	<select class="form-control">
+                                    	<option selected="selected">Select Month</option>
+                                    </select>
+                                    <select class="form-control">
+                                    	<option selected="selected">Select Year</option>
+                                    </select>
+                                </div>
+                              </div>
+                              <div class="form-group frm_inline_box">
+                                <label class="col-sm-2 control-label">*CV Code:</label>
+                                <div class="col-sm-10 fild_cvcode">
+                                  <input type="text" class="form-control" id="">
+                                  <img class="left" src="images/option_payment.png" />
+                                </div>
+                              </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="box_term">
+                	<h1>Terms & Conditions</h1>
+                    <p>Please review our full terms and conditions available through the link <a href="#">Terms of User</a></p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p><p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                </div>
+                <div class="checkbox bottom_frm">
+                  <label>
+                    <input type="checkbox"> You must click here to indicate that you have read and accepted the fare Rule and Purchase Conditions
+                  </label>
+                  <input type="submit" class="right btn btn_submit_payment" />
+                </div>
+                </form>
             </div>
-            <div class="right"><input type="submit" value="Thanh toán" class="button2"></div>
-        </form>
-        <div class="clear"></div>
+            <div class="right w_300">
+            	<div class="scrollbar_fixed">
+            	<div class="box_sidebar">
+                	<div class="title_payment">
+                    	<h3>Your Ticket(s)</h3>
+                    </div>
+                    <div class="content_sidebar">
+                    	<div class="left block_date">
+                        	<span class="thang">sept</span>
+                            <span class="ngay">26</span>
+                            <span class="thu">fri</span>
+                        </div>
+                        <div class="left detail_tuyen">
+                        	<h2>Ho Chi Minh - Vung Tau</h2>
+                            <div class="nhaxe"><i class="icon_cart"></i> Phương Trang</div>
+                            <div class="time_move"><i class="icon_time"></i> 2h15</div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="left icon_start"></div>
+                        <div class="left time_diadiem">
+                        	<h4>12:55</h4>
+                            <p>Bến xe Miền Tay, HCM 123 Sư Vạn Hạnh</p>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="left icon_end"></div>
+                        <div class="left time_diadiem">
+                        	<h4>12:55</h4>
+                            <p>Bến xe Miền Tay, HCM 123 Sư Vạn Hạnh</p>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="box_sidebar">
+                	<div class="title_payment">
+                    	<h3>Total price</h3>
+                    </div>
+                    <div class="content_sidebar">
+                    	<h3>Passenger: 01</h3>
+                        <h3>Price Summary:</h3>
+                        <ul>
+                        	<li>
+                            	<div class="left">Fare <a href="#">View</a></div>
+                                <div class="right">150,000 VND</div>
+                            </li>
+                            <li>
+                            	<div class="left">Taxes and Fees <a href="#">View</a></div>
+                                <div class="right">150,000 VND</div>
+                            </li>
+                            <li>
+                            	<div class="left"><h3>Discount</h3></div>
+                                
+                            </li>
+                        </ul>
+                        <div class="left"><h2><b>TOTAL:</b></h2></div>
+                        <div class="right cost_payment">
+                        	<span class="price">165,000 VND</span>
+                            <a href="#">View fare Rules</a>
+                            <a href="#">Purchase Conditions</a>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                </div>
+            </div>
+            <div class="clear"></div>
         </div>
-      </div>
-      <div id="sidebar2" class="sidebar"> 
-      	<div class="sliding-track">
-				<div class="sliding-box scrollbar_fixed">
-						<div class="box-head bg-orange round-cor-top">
-							Giá vé của bạn		</div>
-						<div id="_pricebar" class="pricebar round-cor-bottom">
-											<div class="box-row">
-									<h3 class="tp-toggle">Giá vé: <span class="price">300.000 VNĐ</span></h3>
-									
-								</div>
-											
-											<div class="box-row">
-									<h3 class="tp-toggle">Phí dịch vụ: <span class="price">300.000 VNĐ</span></h3>
-									
-								</div>
-											
-							
-							<div class="box-row no-border">
-								<h3 class="tp-toggle subtotal active">Chi phí khác: <span class="price" data-price="0" id="product-total-other">300.000 VNĐ</span></h3>
-								<div class="prices tp-toggle-content">
-									<table>
-																<tbody><tr>
-											<td>Phiếu giảm giá:</td>
-											<td id="product-subtotal-voucher">300.000 VNĐ</td>
-										</tr>
-										
-															</tbody></table>
-								</div>
-							</div>
-				
-							<h2 class="total-price clearfix"><span class="left">Total</span>: <span id="total-price" class="right" data-total="1352.36">300.000 VNĐ</span></h2>
-						</div>
-				
-							</div>
-				</div>
-      </div>
-      <div class="clear"></div>
-    </div>
-  </div>
   <!-- InstanceEndEditable -->
     	<div class="clear"></div>
 </div>
