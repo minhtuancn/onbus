@@ -77,14 +77,14 @@ $arrTime = $modelTime->getListTimeByStatus(-1, -1, -1);
 <script type="text/javascript" src="<?php echo STATIC_URL; ?>js/jquery-ui.multidatespicker.js"></script>
 <div class="row">
 
-    
+    <form method="post" action="controller/Ticket.php">
 
     <div class="col-md-7">                   
 
         <!-- Custom Tabs -->
 
         <button class="btn btn-primary btn-sm" onclick="location.href='index.php?mod=ticket&act=list'">Danh sách vé</button>
-<form method="post" action="controller/Ticket.php">
+
         <div style="clear:both;margin-bottom:10px"></div>
 
          <div class="box-header">
