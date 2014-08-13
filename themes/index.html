@@ -90,50 +90,201 @@
                 	<div class="left item-search">
                         <label for="departPlace">Điểm khởi hành</label>
                         <input id="departPlace" type="text" class="form-control input-txt place ui-autocomplete-input" placeholder="Default input" accesskey="1" tabindex="1" autocomplete="off">
-                        <div id="departPlaceSelector" class="place-selector rounded-5 clearfix" style="display: none;">
+                        <div id="departPlaceSelector" class="place-selector rounded-5 clearfix" style="display:none;">
                             <div class="inner rel-pos">
-                                <div class="region-col first left clearfix">
-                                    <ul class="city-list left">
-                                        <li class="city"><a href="javascript:;" data-state="29" data-city="0">Hồ Chí Minh</a></li>
-                                        <li class="city"><a href="javascript:;" data-state="13" data-city="0">Cần Thơ</a></li>
-                                        <li class="city"><a href="javascript:;" data-state="2" data-city="0">Bà Rịa-Vũng Tàu</a></li>
-                                        <li class="city"><a href="javascript:;" data-state="12" data-city="0">Cà Mau</a></li>
-                                        <li class="city"><a href="javascript:;" data-state="1" data-city="0">An Giang</a></li>
-                                        <li class="city"><a href="javascript:;" data-state="5" data-city="0">Bạc Liêu</a></li>
-                                        <li class="city"><a href="javascript:;" data-state="7" data-city="0">Bến Tre</a></li>
-                                        <li class="city"><a href="javascript:;" data-state="9" data-city="0">Bình Dương</a></li>
-                                        <li class="city"><a href="javascript:;" data-state="10" data-city="0">Bình Phước</a></li>
-                                        <li class="city"><a href="javascript:;" data-state="19" data-city="0">Đồng Nai</a></li>
-                                        <li class="city"><a href="javascript:;" data-state="20" data-city="0">Đồng Tháp</a></li>
-                                        <li class="city"><a href="javascript:;" data-state="28" data-city="0">Hậu Giang</a></li>
-                                    </ul>
-                                </div>
-							</div>
+    <a id="closeDept" class="close" href="javascript:;">Đóng</a>
+    <div class="region-col first fl-l clearfix">
+        <h3>Miền Nam</h3>
+        <ul class="city-list fl-l">
+            <li class="city"><a href="javascript:;" data-state="29" data-city="0"><strong>Hồ Chí Minh</strong></a></li>
+            <li class="city"><a href="javascript:;" data-state="13" data-city="0"><strong>Cần Thơ</strong></a></li>
+            <li class="city"><a href="javascript:;" data-state="2" data-city="0"><strong>Bà Rịa-Vũng Tàu</strong></a></li>
+            <li class="city"><a href="javascript:;" data-state="12" data-city="0"><strong>Cà Mau</strong></a></li>
+            <li class="city"><a href="javascript:;" data-state="1" data-city="0">An Giang</a></li>
+            <li class="city"><a href="javascript:;" data-state="5" data-city="0">Bạc Liêu</a></li>
+            <li class="city"><a href="javascript:;" data-state="7" data-city="0">Bến Tre</a></li>
+            <li class="city"><a href="javascript:;" data-state="9" data-city="0">Bình Dương</a></li>
+            <li class="city"><a href="javascript:;" data-state="10" data-city="0">Bình Phước</a></li>
+            <li class="city"><a href="javascript:;" data-state="19" data-city="0">Đồng Nai</a></li>
+            <li class="city"><a href="javascript:;" data-state="20" data-city="0">Đồng Tháp</a></li>
+            <li class="city"><a href="javascript:;" data-state="28" data-city="0">Hậu Giang</a></li>
+        </ul>
+        <ul class="city-list fl-l">
+            <li class="city"><a href="javascript:;" data-state="33" data-city="0">Kiên Giang</a></li>
+            <li class="city"><a href="javascript:;" data-state="39" data-city="0">Long An</a></li>
+            <li class="city"><a href="javascript:;" data-state="51" data-city="0">Sóc Trăng</a></li>
+            <li class="city"><a href="javascript:;" data-state="53" data-city="0">Tây Ninh</a></li>
+            <li class="city"><a href="javascript:;" data-state="58" data-city="0">Tiền Giang</a></li>
+            <li class="city"><a href="javascript:;" data-state="59" data-city="0">Trà Vinh</a></li>
+            <li class="city"><a href="javascript:;" data-state="61" data-city="0">Vĩnh Long</a></li>
+        </ul>
+
+    </div>
+
+    <div class="region-col fl-l clearfix">
+        <h3>Miền Trung - Tây Nguyên</h3>
+        <ul class="city-list fl-l">
+            <li class="city"><a href="javascript:;" data-state="15" data-city="0"><strong>Đà Nẵng</strong></a></li>
+            <li class="city"><a href="javascript:;" data-state="48" data-city="0"><strong>Quảng Ngãi</strong></a></li>
+            <li class="city"><a href="javascript:;" data-state="32" data-city="0"><strong>Khánh Hòa</strong></a></li>
+            <li class="city"><a href="javascript:;" data-state="57" data-city="0"><strong>Thừa Thiên-Huế</strong></a></li>
+            <li class="city"><a href="javascript:;" data-state="36" data-city="0"><strong>Lâm Đồng</strong></a></li>
+            <li class="city"><a href="javascript:;" data-state="8" data-city="0">Bình Định</a></li>
+            <li class="city"><a href="javascript:;" data-state="11" data-city="0">Bình Thuận</a></li>
+            <li class="city"><a href="javascript:;" data-state="16" data-city="0">Đắk Lắk</a></li>
+            <li class="city"><a href="javascript:;" data-state="17" data-city="0">Đăk Nông</a></li>
+            <li class="city"><a href="javascript:;" data-state="21" data-city="0">Gia Lai</a></li>
+
+
+        </ul>
+        <ul class="city-list fl-l">
+            <li class="city"><a href="javascript:;" data-state="25" data-city="0">Hà Tĩnh</a></li>
+            <li class="city"><a href="javascript:;" data-state="34" data-city="0">Kon Tum</a></li>
+            <li class="city"><a href="javascript:;" data-state="43" data-city="0">Ninh Thuận</a></li>
+            <li class="city"><a href="javascript:;" data-state="41" data-city="0">Nghệ An</a></li>
+            <li class="city"><a href="javascript:;" data-state="45" data-city="0">Phú Yên</a></li>
+            <li class="city"><a href="javascript:;" data-state="46" data-city="0">Quảng Bình</a></li>
+            <li class="city"><a href="javascript:;" data-state="47" data-city="0">Quảng Nam</a></li>
+            <li class="city"><a href="javascript:;" data-state="50" data-city="0">Quảng Trị</a></li>
+            <li class="city"><a href="javascript:;" data-state="56" data-city="0">Thanh Hóa</a></li>
+        </ul>
+    </div>
+
+    <div class="region-col last fl-l clearfix">
+        <h3>Miền Bắc</h3>
+        <ul class="city-list fl-l">
+            <li class="city"><a href="javascript:;" data-state="24" data-city="0"><strong>Hà Nội</strong></a></li>
+            <li class="city"><a href="javascript:;" data-state="27" data-city="0"><strong>Hải Phòng</strong></a></li>
+            <li class="city"><a href="javascript:;" data-state="49" data-city="0"><strong>Quảng Ninh</strong></a></li>
+            <li class="city"><a href="javascript:;" data-state="55" data-city="0"><strong>Thái Nguyên</strong></a></li>
+            <li class="city"><a href="javascript:;" data-state="3" data-city="0">Bắc Giang</a></li>
+            <li class="city"><a href="javascript:;" data-state="4" data-city="0">Bắc Kạn</a></li>
+            <li class="city"><a href="javascript:;" data-state="6" data-city="0">Bắc Ninh</a></li>
+            <li class="city"><a href="javascript:;" data-state="14" data-city="0">Cao Bằng</a></li>
+            <li class="city"><a href="javascript:;" data-state="18" data-city="0">Điện Biên</a></li>
+            <li class="city"><a href="javascript:;" data-state="22" data-city="0">Hà Giang</a></li>
+            <li class="city"><a href="javascript:;" data-state="23" data-city="0">Hà Nam</a></li>
+            <li class="city"><a href="javascript:;" data-state="26" data-city="0">Hải Dương</a></li>
+            <li class="city"><a href="javascript:;" data-state="30" data-city="0">Hòa Bình</a></li>
+        </ul>
+        <ul class="city-list fl-l">
+            <li class="city"><a href="javascript:;" data-state="31" data-city="0">Hưng Yên</a></li>
+            <li class="city"><a href="javascript:;" data-state="35" data-city="0">Lai Châu</a></li>
+            <li class="city"><a href="javascript:;" data-state="37" data-city="0">Lạng Sơn</a></li>
+            <li class="city"><a href="javascript:;" data-state="38" data-city="0">Lào Cai</a></li>
+            <li class="city"><a href="javascript:;" data-state="40" data-city="0">Nam Định</a></li>
+            <li class="city"><a href="javascript:;" data-state="42" data-city="0">Ninh Bình</a></li>
+            <li class="city"><a href="javascript:;" data-state="44" data-city="0">Phú Thọ</a></li>
+            <li class="city"><a href="javascript:;" data-state="52" data-city="0">Sơn La</a></li>
+            <li class="city"><a href="javascript:;" data-state="54" data-city="0">Thái Bình</a></li>
+            <li class="city"><a href="javascript:;" data-state="60" data-city="0">Tuyên Quang</a></li>
+            <li class="city"><a href="javascript:;" data-state="62" data-city="0">Vĩnh Phúc</a></li>
+            <li class="city"><a href="javascript:;" data-state="63" data-city="0">Yên Bái</a></li>
+        </ul>
+    </div>
+
+</div>
                         </div>
+
                         <span class="replay-position">&nbsp;</span>
                     </div>
                     <div class="right item-search">
                         <label for="departPlace">Nơi đến</label>
                         <input id="destination" type="text" class="form-control input-txt place ui-autocomplete-input" placeholder="Default input" accesskey="1" tabindex="1" autocomplete="off">
-                        <div id="destinationSelector" class="place-selector rounded-5 clearfix" style="display: none;">
+                        <div id="destinationSelector" class="place-selector rounded-5 clearfix" style="display:none;">
                             <div class="inner rel-pos">
-                                <div class="region-col first left clearfix">
-                                    <ul class="city-list left">
-                                        <li class="city"><a href="javascript:;" data-state="29" data-city="0">Hồ Chí Minh</a></li>
-                                        <li class="city"><a href="javascript:;" data-state="13" data-city="0">Cần Thơ</a></li>
-                                        <li class="city"><a href="javascript:;" data-state="2" data-city="0">Bà Rịa-Vũng Tàu</a></li>
-                                        <li class="city"><a href="javascript:;" data-state="12" data-city="0">Cà Mau</a></li>
-                                        <li class="city"><a href="javascript:;" data-state="1" data-city="0">An Giang</a></li>
-                                        <li class="city"><a href="javascript:;" data-state="5" data-city="0">Bạc Liêu</a></li>
-                                        <li class="city"><a href="javascript:;" data-state="7" data-city="0">Bến Tre</a></li>
-                                        <li class="city"><a href="javascript:;" data-state="9" data-city="0">Bình Dương</a></li>
-                                        <li class="city"><a href="javascript:;" data-state="10" data-city="0">Bình Phước</a></li>
-                                        <li class="city"><a href="javascript:;" data-state="19" data-city="0">Đồng Nai</a></li>
-                                        <li class="city"><a href="javascript:;" data-state="20" data-city="0">Đồng Tháp</a></li>
-                                        <li class="city"><a href="javascript:;" data-state="28" data-city="0">Hậu Giang</a></li>
-                                    </ul>
-                                </div>
-							</div>
+    <a id="closeDept" class="close" href="javascript:;">Đóng</a>
+    <div class="region-col first fl-l clearfix">
+        <h3>Miền Nam</h3>
+        <ul class="city-list fl-l">
+            <li class="city"><a href="javascript:;" data-state="29" data-city="0"><strong>Hồ Chí Minh</strong></a></li>
+            <li class="city"><a href="javascript:;" data-state="13" data-city="0"><strong>Cần Thơ</strong></a></li>
+            <li class="city"><a href="javascript:;" data-state="2" data-city="0"><strong>Bà Rịa-Vũng Tàu</strong></a></li>
+            <li class="city"><a href="javascript:;" data-state="12" data-city="0"><strong>Cà Mau</strong></a></li>
+            <li class="city"><a href="javascript:;" data-state="1" data-city="0">An Giang</a></li>
+            <li class="city"><a href="javascript:;" data-state="5" data-city="0">Bạc Liêu</a></li>
+            <li class="city"><a href="javascript:;" data-state="7" data-city="0">Bến Tre</a></li>
+            <li class="city"><a href="javascript:;" data-state="9" data-city="0">Bình Dương</a></li>
+            <li class="city"><a href="javascript:;" data-state="10" data-city="0">Bình Phước</a></li>
+            <li class="city"><a href="javascript:;" data-state="19" data-city="0">Đồng Nai</a></li>
+            <li class="city"><a href="javascript:;" data-state="20" data-city="0">Đồng Tháp</a></li>
+            <li class="city"><a href="javascript:;" data-state="28" data-city="0">Hậu Giang</a></li>
+        </ul>
+        <ul class="city-list fl-l">
+            <li class="city"><a href="javascript:;" data-state="33" data-city="0">Kiên Giang</a></li>
+            <li class="city"><a href="javascript:;" data-state="39" data-city="0">Long An</a></li>
+            <li class="city"><a href="javascript:;" data-state="51" data-city="0">Sóc Trăng</a></li>
+            <li class="city"><a href="javascript:;" data-state="53" data-city="0">Tây Ninh</a></li>
+            <li class="city"><a href="javascript:;" data-state="58" data-city="0">Tiền Giang</a></li>
+            <li class="city"><a href="javascript:;" data-state="59" data-city="0">Trà Vinh</a></li>
+            <li class="city"><a href="javascript:;" data-state="61" data-city="0">Vĩnh Long</a></li>
+        </ul>
+
+    </div>
+
+    <div class="region-col fl-l clearfix">
+        <h3>Miền Trung - Tây Nguyên</h3>
+        <ul class="city-list fl-l">
+            <li class="city"><a href="javascript:;" data-state="15" data-city="0"><strong>Đà Nẵng</strong></a></li>
+            <li class="city"><a href="javascript:;" data-state="48" data-city="0"><strong>Quảng Ngãi</strong></a></li>
+            <li class="city"><a href="javascript:;" data-state="32" data-city="0"><strong>Khánh Hòa</strong></a></li>
+            <li class="city"><a href="javascript:;" data-state="57" data-city="0"><strong>Thừa Thiên-Huế</strong></a></li>
+            <li class="city"><a href="javascript:;" data-state="36" data-city="0"><strong>Lâm Đồng</strong></a></li>
+            <li class="city"><a href="javascript:;" data-state="8" data-city="0">Bình Định</a></li>
+            <li class="city"><a href="javascript:;" data-state="11" data-city="0">Bình Thuận</a></li>
+            <li class="city"><a href="javascript:;" data-state="16" data-city="0">Đắk Lắk</a></li>
+            <li class="city"><a href="javascript:;" data-state="17" data-city="0">Đăk Nông</a></li>
+            <li class="city"><a href="javascript:;" data-state="21" data-city="0">Gia Lai</a></li>
+
+
+        </ul>
+        <ul class="city-list fl-l">
+            <li class="city"><a href="javascript:;" data-state="25" data-city="0">Hà Tĩnh</a></li>
+            <li class="city"><a href="javascript:;" data-state="34" data-city="0">Kon Tum</a></li>
+            <li class="city"><a href="javascript:;" data-state="43" data-city="0">Ninh Thuận</a></li>
+            <li class="city"><a href="javascript:;" data-state="41" data-city="0">Nghệ An</a></li>
+            <li class="city"><a href="javascript:;" data-state="45" data-city="0">Phú Yên</a></li>
+            <li class="city"><a href="javascript:;" data-state="46" data-city="0">Quảng Bình</a></li>
+            <li class="city"><a href="javascript:;" data-state="47" data-city="0">Quảng Nam</a></li>
+            <li class="city"><a href="javascript:;" data-state="50" data-city="0">Quảng Trị</a></li>
+            <li class="city"><a href="javascript:;" data-state="56" data-city="0">Thanh Hóa</a></li>
+        </ul>
+    </div>
+
+    <div class="region-col last fl-l clearfix">
+        <h3>Miền Bắc</h3>
+        <ul class="city-list fl-l">
+            <li class="city"><a href="javascript:;" data-state="24" data-city="0"><strong>Hà Nội</strong></a></li>
+            <li class="city"><a href="javascript:;" data-state="27" data-city="0"><strong>Hải Phòng</strong></a></li>
+            <li class="city"><a href="javascript:;" data-state="49" data-city="0"><strong>Quảng Ninh</strong></a></li>
+            <li class="city"><a href="javascript:;" data-state="55" data-city="0"><strong>Thái Nguyên</strong></a></li>
+            <li class="city"><a href="javascript:;" data-state="3" data-city="0">Bắc Giang</a></li>
+            <li class="city"><a href="javascript:;" data-state="4" data-city="0">Bắc Kạn</a></li>
+            <li class="city"><a href="javascript:;" data-state="6" data-city="0">Bắc Ninh</a></li>
+            <li class="city"><a href="javascript:;" data-state="14" data-city="0">Cao Bằng</a></li>
+            <li class="city"><a href="javascript:;" data-state="18" data-city="0">Điện Biên</a></li>
+            <li class="city"><a href="javascript:;" data-state="22" data-city="0">Hà Giang</a></li>
+            <li class="city"><a href="javascript:;" data-state="23" data-city="0">Hà Nam</a></li>
+            <li class="city"><a href="javascript:;" data-state="26" data-city="0">Hải Dương</a></li>
+            <li class="city"><a href="javascript:;" data-state="30" data-city="0">Hòa Bình</a></li>
+        </ul>
+        <ul class="city-list fl-l">
+            <li class="city"><a href="javascript:;" data-state="31" data-city="0">Hưng Yên</a></li>
+            <li class="city"><a href="javascript:;" data-state="35" data-city="0">Lai Châu</a></li>
+            <li class="city"><a href="javascript:;" data-state="37" data-city="0">Lạng Sơn</a></li>
+            <li class="city"><a href="javascript:;" data-state="38" data-city="0">Lào Cai</a></li>
+            <li class="city"><a href="javascript:;" data-state="40" data-city="0">Nam Định</a></li>
+            <li class="city"><a href="javascript:;" data-state="42" data-city="0">Ninh Bình</a></li>
+            <li class="city"><a href="javascript:;" data-state="44" data-city="0">Phú Thọ</a></li>
+            <li class="city"><a href="javascript:;" data-state="52" data-city="0">Sơn La</a></li>
+            <li class="city"><a href="javascript:;" data-state="54" data-city="0">Thái Bình</a></li>
+            <li class="city"><a href="javascript:;" data-state="60" data-city="0">Tuyên Quang</a></li>
+            <li class="city"><a href="javascript:;" data-state="62" data-city="0">Vĩnh Phúc</a></li>
+            <li class="city"><a href="javascript:;" data-state="63" data-city="0">Yên Bái</a></li>
+        </ul>
+    </div>
+
+</div>
                         </div>
                     </div>
                     <div class="left item-search">
@@ -304,6 +455,8 @@
 	<script type="text/javascript" src="js/customDatePicker1.0.min.js"></script>
     <script type="text/javascript" src="js/customAutoComplete1.0.min.js"></script>
     <script type="text/javascript" src="js/jquery.customSelect.min.js"></script>
+	<script type="text/javascript" src="js/helper1.0.min.js"></script>
+	<script type="text/javascript" src="js/city.js"></script>
     <script type="text/javascript" src="js/searchWidget1.0.min.js"></script>
     <script type="text/javascript" src="js/jquery.bxslider.js"></script>
     <script type="text/javascript" src="js/common.js"></script>    
