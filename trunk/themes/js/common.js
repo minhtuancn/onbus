@@ -33,30 +33,49 @@ $(document).ready(function() {
             $boxShow = _this.parents('.donkhach').find('.dvdonkh');
         $boxShow.toggleClass('hide').toggleClass('show');
     });
-    var $item = $('.scrollbar_fixed'),
-        topItem = $('.scrollbar_fixed').length > 0 ? $item.offset().top : 0,
-        wItem = $item.outerWidth(),
-        hItem = $item.outerHeight(),
-        hWrap = $('.ticket-options').length > 0 ? $('.ticket-options').height() : 0,
-        topWrap = $('.ticket-options').length > 0 ? $('.ticket-options').offset().top : 0,
-        hW = $(window).outerHeight();
-
+    
+    //var topFirstBox = $('.scrollbar_fixed').length > 0 ? $item.offset().top : 0;
     $(window).on('scroll', function() {
-        var topW = window.scrollY,
-            x = topW + hItem - topWrap;
-        if (topItem <= topW && x < hWrap && hItem < hW) {
-            $item.addClass('fixed');
+        
+        var $item = $('.scrollbar_fixed'),
+            topItem = $('.scrollbar_fixed').length > 0 ? $item.offset().top : 0,
+            wItem = $item.outerWidth(),
+            hItem = $item.outerHeight(),
+            hWrap = $('.hBoxBig').length > 0 ? $('.hBoxBig').height() : 0,
+            topWrap = $('.hBoxBig').length > 0 ? $('.hBoxBig').offset().top : 0,
+            hW = $(window).outerHeight(),
+            topW = window.scrollY, 
+            topScroll = topWrap + topW + hItem,
+            topWrapTotal = topWrap + hWrap,
+            topBoxFooter = $('.bottom_frm').length > 0 ? $('.bottom_frm').outerHeight() : 0,
+            topBox = topWrap + hWrap - hItem - topBoxFooter + 10;
+
+        if (topScroll >= topWrapTotal) {
+            $item.css({
+                position: 'absolute',
+                top: topBox+'px'
+            }); 
             if ($item.next('.col_margin_left').length > 0 && $item.parent('.block-subpage-col').length > 0) {
                 $item.next('.col_margin_left').css('margin-left', wItem + 'px');
                 $item.parent('.block-subpage-col').css('background', '#1F1F1F');
             }
-        }else if(topItem <= topW && $('#payment').length > 0){
-            $item.addClass('fixed');
-        }else {
-            $item.removeClass('fixed');
+        }else if(topW == 0){
+            $item.css({
+                position: 'static',
+                top: '0px'
+            });
             if ($item.next('.col_margin_left').length > 0 && $item.parent('.block-subpage-col').length > 0) {
                 $item.next('.col_margin_left').css('margin-left', '0px');
                 $item.parent('.block-subpage-col').css('background', '#acafbf');
+            }
+        }else{
+            $item.css({
+                position: 'fixed',
+                top: '20px'
+            });
+            if ($item.next('.col_margin_left').length > 0 && $item.parent('.block-subpage-col').length > 0) {
+                $item.next('.col_margin_left').css('margin-left', wItem + 'px');
+                $item.parent('.block-subpage-col').css('background', '#1F1F1F');
             }
         }
     });
@@ -103,6 +122,14 @@ $(document).ready(function() {
             });
         },2000);
         
+    });
+    $('.replay-position').on('click',function(){
+        var $inputGo = $('#departPlace'),
+            $inputMove = $('#destination'),
+            valGo = $inputGo.val(),
+            valMove = $inputMove.val();
+        $inputGo.val(valMove);
+        $inputMove.val(valGo);
     });
 });
 $.fn.loading = function(options) {
