@@ -1,5 +1,7 @@
 <?php 
+$query  = $_SERVER['QUERY_STRING'];
 include "defined.php"; 
+$lang = "vi";
 require_once "backend/model/Ticket.php";
 $modelTicket = new Ticket;
 
@@ -30,13 +32,67 @@ require_once "backend/model/Route.php";
 
 $modelRoute = new Route;
 
-$vstart = isset($_GET['vstart']) ? (int) $_GET['vstart'] : -1;
-$vend = isset($_GET['vend']) ? (int) $_GET['vend'] : -1;
-$car = isset($_GET['car']) ? (int) $_GET['car'] : -1;
-$car = $car > 0 ? $car : -1;
-$date = isset($_GET['date']) ? $modelTicket->processData($_GET['date']) : -1;
-$date = strtotime($date);
-$arrTicket = $modelTicket->getListTicket($car,$vstart,$vend,$date,-1,-1);
+$arrTinhHaveTicket = $modelTinh->getListTinhHaveTicket($vstart);
+
+$link = "search.php?";
+$vstart = $vend = $dstart = $dend = -1;
+$car = $service = ""; 
+$page_show = 5;
+$limit = 10;
+if(isset($_GET['type'])){
+    $type = (int) $_GET['type'];
+    $link.="type=".$type;
+}
+if(isset($_GET['vstart'])){
+    $vstart = (int) $_GET['vstart'];
+    $link.="vstart=".$vstart;
+}
+if(isset($_GET['vend'])){
+    $vend = (int) $_GET['vend'];
+    $link.="&vend=".$vend;
+}
+if(isset($_GET['car']) && trim($_GET['car']!="") && trim($_GET['car']!="Chọn nhà xe")){
+    $car = $modelTicket->processData($_GET['car']);
+    $link.="&car=".$car;
+    $arrCarSearch = explode(',',$car);
+}
+if(isset($_GET['service']) && trim($_GET['service']!="")){
+    $service = $modelTicket->processData($_GET['service']);
+    $link.="&service=".rtrim($service,",");
+    $arrServiceSearch = explode(',',rtrim($service,","));
+}
+if(isset($_GET['dstart'])){
+    $dstart = $modelTicket->processData($_GET['dstart']);
+    $link.="&dstart=".$dstart;
+    $dstart = strtotime($dstart) + 3600;
+}
+if(isset($_GET['dend']) && $type==2){
+    $dend = $modelTicket->processData($_GET['dend']);
+    $link.="&dend=".$dend;
+    $dend = strtotime($dend) + 3600;
+}
+
+$arrNhaXeID = array();
+
+$page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+$offset = $limit * ($page - 1);
+
+$arrTicket_start_nhaxe = $modelTicket->getListTicketFE("",$vstart,$vend,$dstart,$service,-1,-1);
+if(!empty($arrTicket_start_nhaxe['data'])){
+    foreach ($arrTicket_start_nhaxe['data'] as $ticket) {
+        $arrNhaXeID[$ticket['nhaxe_id']] = $ticket['nhaxe_id'];
+    }
+}
+
+$arrTicket_start_total = $modelTicket->getListTicketFE($car,$vstart,$vend,$dstart,$service,-1,-1);
+$total_page_start = ceil($arrTicket_start_total['total'] / $limit);
+$arrTicket_start = $modelTicket->getListTicketFE($car,$vstart,$vend,$dstart,$service,$offset,$limit);
+
+if($type==2){
+    $arrTicket_end_total = $modelTicket->getListTicketFE($car,$vstart,$vend,$dend,$service,-1,-1);
+    $total_page_end = ceil($arrTicket_end_total['total'] / $limit);
+    $arrTicket_end = $modelTicket->getListTicketFE($car,$vstart,$vend,$dend,$service,$offset,$limit);
+}
 
 $arrNhaXeUyTin = $modelNhaxe->getListNhaxe('',1,0,8);
 
@@ -53,9 +109,9 @@ if(!empty($arrNoidi)){
     }
 
 }
-
 $arrRoute = $modelRoute->getListRoute('',-1,-1,1, 0, 8);
 
+$routeDetail = $modelRoute->detailRoute($vstart,$vend);
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -70,409 +126,337 @@ $arrRoute = $modelRoute->getListRoute('',-1,-1,1, 0, 8);
 <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 <body>
-    <header>
-        <div class="w-center header-wrap">
-        	<div class="right">
-				<div class="dropdown tiente">
-					<div class="cell_header">CURRENCY</div>
-                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                    VNĐ<span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">VNĐ - Vietnamese</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">USD - United States Dollars</a></li>
-                  </ul>
-            	</div>
-                <div class="dropdown">
-                <div class="cell_header">Language</div>
-                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                    Tiếng Việt <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="flag-vn"></span>Tiếng Việt</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="flag-en"></span>English</a></li>
-                  </ul>
-            	</div>
-                <div class="clear"></div>
-            </div>
-            <div class="left"><a href="#" class="logo-header"><img src="<?php echo STATIC_URL; ?>/images/momondo_logo_v6.png" /></a></div>
-            <div class="menu-header">
-            	<ul class="nav nav-pills">
-                  <li class="active hv-1"><a href="#">Trang chủ<span></span></a></li>
-                  <li class="hv-3"><a href="#">Tin tức<span></span></a></li>
-                  <li class="hv-4"><a href="#">Moto bike taxi<span></span></a></li>
-                  <!--<li class="cart-icon">
-                  	<a href="#"><i>&nbsp;</i><b>0</b>Vé</a>
-                  </li>-->
-                </ul>
-            </div>
-            <div class="clear"></div>
-        </div>
-    </header>    
+    <?php include URL_LAYOUT."/header.php"; ?>    
     <div id="wrapper-container" class="w-center">
-		<!-- InstanceBeginEditable name="Container" -->
+        <!-- InstanceBeginEditable name="Container" -->
         <div class="w-950">
-			<div class="process_bar">
-                <ul class="clearfix">
-                    <li class="first complete">
-                        <span class="begin"></span>
-                        <p class="text"><span><i><em>1</em></i>Tìm kiếm</span></p>
-                        <span class="end"></span>
+            <div class="process_bar nav">
+                <ul>
+                    <li class="finish_process active">
+                        <a class="btn-search-bus ic-search " id="select-trip"><span class="glyphicon glyphicon-ok form-control-feedback"></span>Tìm kiếm</a>
+                        <span class="line_process"></span>
                     </li>
-                    <li class="active">
-                        <span class="begin"></span>
-                        <p class="text"><i><em>2</em></i>Kết quả</p>
-                        <span class="end"></span>
-                    </li>
-                    <li>
-                        <span class="begin"></span>
-                        <p class="text"><i><em>3</em></i>Thanh toán</p>
-                        <span class="end"></span>
+                    <li class="finish_process active">
+                        <a class="btn-seat ic-seat" id="select-seat"><span class="glyphicon glyphicon-ok form-control-feedback"></span>Kết quả</a>
+                        <span class="line_process"></span>
                     </li>
                     <li class="end">
-                        <span class="begin"></span>
-                        <p class="text"><i><em>4</em></i>Xác nhận</p>
-                        <span class="end"></span>
+                        <a class="btn-payment ic-cart"><span class="glyphicon glyphicon-ok form-control-feedback"></span>Thanh toán</a>
                     </li>
                 </ul>
+                <div class="dotted-line"></div>
             </div>
-            <div id="MainTopContent_SearchForm_pnlSearchPage" class="block-home">
-		<div id="MainTopContent_SearchForm_pnlSearchPageSearchForm">
-			<div id="searchFormMini">
-                <form method="GET" >
-				<div id="MainTopContent_SearchForm_searchFormMiniSearchButton" class="simple">
-					<div class="field search">
-						<button class="medium pink buttonSearch btn-blue" type="submit" id="buttonSearchFlightsMini">Tìm vé</button>
-					</div>
-				</div>
-				<div class="field back">
-					<button class="medium purple4 back" type="button"><div class="arrow s_g s_g_buttonarrow_a7"></div></button>
-				</div>
-				<div id="MainTopContent_SearchForm_searchFormMiniFields" class="simple">
-					<div class="field city orig">
-                        <input type="hidden" name="vstart" id="vstart" value="" />
-						<input id="departPlace" type="text" class="form-control input-txt place ui-autocomplete-input" placeholder="Nơi đi" accesskey="1" tabindex="1" autocomplete="off"                         
-                        value="<?php echo isset($_GET['vstart']) ? $arrListTinhKey[$_GET['vstart']]['tinh_name_vi'] : ""; ?>">
-                        <div id="departPlaceSelector" class="place-selector rounded-5 clearfix" style="display: none;">
-                            <div class="inner rel-pos">
-                                <div class="region-col first left clearfix">
-                                    <ul class="city-list left">
-                                        <?php if(!empty($arrNoidi['data'])){ 
-                                            foreach ($arrNoidi['data'] as $noidi) {
-                                            ?>
-                                            <li class="city"><a href="javascript:;" data-state="<?php echo $noidi['tinh_id']; ?>" ><?php echo $noidi['tinh_name_vi']; ?></a></li>                                        
-                                                                              
-                                            <?php
-                                            }
-                                            }
-                                        ?>
-                                    </ul>
+            
+            <div class="block-subpage-col">
+                <div class="detail-search w-240">
+                    <div class="route"><?php echo $routeDetail['route_name_'.$lang]; ?></div>                    
+                    <div class="filter tien-ich">
+                        <div class="tabs">
+                            <ul>
+                                <li><a href="#">Tìm vé xe</a></li>
+                            </ul>
+                        </div>
+                        <form class="frm-search-vx">
+                            <div class=" item-search">
+                                 <input type="hidden" name="vstart_search" id="vstart_search" value="<?php echo $vstart; ?>" />
+                                <input type="hidden" name="vend_search" id="vend_search" value="<?php echo $vend; ?>" />
+                                <label for="departPlace2">Điểm đi</label>
+                                <input id="departPlace2" type="text" class="form-control input-txt place ui-autocomplete-input" placeholder="Chọn điểm đi" accesskey="1" tabindex="1" autocomplete="off" value="<?php echo $arrListTinhKey[$vstart]['tinh_name_'.$lang];?>">
+                                <div id="departPlaceSelector2" class="place-selector rounded-5 clearfix" style="display: none;">
+                                    <div class="inner rel-pos">
+                                        <div class="region-col first left clearfix">
+                                            <ul class="city-list left">
+                                                <?php if(!empty($arrTinhHaveTicket)){?>
+                                              <?php                                              
+                                              foreach ($arrTinhHaveTicket as $value) {                                                
+                                                $str = ($value['hot']==1) ? "<strong>".$value['tinh_name_'.$lang]."</strong>" : $value['tinh_name_'.$lang];
+                                                ?>
+                                                <li class="city"><a href="javascript:;" data-state="<?php echo $value['tinh_id']; ?>"><?php echo $str; ?></a></li>
+                                                <?php                                                   
+                                              }
+                                               ?>
+                                               <?php }?>                                                  
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-							</div>
-                        </div>
-					</div>
-					<div id="segmentToggler" class="toggle-horizontal"></div>
-					<div class="field city dest">
-                        <input type="hidden" name="vend" id="vend" value="" />
-						<input id="destination" type="text" class="form-control input-txt place ui-autocomplete-input" placeholder="Nơi đến" accesskey="1" tabindex="1" autocomplete="off"
-                        value="<?php echo isset($_GET['vend']) ? $arrListTinhKey[$_GET['vend']]['tinh_name_vi'] : ""; ?>">
-                        >
-                        <div id="destinationSelector" class="place-selector rounded-5 clearfix" style="display: none;">
-                            <div class="inner rel-pos">
-                                <div class="region-col first left clearfix">
-                                    <ul class="city-list left">
-                                        <?php if(!empty($arrNoidi['data'])){ 
-                                            foreach ($arrNoidi['data'] as $noidi) {
-                                            ?>
-                                            <li class="city"><a href="javascript:;" data-state="<?php echo $noidi['tinh_id']; ?>" ><?php echo $noidi['tinh_name_vi']; ?></a></li>                                        
-                                                                              
-                                            <?php
-                                            }
-                                            }
-                                        ?>
-                                    </ul>
+                            </div>
+                            <div class=" item-search">
+                                <label for="destination2">Điểm đến</label>
+                                <input id="destination2" type="text" class="form-control input-txt place ui-autocomplete-input" placeholder="Chọn điểm đến" accesskey="1" tabindex="1" autocomplete="off" value="<?php echo $arrListTinhKey[$vend]['tinh_name_'.$lang];?>">
+                                <div id="destinationSelector2" class="place-selector rounded-5 clearfix" style="display: none;">
+                                    <div class="inner rel-pos">
+                                        <div class="region-col first left clearfix">
+                                            <ul class="city-list left">
+                                                <li class="city2"><a href="javascript:;" data-state="29" data-city="0">Hồ Chí Minh</a></li>                                               
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-							</div>
-                        </div>
-					</div>
-					<div class="field date outbound">
-						<input id="departDate" name="date" type="text" class="input-txt date form-control" placeholder="Chọn ngày đi" accesskey="3" tabindex="3" 
-                        value="<?php echo $modelTicket->processData($_GET['date']); ?>"
-                        />
-					</div>
-					<div id="MainTopContent_SearchForm_pnlReturnRelated">						
-						<div class="field date homebound">							
-							<div id="clearReturnDateButton" class="cleardate" style="display: none;"></div>
-						</div>
-					</div>
-				</div>
-                </form>
-			</div>
-	</div>
-    <div class="clear"></div>
-</div>
-			<div class="block-subpage-col">
-            	<div class="detail-search w-240">
-                	<div class="route">Hồ chí minh - Hà nội</div>
-                	<div class="block-process-search">
-                    	<div id="search_status" class="search-status">
-                        	<div class="wrap-swf left"><span></span></div>
-                            <div class="searchtxt">Tìm kiếm...</div>
-                            <div class="result-search"><b><?php echo number_format($arrTicket['total']); ?></b> kết quả</div>
-                        </div>
-                        <!--<ul class="route-info">
-                            <li class="trip-return"><i data-icon="" aria-hidden="true"></i><span class="label">Vé khứ hồi</span></li>
-                            <li class="trip-date"><i data-icon="" aria-hidden="true"></i><span class="label">We, August 06, 2014<br>Mo, August 11, 2014</span></li>
-                            <li class="trip-pap"><i data-icon="" aria-hidden="true"></i><span class="label">Người lớn: 1</span></li>
-                        </ul>-->
-                        <div class="clear"></div>
+                            </div>
+                            <div class=" item-search">
+                                <label for="start_date">Ngày đi</label>
+                                <input id="departDate" type="text" class="input-txt form-control" placeholder="Chọn ngày đi" accesskey="3" tabindex="3" value="<?php echo date('d-m-Y',$dstart); ?>">
+        
+                            </div>
+                            
+                            <div class="btn-search-ticket">
+                                <button id="btnSearchTicket" type="button" class="btn btn-warning right btn-blue">Tìm vé xe</button>
+                            </div>
+                            <div class="clear"></div>
+                        </form>
                     </div>
-                	<div id="datepicker-filter"></div>
-                	<!--<div class="route">Hồ chí minh - Hà nội</div>
-                    <div class="block-process-search">
-                    	<div id="search_status" class="search-status">
-                        	<div class="wrap-swf left"><span></span></div>
-                            <div class="searchtxt">Tìm kiếm...</div>
-                            <div class="result-search"><b>8607</b> kết quả</div>
-                        </div>
-                        <ul class="route-info">
-                            <li class="trip-return"><i data-icon="" aria-hidden="true"></i><span class="label">Vé khứ hồi</span></li>
-                            <li class="trip-date"><i data-icon="" aria-hidden="true"></i><span class="label">We, August 06, 2014<br>Mo, August 11, 2014</span></li>
-                            <li class="trip-pap"><i data-icon="" aria-hidden="true"></i><span class="label">Người lớn: 1</span></li>
-                        </ul>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="filter stops">
-                        <div class="header">
-                            <h2>Stops</h2>
-                        </div>
-                        <div class="radio">
-                        <div class="line">
-                            <div class="control">
-                                <input type="radio" name="stops" value="0">
-                            </div>
-                            <div class="description">
-                                <a href="#" onclick="return false;">Non-stop</a>
-                            </div>
-                            <div class="info">-</div>
-                         </div>
-                        <div class="line">
-                            <div class="control">
-                                <input type="radio" name="stops" value="1">
-                            </div>
-                            <div class="description">
-                                <a href="#" onclick="return false;">Max. 1 stop</a>
-                            </div>
-                            <div class="info">-</div>
-                        </div>
-                        <div class="line on">
-                            <div class="control">
-                                <input type="radio" name="stops" value="2" checked="checked">
-                            </div>
-                            <div class="description">
-                                <a href="#" onclick="return false;">Any stops</a>
-                            </div>
-                            <div class="info">-</div>
-                        </div>
-                     </div>
-                    </div>-->
+                    <input type="hidden" name="vstart" id="vstart" value="<?php echo $vstart; ?>" />
+                    <input type="hidden" name="vend" id="vend" value="<?php echo $vend; ?>" />
+                    <input type="hidden" name="dstart" id="dstart" value="<?php echo date('d-m-Y',$dstart); ?>" />
+                    <input type="hidden" name="dend" id="dend" value="<?php echo date('d-m-Y',$dend); ?>" />
+                    <input type="hidden" name="service" id="str_service" value="<?php echo $service; ?>" />
+                    <input type="hidden" name="car" id="str_car" value="<?php echo $car; ?>" />
+                    
                     <div class="filter tien-ich">
                         <div class="header">
                             <h2>Tiện ích</h2>
                         </div>
                         <div class="radio">
                         <?php 
-                            $rsSer = $modelService->getListServiceByStatus(1, -1, -1);
-                            while($row = mysql_fetch_assoc($rsSer)){
+                        $arrSer = $modelService->getListServiceByStatus(1,-1,-1);
+                        while($ser = mysql_fetch_assoc($arrSer)){
                         ?>
                         <div class="line">
                             <div class="control">
-                                <input type="checkbox" name="" value="0">
-                            </div>
-                            <div class="description">
-                                <a href="#" onclick="return false;"><?php echo $row['service_name_vi']; ?></a>
-                            </div>
-                            <div class="info">-</div>
+                                <label>
+                                    <input type="checkbox" <?php if(is_array($arrServiceSearch) && in_array($ser['service_id'],$arrServiceSearch)) echo "checked"; ?> value="<?php echo $ser['service_id']?>" name="service[]">
+                                    <?php echo $ser['service_name_vi']?>
+                                </label>                                
+                            </div>                                                        
                          </div>
-                         <?php } ?>                       
+                         <?php } ?>
+                        
                      </div>
                     </div>
                     <div class="filter hang-xe">
                         <div class="header">
-                            <h2>Các Hãng Xe</h2>
+                            <h2>Các Hãng Xe</h2>                            
                         </div>
                         <div class="radio">
-                        <?php if(!empty($arrNhaXe['data'])){ 
-                            foreach ($arrNhaXe['data'] as $nhaxe) {
-                                ?>                        
+                        <?php if(!empty($arrNhaXeID)){ 
+                            foreach($arrNhaXeID as $nhaxe_id){
+                                $row = $modelNhaxe->getDetailNhaxe($nhaxe_id);
+                            ?>
                         <div class="line">
                             <div class="control">
-                                <input type="checkbox" name="" value="0">
-                            </div>
-                            <div class="description">
-                                <a href="#" onclick="return false;"><?php echo $nhaxe['nhaxe_name_vi']; ?></a>
-                            </div>
-                            <div class="info">-</div>
+                                <label>
+                                    <input type="checkbox" name="car[]" <?php if(is_array($arrCarSearch) && in_array($row['nhaxe_id'],$arrCarSearch)) echo "checked"; ?> value="<?php echo $row['nhaxe_id']?>">
+                                    <?php echo $row['nhaxe_name_vi']?>
+                                </label>                                
+                            </div>                            
                          </div>
-                                <?php
-                                }
-                            }
-                        ?>                       
+                         <?php } }?>                        
                      </div>
                     </div>
                 </div>
-                <div class="ticket-options w-710">
-                	<div class="left ticket-tn">
-						<div class="tab-option"><span class="icon-font">Ticket</span></div>
+                <div class="ticket-options w-710 col_margin_left">
+                    <div class="left ticket-tn">
+                        <div class="tab-option">
+                            <ul class="nav nav-tabs" role="tablist">
+                              <li class="active"><a href="#vechieudi" role="tab" data-toggle="tab"><span class="icon-font active">Vé chiều đi</span></a></li>
+                              <?php if($type==2){ ?>
+                              <li class=""><a href="#vechieuve" role="tab" data-toggle="tab"><span class="icon-font active">Vé chiều về</span></a></li>
+                              <?php } ?>
+                            </ul>
+                            
+                        </div>
                         <div class="infor-ticket-tn">
-                        	<p><span>Vé tốt nhất: <span class="price-tn">150,000</span><span class="unit-money">vnđ</span></span></p>
-                            <p>Độ dài hành trình: <span>150 Km</span></p>
-                        </div>
-                    </div>
-                    <div class="left option-other">
-                    	<div class="tab-option"><span>Tùy chọn khác:</span></div>
-                        <div class="option-detail">
-                        	<div class="price-ticket left">
-                            	<label for="departPlace">Giá vé:</label>
+                            <div class="price-ticket right">
+                                <label for="departPlace">Sort by:</label>
                                 <select class="form-control input-sm left">
-                                    <option selected="selected">Tăng dần</option>
-                                    <option>Giảm dần</option>
+                                    <option selected="selected">rating ̣low to high</option>
+                                    <option>rating ̣low to high</option>
                                 </select>
                             </div>
-                            <div class="price-ticket left">
-                            	<label for="departPlace">Đánh giá:</label>
-                                <select class="form-control input-sm left">
-                                    <option selected="selected">Tăng dần</option>
-                                    <option>Giảm dần</option>
-                                </select>
+                            <div class="left txt-vtn">
+                                <p>Length:<span><?php echo $routeDetail['distance'];?>km</span></p>
+                                <p>Duration: <span><?php echo $routeDetail['duration'];?></span></p>
                             </div>
-                            <div class="clear"></div>
+                            <div class="left name-tuyen">
+                                <span class="left"><?php echo $modelTinh->getTinhNameByID($_GET['vstart']); ?></span>
+                                <span class="right"><?php echo $modelTinh->getTinhNameByID($_GET['vend']); ?></span>
+                                <i class="icon-bus"></i>
+                            </div>
                         </div>
                     </div>
-                    <div class="list-ticket-search">
-                        <?php 
-                        if(!empty($arrTicket['data']) && is_array($arrTicket['data'])){
-                            foreach ($arrTicket['data'] as $ticket) {
-                                 $arrServiceTicket = $modelTicket->getServiceTicket($ticket['ticket_id']);                                 
-                                 $arrTimeTicket = $modelTicket->getTimeTicket($ticket['ticket_id']);
-                        ?>
-                    	<div class="items">
-                        	<div class=" infor-tuyen-search">
-                            	<div class="b-infor">
-                                	<div class="img-logo left">
-                                    	<div class="slider_nx">
+                    
+                    <div class="list-ticket-search tab-content">
+                        <div class="tab-pane fade in active" id="vechieudi">
+                            <?php if(!empty($arrTicket_start['data'])){ 
+                            foreach($arrTicket_start['data']  as $ticket){
+                                $arrServiceTicket = $modelTicket->getServiceTicket($ticket['ticket_id']);                                 
+                                 $arrTimeTicket = $modelTicket->getTimeTicket($ticket['ticket_id']);                                 
+                            ?>
+                            <div class="items">
+                            <div class=" infor-tuyen-search">
+                                <div class="b-infor">
+                                    <div class="img-logo left">
+                                        <div data-toggle="tooltip" title="Click để xem hình" class="wrap-slider">
+                                        <div class="slider_nx">
                                             <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/Du-lich-bui-tren-dao-Binh-Ba_1a.jpg" data-lightbox="example-set" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/img_166x104.png" /></a></div>
                                             <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/mailinh vanluong.jpg" data-lightbox="example-set" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/images.jpg" /></a></div>
                                             <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/images (1).jpg" data-lightbox="example-set" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/images413681_images337275_anh_tin_Dau_tu_12_ti_mua_them_xe_buyt.JPG" /></a></div>
                                         </div>
-                                    	<a href="#"><img src="<?php echo STATIC_URL; ?>/images/logo_xe.png" /></a>
+                                        </div>
+                                        <ul class="icon-tien-ich">
+                                            <li><i  data-toggle="tooltip" title="Toilet" class="icon-wc""></i></li>
+                                            <li><i  data-toggle="tooltip" title="Wifi Free" class="icon-wifi""></i></li>
+                                            <li><i  data-toggle="tooltip" title="Toilet" class="icon-ge""></i></li>
+                                            <li><i  data-toggle="tooltip" title="Toilet" class="icon-ta""></i></li>
+                                        </ul>
+                                        <div class="right rating">
+                                            <span>Good: 8.3</span>
+                                            <span class="num-rating">(105 rating)</span>
+                                        </div>
                                     </div>
                                     <div class="left a-right">
-                                    	<h1><?php echo $modelTinh->getTinhNameByID($ticket['tinh_id_start']); ?> - <?php echo $modelTinh->getTinhNameByID($ticket['tinh_id_end']); ?></h1>
-                                        <div>
-                                        	<p><b>Điểm khởi hành:</b><?php echo $modelPlace->getPlaceNameByID($ticket['place_id_start']); ?>
-                                                ( <?php echo $modelPlace->getAddressByID($ticket['place_id_start']); ?> )
-                                            </p>
-                                            <a href="#" class="right">(Xem bản đồ)</a>
-                                            <div class="clear"></div>
-                                        </div>
-                                        <div>
-                                        	<p><b>Điểm đến:</b><?php echo $modelPlace->getPlaceNameByID($ticket['place_id_end']); ?>
-                                                ( <?php echo $modelPlace->getAddressByID($ticket['place_id_end']); ?> )
-                                            </p>
-                                            <a href="#" class="right" rel="tooltip" data-toggle="tooltip" data-html="true" title="">(Xem bản đồ)</a>
-                                            <div class="clear"></div>
-                                        </div>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                                <div class="type-ticket">
-                                    	<p>Chọn thời gian khởi hành trước khi mua vé*</p>
-                                    	<ul>
+                                        <ul class="list-logo-xe">
+                                            <li><a href="#"><?php echo $modelNhaxe->getNhaxeNameByID($ticket['nhaxe_id']); ?></a></li>                                            
+                                        </ul>
+                                        <div class="clear"></div>
+                                        <p><b>DEPART ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_start']); ?></p>
+                                        <p><b>ARRIVE ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_end']); ?></p>
+                                        <a href="#" class="right show_map" data-url-map="https://dl.dropboxusercontent.com/u/43486987/Hoang/HTML/<?php echo STATIC_URL; ?>/images/map.jpg" data-toggle="modal" data-target="">Xem lộ trình</a>
+                                        <div class="type-ticket">
+                                        <p>Select time:</p>
+                                        <ul>
                                             <?php if(!empty($arrTimeTicket)) { 
                                                 foreach ($arrTimeTicket as $time) {                                                   
                                                 
                                             ?>
-                                        	<li><a href="#"><?php echo $modelTime->getTimeByID($time);?></a></li>
-                                            <?php } } ?>
-                                           
+                                            <li><a href="#"><?php echo $modelTime->getTimeByID($time);?></a></li>
+                                            <?php }}  ?>                                            
                                         </ul>
                                         <div class="clear"></div>
                                     </div>
-                            </div>
-                            <div class=" x-right">
-                            	<div class="top-option-xe">
-                                	<h4 class="right"><?php echo $ticket['car_type']==1 ? "Giường nằm" : "Ghế ngồi"; ?></h4>
-                                    <ul>
-                                    	<li><i  data-toggle="tooltip" title="Wifi Free" class="icon-wifi""></i></li>
-                                        <li><i  data-toggle="tooltip" title="Toilet" class="icon-ge""></i></li>
-                                    </ul>
-                                    <div class="clear"></div>
-                                </div>
-                                <div class="dd-point">
-                                	<p><?php echo $ticket['duration']?></p>
-                                	<div class="line-dd"></div>
-                                    <span class="point point-1" data-toggle="tooltip" title="Trạm dừng 1"></span>
-                                    <span class="point point-2" data-toggle="tooltip" title="Trạm dừng 2"></span>
-                                    <p><?php echo $ticket['stop']; ?> trạm dừng</p>
-                                </div>
-                                <div class="book-btn">
-                                	<span class="icon-person right"></span>
-                                    <span class="left race">
-                                    	<i class="icon-smile"></i>
-                                    	<span>5.7</span>
-                                    </span>
-                                    <div class="d-price">
-                                    	<span><?php echo number_format($ticket['price']);?><span>VNĐ</span></span>
                                     </div>
                                     <div class="clear"></div>
-                                    <a href="#" class="btn-muave">Mua vé</a>
-                                    <a href="#" class="btn-chitiet"  data-toggle="modal" data-target="#myModal">Chi tiết</a>
                                 </div>
                             </div>
-                        	<div class="clear"></div>
-                        </div>
-                        
-                        <?php 
-                            }//foreach
-                        } //if
-                        else{   
-                        ?>
-                        <div class="items">
-                            <p style="padding:20px;">Không tìm thấy dữ liệu!</p>
-                        </div>
-                        <?php } ?>
+                            <div class=" x-right">
+                                <div class="book-btn">
+                                    <div class="d-price">
+                                        <span><?php echo number_format($ticket['price']); ?><span>VNĐ</span></span>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <a href="#" data-toggle="modal" data-target="#popup_book_ticket" class="btn-muave">book now</a>
+                                    <a href="#" class="btn-chitiet"  data-toggle="modal" data-target="#myModal">Click to see detail</a>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>  <!--items-->  
+                        <?php } 
+                        echo $modelTicket->pagination($page,$page_show,$total_page_start,$link); 
+                        } ?>                   
+                        </div> <!-- chieu di -->
+                        <div class="tab-pane fade" id="vechieuve">
+                             <?php if(!empty($arrTicket_end['data'])){ 
+                            foreach($arrTicket_end['data']  as $ticket){
+                                $arrServiceTicket = $modelTicket->getServiceTicket($ticket['ticket_id']);                                 
+                                 $arrTimeTicket = $modelTicket->getTimeTicket($ticket['ticket_id']);                                 
+                            ?>
+                            <div class="items">
+                            <div class=" infor-tuyen-search">
+                                <div class="b-infor">
+                                    <div class="img-logo left">
+                                        <div data-toggle="tooltip" title="Click để xem hình" class="wrap-slider">
+                                        <div class="slider_nx">
+                                            <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/Du-lich-bui-tren-dao-Binh-Ba_1a.jpg" data-lightbox="example-set" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/img_166x104.png" /></a></div>
+                                            <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/mailinh vanluong.jpg" data-lightbox="example-set" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/images.jpg" /></a></div>
+                                            <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/images (1).jpg" data-lightbox="example-set" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/images413681_images337275_anh_tin_Dau_tu_12_ti_mua_them_xe_buyt.JPG" /></a></div>
+                                        </div>
+                                        </div>
+                                        <ul class="icon-tien-ich">
+                                            <li><i  data-toggle="tooltip" title="Toilet" class="icon-wc""></i></li>
+                                            <li><i  data-toggle="tooltip" title="Wifi Free" class="icon-wifi""></i></li>
+                                            <li><i  data-toggle="tooltip" title="Toilet" class="icon-ge""></i></li>
+                                            <li><i  data-toggle="tooltip" title="Toilet" class="icon-ta""></i></li>
+                                        </ul>
+                                        <div class="right rating">
+                                            <span>Good: 8.3</span>
+                                            <span class="num-rating">(105 rating)</span>
+                                        </div>
+                                    </div>
+                                    <div class="left a-right">
+                                        <ul class="list-logo-xe">
+                                            <li><a href="#"><?php echo $modelNhaxe->getNhaxeNameByID($ticket['nhaxe_id']); ?></a></li>                                            
+                                        </ul>
+                                        <div class="clear"></div>
+                                        <p><b>DEPART ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_start']); ?></p>
+                                        <p><b>ARRIVE ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_end']); ?></p>
+                                        <a href="#" class="right show_map" data-url-map="https://dl.dropboxusercontent.com/u/43486987/Hoang/HTML/<?php echo STATIC_URL; ?>/images/map.jpg" data-toggle="modal" data-target="">Xem lộ trình</a>
+                                        <div class="type-ticket">
+                                        <p>Select time:</p>
+                                        <ul>
+                                            <?php if(!empty($arrTimeTicket)) { 
+                                                foreach ($arrTimeTicket as $time) {                                                   
+                                                
+                                            ?>
+                                            <li><a href="#"><?php echo $modelTime->getTimeByID($time);?></a></li>
+                                            <?php }}  ?>                                            
+                                        </ul>
+                                        <div class="clear"></div>
+                                    </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                            <div class=" x-right">
+                                <div class="book-btn">
+                                    <div class="d-price">
+                                        <span><?php echo number_format($ticket['price']); ?><span>VNĐ</span></span>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <a href="#" data-toggle="modal" data-target="#popup_book_ticket" class="btn-muave">book now</a>
+                                    <a href="#" class="btn-chitiet"  data-toggle="modal" data-target="#myModal">Click to see detail</a>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>  <!--items-->  
+                        <?php } 
+                        echo $modelTicket->pagination($page,$page_show,$total_page_end,$link,2);
+                         } ?>  
 
+                        </div>
                         
+                    </div>
                 </div>
                 <div class="clear"></div>
             </div>
-	        <div class="clear"></div>
+                
+                
+            <div class="clear"></div>
         </div>
-		<!-- InstanceEndEditable -->
-    	<div class="clear"></div>
+        <!-- InstanceEndEditable -->
+        <div class="clear"></div>
 </div>
-<?php include "blocks/footer.php"; ?>
+<?php include URL_LAYOUT."/footer.php"; ?>
 <!-- InstanceBeginEditable name="EditRegion3" -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
-		<div class="popup_detail">
-	<div class="wrap-popup">
-    	<a href="#" class="close-popup" data-dismiss="modal"></a>
+        <div class="popup_detail">
+    <div class="wrap-popup">
+        <a href="#" class="close-popup" data-dismiss="modal"></a>
         <div class="title-detail">
-        	<h1>Check your details: <span>Return Trip</span><span class="a-num"><b>1</b><span>x</span><i></i></span></h1>
+            <h1>Check your details: <span>Return Trip</span><span class="a-num"><b>1</b><span>x</span><i></i></span></h1>
         </div>
         <div class="left detail-a">
-        	<h1 class="bg-x"><span>Detail</span></h1>
+            <h1 class="bg-x"><span>Detail</span></h1>
             <div class="ab-dd">
-            	<ul class="right">
-                	<li><i class="icon-wifi"></i></li>
+                <ul class="right">
+                    <li><i class="icon-wifi"></i></li>
                     <li><i class="icon-ge"></i></li>
                 </ul>
                 <h1>hồ chí minh - vũng tàu</h1>
-            	<div class="clear"></div>
+                <div class="clear"></div>
             </div>
             <div class="abc-dkh"><b>Điểm khởi hành:</b>Chợ Tân Sơn Nhất (Gò Vấp)<a href="#" class="right">(Xem bản đồ)</a></div>
             <div class="abc-dkh"><b>Điểm đến:</b>Chợ Tân Sơn Nhất (Gò Vấp)<a href="#" class="right">(Xem bản đồ)</a></div>
@@ -493,7 +477,7 @@ $arrRoute = $modelRoute->getListRoute('',-1,-1,1, 0, 8);
                 <div class="clear"></div>
             </div>
             <div class="left abc-sche">
-            	<h1>SCHEDULE:</h1>
+                <h1>SCHEDULE:</h1>
                 <div class="dd-point">
                     <p>2 giờ 30 phút</p>
                     <div class="line-dd"></div>
@@ -503,74 +487,336 @@ $arrRoute = $modelRoute->getListRoute('',-1,-1,1, 0, 8);
                 </div>
             </div>
             <div class="right abc-sche">
-            	<h1>PRICE:</h1>
+                <h1>PRICE:</h1>
                 <div class="abc-price">
-                	<span>150,000<span>VNĐ</span></span>
+                    <span>150,000<span>VNĐ</span></span>
                 </div>
             </div>
         </div>
         <div class="right option-a">
-        	<h1 class="bg-x"><span>Service Included</span></h1>        	
+            <h1 class="bg-x"><span>Service Included</span></h1>         
             <div class="ab-dd">
-            	<p>Giá trên đã bao gồm các dịch vụ</p>
+                <p>Giá trên đã bao gồm các dịch vụ</p>
             </div>
             <div>
-            	<p><b>- Holine 24/24 hỗ trợ:</b> Mô tả mô tả mô tảt Mô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô</p>
+                <p><b>- Holine 24/24 hỗ trợ:</b> Mô tả mô tả mô tảt Mô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô</p>
                 <p><b>- Bản đồ và cẩm nang du lịch onbus.vn:</b> Mô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảt</p>
                 <p><b>- Vé chiều đi của hành trình:</b> Mô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảt</p>
                 <p><b>- Phí Bảo Hiểm Du Lịch:</b> Mô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tả</p>
             </div>
         </div>
-		<div class="clear"></div>    
+        <div class="clear"></div>    
     </div>
 </div>
       </div>
     </div>
   </div>
 </div>
-<div class="modal fade" id="mymap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="mymap">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
-		<div class="popup_detail">
-	<div class="wrap-popup">
-    	<a href="#" class="close-popup" data-dismiss="modal"></a>
-        <img src="<?php echo STATIC_URL; ?>/images/map.jpg" />
-		<div class="clear"></div>    
-    </div>
-</div>
+        <div class="popup_detail">
+            <div class="wrap-popup">
+                <a href="#" class="close-popup" data-dismiss="modal"></a>
+                <img src="" />
+                <div class="clear"></div>    
+            </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+<div class="modal fade" id="popup_book_ticket">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Select Seat</h4>
+          </div>
+      <div class="modal-body">
+        <div class="popup_detail">
+            <div class="wrap-popup">
+                <a href="#" class="close-popup" data-dismiss="modal"></a>
+                <p>Seat selection is not available. Please choose the number of passengers from the drop down list below.</p>
+                <form class="form-horizontal" role="form">
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">No. fo tickets: </label>
+                    <div class="col-sm-10">
+                      <select class="form-control">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+                    </div>
+                  </div>
+                  <p>Seats will be assigned closed to one another and at middle area by the best effort.</p>
+                  <div class="btn-center">
+                    <input type="submit" value="book now" class="button2">
+                  </div>
+                </form>
+                <div class="clear"></div>    
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="scr"></div>
 <!-- InstanceEndEditable --> 
 <script src="<?php echo STATIC_URL; ?>/js/jquery-1.11.0.min.js" type="text/javascript"></script>
-	<script src="<?php echo STATIC_URL; ?>/js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="<?php echo STATIC_URL; ?>/js/jquery-ui.min.js" type="text/javascript"></script>
     <script src="<?php echo STATIC_URL; ?>/js/bootstrap.min.js" type="text/javascript"></script>
     <!-- InstanceBeginEditable name="JS" -->
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/customDatePicker1.0.min.js"></script>
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/customAutoComplete1.0.min.js"></script>
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/jquery.customSelect.min.js"></script>
+    <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/helper1.0.min.js"></script>
+    <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/city.js"></script>    
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/searchWidget1.0.min.js"></script>
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/jquery.bxslider.js"></script>
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/lightbox.min.js"></script>
-    <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/common.js"></script>    	
+    <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/common.js"></script>     
     <script type="text/javascript">
-		 $(document).ready(function(){
-			  $( "#datepicker-filter" ).datepicker();			 
-			  $('.slider_nx').bxSlider({
-					slideWidth: 560,
-					minSlides: 1,
-					maxSlides: 1,
-					slideMargin: 0,
-					pager: false,
-					auto: false
-			  });
-			  $(function () {
-				initSearchTicketWidget();
-			 });
-		});
-	</script>
+         $(document).ready(function(){
+              $(function () {
+                initSearchTicketWidget();
+				$('.btn-muave').click(function(){
+				location.href="http://onbus.vn/themes/payment.html";
+				});
+                $('#btnSearchTicket').click(function(){
+                    var vstart = $('#vstart_search').val();
+                    var vend = $('#vend_search').val();
+                    var dstart = $('#departDate').val();
+                    if(vstart >0 ){
+                        if(vend > 0){
+                            if(dstart !=''){
+                                search();
+                            }else{
+                                $('#departDate').focus();return false;
+                            }
+                        }else{
+                            $('#destination2').focus();return false;
+                        }
+                    }else{
+                        $('#departPlace2').focus();return false;
+                    }
+                });
+                $('#destination2').blur(function(){
+                    if($.trim($(this).val())=='' || $(this).val()=='Chọn điểm đến'){
+                        $('#vend_search').val(0);
+                    }
+                });
+                $('#departPlace2').blur(function(){                          
+                    if($.trim($(this).val())=='' || $(this).val()=='Chọn điểm đi'){
+                        $('#vstart_search').val(0);
+                    }
+                });
+                $("#departDate").datepicker({
+                    minDate: new Date,
+                    numberOfMonths: 2
+                });
+                <?php if(isset($_GET['r']) && $_GET['r']==2){ ?>
+                    $('a[href="#vechieuve"]').click();
+                <?php } ?>    
+                $('input[name="car[]"]').click(function(){
+                    var str_car = "";
+                    $('input[name="car[]"]:checked').each(function(){                        
+                        str_car += $(this).val() +',';
+                    });                    
+                    $('#str_car').val(str_car.replace(/,+$/, ''));                    
+                    searchByServiceAndCar();
+                });
+                $('input[name="service[]"]').click(function(){
+                    var str_service = "";
+                    $('input[name="service[]"]:checked').each(function(){                        
+                        str_service += $(this).val() +',';
+                    });                    
+                    $('#str_service').val(str_service.replace(/,+$/, ''));                    
+                    searchByServiceAndCar();
+                });
+             });
+            $("#departPlace2").catcomplete({
+                autoFocus: !0,
+                delay: 0,
+                source: function(a, b) {
+                    var c = slug(a.term);            
+                    b($.map(statecity3, function(a) {
+                        var b = slug(a.label);
+                        if (0 === b.indexOf(c)) return a
+                    }))
+                },
+                select: function(a, b) {
+                    $("#departPlace2").val(b.item.label);                        
+                    $("#vstart_search").val(b.item.StateId); 
+                    $.ajax({
+                        url: "ajax/destination.php",
+                        type: "POST",
+                        async: false,
+                         dataType: "json",
+                        data: {"vstart":b.item.StateId,"type":2},
+                        success: function(data){                    
+                            $('#destinationSelector2').html(data.str1);
+                        }
+                    });
+                    $.ajax({
+                        url: "ajax/destination.php",
+                        type: "POST",
+                        async: false,
+                         dataType: "json",
+                        data: {"vstart":b.item.StateId,"type":3},
+                        success: function(data){               
+                            $('#scr').html(data.str1);
+                            $("#destination2").catcomplete({
+                            autoFocus: !0,
+                            delay: 0,
+                            source: function(a, b) {
+                                var c = slug(a.term);
+                                b($.map(statecity2, function(a) {
+                                    var b = slug(a.label);
+                                    if (0 === b.indexOf(c)) return a
+                                }))
+                            },
+                            select: function(a, b) {
+                                $("#destination2").val(b.item.label);                                  
+                                 $("#vend_search").val(b.item.StateId);                                
+                                $("#departDate").focus();
+                                return !1
+                            }
+                        })                   
+                        }
+                    });  
+                    $("#destination2").focus();
+
+                    return !1
+                }
+            });
+            $("#departPlace2").focus(function() {    
+                closeSelector();            
+                $(this).next("#departPlaceSelector2").css("display", "block")
+            });
+            $("#destination2").focus(function() {    
+                closeSelector();            
+                $(this).next("#destinationSelector2").css("display", "block")
+            });
+
+            $("#departPlace2").keypress(function(a) {    
+                if(13 == a.keyCode ) {
+                    if($(this).val()){
+                        $("#destination2").focus(); 
+                    }else{
+                        $(this).focus();
+                        $('#vstart_search').val(0);
+                    }
+                } else{
+                    closeSelector();
+                }          
+            });
+            $("#destination2").keypress(function(a) {                
+                if(13 == a.keyCode ) {
+                    if($(this).val()){
+                        $("#departDate").focus(); 
+                    }else{
+                        $(this).focus();
+                        $('#vend_search').val(0);
+                    }
+                } else{
+                    closeSelector();
+                }                 
+            });
+            $("li.city > a").click(function() {
+                var a = $(this).parent().parent().parent().parent().parent(),
+                    b = $(this).attr("data-state");
+                    if(a.attr("id") == "departPlaceSelector2"){
+                        $("#departPlace2").val($(this).text());        
+                        $("#vstart_search").val(b);
+                        $("#destination2").focus(); 
+                        $.ajax({
+                            url: "ajax/destination.php",
+                            type: "POST",
+                            async: false,
+                             dataType: "json",
+                            data: {"vstart":b,"type":2},
+                            success: function(data){                    
+                                $('#destinationSelector2').html(data.str1);
+                            }
+                        });
+                    }
+                    if(a.attr("id") == "destinationSelector2"){
+                        $("#destination2").val($(this).text()); 
+                        $("#vend_search").val(b);            
+                        $("#departDate").focus();
+                    }         
+                return !1
+            });
+            $("a.close").click(function() {
+                closeSelector();
+            });
+        });
+        var statecity3 = [
+        <?php 
+foreach ($arrTinhHaveTicket as $value) {
+    ?>
+    {
+            value: <?php echo json_encode($value['tinh_name_'.$lang]) ; ?>,
+            StateId: <?php echo $value['tinh_id']; ?>,           
+            label: <?php echo json_encode($value['tinh_name_'.$lang]) ; ?>            
+        },
+    <?php 
+}
+        ?>
+        ];
+        function closeSelector() {
+            $(".place-selector").hide();
+        }
+        function search(){
+            var strLink = "search.php?";
+            var tmp = $('#vstart_search').val();
+            if(tmp > 0){
+                strLink += "vstart=" + tmp;
+            }
+            tmp = $('#vend_search').val();
+            if(tmp > 0){
+                strLink += "&vend=" + tmp;
+            }
+            tmp = $('#departDate').val();
+            if(tmp){
+                strLink += "&dstart=" + tmp;
+            }            
+            location.href= strLink;
+        }
+         function searchByServiceAndCar(){
+            var strLink = "search.php?";
+            var tmp = $('#vstart').val();
+            if(tmp > 0){
+                strLink += "vstart=" + tmp;
+            }
+            tmp = $('#vend').val();
+            if(tmp > 0){
+                strLink += "&vend=" + tmp;
+            }
+            tmp = $('#dstart').val();
+            if(tmp){
+                strLink += "&dstart=" + tmp;
+            }
+            tmp = $('#dend').val();
+            if(tmp){
+                strLink += "&dend=" + tmp;
+            }
+            tmp = $('#str_car').val();
+            if(tmp){
+                strLink += "&car=" + tmp;
+            }
+            tmp = $('#str_service').val();
+            if(tmp){
+                strLink += "&service=" + tmp;
+            }
+            location.href= strLink;
+
+         }
+    </script>
     <!-- InstanceEndEditable -->
 </body>
 <!-- InstanceEnd --></html>
+

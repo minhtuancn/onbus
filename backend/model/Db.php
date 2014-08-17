@@ -118,16 +118,9 @@ class db {
             ($page == $i) ? $class = " class='selected'" : $class = "";
             echo "<a" . $class . " href=" . $link . "&page=$i>$i</a>";
         }
-        if($page < $total_page - $page_show/2){
-            echo "...";
-            echo "<a href=" . $link . "&page=$total_page-2>".($total_page-2)."</a>";
-            echo "<a href=" . $link . "&page=$total_page-1>".($total_page-1)."</a>";            
+        if ($page < $total_page) {
             ($page == $total_page) ? $class = " class='selected'" : $class = "";
-            echo "<a" . $class . " href=" . $link . "&page=$total_page>$total_page</a>";
-
-        }
-        if ($page < $total_page - 10) {
-
+            echo "<a" . $class . " href=" . $link . "&page=$total_page>Cuối</a>";
         }
         echo "</div>";
     }
