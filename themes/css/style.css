@@ -831,13 +831,14 @@ footer {
 	width: 238px;
 }
 .place-selector h3 {
-	background-color: #20602c;
 	height: 28px;
 	font-size: 14px;
 	text-transform: uppercase;
 	line-height: 28px;
 	text-indent: 15px;
 	color: #fff;
+	background: #87134b;
+	font-weight: bold;
 }
 .place-selector ul {
 	list-style: none;
@@ -1544,6 +1545,8 @@ padding:0
 	margin: 0 2.3em;
 	line-height: 1.8em;
 	text-align: center
+;
+	font-size: 14px;
 }
 .ui-datepicker .ui-datepicker-title select {
 	font-size: 1em;
@@ -1711,8 +1714,8 @@ body .ui-tooltip {
 	color: #222
 }
 .ui-widget-header {
-	background: #fdb813;
-	color: #404040;
+	background: #87134b;
+	color: #fff;
 	font-weight: 700;
 	border-bottom-right-radius: 0!important;
 	border-bottom-left-radius: 0!important;
@@ -2467,6 +2470,8 @@ ul.triptype li.selected input:before {
 	line-height: 100%;
 	padding: 5px 0 5px 5px;
 	width: 100%
+;
+	font-weight: bold;
 }
 .place-selector ul li a:hover {
 	background: #575757;
@@ -3035,9 +3040,10 @@ button.medium {
 	width: 230px;
 	margin-right: 0;
 	margin-top: 0px;
-	background: #8c3778;
+	background:;
 	padding: 12px 10px 0px 20px;
 	height: 100%;
+	background: #8c3778;
 }
 .price-ticket label {
 	float: left;
@@ -4934,7 +4940,7 @@ input[type=radio], input[type=checkbox] {
 	top: 48px;
 }
 .tien-ich .tabs ul li a {
-	padding: 10px 20px 6px;
+	padding: 10px 20px 6px 35px;
 	height: auto;
 	line-height: 100%;
 }
@@ -5945,4 +5951,35 @@ transform: rotate(-90deg);
 }
 .chrm-btn.chrm-feedback .chrm-toggle:hover {
 background-color: #d07e2d;
+}
+#socialmedia:hover {
+opacity: 1;
+}
+.tien-ich .item-search #destinationSelector{
+	width: 100%;
+}
+.tien-ich .item-search .place-selector .region-col.first{
+	width:100%;
+}
+.tien-ich .item-search .place-selector ul{
+	padding-bottom:10px;
+	padding-left: 0px;
+	width: 100%;
+}
+.tien-ich .item-search .place-selector ul li a{
+	padding-left:10px;
+}
+.wrap-slider{
+	height:111px;
+}
+.tien-ich .tabs ul li a span:before{
+	content: '\e028';
+	height: 22px;
+	width: 22px;
+	position:absolute;
+	top: 4px;
+	left: 8px;
+}
+.tien-ich .tabs ul li a{
+	position:relative;
 }
