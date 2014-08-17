@@ -37,12 +37,46 @@ class Ticket extends Db {
         try{
             $sql = "SELECT * FROM ticket WHERE status > 0 
             AND (nhaxe_id = $nhaxe_id OR $nhaxe_id = -1 ) AND (tinh_id_start = $tinh_id_start OR $tinh_id_start = -1)
-            AND (tinh_id_end = $tinh_id_end OR $tinh_id_end = -1) AND (date_start = $date_start OR $date_start = -1)";
+            AND (tinh_id_end = $tinh_id_end OR $tinh_id_end = -1) AND  (date_start = $date_start OR $date_start = -1)";
             if($type==2) $sql.=" GROUP BY key_all "  ;
              $sql.="ORDER BY update_time ASC ";            
               
             if ($limit > 0 && $offset >= 0)
-                $sql .= " LIMIT $offset,$limit";  
+                $sql .= " LIMIT $offset,$limit";              
+            
+            $rs = mysql_query($sql) or $this->throw_ex(mysql_error());  
+            while($row = mysql_fetch_assoc($rs)){
+                $arrResult['data'][] = $row; 
+            }
+            $arrResult['total'] = mysql_num_rows($rs);
+
+        }catch(Exception $ex){            
+            $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Ticket','function' => 'getListTicket' , 'error'=>$ex->getMessage(),'sql'=>$sql);
+            $this->logError($arrLog);
+        }
+        
+        return $arrResult;
+    }
+    function getListTicketFE($nhaxe_id="",$tinh_id_start=-1,$tinh_id_end=-1,$date_start=-1,$service="",$offset = -1, $limit = -1) {
+        $arrResult = array();
+
+        try{
+            $sql = "SELECT * FROM ticket t1 ";
+            if($service!=''){
+                $sql.=" INNER JOIN service_ticket t2 ON (t1.ticket_id = t2.ticket_id AND t2.service_id IN ($service))";
+            }else{
+                $sql.=" WHERE t1.status > 0 ";
+            }
+            if($nhaxe_id!=""){
+                $sql.= " AND nhaxe_id IN (".$nhaxe_id.") ";
+            }
+            $sql.=" AND (t1.tinh_id_start = $tinh_id_start OR $tinh_id_start = -1)
+            AND (t1.tinh_id_end = $tinh_id_end OR $tinh_id_end = -1) AND  (t1.date_start = $date_start OR $date_start = -1)";
+            
+             $sql.="ORDER BY t1.update_time ASC ";            
+              
+            if ($limit > 0 && $offset >= 0)
+                $sql .= " LIMIT $offset,$limit";              
             
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());  
             while($row = mysql_fetch_assoc($rs)){
@@ -161,6 +195,40 @@ class Ticket extends Db {
     function insertServiceTicket($ticket_id,$service_id){
         $sql = "INSERT into service_ticket VALUES($ticket_id,$service_id)";
         mysql_query($sql);
+    }
+
+    function pagination($page, $page_show, $total_page, $link,$r=1){
+        if($r==2) $link.="&r=2";
+        $dau = 1;
+        $cuoi = 0;
+        $dau = $page - floor($page_show / 2);
+        if ($dau < 1)
+            $dau = 1;
+        $cuoi = $dau + $page_show;
+        if ($cuoi > $total_page) {
+
+            $cuoi = $total_page + 1;
+            $dau = $cuoi - $page_show;
+            if ($dau < 1)
+                $dau = 1;
+        }
+        $str='<div class="pagination-page"><div class="left t-page"><p>Page<span> '.$page.'</span> of <span>'.$total_page.'</span></p></div><div class="right t-pagination"><ul>';
+        if ($page > 1) {
+            ($page == 1) ? $class = " class='active'" : $class = "";
+            $str.='<li><a ' . $class . ' href=' . $link . '&page=1><</a><li>';
+            echo "";
+        }
+        for ($i = $dau; $i < $cuoi; $i++) {
+            ($page == $i) ? $class = " class='active'" : $class = "";
+            $str.='<li><a ' . $class . ' href=' . $link . '&page='.$i.'>'.$i.'</a><li>';            
+        }
+        if ($page < $total_page) {
+            ($page == $total_page) ? $class = " class='active end'" : $class = " class='end' ";
+            $str.='<li><a ' . $class . ' href=' . $link . '&page='.$total_page.'>></a><li>';            
+        }
+        $str.="</ul></div></div>";
+        return $str;       
+                            
     }
 
 }

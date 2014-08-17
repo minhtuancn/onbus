@@ -21,7 +21,7 @@ require_once "model/Car.php";
 $modelCar = new Car;
 
 $link = "index.php?mod=ticket&act=listshort";
-$page_show = 10;
+$page_show = 20;
 
 
 /* get ds nha xe */

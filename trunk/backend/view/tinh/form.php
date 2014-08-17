@@ -6,6 +6,24 @@ if(isset($_GET['tinh_id'])){
     $detail = $model->getDetailTinh($tinh_id);
 }
 ?>
+<script type="text/javascript" src="static/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="static/ckfinder/ckfinder.js"></script>
+<script type="text/javascript">
+function BrowseServer( startupPath, functionData ){    
+    var finder = new CKFinder();
+    finder.basePath = 'ckfinder/'; //Đường path nơi đặt ckfinder
+    finder.startupPath = startupPath; //Đường path hiện sẵn cho user chọn file
+    finder.selectActionFunction = SetFileField; // hàm sẽ được gọi khi 1 file được chọn
+    finder.selectActionData = functionData; //id của text field cần hiện địa chỉ hình
+    //finder.selectThumbnailActionFunction = ShowThumbnails; //hàm sẽ được gọi khi 1 file thumnail được chọn    
+    finder.popup(); // Bật cửa sổ CKFinder
+} //BrowseServer
+
+function SetFileField( fileUrl, data ){
+    document.getElementById( data["selectActionData"] ).value = fileUrl;
+    $('#hinh_dai_dien').attr('src','../' + fileUrl).show();
+}
+</script>
 <div class="row">
     <div class="col-md-8">
         <form method="post" action="controller/Tinh.php">            
@@ -65,7 +83,7 @@ if(isset($_GET['tinh_id'])){
                     <input type="text" name="price_between" class="form-control" value="<?php echo isset($detail['price_between'])  ? $detail['price_between'] : "" ?>">
                 </div>
                 <div class="form-group is_hot">
-                    <label>Hình đại diện ( chỉ nhập nếu là điểm đến HOT ) &nbsp;&nbsp;&nbsp;</label>
+                    <label>Hình đại diện ( chỉ nhập nếu là điểm đến HOT, size : 289 x 220 px ) &nbsp;&nbsp;&nbsp;</label>
                     <input type="hidden" name="image_url" id="image_url" class="form-control" value="<?php echo isset($detail['image_url'])  ? $detail['image_url'] : "" ?>">
                     <img src="<?php echo (isset($detail['image_url']) && $detail['image_url']!=null)  ? "../".$detail['image_url'] : "" ?>" id="hinh_dai_dien" width="400" style="<?php echo isset($detail['image_url'])  ? "" : "display:none;" ?>margin-top:5px"/>
                     <button class="btn btn-primary" type="button" onclick="BrowseServer('Images:/','image_url')" >Chọn ảnh</button>
