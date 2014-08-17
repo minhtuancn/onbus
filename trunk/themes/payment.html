@@ -54,6 +54,22 @@
     <div id="wrapper-container" class="w-center">
 		<!-- InstanceBeginEditable name="Container" -->
  		<div id="payment">
+        	<div class="process_bar nav">
+                <ul>
+                    <li class="finish_process active">
+                        <a id="select-trip" class="btn-search-bus ic-search "><span class="glyphicon glyphicon-ok form-control-feedback"></span>Tìm kiếm</a>
+                        <span class="line_process"></span>
+                    </li>
+                    <li class="finish_process active">
+                        <a id="select-seat" class="btn-seat ic-seat"><span class="glyphicon glyphicon-ok form-control-feedback"></span>Kết quả</a>
+                        <span class="line_process"></span>
+                    </li>
+                    <li class="end active">
+                        <a class="btn-payment ic-cart"><span class="glyphicon glyphicon-ok form-control-feedback"></span>Thanh toán</a>
+                    </li>
+                </ul>
+                <div class="dotted-line"></div>
+            </div>
         	<div class="left w_825 hBoxBig">
             	<form class="form-horizontal" role="form">
             	<div class="box_payment">
@@ -64,13 +80,13 @@
                     	<div class="left w_385">
                         	<div class="radio">
                             	<label class="checkbox-inline">
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                <input type="radio" value="option1" checked>
                                 As a Guest
                               </label>
                             </div>
                             <div class="radio">
                               <label class="checkbox-inline">
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                                <input type="radio" value="option1">
                                 Sign in to My Onbus
                               </label>
                             </div>
@@ -102,7 +118,7 @@
                         <div class="clear"></div>
                     </div>
                 </div>
-                <div class="box_payment">
+                <div class="box_payment promo_box">
                 	<div class="title_payment">
                     	<h3>Promotion code</h3>
                     </div>
@@ -118,46 +134,29 @@
                 </div>
                 <div class="box_payment">
                 	<div class="title_payment">
-                    	<h3>Onbus pickup</h3>
+                    	<h3><input type="checkbox" id="checked_show" class="show_box_height" data-id="bus_pickup" /><label for="checked_show">Onbus pickup</label></h3>
                     </div>
-                    <div class="content_payment">
+                    <div id="bus_pickup" class="content_payment block_show_checked hide_check">
                     	<div class="left w_385">
-                        	<div class="radio">
-                              <label class="checkbox-inline">
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                As a Guest
-                              </label>
-                            </div>
-                            <div class="radio">
-                              <label class="checkbox-inline">
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
-                                Sign in to My Onbus
-                              </label>
+                        	<div class="left"><img src="images/img_241x181.jpg" /></div>
+                            <div class="right">
+                            	With $5, you can use Onbus pick up - a special service to assist Onbus's client. We will pick up you from your address to bus station for your safety and in time.
                             </div>
                         </div>
                         <div class="right w_440">
-	                            <span class="request_txt">*Required Fieds</span>
-                              <div class="form-group">
-                                <label class="col-sm-2 control-label">*Name:</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="">
-                                </div>
+	                    	<div class="form-group">
+                                <label for="exampleInputEmail1">Your address</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Your address">
                               </div>
                               <div class="form-group">
-                                <label for="" class="col-sm-2 control-label">*Email:</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="">
-                                </div>
+                                <label for="exampleInputEmail1">Your phone</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Your phone">
                               </div>
-                              <div class="form-group frm_inline_box">
-                                <label for="" class="col-sm-2 control-label">*Phone</label>
-                                <div class="col-sm-10">
-                                	<select class="form-control">
-                                    	<option>Vietnam (+84)</option>
-                                    </select>
-                                    <input type="text" class="form-control">
-                                </div>
+                              <div class="form-group">
+                                <label for="exampleInputEmail1">Note</label>
+                                <textarea class="form-control" rows="3" placeholder="Ex: Vui lòng gọi trước khi đến"></textarea>
                               </div>
+                              
                         </div>
                         <div class="clear"></div>
                     </div>
@@ -170,26 +169,26 @@
                     	<div class="left w_385">
                         	<div class="radio">
                               <label class="checkbox-inline">
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                <input type="radio" name="payment_card" class="show_box_height" data-id="orther_payment_card" value="option1" checked="checked">
                                 	PAY LATER - DOOR TO DOOR
                               </label>
                             </div>
                             <div class="radio">
                               <label class="checkbox-inline">
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                                <input type="radio" name="payment_card" class="show_box_height" data-id="orther_payment_card" value="option1">
                                 INTERNATIONAL PAYMENT CARD
                               </label>
                             </div>
                         </div>
-                        <div class="right w_440">
+                        <div class="right w_440 ">
 	                            <span class="txt_gray">Thanh toán tại nhà với chi phí đính kèm 1$</span>
+                                <fieldset class="field_payment_card">
                               <div class="form-group">
                                 <label class="col-sm-2 control-label">*Address</label>
                                 <div class="col-sm-10">
                                   <input type="text" class="form-control" id="">
                                 </div>
                               </div>
-                              
                               <div class="form-group frm_inline_box">
                                 <label for="" class="col-sm-2 control-label">*Contact Phone</label>
                                 <div class="col-sm-10">
@@ -199,11 +198,12 @@
                                     <input type="text" class="form-control">
                                 </div>
                               </div>
+                              </fieldset>
                         </div>
                         <div class="clear"></div>
                     </div>
                 </div>
-                <div class="box_payment payment_money">
+                <div id="orther_payment_card" class="box_payment payment_money hide_check">
                 	<div class="title_payment">
                     	<h3>Select payment and Billing information</h3>
                     </div>
@@ -211,13 +211,13 @@
                     	<div class="left w_385">
                         	<div class="radio">
                               <label class="checkbox-inline">
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                <input type="radio" value="option1" checked>
                                 	PAY LATER - DOOR TO DOOR
                               </label>
                             </div>
                             <div class="radio">
                               <label class="checkbox-inline">
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                                <input type="radio" value="option1">
                                 INTERNATIONAL PAYMENT CARD
                               </label>
                             </div>
@@ -316,13 +316,36 @@
                         <div class="left icon_start"></div>
                         <div class="left time_diadiem">
                         	<h4>12:55</h4>
-                            <p>Bến xe Miền Tay, HCM 123 Sư Vạn Hạnh</p>
+                            <p><span>Bến xe Miền Tay</span><a class="right" href="#">xem thông tin</a></p>
                         </div>
                         <div class="clear"></div>
                         <div class="left icon_end"></div>
                         <div class="left time_diadiem">
                         	<h4>12:55</h4>
-                            <p>Bến xe Miền Tay, HCM 123 Sư Vạn Hạnh</p>
+                            <p><span>Bến xe Miền Tay</span><a class="right" href="#">xem thông tin</a></p>
+                        </div>
+                        <div class="line_center"></div>
+                        <div class="left block_date">
+                        	<span class="thang">sept</span>
+                            <span class="ngay">26</span>
+                            <span class="thu">fri</span>
+                        </div>
+                        <div class="left detail_tuyen">
+                        	<h2>Vung Tau - Ho Chi Minh</h2>
+                            <div class="nhaxe"><i class="icon_cart"></i> Phương Trang</div>
+                            <div class="time_move"><i class="icon_time"></i> 2h15</div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="left icon_start"></div>
+                        <div class="left time_diadiem">
+                        	<h4>12:55</h4>
+                            <p><span>Bến xe Miền Tay</span><a class="right" href="#">xem thông tin</a></p>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="left icon_end"></div>
+                        <div class="left time_diadiem">
+                        	<h4>12:55</h4>
+                            <p><span>Bến xe Miền Tay</span><a class="right" href="#">xem thông tin</a></p>
                         </div>
                     </div>
                     <div class="clear"></div>
@@ -332,7 +355,11 @@
                     	<h3>Total price</h3>
                     </div>
                     <div class="content_sidebar">
-                    	<h3>Passenger: 01</h3>
+                    	<div class="total_price">
+                        	<h2 class="left"><b>TOTAL:</b></h2>
+                            <span class="price">165,000 VND</span>
+                         </div>
+                        <h3>Passenger: 01</h3>
                         <h3>Price Summary:</h3>
                         <ul>
                         	<li>
@@ -348,10 +375,8 @@
                                 
                             </li>
                         </ul>
-                        <div class="left"><h2><b>TOTAL:</b></h2></div>
                         <div class="right cost_payment">
-                        	<span class="price">165,000 VND</span>
-                            <a href="#">View fare Rules</a>
+                        	<a href="#">View fare Rules</a>
                             <a href="#">Purchase Conditions</a>
                         </div>
                     </div>

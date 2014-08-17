@@ -131,6 +131,35 @@ $(document).ready(function() {
         $inputGo.val(valMove);
         $inputMove.val(valGo);
     });
+
+    $('.show_box_height').on('change',function(e){
+        e.preventDefault();
+        var _this = $(this),
+            idShow = _this.data('id');
+        $('#'+idShow).toggleClass('hide_check').toggleClass('show_check');
+        if($('#'+idShow).hasClass('show_check')){
+            $('.field_payment_card').attr('disabled','disabled');
+        }else{
+            $('.field_payment_card').removeAttr('disabled');
+        }
+    });
+
+    $('.filter .control label input').on('change',function(e){
+        e.preventDefault();
+        $(this).parents('.line').toggleClass('active').toggleClass('unactive');
+    });
+
+    $('.type-ticket ul li a').on('click',function(){
+        var _this = $(this);
+        _this.parents('ul').find('li a').removeClass('active');
+        if(_this.hasClass('active')){
+            _this.removeClass('active');
+        }else{
+            _this.addClass('active');
+        }
+        return false;
+    });
+
 });
 $.fn.loading = function(options) {
     $('.loading').remove();
