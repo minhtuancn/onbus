@@ -10,6 +10,23 @@
 <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 <body>
+	<div id="socialmedia">
+    <a id="googleplus" href="#" rel="publisher" title="Follow onBus on Google+" target="_blank">
+        <span>Google+</span>
+    </a>
+    <a id="youtube" href="#" title="Subscribe to momondo on YouTube" target="_blank">
+        <span>YouTube</span>
+    </a>
+    <a id="facebook" href="#" title="Follow momondo on Facebook" target="_blank">
+        <span>Facebook</span>
+    </a>
+    <a id="twitter" href="#" title="Follow momondo on Twitter" target="_blank">
+        <span>Twitter</span>
+    </a>
+</div>
+<div id="FeedbackButton" class="chrm-btn chrm-feedback">
+    <div class="chrm-toggle"><span class="">Feedback</span></div>
+</div>
     <header>
         <div class="w-center header-wrap">
         	<div class="right">
@@ -39,7 +56,7 @@
             <div class="menu-header">
             	<ul class="nav nav-pills">
                   <li class="active hv-1"><a href="#">Trang chủ<span></span></a></li>
-                  <li class="hv-4"><a href="#">Moto bike taxi<span></span></a></li>
+                  <li class="hv-4"><a href="#">My ticket<span></span></a></li>
                   <li class="hv-3"><a href="#">Tin tức và khuyến mãi<span></span></a></li>
                   <li class="hv-4"><a href="#">Thông tin nhà xe<span></span></a></li>
                   
@@ -82,9 +99,9 @@
                         </div>
                         <form class="frm-search-vx">
                             <div class=" item-search">
-                                <label for="departPlace">Điểm đến</label>
-                                <input id="departPlace" type="text" class="form-control input-txt place ui-autocomplete-input" placeholder="Default input" accesskey="1" tabindex="1" autocomplete="off">
-                                <div id="departPlaceSelector" class="place-selector rounded-5 clearfix" style="display: none;">
+                                <label for="departPlace">Điểm đi</label>
+                                <input id="destination" type="text" class="form-control input-txt place ui-autocomplete-input" placeholder="Default input" accesskey="1" tabindex="1" autocomplete="off">
+                                <div id="destinationSelector" class="place-selector rounded-5 clearfix" style="display: none;">
                                     <div class="inner rel-pos">
                                         <div class="region-col first left clearfix">
                                             <ul class="city-list left">
@@ -106,9 +123,9 @@
                                 </div>
                             </div>
                             <div class=" item-search">
-                                <label for="departPlace">Điểm đi</label>
-                                <input id="destination" type="text" class="form-control input-txt place ui-autocomplete-input" placeholder="Default input" accesskey="1" tabindex="1" autocomplete="off">
-                                <div id="destinationSelector" class="place-selector rounded-5 clearfix" style="display: none;">
+                                <label for="departPlace">Điểm đến</label>
+                                <input id="departPlace" type="text" class="form-control input-txt place ui-autocomplete-input" placeholder="Default input" accesskey="1" tabindex="1" autocomplete="off">
+                                <div id="departPlaceSelector" class="place-selector rounded-5 clearfix" style="display: none;">
                                     <div class="inner rel-pos">
                                         <div class="region-col first left clearfix">
                                             <ul class="city-list left">
@@ -237,11 +254,11 @@
                             	<p>Leghth:<span>150km</span></p>
                                 <p>Duration: <span>1h20m</span></p>
                             </div>
-                            <div class="left name-tuyen">
+                            <!--<div class="left name-tuyen">
                             	<span class="left">HCM City</span>
                                 <span class="right">Vung Tau</span>
                                 <i class="icon-bus"></i>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                     
