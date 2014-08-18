@@ -4902,7 +4902,7 @@ input[type=radio], input[type=checkbox] {
 	color: #fff;
 	font: 500 1.2em/100% 'Calibri';
 	padding: 2px 15px 5px;
-	margin-bottom: 45px;
+	margin-bottom: 40px;
 	text-decoration: none;
 	border-radius: 3px;
 	-webkit-border-radius: 3px;
@@ -5983,4 +5983,22 @@ opacity: 1;
 }
 .tien-ich .tabs ul li a{
 	position:relative;
+}
+.book-btn .btn-chitiet{
+	background: #E7E7E7;
+	padding:7px 15px;
+	border-radius:3px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	-ms-border-radius:3px;
+	text-decoration:none;
+	line-height:15px;
+	color:#333;
+}
+.btn-chitiet .glyphicon{
+	float:left;
+	margin-right:5px;
+}
+.book-btn .btn-chitiet:hover{
+	color:#2792A7;
 }
