@@ -92,24 +92,7 @@ foreach ($arrTinhHaveTicket as $value) {
           });
           $(function () {
            
-            initSearchTicketWidget();
-            $('#departDate').blur(function(){
-                var dstart = $.trim($(this).val());
-                var vstart = $('#vstart').val();
-                var vend = $('#vend').val();
-                if(dstart != ''){
-                    $.ajax({
-                        url: "ajax/destination.php",
-                        type: "POST",
-                        async: false,
-                         dataType: "json",
-                        data: {"vstart":vstart,"vend":vend,"dstart":dstart},
-                        success: function(data){                    
-                            $('#destinationSelector').html(data.str1);
-                        }
-                    });
-                }
-            });
+            initSearchTicketWidget();           
          });
         });
     </script>

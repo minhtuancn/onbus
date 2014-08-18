@@ -12,6 +12,12 @@ class Nhaxe extends Db {
         $row = mysql_fetch_assoc($rs);
         return $row;
     }
+    function getDetailNhaxe2($id) {
+        $sql = "SELECT nhaxe_id,nhaxe_name_vi,nhaxe_name_en FROM nhaxe WHERE nhaxe_id = $id";
+        $rs = mysql_query($sql) or die(mysql_error());
+        $row = mysql_fetch_assoc($rs);
+        return $row;
+    }
 
     function getNhaxeNameByID($id) {
         $sql = "SELECT nhaxe_name_vi FROM nhaxe WHERE nhaxe_id = $id";
@@ -20,7 +26,26 @@ class Nhaxe extends Db {
         return $row['nhaxe_name_vi'];
     }
    
+    function getListNhaxeHaveTicket($vstart,$vend,$dstart){
+        $arrResult = array();
+        try{
+            $sql = "SELECT nhaxe_id FROM ticket WHERE status > 0 AND tinh_id_start = $vstart AND tinh_id_end = $vend
+            AND date_start = $dstart GROUP BY nhaxe_id "  ;                      
+             
+            $rs = mysql_query($sql) or $this->throw_ex(mysql_error());  
 
+            while($row = mysql_fetch_assoc($rs)){
+                $nhaxe_id = $row['nhaxe_id'];
+                $arrResult[$nhaxe_id] = $this->getDetailNhaxe2($nhaxe_id);
+            }            
+
+        }catch(Exception $ex){            
+            $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Nhaxe','function' => 'getListNhaxeHaveTicket' , 'error'=>$ex->getMessage(),'sql'=>$sql);
+            $this->logError($arrLog);
+        }
+        
+        return $arrResult;
+    }
     function getListNhaxe($keyword = '',$hot = -1,$offset = -1, $limit = -1) {
         try{
             $arrResult = array();
