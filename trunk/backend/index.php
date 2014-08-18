@@ -8,10 +8,9 @@ if(!isset($_SESSION))
 if(isset($_SESSION['user_id'])== FALSE) { 
     $_SESSION['back']= $_SERVER['REQUEST_URI'];
     $_SESSION['error']= "Bạn chưa đăng nhập";
-    //header("location: login.php");
+    header("location: login.php");
 }
 include "defined.php"; 
-$_SESSION['user_id'] = 1;
 $mod='';
 if(isset($_GET['mod']))
 {

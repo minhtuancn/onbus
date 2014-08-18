@@ -1,12 +1,35 @@
 <?php 
 include "defined.php"; 
 $lang = "vi";
-require_once "backend/model/Nhaxe.php";
-$modelNhaxe = new Nhaxe();
+require_once "backend/model/Ticket.php";
+$modelTicket = new Ticket;
+
 require_once "backend/model/Tinh.php";
-$modelTinh = new Tinh();
+
+$modelTinh = new Tinh;
+
+require_once "backend/model/Nhaxe.php";
+
+$modelNhaxe = new Nhaxe;
+require_once "backend/model/Place.php";
+
+$modelPlace = new Place;
+
+require_once "backend/model/Car.php";
+
+$modelCar = new Car;
+
+require_once "backend/model/Services.php";
+
+$modelService = new Services;
+
+require_once "backend/model/Time.php";
+
+$modelTime = new Time;
+
 require_once "backend/model/Route.php";
-$modelRoute = new Route();
+
+$modelRoute = new Route;
 $arrNhaXeUyTin = $modelNhaxe->getListNhaxe('',1,0,8);
 
 $arrNhaXe = $modelNhaxe->getListNhaxe('',-1,-1,-1);
@@ -16,6 +39,7 @@ $arrDiemDenHot = $modelTinh->getListTinh(-1,'',1,0, 9);
 
 $arrRoute = $modelRoute->getListRoute('',-1,-1,1, 0, 8);
 
+$mod = (isset($_GET['mod'])) ? $_GET['mod'] : "home";
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/common.dwt" codeOutsideHTMLIsLocked="false" -->
@@ -27,37 +51,38 @@ $arrRoute = $modelRoute->getListRoute('',-1,-1,1, 0, 8);
 <link rel="stylesheet" href="<?php echo STATIC_URL; ?>/css/bootstrap-theme.min.css">
 <link href="<?php echo STATIC_URL; ?>/css/style.css" type="text/css" rel="stylesheet"  />
 <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<script src="<?php echo STATIC_URL; ?>/js/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="<?php echo STATIC_URL; ?>/js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="<?php echo STATIC_URL; ?>/js/bootstrap.min.js" type="text/javascript"></script>
 </head>
 <body>
+<div id="socialmedia">
+    <a id="googleplus" href="#" rel="publisher" title="Follow onBus on Google+" target="_blank">
+        <span>Google+</span>
+    </a>
+    <a id="youtube" href="#" title="Subscribe to momondo on YouTube" target="_blank">
+        <span>YouTube</span>
+    </a>
+    <a id="facebook" href="#" title="Follow momondo on Facebook" target="_blank">
+        <span>Facebook</span>
+    </a>
+    <a id="twitter" href="#" title="Follow momondo on Twitter" target="_blank">
+        <span>Twitter</span>
+    </a>
+</div>
+<div id="FeedbackButton" class="chrm-btn chrm-feedback">
+    <div class="chrm-toggle"><span class="">Feedback</span></div>
+</div>
     <?php include URL_LAYOUT."/header.php"; ?>    
     
     <div id="wrapper-container" class="w-center">
-        <!-- InstanceBeginEditable name="Container" -->
-
-        <div class="ticket-book box-css3 block-home">           
-            
-            <?php include URL_LAYOUT."/search.php"; ?>
-            <?php include URL_LAYOUT."/slide.php"; ?>
-            <div class="clear"></div>
-        </div>        
-        <div class="block-page block-home">
-            <div class="container-block">
-            <?php include URL_LAYOUT."/left.php"; ?>
-            <?php include URL_LAYOUT."/topplace.php"; ?>
-            <div class="clear"></div>
-            </div>
-        </div>
-        <?php include URL_LAYOUT."/newsletter.php"; ?>
-        <!-- InstanceEndEditable -->
-        <div class="clear"></div>
-</div>
+        <?php include "page/".$mod.".php"; ?>
+    </div>
 <?php include URL_LAYOUT."/footer.php"; ?>
 <!-- InstanceBeginEditable name="EditRegion3" -->
 <div id="scr"></div>
 <!-- InstanceEndEditable --> 
-<script src="<?php echo STATIC_URL; ?>/js/jquery-1.11.0.min.js" type="text/javascript"></script>
-    <script src="<?php echo STATIC_URL; ?>/js/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="<?php echo STATIC_URL; ?>/js/bootstrap.min.js" type="text/javascript"></script>
+
     <!-- InstanceBeginEditable name="JS" -->
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/customDatePicker1.0.min.js"></script>
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/customAutoComplete1.0.min.js"></script>
@@ -103,6 +128,16 @@ foreach ($arrTinhHaveTicket as $value) {
 <style type="text/css">
 .vxr-loading-overlay{background:none repeat scroll 0 0 #FFFFFF;height:100%;opacity:0.5;position:fixed;text-align:center;width:100%;z-index:9999;top:0;left:0;display:none}.vxr-loading-overlay img{margin-top:40%}
 </style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-53928005-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 </body>
 <!-- InstanceEnd --></html>
 

@@ -82,7 +82,7 @@ if (isset($_GET['nhaxe_id']) && $_GET['nhaxe_id'] > 0) {
 
 } else {
 
-    $nhaxe_id = -1;
+    $nhaxe_id = 19;
 
 }
 
@@ -172,8 +172,7 @@ $arrList = $model->getListTicket($nhaxe_id,$tinh_id_start,$tinh_id_end,$ngaydi,$
                     Nhà xe 
 
                     <select name="nhaxe_id" class="select_search" id="nhaxe_id">
-
-                        <option value="0">Tất cả</option>
+                        
 
                         <?php
 
