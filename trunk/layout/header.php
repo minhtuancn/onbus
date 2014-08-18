@@ -27,7 +27,7 @@
             <div class="menu-header">
                 <ul class="nav nav-pills">
                   <li class="active hv-1"><a href="index.php">Trang chủ<span></span></a></li>
-                  <li class="hv-4"><a href="#">Moto bike taxi<span></span></a></li>
+                  <li class="hv-4"><a href="#">My ticket<span></span></a></li>
                   <li class="hv-3"><a href="#">Tin tức và khuyến mãi<span></span></a></li>
                   <li class="hv-4"><a href="#">Thông tin nhà xe<span></span></a></li>
                   
