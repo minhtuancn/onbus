@@ -8,9 +8,10 @@ if(!isset($_SESSION))
 if(isset($_SESSION['user_id'])== FALSE) { 
     $_SESSION['back']= $_SERVER['REQUEST_URI'];
     $_SESSION['error']= "Bạn chưa đăng nhập";
-    header("location: login.php");
+    //header("location: login.php");
 }
 include "defined.php"; 
+$_SESSION['user_id'] = 1;
 $mod='';
 if(isset($_GET['mod']))
 {
@@ -118,7 +119,7 @@ if(isset($_GET['mod']))
         <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
         <script src="<?php echo STATIC_URL; ?>js/AdminLTE/dashboard.js" type="text/javascript"></script>        
 <div id="div_upload" style="display:none">
-    <form id="upload_images" method="post" enctype="multipart/form-data" enctype="multipart/form-data" action="Controller/Upload.php">
+    <form id="upload_images" method="post" enctype="multipart/form-data" enctype="multipart/form-data" action="controller/Upload.php">
         <div style="margin: auto;">       
             <div style="text-align:center"><img src="static/img/add.jpg" id="add_images" width="32" title="Thêm hình ảnh" alt="Thêm hình ảnh" /></div>
             <div id="wrapper_input_files">
