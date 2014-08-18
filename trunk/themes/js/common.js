@@ -93,41 +93,34 @@ $(document).ready(function() {
 
     });
     var slideItems = [];
-    $('#vechieudi .slider_nx').each(function(){
+    $('.slider_nx').each(function(){
         var _this = $(this), test;
-        slideItems.push(_this.bxSlider({
+        _this.bxSlider({
             slideWidth: 560,
             minSlides: 1,
             maxSlides: 1,
             slideMargin: 0,
             pager: false,
             auto: false
-        }));
+        });
     });
     $('.tab-option .nav-tabs>li>a').click(function(e) {
         $(this).tab('show');
         var idTab = $(this).attr('href');
         setTimeout(function(){
-            if($(idTab).is(':visible')){
-                for(var i=0;i<slideItems.length ;i++){
-                    slideItems[i].destroySlider();
-                }
-                slideItems.splice(0,slideItems.length);
-                $(idTab +' .slider_nx').each(function(){
-                    var _this = $(this);
-                    slideItems.push(_this.bxSlider({
-                        slideWidth: 560,
-                        minSlides: 1,
-                        maxSlides: 1,
-                        slideMargin: 0,
-                        pager: false,
-                        auto: false
-                    }));
+            $(idTab +' .slider_nx').each(function(){
+                var _this = $(this);
+                _this.destroySlider();
+                _this.bxSlider({
+                    slideWidth: 560,
+                    minSlides: 1,
+                    maxSlides: 1,
+                    slideMargin: 0,
+                    pager: false,
+                    auto: false
                 });
-            }
-            
-        },1000);
-        
+            });
+        },2000);
         
     });
     $('.replay-position').on('click',function(){

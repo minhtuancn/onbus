@@ -126,6 +126,23 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
 <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 <body>
+    <div id="socialmedia">
+    <a id="googleplus" href="#" rel="publisher" title="Follow onBus on Google+" target="_blank">
+        <span>Google+</span>
+    </a>
+    <a id="youtube" href="#" title="Subscribe to momondo on YouTube" target="_blank">
+        <span>YouTube</span>
+    </a>
+    <a id="facebook" href="#" title="Follow momondo on Facebook" target="_blank">
+        <span>Facebook</span>
+    </a>
+    <a id="twitter" href="#" title="Follow momondo on Twitter" target="_blank">
+        <span>Twitter</span>
+    </a>
+</div>
+<div id="FeedbackButton" class="chrm-btn chrm-feedback">
+    <div class="chrm-toggle"><span class="">Feedback</span></div>
+</div>
     <?php include URL_LAYOUT."/header.php"; ?>    
     <div id="wrapper-container" class="w-center">
         <!-- InstanceBeginEditable name="Container" -->
@@ -323,7 +340,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                         <p><b>DEPART ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_start']); ?></p>
                                         <p><b>ARRIVE ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_end']); ?></p>
                                         <a href="#" class="right show_map" data-url-map="https://dl.dropboxusercontent.com/u/43486987/Hoang/HTML/<?php echo STATIC_URL; ?>/images/map.jpg" data-toggle="modal" data-target="">Xem lộ trình</a>
-                                        <div class="type-ticket">
+                                        <div class="type-ticket" id="time_<?php echo $ticket['ticket_id']; ?>">
                                         <p>Select time:</p>
                                         <ul>
                                             <?php if(!empty($arrTimeTicket)) { 
@@ -333,8 +350,9 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                             <li><a href="#"><?php echo $modelTime->getTimeByID($time);?></a></li>
                                             <?php }}  ?>                                            
                                         </ul>
+                                        <p class="error_time" id="error_time_<?php echo $ticket['ticket_id']; ?>" style="display:none;padding-top:10px;color:red;font-style:italic">Vui lòng chọn giờ khởi hành trước khi đặt vé.</p>
                                         <div class="clear"></div>
-                                    </div>
+                                        </div>
                                     </div>
                                     <div class="clear"></div>
                                 </div>
@@ -345,8 +363,8 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                         <span><?php echo number_format($ticket['price']); ?><span>VNĐ</span></span>
                                     </div>
                                     <div class="clear"></div>
-                                    <a href="#" data-toggle="modal" data-target="#popup_book_ticket" class="btn-muave">book now</a>
-                                    <a href="#" class="btn-chitiet"  data-toggle="modal" data-target="#myModal">Click to see detail</a>
+                                    <a href="javascript:void(0)" data-value="<?php echo $ticket['ticket_id']; ?>" data-toggle="modal" data-target="#popup_book_ticket" class="btn-muave">book now</a>
+                                    <a href="javascript:void(0)" class="btn-chitiet"  data-toggle="modal" data-target="#myModal">Click to see detail</a>
                                 </div>
                             </div>
                             <div class="clear"></div>
@@ -553,7 +571,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                   </div>
                   <p>Seats will be assigned closed to one another and at middle area by the best effort.</p>
                   <div class="btn-center">
-                    <input type="submit" value="book now" class="button2">
+                    <input type="button" value="book now" class="button2">
                   </div>
                 </form>
                 <div class="clear"></div>    
@@ -564,6 +582,12 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
   </div>
 </div>
 <div id="scr"></div>
+<div class="vxr-loading-overlay">
+    <img src="themes/images/ajax_loader.gif" style="width: 75px; height: 75px;" />
+</div>
+<style type="text/css">
+.vxr-loading-overlay{background:none repeat scroll 0 0 #FFFFFF;height:100%;opacity:0.5;position:fixed;text-align:center;width:100%;z-index:9999;top:0;left:0;display:none}.vxr-loading-overlay img{margin-top:40%}
+</style>
 <!-- InstanceEndEditable --> 
 <script src="<?php echo STATIC_URL; ?>/js/jquery-1.11.0.min.js" type="text/javascript"></script>
     <script src="<?php echo STATIC_URL; ?>/js/jquery-ui.min.js" type="text/javascript"></script>
@@ -583,8 +607,20 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
               $(function () {
                 initSearchTicketWidget();
 				$('.btn-muave').click(function(){
-				location.href="http://onbus.vn/themes/payment.html";
+				    var ticket_id = $(this).attr('data-value');
+                    var check_time = $('#time_' + ticket_id).find('a.active').length;
+                    if(check_time==0){
+                        $('#error_time_' + ticket_id).show();
+                        return false;
+                    }else{
+                        $('#error_time_' + ticket_id).hide();
+                        return true;
+                    }
+
 				});
+                $('.button2').click(function(){
+                    location.href="http://onbus.vn/themes/payment.html";
+                })
                 $('#btnSearchTicket').click(function(){
                     var vstart = $('#vstart_search').val();
                     var vend = $('#vend_search').val();
@@ -783,9 +819,11 @@ foreach ($arrTinhHaveTicket as $value) {
             tmp = $('#departDate').val();
             if(tmp){
                 strLink += "&dstart=" + tmp;
-            }            
+            }
+            showLoading();            
             location.href= strLink;
         }
+        function showLoading(){jQuery(".vxr-loading-overlay").height($(window).height()).show();jQuery(".vxr-loading-overlay img").css("margin-top",($(window).height()-75)/2+"px")}function hideLoading(){jQuery(".vxr-loading-overlay").hide()};
          function searchByServiceAndCar(){
             var strLink = "search.php?";
             var tmp = $('#vstart').val();
@@ -812,6 +850,7 @@ foreach ($arrTinhHaveTicket as $value) {
             if(tmp){
                 strLink += "&service=" + tmp;
             }
+            showLoading();
             location.href= strLink;
 
          }

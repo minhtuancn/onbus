@@ -82,7 +82,7 @@ if (isset($_GET['nhaxe_id']) && $_GET['nhaxe_id'] > 0) {
 
 } else {
 
-    $nhaxe_id = $_GET['nhaxe_id'] = 19;
+    $nhaxe_id = -1;
 
 }
 
@@ -90,14 +90,13 @@ if (isset($_GET['nhaxe_id']) && $_GET['nhaxe_id'] > 0) {
 
 if (isset($_GET['ngaydi']) && trim($_GET['ngaydi']) != '') {
 
-    $ngaydi = strtotime($_GET['ngaydi']) + 3600;      
+    $ngaydi = strtotime($_GET['ngaydi']);      
 
     $link.="&ngaydi=".$_GET['ngaydi'];
 
 } else {
 
-    $ngaydi = strtotime(date('d-m-Y')) + 3600;
-    $_GET['ngaydi'] = date('d-m-Y') ;
+    $ngaydi = -1;
 
 }
 
@@ -126,6 +125,7 @@ if (isset($_GET['tinh_id_end']) && $_GET['tinh_id_end'] > 0) {
     $tinh_id_end = -1;
 
 }
+
 
 
 $arrTotal = $model->getListTicket($nhaxe_id,$tinh_id_start,$tinh_id_end,$ngaydi, -1, -1);
@@ -172,6 +172,9 @@ $arrList = $model->getListTicket($nhaxe_id,$tinh_id_start,$tinh_id_end,$ngaydi,$
                     Nhà xe 
 
                     <select name="nhaxe_id" class="select_search" id="nhaxe_id">
+
+                        <option value="0">Tất cả</option>
+
                         <?php
 
                         foreach ($arrNhaxe['data'] as $value) {

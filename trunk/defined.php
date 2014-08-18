@@ -1,6 +1,6 @@
 <?php 
 
-define('URL_LAYOUT','layout');
+define('URL_LAYOUT','layout/');
 
 define('BASE_URL','index.php?mod=');
 
