@@ -3304,13 +3304,14 @@ a.book_step span {
 .book-btn .d-price {
 	text-align: center;
 	width: 100%;
-	font: 500 28px/100% Calibri;/* color:#353030; */
+	font: 500 21px/100% Calibri;
+	color:#353030;
 	position: relative
 ;
-	margin-bottom: 17px;
+	margin-bottom: 8px;
 }
 .book-btn .d-price span span {
-	font-size: 12px;
+	/* font-size: 12px; */
 	padding-left: 5px
 }
 .book-btn .race {
@@ -4891,17 +4892,17 @@ input[type=radio], input[type=checkbox] {
 	color: #880a3d;
 }
 .book-btn a {
-	color: #880a3d;
-	font: 500 1em/100% 'Calibri';
+	color: #2792A7;
+	font: 500 .8em/100% 'Calibri';
 	text-decoration: underline;
 	display: inline-block;
 }
 .book-btn a.btn-muave {
 	background: #8c3778;
 	color: #fff;
-	font: 500 1.4em/100% 'Calibri';
-	padding: 3px 10px 5px;
-	margin-bottom: 25px;
+	font: 500 1.2em/100% 'Calibri';
+	padding: 2px 15px 5px;
+	margin-bottom: 45px;
 	text-decoration: none;
 	border-radius: 3px;
 	-webkit-border-radius: 3px;
