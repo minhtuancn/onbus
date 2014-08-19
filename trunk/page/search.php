@@ -518,6 +518,8 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
     </div>
   </div>
 </div>
+<form id="paymentForm">
+</form>
 <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/lightbox.min.js"></script>
 <script type="text/javascript">
          $(document).ready(function(){
@@ -536,7 +538,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
 
                 });
                 $('.button2').click(function(){
-                    location.href="http://onbus.vn/themes/payment.html";
+                    location.href="index.php?mod=payment";
                 })
                 $('#btnSearchTicket').click(function(){
                     var vstart = $('#vstart_search').val();
