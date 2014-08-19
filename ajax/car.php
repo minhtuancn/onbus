@@ -6,7 +6,7 @@ $vend = (int) $_POST['vend'];
 $vstart = (int) $_POST['vstart'];
 if(isset($_POST['dstart'])){
     $dstart = $model->processData($_POST['dstart']);   
-    $dstart = strtotime($dstart);
+    $dstart = strtotime($dstart) + 3600;
 }
 $arrResult = $model->getListNhaxeHaveTicket($vstart,$vend,$dstart);
 var_dump($arrResult);

@@ -197,8 +197,7 @@ class Ticket extends Db {
         mysql_query($sql);
     }
 
-    function pagination($page, $page_show, $total_page, $link,$r=1){
-        if($r==2) $link.="&r=2";
+    function pagination($page, $page_show, $total_page,$r=1){        
         $dau = 1;
         $cuoi = 0;
         $dau = $page - floor($page_show / 2);
@@ -215,16 +214,16 @@ class Ticket extends Db {
         $str='<div class="pagination-page"><div class="left t-page"><p>Page<span> '.$page.'</span> of <span>'.$total_page.'</span></p></div><div class="right t-pagination"><ul>';
         if ($page > 1) {
             ($page == 1) ? $class = " class='active'" : $class = "";
-            $str.='<li><a ' . $class . ' href=' . $link . '&page=1><</a><li>';
+            $str.='<li><a ' . $class . ' href="javascript:;" attr-value="1"><</a><li>';
             echo "";
         }
         for ($i = $dau; $i < $cuoi; $i++) {
             ($page == $i) ? $class = " class='active'" : $class = "";
-            $str.='<li><a ' . $class . ' href=' . $link . '&page='.$i.'>'.$i.'</a><li>';            
+            $str.='<li><a ' . $class . ' href="javascript:;" attr-value="'.$i.'">'.$i.'</a><li>';            
         }
         if ($page < $total_page) {
             ($page == $total_page) ? $class = " class='active end'" : $class = " class='end' ";
-            $str.='<li><a ' . $class . ' href=' . $link . '&page='.$total_page.'>></a><li>';            
+            $str.='<li><a ' . $class . ' href="javascript:;" attr-value="'.$total_page.'">></a><li>';            
         }
         $str.="</ul></div></div>";
         return $str;       
