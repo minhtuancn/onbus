@@ -25,7 +25,7 @@ $modelTime = new Time;
 $vstart = $vend = $dstart = $dend = -1;
 $car = $service = ""; 
 $page_show = 5;
-$limit = 1;
+$limit = 10;
 $page = isset($_POST['page']) ? (int) $_POST['page'] : 1;
 $offset = $limit * ($page - 1);
 if(isset($_POST['type'])){
@@ -53,12 +53,12 @@ if(isset($_POST['service']) && trim($_POST['service']!="")){
 if(isset($_POST['dstart'])){
     $dstart = $modelTicket->processData($_POST['dstart']);
     $link.="&dstart=".$dstart;
-    $dstart = strtotime($dstart) + 3600;
+    $dstart = strtotime($dstart);
 }
 if(isset($_POST['dend'])){
     $dend = $modelTicket->processData($_POST['dend']);
     $link.="&dend=".$dend;
-    $dend = strtotime($dend) + 3600;
+    $dend = strtotime($dend);
 }
 $tab = (int) $_POST['tab'];
 if($tab==1){
@@ -142,7 +142,7 @@ echo $modelTicket->pagination($page,$page_show,$total_page,$link,2);
  } ?>  
 <script type="text/javascript">
 $(function(){
-    $('.type-ticket ul li a').on('click',function(){
+    $('.type-ticket ul li a').unbind( "click" ).bind("click",function(){
         var _this = $(this);
         _this.parents('ul').find('li a').removeClass('active');
         if(_this.hasClass('active')){
@@ -153,7 +153,7 @@ $(function(){
         return false;
     });     
 });
-$('.btn-muave').on('click',function(){
+$('.btn-muave').unbind( "click" ).bind("click",function(){
     var ticket_id = $(this).attr('data-value');
     var check_time = $('#time_' + ticket_id).find('a.active').length;
     if(check_time==0){
