@@ -107,6 +107,11 @@ $(document).ready(function() {
     $('.tab-option .nav-tabs>li>a').click(function(e) {
         $(this).tab('show');
         var idTab = $(this).attr('href');
+        if(idTab=="#vechieuve"){
+            $('#tab').val(2);
+        }else{
+            $('#tab').val(1);
+        }
         setTimeout(function(){
             if($(idTab).is(':visible')){
                 for(var i=0;i<slideItems.length ;i++){

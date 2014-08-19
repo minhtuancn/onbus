@@ -56,9 +56,9 @@ $total_page_start = ceil($arrTicket_start_total['total'] / $limit);
 $arrTicket_start = $modelTicket->getListTicketFE($car,$vstart,$vend,$dstart,$service,$offset,$limit);
 
 if($type==2){
-    $arrTicket_end_total = $modelTicket->getListTicketFE($car,$vstart,$vend,$dend,$service,-1,-1);
+    $arrTicket_end_total = $modelTicket->getListTicketFE($car,$vend,$vstart,$dend,$service,-1,-1);
     $total_page_end = ceil($arrTicket_end_total['total'] / $limit);
-    $arrTicket_end = $modelTicket->getListTicketFE($car,$vstart,$vend,$dend,$service,$offset,$limit);
+    $arrTicket_end = $modelTicket->getListTicketFE($car,$vend,$vstart,$dend,$service,$offset,$limit);
 }
 
 $arrNhaXeUyTin = $modelNhaxe->getListNhaxe('',1,0,8);
@@ -217,12 +217,12 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                     <div class="left ticket-tn">
                         <div class="tab-option">
                             <ul class="nav nav-tabs" role="tablist">
-                              <li class="active"><a href="#vechieudi" role="tab" data-toggle="tab"><span class="icon-font active">Vé chiều đi</span></a></li>
+                              <li class="active" ><a href="#vechieudi"  role="tab" data-toggle="tab"><span class="icon-font active">Vé chiều đi</span></a></li>
                               <?php if($type==2){ ?>
                               <li class=""><a href="#vechieuve" role="tab" data-toggle="tab"><span class="icon-font active">Vé chiều về</span></a></li>
                               <?php } ?>
                             </ul>
-                            
+                            <input type="hidden" name="tab" value="1" id="tab"/>
                         </div>
                         <div class="infor-ticket-tn">
                             <div class="price-ticket right">
@@ -285,7 +285,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                                 foreach ($arrTimeTicket as $time) {                                                   
                                                 
                                             ?>
-                                            <li><a href="#"><?php echo $modelTime->getTimeByID($time);?></a></li>
+                                            <li><a href="javascript:void(0)"><?php echo $modelTime->getTimeByID($time);?></a></li>
                                             <?php }}  ?>                                            
                                         </ul>
                                         <p class="error_time" id="error_time_<?php echo $ticket['ticket_id']; ?>" style="display:none;padding-top:10px;color:red;font-style:italic">Vui lòng chọn giờ khởi hành trước khi đặt vé.</p>
@@ -315,7 +315,8 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                              <?php if(!empty($arrTicket_end['data'])){ 
                             foreach($arrTicket_end['data']  as $ticket){
                                 $arrServiceTicket = $modelTicket->getServiceTicket($ticket['ticket_id']);                                 
-                                 $arrTimeTicket = $modelTicket->getTimeTicket($ticket['ticket_id']);                                 
+                                 $arrTimeTicket = $modelTicket->getTimeTicket($ticket['ticket_id']);       
+                                 $arrDetailNhaxe = $modelNhaxe->getDetailNhaxe($ticket['nhaxe_id']);                          
                             ?>
                             <div class="items">
                             <div class=" infor-tuyen-search">
@@ -341,22 +342,23 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                     </div>
                                     <div class="left a-right">
                                         <ul class="list-logo-xe">
-                                            <li><a href="#"><?php echo $modelNhaxe->getNhaxeNameByID($ticket['nhaxe_id']); ?></a></li>                                            
+                                            <li><a href="#"><img src="<?php echo $arrDetailNhaxe['image_url']; ?>" style="height:30px" alt="<?php echo $arrDetailNhaxe["nhaxe_name_".$lang]; ?>" title="<?php echo $arrDetailNhaxe["nhaxe_name_".$lang]; ?>"/></a></li>                                            
                                         </ul>
                                         <div class="clear"></div>
                                         <p><b>DEPART ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_start']); ?></p>
                                         <p><b>ARRIVE ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_end']); ?></p>
                                         <a href="#" class="right show_map" data-url-map="https://dl.dropboxusercontent.com/u/43486987/Hoang/HTML/<?php echo STATIC_URL; ?>/images/map.jpg" data-toggle="modal" data-target="">Xem lộ trình</a>
-                                        <div class="type-ticket">
+                                        <div class="type-ticket" id="time_<?php echo $ticket['ticket_id']; ?>">
                                         <p>Select time:</p>
                                         <ul>
                                             <?php if(!empty($arrTimeTicket)) { 
                                                 foreach ($arrTimeTicket as $time) {                                                   
                                                 
                                             ?>
-                                            <li><a href="#"><?php echo $modelTime->getTimeByID($time);?></a></li>
+                                            <li><a href="javascript:void(0)"><?php echo $modelTime->getTimeByID($time);?></a></li>
                                             <?php }}  ?>                                            
                                         </ul>
+                                        <p class="error_time" id="error_time_<?php echo $ticket['ticket_id']; ?>" style="display:none;padding-top:10px;color:red;font-style:italic">Vui lòng chọn giờ khởi hành trước khi đặt vé.</p>
                                         <div class="clear"></div>
                                     </div>
                                     </div>
@@ -369,7 +371,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                         <span><?php echo number_format($ticket['price']); ?><span>VNĐ</span></span>
                                     </div>
                                     <div class="clear"></div>
-                                    <a href="#" data-toggle="modal" data-target="#popup_book_ticket" class="btn-muave">book now</a>
+                                    <a href="javascript:void(0)" data-value="<?php echo $ticket['ticket_id']; ?>" data-toggle="modal" data-target="#popup_book_ticket" class="btn-muave">book now</a>
                                     <a href="#" class="btn-chitiet"  data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-info-sign"></span>Detail</a>
                                 </div>
                             </div>
@@ -519,8 +521,8 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
 <script type="text/javascript">
          $(document).ready(function(){
               $(function () {
-                initSearchTicketWidget();
-                $('.btn-muave').click(function(){
+                initSearchTicketWidget();                
+                $('.btn-muave').on('click',function(){
                     var ticket_id = $(this).attr('data-value');
                     var check_time = $('#time_' + ticket_id).find('a.active').length;
                     if(check_time==0){
@@ -759,10 +761,52 @@ foreach ($arrTinhHaveTicket as $value) {
                 url: "ajax/ticket.php",
                 type: "POST",
                 async: false,                 
-                data: {"vstart":$('#vstart').val(),"vend":$('#vend').val(),'dstart':$('#dstart').val(),'dend':$('#dend').val(),'car':$('#str_car').val(),'service':$('#str_service').val()},
+                data: {
+                    "vstart":$('#vstart').val(),
+                    "vend":$('#vend').val(),'dstart':$('#dstart').val(),
+                    'dend':$('#dend').val(),'car':$('#str_car').val(),'service':$('#str_service').val(),'tab' : 1},
                 success: function(data){
                     $('#vechieudi').html(data);
                 }
             });
+            $.ajax({
+                url: "ajax/ticket.php",
+                type: "POST",
+                async: false,                 
+                data: {"vstart":$('#vstart').val(),"vend":$('#vend').val(),'dstart':$('#dstart').val(),
+                'dend':$('#dend').val(),'car':$('#str_car').val(),'service':$('#str_service').val(),'tab':2},
+                success: function(data){
+                    $('#vechieuve').html(data);
+                }
+            });
          }
+         $('.t-pagination a').click(function(){
+            var tab = $('#tab').val();
+            var page = $(this).attr('attr-value');
+            if(tab==1){
+                $.ajax({
+                    url: "ajax/ticket.php",
+                    type: "POST",
+                    async: false,                 
+                    data: {
+                        "vstart":$('#vstart').val(),
+                        "vend":$('#vend').val(),'dstart':$('#dstart').val(),
+                        'dend':$('#dend').val(),'car':$('#str_car').val(),'service':$('#str_service').val(),'tab' : 1,'page':page},
+                    success: function(data){
+                        $('#vechieudi').html(data);
+                    }
+                });
+            }else{
+                $.ajax({
+                    url: "ajax/ticket.php",
+                    type: "POST",
+                    async: false,                 
+                    data: {"vstart":$('#vstart').val(),"vend":$('#vend').val(),'dstart':$('#dstart').val(),
+                    'dend':$('#dend').val(),'car':$('#str_car').val(),'service':$('#str_service').val(),'tab':2,'page':page},
+                    success: function(data){
+                        $('#vechieuve').html(data);
+                    }
+                });
+            }          
+         });
     </script>        
