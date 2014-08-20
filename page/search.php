@@ -31,12 +31,12 @@ if(isset($_GET['service']) && trim($_GET['service']!="")){
 if(isset($_GET['dstart'])){
     $dstart = $modelTicket->processData($_GET['dstart']);
     $link.="&dstart=".$dstart;
-    $dstart = strtotime($dstart);
+    $dstart = strtotime($dstart) + 3600;
 }
 if(isset($_GET['dend']) && $type==2){
     $dend = $modelTicket->processData($_GET['dend']);
     $link.="&dend=".$dend;
-    $dend = strtotime($dend);
+    $dend = strtotime($dend) + 3600;
 }
 
 $arrNhaXeID = array();
@@ -285,7 +285,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                                 foreach ($arrTimeTicket as $time) {                                                   
                                                 
                                             ?>
-                                            <li><a href="javascript:void(0)"><?php echo $modelTime->getTimeByID($time);?></a></li>
+                                            <li><a href="javascript:void(0)" data-value="<?php echo $time; ?>"><?php echo $modelTime->getTimeByID($time);?></a></li>
                                             <?php }}  ?>                                            
                                         </ul>
                                         <p class="error_time" id="error_time_<?php echo $ticket['ticket_id']; ?>" style="display:none;padding-top:10px;color:red;font-style:italic">Vui lòng chọn giờ khởi hành trước khi đặt vé.</p>
@@ -298,6 +298,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                             <div class=" x-right">
                                 <div class="book-btn">
                                     <div class="d-price">
+                                        <input type="hidden" id="price_<?php echo $ticket['ticket_id']; ?>" value="<?php echo $ticket['price']; ?>"/>
                                         <span><?php echo number_format($ticket['price']); ?><span>VNĐ</span></span>
                                     </div>
                                     <div class="clear"></div>
@@ -355,7 +356,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                                 foreach ($arrTimeTicket as $time) {                                                   
                                                 
                                             ?>
-                                            <li><a href="javascript:void(0)"><?php echo $modelTime->getTimeByID($time);?></a></li>
+                                            <li><a href="javascript:void(0)" data-value="<?php echo $time; ?>"><?php echo $modelTime->getTimeByID($time);?></a></li>
                                             <?php }}  ?>                                            
                                         </ul>
                                         <p class="error_time" id="error_time_<?php echo $ticket['ticket_id']; ?>" style="display:none;padding-top:10px;color:red;font-style:italic">Vui lòng chọn giờ khởi hành trước khi đặt vé.</p>
@@ -369,6 +370,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                 <div class="book-btn">
                                     <div class="d-price">
                                         <span><?php echo number_format($ticket['price']); ?><span>VNĐ</span></span>
+                                        <input type="hidden" id="price_<?php echo $ticket['ticket_id']; ?>" value="<?php echo $ticket['price']; ?>"/>
                                     </div>
                                     <div class="clear"></div>
                                     <a href="javascript:void(0)" data-value="<?php echo $ticket['ticket_id']; ?>" data-toggle="modal" data-target="#popup_book_ticket" class="btn-muave">book now</a>
@@ -493,11 +495,11 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
             <div class="wrap-popup">
                 <a href="#" class="close-popup" data-dismiss="modal"></a>
                 <p>Seat selection is not available. Please choose the number of passengers from the drop down list below.</p>
-                <form class="form-horizontal" role="form">
+                <form class="form-horizontal" role="form" id="paymentForm" method="post" action="index.php?mod=payment">
                   <div class="form-group">
-                    <label class="col-sm-2 control-label">No. fo tickets: </label>
+                    <label class="col-sm-2 control-label">No. of tickets: </label>
                     <div class="col-sm-10">
-                      <select class="form-control">
+                      <select class="form-control" id="amount" name="amount">
                           <option>1</option>
                           <option>2</option>
                           <option>3</option>
@@ -510,6 +512,9 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                   <div class="btn-center">
                     <input type="button" value="book now" class="button2">
                   </div>
+                  <input type="hidden" name="time" id="time_book" value="" />
+                  <input type="hidden" name="ticket_id" id="ticket_id_book" value="" />
+                  <input type="hidden" name="price" id="price_book" value="" />
                 </form>
                 <div class="clear"></div>    
             </div>
@@ -518,8 +523,6 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
     </div>
   </div>
 </div>
-<form id="paymentForm">
-</form>
 <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/lightbox.min.js"></script>
 <script type="text/javascript">
          $(document).ready(function(){
@@ -533,12 +536,15 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                         return false;
                     }else{
                         $('#error_time_' + ticket_id).hide();
+                        $('#time_book').val($('#time_' + ticket_id).find('a.active').attr('data-value'));
+                        $('#ticket_id_book').val(ticket_id);   
+                        $('#price_book').val($('#price_' + ticket_id).val());                        
                         return true;
                     }
 
                 });
                 $('.button2').click(function(){
-                    location.href="index.php?mod=payment";
+                    $('#paymentForm').submit();
                 })
                 $('#btnSearchTicket').click(function(){
                     var vstart = $('#vstart_search').val();
