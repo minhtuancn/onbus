@@ -18,6 +18,7 @@ if(isset($_POST)){
     }        
 }
 // cal total tien
+
 ?>
 
 <div id="payment">
