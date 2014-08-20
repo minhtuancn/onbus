@@ -132,9 +132,28 @@ $(document).ready(function() {
             }
             
         },1000);
-        
-        
     });
+
+
+    var sliderBox = '';
+    $('.tab_profile .nav-tabs>li>a').click(function(e){
+        var idTab = $(this).attr('href');
+        if(idTab == '#hinhanh'){
+            setTimeout(function(){
+                sliderBox = $('.bxslider_profile').bxSlider({
+                    slideWidth: 650,
+                    minSlides: 1,
+                    maxSlides: 1,
+                    slideMargin: 0,
+                    auto: false,
+                    pagerCustom: '#bx-pager'
+                });
+            },1500);
+        }else{
+            sliderBox.destroySlider();
+        }
+    });
+
     $('.replay-position').on('click',function(){
         var $inputGo = $('#departPlace'),
             $inputMove = $('#destination'),
