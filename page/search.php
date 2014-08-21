@@ -105,7 +105,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                     <div class="filter tien-ich">
                         <div class="tabs">
                             <ul>
-                                <li><a href="#">Tìm vé xe</a></li>
+                                <li><a href="#"><span class="icon-font active">Tìm vé xe</span></a></li>
                             </ul>
                         </div>
                         <form class="frm-search-vx">
@@ -269,6 +269,13 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                             <span>Good: 8.3</span>
                                             <span class="num-rating">(105 rating)</span>
                                         </div>
+                                        <div class="rating_nhaxe">
+                                            <span><img src="images/BigStar.png" alt="star"></span>
+                                            <span><img src="images/BigStar.png" alt="star"></span>
+                                            <span><img src="images/BigStar.png" alt="star"></span>
+                                            <span><img src="images/BigStar.png" alt="star"></span>
+                                            <span><img src="images/BigStar.png" alt="star"></span>
+                                        </div>
                                     </div>
                                     <div class="left a-right">
                                         <ul class="list-logo-xe">
@@ -339,6 +346,13 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                         <div class="right rating">
                                             <span>Good: 8.3</span>
                                             <span class="num-rating">(105 rating)</span>
+                                        </div>
+                                        <div class="rating_nhaxe">
+                                            <span><img src="images/BigStar.png" alt="star"></span>
+                                            <span><img src="images/BigStar.png" alt="star"></span>
+                                            <span><img src="images/BigStar.png" alt="star"></span>
+                                            <span><img src="images/BigStar.png" alt="star"></span>
+                                            <span><img src="images/BigStar.png" alt="star"></span>
                                         </div>
                                     </div>
                                     <div class="left a-right">

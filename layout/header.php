@@ -23,7 +23,7 @@
                 </div>
                 <div class="clear"></div>
             </div>
-            <div class="left"><a href="index.php" class="logo-header"><img src="<?php echo STATIC_URL; ?>/images/momondo_logo_v6.png" /></a></div>
+            <div class="left"><a href="index.php" class="logo-header"><img src="<?php echo STATIC_URL; ?>/images/logo2_final.png" /></a></div>
             <div class="menu-header">
                 <ul class="nav nav-pills">
                   <li class="active hv-1"><a href="index.php">Trang chủ<span></span></a></li>

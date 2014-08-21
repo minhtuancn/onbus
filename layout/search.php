@@ -18,7 +18,7 @@ foreach ($arrTinhHaveTicket as $value) {
     <div class="wrap">
         <div class="tabs">
             <ul>
-                <li><a href="#">Tìm vé xe</a></li>
+                <li><a href="#"><span class="icon-font active">Tìm vé xe</span></a></li>
                 <li class="sologan_txt">Chia sẻ cùng chúng tôi hành trình của bạn.</li>
             </ul>
         </div>

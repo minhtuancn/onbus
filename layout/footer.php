@@ -2,7 +2,7 @@
         <div class="center w-center">
 <div class="left column w1-4">
         <div class="medBox">
-            <a href="/"><img src="<?php echo STATIC_URL; ?>/images/momondo_logo_v6.png" /></a>
+            <a href="/"><img src="<?php echo STATIC_URL; ?>/images/logo2_final.png" /></a>
             <div class="left"><h4 class="smallBoxHeader">Đặt vé qua vipbus</h4>
 <p>Chia sẻ cùng chúng tôi hành trình của bạn, chúng tôi sẽ giúp bạn có được giá vé và chất lượng dịch vụ tốt nhất từ những thương hiệu nhà xe uy tín hàng đầu. Đảm bảo cho bạn sự tiện lợi, an toàn và tiết kiệm.</p>
             <ul>
