@@ -479,7 +479,7 @@ header .dropdown .btn .caret {
 	margin-right: 0
 }
 .box-sear-ticket .item-search label {
-	font: 500 .8em/100% arial;
+	font: 700 .8em/100% arial;
 	color: #ffe04d;
 	display: block;
 	margin-bottom: 8px;
@@ -840,6 +840,14 @@ footer {
 	color: #fff;
 	background: #87134b;
 	font-weight: bold;
+	background: #87134b;
+	background: -moz-linear-gradient(top, #87134b 0%, #5F0E35 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #87134b), color-stop(100%, #5F0E35));
+	background: -webkit-linear-gradient(top, #87134b 0%, #5F0E35 100%);
+	background: -o-linear-gradient(top, #87134b 0%, #5F0E35 100%);
+	background: -ms-linear-gradient(top, #87134b 0%, #5F0E35 100%);
+	background: linear-gradient(to bottom, #87134b 0%, #5F0E35 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#87134b', endColorstr='#5F0E35', GradientType=0);
 }
 .place-selector ul {
 	list-style: none;
@@ -1504,7 +1512,15 @@ padding:0
 }
 .ui-datepicker .ui-datepicker-header {
 	position: relative;
-	padding: .2em 0
+	padding: .2em 0;
+	background: #87134b;
+	background: -moz-linear-gradient(top, #87134b 0%, #5F0E35 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #87134b), color-stop(100%, #5F0E35));
+	background: -webkit-linear-gradient(top, #87134b 0%, #5F0E35 100%);
+	background: -o-linear-gradient(top, #87134b 0%, #5F0E35 100%);
+	background: -ms-linear-gradient(top, #87134b 0%, #5F0E35 100%);
+	background: linear-gradient(to bottom, #87134b 0%, #5F0E35 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#87134b', endColorstr='#5F0E35', GradientType=0);
 }
 .ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next, .ui-datepicker .ui-datepicker-prev-hover, .ui-datepicker .ui-datepicker-next-hover {
 	position: absolute;
@@ -1715,7 +1731,7 @@ body .ui-tooltip {
 	color: #222
 }
 .ui-widget-header {
-	background: #87134b;
+	background: #5F0E3E;
 	color: #fff;
 	font-weight: 700;
 	border-bottom-right-radius: 0!important;
@@ -2371,7 +2387,7 @@ div.cell_header {
 	box-shadow: none;
 	cursor: pointer;
 	border-radius: 1px 1px 0 0;
-	padding: 0 25px;
+	padding: 0 25px 0 35px;
 	height: 35px;
 	text-transform: uppercase;
 	display: block;
@@ -2384,7 +2400,8 @@ div.cell_header {
 	background: -ms-linear-gradient(top, #73205f 0%, #8c3778 100%);
 	background: linear-gradient(to bottom, #73205f 0%, #8c3778 100%);
 filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#8c3778', endColorstr='#8c3778', GradientType=0);
-	font-weight: 700
+	font-weight: 700;
+	position:relative;
 }
 .wrap-frm-search {
 	float: left;
@@ -2393,8 +2410,17 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#8c3778', endCo
 	background: -o-linear-gradient(top, #2b1f3f 0%, #241b33 100%);
 	background: -ms-linear-gradient(top, #2b1f3f 0%, #241b33 100%);
 filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#2b1f3f', endColorstr='#241b33', GradientType=0);
-	background: url(images/opacity_1.png);
-	border-top: 5px solid #8c3778;}
+	/* background: url(images/opacity_1.png); */
+	border-top: 5px solid #8c3778;
+	background: #592e51;
+	background: -moz-linear-gradient(top, #592e51 0%, #4E1C45 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #592e51), color-stop(100%, #4E1C45));
+	background: -webkit-linear-gradient(top, #592e51 0%, #4E1C45 100%);
+	background: -o-linear-gradient(top, #592e51 0%, #4E1C45 100%);
+	background: -ms-linear-gradient(top, #592e51 0%, #4E1C45 100%);
+	background: linear-gradient(to bottom, #592e51 0%, #4E1C45 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#592e51', endColorstr='#4E1C45', GradientType=0);
+}
 .wrap-frm-search form {
 	padding: 20px 30px
 }
@@ -2523,6 +2549,7 @@ ul.triptype li.selected input:before {
 	width: 1140px;
 	background-color: #27262b;
 	margin-top: 10px;
+	margin-bottom: 20px;
 }
 .subscriber .message, .subscriber .subscribe-form {
 	display: table-cell;
@@ -2993,8 +3020,16 @@ button.medium {
 	height: 39px;
 }
 .ticket-tn .tab-option span {
-	background: #8c3778;
+	background: #7A2E68;
 	margin-right: 2px;
+	background: #8c3778;
+	background: -moz-linear-gradient(top, #8c3778 0%, #7A2E68 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #8c3778), color-stop(100%, #7A2E68));
+	background: -webkit-linear-gradient(top, #8c3778 0%, #7A2E68 100%);
+	background: -o-linear-gradient(top, #8c3778 0%, #7A2E68 100%);
+	background: -ms-linear-gradient(top, #8c3778 0%, #7A2E68 100%);
+	background: linear-gradient(to bottom, #8c3778 0%, #7A2E68 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8c3778', endColorstr='#7A2E68', GradientType=0);
 }
 .option-other .tab-option span {
 	background: #87134b
@@ -3012,6 +3047,14 @@ button.medium {
 	float: left;
 	width: 100%;
 	height: 55px;
+	background: #592e51;
+	background: -moz-linear-gradient(top, #592e51 0%, #4E1C45 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #592e51), color-stop(100%, #4E1C45));
+	background: -webkit-linear-gradient(top, #592e51 0%, #4E1C45 100%);
+	background: -o-linear-gradient(top, #592e51 0%, #4E1C45 100%);
+	background: -ms-linear-gradient(top, #592e51 0%, #4E1C45 100%);
+	background: linear-gradient(to bottom, #592e51 0%, #4E1C45 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#592e51', endColorstr='#4E1C45', GradientType=0);
 }
 .ticket-tn .infor-ticket-tn p {
 	font: 500 .9em/100% arial;
@@ -3045,6 +3088,14 @@ button.medium {
 	padding: 12px 10px 0px 20px;
 	height: 100%;
 	background: #8c3778;
+	background: #8c3778;
+	background: -moz-linear-gradient(top, #8c3778 0%, #7A2E68 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #8c3778), color-stop(100%, #7A2E68));
+	background: -webkit-linear-gradient(top, #8c3778 0%, #7A2E68 100%);
+	background: -o-linear-gradient(top, #8c3778 0%, #7A2E68 100%);
+	background: -ms-linear-gradient(top, #8c3778 0%, #7A2E68 100%);
+	background: linear-gradient(to bottom, #8c3778 0%, #7A2E68 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8c3778', endColorstr='#7A2E68', GradientType=0);
 }
 .price-ticket label {
 	float: left;
@@ -4735,8 +4786,16 @@ input[type=radio], input[type=checkbox] {
 }
 .process_bar.nav li.active a {
 	color: #fff;
-	background: #8c3778;
+	background: #7E2C6B;
 	padding-left: 32px;
+	background: #8c3778;
+	background: -moz-linear-gradient(top, #8c3778 0%, #7E2C6B 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #8c3778), color-stop(100%, #7E2C6B));
+	background: -webkit-linear-gradient(top, #8c3778 0%, #7E2C6B 100%);
+	background: -o-linear-gradient(top, #8c3778 0%, #7E2C6B 100%);
+	background: -ms-linear-gradient(top, #8c3778 0%, #7E2C6B 100%);
+	background: linear-gradient(to bottom, #8c3778 0%, #7E2C6B 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8c3778', endColorstr='#7E2C6B', GradientType=0);
 }
 .ic-cart {
 	background-image: url(images/ic-cart.png);
@@ -4965,11 +5024,19 @@ input[type=radio], input[type=checkbox] {
 	height: 106px;
 }
 .ticket-tn .tab-option .nav-tabs>li.active span {
-	background: #592e51;
+	background: #4E1C45;
 	margin-right: 2px;
 	height: 44px;
 	margin-top: -5px;
 	line-height: 41px;
+	background: #592e51;
+	background: -moz-linear-gradient(top, #592e51 0%, #4E1C45 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #592e51), color-stop(100%, #4E1C45));
+	background: -webkit-linear-gradient(top, #592e51 0%, #4E1C45 100%);
+	background: -o-linear-gradient(top, #592e51 0%, #4E1C45 100%);
+	background: -ms-linear-gradient(top, #592e51 0%, #4E1C45 100%);
+	background: linear-gradient(to bottom, #592e51 0%, #4E1C45 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#592e51', endColorstr='#4E1C45', GradientType=0);
 }
 #popup_book_ticket .modal-content {
 	border-radius: 0px;
@@ -5357,7 +5424,7 @@ font-size: .74375rem;
 	color: red;
 	padding-bottom: 10px;
 	display: block;
-	padding-left: 12%;
+	/* padding-left: 12%; */
 	font-weight: bold;
 	font-size: 1em;
 }
@@ -5427,7 +5494,7 @@ font-size: .74375rem;
 .form-horizontal .bottom_frm label {
 	line-height: 100%;
 	width: 77%;
-	font-size: .8em;
+	font-size: .9em;
 	margin-top: 10px;
 }
 .form-horizontal .bottom_frm input.btn_submit_payment {
@@ -5730,8 +5797,16 @@ font-size: .74375rem;
 	width: 30%;
 }
 .process_bar.nav li a {
-	background: #fff;
+	background: #F5F5F5;
 	padding: 6px 20px;
+	background: #4d3189;
+	background: -moz-linear-gradient(top, #FFF 0%, #F5F5F5 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FFF), color-stop(100%, #F5F5F5));
+	background: -webkit-linear-gradient(top, #FFF 0%, #F5F5F5 100%);
+	background: -o-linear-gradient(top, #FFF 0%, #F5F5F5 100%);
+	background: -ms-linear-gradient(top, #FFF 0%, #F5F5F5 100%);
+	background: linear-gradient(to bottom, #FFF 0%, #F5F5F5 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFF', endColorstr='#F5F5F5', GradientType=0);
 }
 .process_bar.nav li span.line_process{
 	display: block;
@@ -5974,6 +6049,7 @@ opacity: 1;
 .wrap-slider{
 	height:111px;
 }
+.tabs ul li a span:before,
 .tien-ich .tabs ul li a span:before{
 	content: '\e028';
 	height: 22px;
@@ -6248,4 +6324,55 @@ margin-bottom:5px;
 }
 .tab_profile{
 	margin-bottom:50px;
+}
+.box_payment .content_payment.infor_person_book .w_440{
+	width:70% !important;
+	/* margin-right: 18%; */
+	float: left;
+}
+.box_payment .content_payment .form-control-feedback{
+	top: 8px;
+	width: 20px;
+	height: 18px;
+	line-height: 100%;
+	right: -10px;
+}
+.box_payment .content_payment .form-control-feedback.glyphicon-ok:before{
+	color: #D654FF;
+}
+.form-horizontal .bottom_frm input{
+	width:15px;
+	height:15px;
+	top: 16px;
+}
+.box_payment .content_payment.infor_person_book .control-label{
+	width: 15%;
+}
+.detail_tuyen .time_move .right{
+	margin-right: auto;
+	float:left;
+}
+.detail_tuyen .time_move span{
+	float:left;
+	padding:0px 10px;
+	line-height: 100%;
+	margin-top: -2px;
+}
+.list-logo-xe li span{
+	padding:0px 10px;
+	font-size:1em;
+	font-weight:bold;
+	float:right;
+	margin-top:2px;
+	color: #D11010;
+	text-decoration: underline;
+}
+.list-ticket-search .items .infor-tuyen-search .b-infor .rating_nhaxe{
+	float:left;
+	width:100%;
+	padding:0px;
+	margin-top:10px;
+}
+.tabs ul li a span:before{
+	top:8px;
 }
