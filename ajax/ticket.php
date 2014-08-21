@@ -99,6 +99,13 @@ $arrTicket_end = $modelTicket->getListTicketFE($car,$vstart,$vend,$dstart,$servi
                     <span>Good: 8.3</span>
                     <span class="num-rating">(105 rating)</span>
                 </div>
+                <div class="rating_nhaxe">
+                    <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
+                    <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
+                    <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
+                    <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
+                    <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
+                </div>
             </div>
             <div class="left a-right">
                 <ul class="list-logo-xe">

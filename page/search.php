@@ -269,11 +269,11 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                             <span class="num-rating">(105 rating)</span>
                                         </div>
                                         <div class="rating_nhaxe">
-                                            <span><img src="images/BigStar.png" alt="star"></span>
-                                            <span><img src="images/BigStar.png" alt="star"></span>
-                                            <span><img src="images/BigStar.png" alt="star"></span>
-                                            <span><img src="images/BigStar.png" alt="star"></span>
-                                            <span><img src="images/BigStar.png" alt="star"></span>
+                                            <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
+                                            <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
+                                            <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
+                                            <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
+                                            <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
                                         </div>
                                     </div>
                                     <div class="left a-right">
@@ -347,11 +347,11 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                             <span class="num-rating">(105 rating)</span>
                                         </div>
                                         <div class="rating_nhaxe">
-                                            <span><img src="images/BigStar.png" alt="star"></span>
-                                            <span><img src="images/BigStar.png" alt="star"></span>
-                                            <span><img src="images/BigStar.png" alt="star"></span>
-                                            <span><img src="images/BigStar.png" alt="star"></span>
-                                            <span><img src="images/BigStar.png" alt="star"></span>
+                                            <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
+                                            <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
+                                            <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
+                                            <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
+                                            <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
                                         </div>
                                     </div>
                                     <div class="left a-right">
@@ -524,17 +524,18 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                   <p>Seats will be assigned closed to one another and at middle area by the best effort.</p>
                   <div class="btn-center">
                     <?php if($type==1) { ?>
-                    <input type="button" value="Book now" class="button2">
+                    <input type="button" value="Book now" class="button2" id="btnBookNow">
                     <?php }else{ 
+
                         if(count($_SESSION['bookticket'])==0){
                         ?>
                     <input type="button" id="booktoo" value="Chọn vé chiều còn lại" class="button2">
                     <?php }else{ ?>
-                    <input type="button" value="Book now" class="button2">
+                    <input type="button" id="btnBookNow" value="Book now" class="button2">
                     <?php }
                     } ?>
                   </div>
-                  <input type="hidden" name="back_url" value="<?php echo $link; ?>"/>
+                  <input type="hidden" name="back_url" id="back_url" value="<?php echo $link; ?>"/>
                   <input type="hidden" name="time" id="time_book" value="" />
                   <input type="hidden" name="ticket_id" id="ticket_id_book" value="" />
                   <input type="hidden" name="price" id="price_book" value="" />
@@ -553,7 +554,26 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
 <script type="text/javascript">
          $(document).ready(function(){
               $(function () {
-                initSearchTicketWidget();                
+                initSearchTicketWidget();    
+                $('#btnBookNow').click(function(){
+                    var time_book = $('#time_book').val();
+                    var ticket_id_book = $('#ticket_id_book').val();
+                    var price_book = $('#price_book').val();
+                    var tab = $('#tab').val();
+                    var amount = $('#amount').val();
+                    if($.trim(time_book)!= '' && ticket_id_book > 0 && price_book > 0){
+                        $.ajax({
+                            url: "ajax/book.php",
+                            type: "POST",
+                            async: false,                             
+                            data: {"time_book":time_book,"ticket_id_book":ticket_id_book,'price_book': price_book,'tab' : tab,'amount':amount},
+                            success: function(data){                    
+                                location.href ="index.php?mod=payment";
+                            }
+                        });
+                    }
+                    
+                });            
                 $('.btn-muave').on('click',function(){
                     var ticket_id = $(this).attr('data-value');
                     var check_time = $('#time_' + ticket_id).find('a.active').length;
@@ -580,14 +600,16 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                     var ticket_id_book = $('#ticket_id_book').val();
                     var price_book = $('#price_book').val();
                     var tab = $('#tab').val();
+                    var amount = $('#amount').val();
                     if($.trim(time_book)!= '' && ticket_id_book > 0 && price_book > 0){
                         $.ajax({
                             url: "ajax/book.php",
                             type: "POST",
                             async: false,                             
-                            data: {"time_book":time_book,"ticket_id_book":ticket_id_book,'price_book': price_book,'tab' : tab},
+                            data: {"time_book":time_book,"ticket_id_book":ticket_id_book,'price_book': price_book,'tab' : tab,'amount':amount},
                             success: function(data){                    
-                                alert(data);
+                                var r =$('#tab').val() == 1 ? 2 : 1;
+                                location.href =$('#back_url').val() + '&r=' + r;
                             }
                         });
                     }
