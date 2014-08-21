@@ -2,32 +2,7 @@
 if(!isset($_SESSION)){
     session_start();
 }
-if(isset($_POST)){
-    $ticket_id = (int) $_POST['ticket_id'];
-    $amount = (int) $_POST['amount'];
-    $price = (int) $_POST['price'];
-    $time = (int) $_POST['time'];
-    $tab = (int) $_POST['tab'];
-    $back_url = $_POST['back_url'];
-
-    if($ticket_id > 0 && $amount > 0 && $amount < 5 && $price > 20000){
-        $totalPrice = $amount*$price;
-        $_SESSION['bookticket'][$ticket_id]["id"] = $ticket_id;
-        $_SESSION['bookticket'][$ticket_id]["price"] = $price;
-        $_SESSION['bookticket'][$ticket_id]["time"] = $time;
-        $_SESSION['bookticket'][$ticket_id]["amount"] = $time;
-        $_SESSION['bookticket'][$ticket_id]["totalPrice"] = $totalPrice;
-    }        
-    if($_POST['ticket_type']==2){
-        $sove = count($_SESSION['bookticket']);var_dump($sove);
-        if($tab == 1) $back_url.="&r=2";else $back_url.="&r=1";
-        if($sove == 1){
-            header('location:'.$back_url);
-        }else{
-            
-        }
-    }
-}
+//var_dump("<pre>",$_SESSION['bookticket']);
 // cal total tien
 
 ?>
