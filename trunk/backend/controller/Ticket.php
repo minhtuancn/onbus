@@ -94,7 +94,7 @@ if($ticket_id > 0) {
 	}else{ 
 		$model->updateTicket($ticket_id,$nhaxe_id,$tinh_id_start,$tinh_id_end,$place_id_start,$place_id_end,$price,$type,$duration,$amount,$car_type,$stop,$note,$date_start_update,$arrSer,$arrTime);
 	}
-	header('location:'.$url);
+	header('location:'.$url."&nhaxe_id=".$nhaxe_id);
 
 }else{
 
@@ -102,7 +102,7 @@ if($ticket_id > 0) {
 		//var_dump($arrSer,$arrTime);die;
 		$model->insertTicket($nhaxe_id,$tinh_id_start,$tinh_id_end,$place_id_start,$place_id_end,$price,$type,$duration,$amount,$car_type,$stop,$note,$arrSer,$arrTime,$arrDates,$key_all,$str_month);
 
-		header('location:'.$url);
+		header('location:'.$url."&nhaxe_id=".$nhaxe_id);
 
 	}
 

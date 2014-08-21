@@ -46,7 +46,7 @@ $(function() {
             var mod =  obj.attr('mod');
             var id = obj.attr('id');
             $.ajax({
-                url: "Controller/Delete.php",
+                url: "controller/Delete.php",
                 type: "POST",
                 async: true,
                 data: {
@@ -102,7 +102,7 @@ $(function() {
         var str_hinh_anh = $("#str_hinh_anh").val();
         var nhaxe_id = $('#nhaxe_id').val();
          $.ajax({
-                url: "Controller/Saveimage.php",
+                url: "controller/Saveimage.php",
                 type: "POST",
                 async: true,
                 data: {

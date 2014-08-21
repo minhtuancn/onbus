@@ -90,7 +90,8 @@ $mod = (isset($_GET['mod'])) ? $_GET['mod'] : "home";
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/searchWidget1.0.min.js"></script>
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/helper1.0.min.js"></script>    
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/jquery.bxslider.js"></script>
-    <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/common.js"></script>    
+    <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/common.js"></script> 
+    <?php if($mod!="payment") {?>   
     <script type="text/javascript">
         var statecity = [
         <?php 
@@ -113,7 +114,7 @@ foreach ($arrTinhHaveTicket as $value) {
             maxSlides: 1,
             slideMargin: 0,
             pager: false,
-            auto: true
+            auto: false
           });
           $(function () {
            
@@ -121,6 +122,7 @@ foreach ($arrTinhHaveTicket as $value) {
          });
         });
     </script>
+    <?php } ?>
     <!-- InstanceEndEditable -->
     <div class="vxr-loading-overlay">
     <img src="themes/images/ajax_loader.gif" style="width: 75px; height: 75px;" />
