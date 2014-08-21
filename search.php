@@ -64,12 +64,12 @@ if(isset($_GET['service']) && trim($_GET['service']!="")){
 if(isset($_GET['dstart'])){
     $dstart = $modelTicket->processData($_GET['dstart']);
     $link.="&dstart=".$dstart;
-    $dstart = strtotime($dstart) + 3600;
+    $dstart = strtotime($dstart);
 }
 if(isset($_GET['dend']) && $type==2){
     $dend = $modelTicket->processData($_GET['dend']);
     $link.="&dend=".$dend;
-    $dend = strtotime($dend) + 3600;
+    $dend = strtotime($dend);
 }
 
 $arrNhaXeID = array();

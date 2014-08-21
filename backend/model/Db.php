@@ -1,10 +1,13 @@
 <?php
+require_once('class.phpmailer.php'); 
+define('GUSER', 'onbusvn@gmail.com');
+define('GPWD', 'onbus123');
 class db {
 
     private $host = "localhost";   
-    private $user = "root";
-    private $pass = "root";
-    private $db = "onbus";
+    private $user = "onbus_onbusvn";
+    private $pass = "lpt!@#lpt";
+    private $db = "onbus_onbusvn";
 
     function __construct() {
         mysql_connect($this->host, $this->user, $this->pass) or die("Can't connect to server");
@@ -201,6 +204,32 @@ class db {
 		}
 		echo "</ul></div>";
 	}
+    function smtpmailer($to, $from, $from_name, $subject, $body) { 
+        global $error;
+        $mail = new PHPMailer(); 
+        $mail->IsSMTP(); 
+        $mail->SMTPDebug = 0;
+        $mail->SMTPAuth = true; 
+        $mail->SMTPSecure = 'ssl'; 
+        $mail->Host = 'smtp.gmail.com';
+        $mail->Port = 465; 
+        $mail->Username = GUSER;  
+        $mail->Password = GPWD;           
+        $mail->SetFrom($from, $from_name);
+        $mail->Subject = $subject;
+        $mail->Body = $body;
+        $mail->CharSet="utf-8";
+        $mail->IsHTML(true);
+        $mail->AddAddress($to);
+        if(!$mail->Send()) {
+            $error = 'Gởi mail bị lỗi : '.$mail->ErrorInfo; 
+            return false;
+        } else {
+            $error = 'Thư của bạn đã được gởi đi !';
+            return true;
+        }
+    }
+    
 
 }
 
