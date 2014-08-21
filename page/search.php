@@ -107,7 +107,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                             <ul>
                                 <li><a href="#"><span class="icon-font active">Tìm vé xe</span></a></li>
                             </ul>
-                        </div>
+                        </div>                        
                         <form class="frm-search-vx">
                             <div class=" item-search">
                                  <input type="hidden" name="vstart_search" id="vstart_search" value="<?php echo $vstart; ?>" />
@@ -221,8 +221,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                               <?php if($type==2){ ?>
                               <li class=""><a href="#vechieuve" role="tab" data-toggle="tab"><span class="icon-font active">Vé chiều về</span></a></li>
                               <?php } ?>
-                            </ul>
-                            <input type="hidden" name="tab" value="1" id="tab"/>
+                            </ul>                            
                         </div>
                         <div class="infor-ticket-tn">
                             <div class="price-ticket right">
@@ -524,11 +523,24 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                   </div>
                   <p>Seats will be assigned closed to one another and at middle area by the best effort.</p>
                   <div class="btn-center">
-                    <input type="button" value="book now" class="button2">
+                    <?php if($type==1) { ?>
+                    <input type="button" value="Book now" class="button2">
+                    <?php }else{ 
+                        if(count($_SESSION['bookticket'])==0){
+                        ?>
+                    <input type="button" id="booktoo" value="Chọn vé chiều còn lại" class="button2">
+                    <?php }else{ ?>
+                    <input type="button" value="Book now" class="button2">
+                    <?php }
+                    } ?>
                   </div>
+                  <input type="hidden" name="back_url" value="<?php echo $link; ?>"/>
                   <input type="hidden" name="time" id="time_book" value="" />
                   <input type="hidden" name="ticket_id" id="ticket_id_book" value="" />
                   <input type="hidden" name="price" id="price_book" value="" />
+                  <input type="hidden" name="tab" value="1" id="tab"/>
+                  <input type="hidden" name="ticket_type" value="<?php echo $type; ?>" id="ticket_type"/>
+
                 </form>
                 <div class="clear"></div>    
             </div>
@@ -545,6 +557,8 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                 $('.btn-muave').on('click',function(){
                     var ticket_id = $(this).attr('data-value');
                     var check_time = $('#time_' + ticket_id).find('a.active').length;
+                    var tab = $('#tab').val();
+                    var type = $('#type').val();
                     if(check_time==0){
                         $('#error_time_' + ticket_id).show();
                         return false;
@@ -553,6 +567,10 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                         $('#time_book').val($('#time_' + ticket_id).find('a.active').attr('data-value'));
                         $('#ticket_id_book').val(ticket_id);   
                         $('#price_book').val($('#price_' + ticket_id).val());                        
+                        <?php if($type==2 && count($_SESSION['bookticket'])==0) { ?>
+                            var t = (tab==1) ? " chiều về " : " chiều đi";
+                            $('#booktoo').val("Chọn vé" + t);
+                        <?php } ?>
                         return true;
                     }
 
