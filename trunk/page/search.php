@@ -36,7 +36,7 @@ if(isset($_GET['dstart'])){
 if(isset($_GET['dend']) && $type==2){
     $dend = $modelTicket->processData($_GET['dend']);
     $link.="&dend=".$dend;
-    $dend = strtotime($dend) + 3600;
+    $dend = strtotime($dend) + 3600 ;
 }
 
 $arrNhaXeID = array();

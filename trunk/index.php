@@ -76,7 +76,7 @@ $mod = (isset($_GET['mod'])) ? $_GET['mod'] : "home";
 </div>
     <?php include URL_LAYOUT."/header.php"; ?>    
     
-    <div id="wrapper-container" class="w-center">
+    <div id="wrapper-container" class="w-center <?php if($mod=="thanks") echo "thanks_page"; ?>">
         <?php include "page/".$mod.".php"; ?>
     </div>
 <?php include URL_LAYOUT."/footer.php"; ?>
