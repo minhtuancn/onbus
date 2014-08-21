@@ -28,6 +28,11 @@ $(document).ready(function() {
             placement: 'top'
         });
     }
+    if ($('.icon_start, .icon_end').length > 0) {
+        $(".icon_start, .icon_end").tooltip({
+            placement: 'top'
+        });
+    }
     $('#check_show_dvdonkh').on('change', function() {
         var _this = $(this),
             $boxShow = _this.parents('.donkhach').find('.dvdonkh');
