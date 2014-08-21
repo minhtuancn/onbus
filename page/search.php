@@ -574,10 +574,25 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                         return true;
                     }
 
+                });                
+                $('#booktoo').click(function(){
+                    var time_book = $('#time_book').val();
+                    var ticket_id_book = $('#ticket_id_book').val();
+                    var price_book = $('#price_book').val();
+                    var tab = $('#tab').val();
+                    if($.trim(time_book)!= '' && ticket_id_book > 0 && price_book > 0){
+                        $.ajax({
+                            url: "ajax/book.php",
+                            type: "POST",
+                            async: false,                             
+                            data: {"time_book":time_book,"ticket_id_book":ticket_id_book,'price_book': price_book,'tab' : tab},
+                            success: function(data){                    
+                                alert(data);
+                            }
+                        });
+                    }
+
                 });
-                $('.button2').click(function(){
-                    $('#paymentForm').submit();
-                })
                 $('#btnSearchTicket').click(function(){
                     var vstart = $('#vstart_search').val();
                     var vend = $('#vend_search').val();
