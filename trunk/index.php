@@ -1,146 +1,121 @@
-<?php 
-include "defined.php"; 
-$lang = "vi";
-require_once "backend/model/Ticket.php";
-$modelTicket = new Ticket;
+<?php
+session_start();
+//require_once 'blocks/seo.php';
+$lang_arr=array("vi","en");
 
-require_once "backend/model/Tinh.php";
+if (isset($lang) == true){
 
-$modelTinh = new Tinh;
+  if (in_array($lang,$lang_arr)==true) $lang = $lang;  
 
-require_once "backend/model/Nhaxe.php";
-
-$modelNhaxe = new Nhaxe;
-require_once "backend/model/Place.php";
-
-$modelPlace = new Place;
-
-require_once "backend/model/Car.php";
-
-$modelCar = new Car;
-
-require_once "backend/model/Services.php";
-
-$modelService = new Services;
-
-require_once "backend/model/Time.php";
-
-$modelTime = new Time;
-
-require_once "backend/model/Route.php";
-
-$modelRoute = new Route;
-$arrNhaXeUyTin = $modelNhaxe->getListNhaxe('',1,0,8);
-
-$arrNhaXe = $modelNhaxe->getListNhaxe('',-1,-1,-1);
-
-$arrNoidi = $modelTinh->getListTinh(-1,'',-1,-1, -1);
-$arrDiemDenHot = $modelTinh->getListTinh(-1,'',1,0, 9);
-
-$arrRoute = $modelRoute->getListRoute('',-1,-1,1, 0, 8);
-
-$mod = (isset($_GET['mod'])) ? $_GET['mod'] : "home";
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/common.dwt" codeOutsideHTMLIsLocked="false" -->
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Onbus.vn</title>
-<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-<link rel="stylesheet" href="<?php echo STATIC_URL; ?>/css/bootstrap.min.css">
-<link rel="stylesheet" href="<?php echo STATIC_URL; ?>/css/bootstrap-theme.min.css">
-<link href="<?php echo STATIC_URL; ?>/css/style.css" type="text/css" rel="stylesheet"  />
-<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-<script src="<?php echo STATIC_URL; ?>/js/jquery-1.11.0.min.js" type="text/javascript"></script>
-    <script src="<?php echo STATIC_URL; ?>/js/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="<?php echo STATIC_URL; ?>/js/bootstrap.min.js" type="text/javascript"></script>
-</head>
-<body>
-<div id="socialmedia">
-    <a id="googleplus" href="#" rel="publisher" title="Follow onBus on Google+" target="_blank">
-        <span>Google+</span>
-    </a>
-    <a id="youtube" href="#" title="Subscribe to momondo on YouTube" target="_blank">
-        <span>YouTube</span>
-    </a>
-    <a id="facebook" href="#" title="Follow momondo on Facebook" target="_blank">
-        <span>Facebook</span>
-    </a>
-    <a id="twitter" href="#" title="Follow momondo on Twitter" target="_blank">
-        <span>Twitter</span>
-    </a>
-</div>
-<div id="FeedbackButton" class="chrm-btn chrm-feedback">
-    <div class="chrm-toggle"><span class="">Feedback</span></div>
-</div>
-    <?php include URL_LAYOUT."/header.php"; ?>    
-    
-    <div id="wrapper-container" class="w-center <?php if($mod=="thanks") echo "thanks_page"; ?>">
-        <?php include "page/".$mod.".php"; ?>
-    </div>
-<?php include URL_LAYOUT."/footer.php"; ?>
-<!-- InstanceBeginEditable name="EditRegion3" -->
-<div id="scr"></div>
-<!-- InstanceEndEditable --> 
-
-    <!-- InstanceBeginEditable name="JS" -->
-    <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/customDatePicker1.0.min.js"></script>
-    <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/customAutoComplete1.0.min.js"></script>
-    <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/jquery.customSelect.min.js"></script>
-    <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/searchWidget1.0.min.js"></script>
-    <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/helper1.0.min.js"></script>    
-    <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/jquery.bxslider.js"></script>
-    <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/common.js"></script> 
-    <?php if($mod!="payment") {?>   
-    <script type="text/javascript">
-        var statecity = [
-        <?php 
-foreach ($arrTinhHaveTicket as $value) {
-    ?>
-    {
-            value: <?php echo json_encode($value['tinh_name_'.$lang]) ; ?>,
-            StateId: <?php echo $value['tinh_id']; ?>,           
-            label: <?php echo json_encode($value['tinh_name_'.$lang]) ; ?>            
-        },
-    <?php 
 }
-        ?>
-        ];        
-        $(document).ready(function(){
-          $('.ticket-2').hide();  
-          $('.bxslider').bxSlider({
-            slideWidth: 560,
-            minSlides: 1,
-            maxSlides: 1,
-            slideMargin: 0,
-            pager: false,
-            auto: false
-          });
-          $(function () {
-           
-            initSearchTicketWidget();           
-         });
-        });
-    </script>
-    <?php } ?>
-    <!-- InstanceEndEditable -->
-    <div class="vxr-loading-overlay">
-    <img src="themes/images/ajax_loader.gif" style="width: 75px; height: 75px;" />
-</div>
-<style type="text/css">
-.vxr-loading-overlay{background:none repeat scroll 0 0 #FFFFFF;height:100%;opacity:0.5;position:fixed;text-align:center;width:100%;z-index:9999;top:0;left:0;display:none}.vxr-loading-overlay img{margin-top:40%}
-</style>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+elseif (isset($_SESSION['lang']) == true){ 
 
-  ga('create', 'UA-53928005-1', 'auto');
-  ga('send', 'pageview');
+ if (in_array($_SESSION['lang'],$lang_arr) == true) $lang = $_SESSION['lang'];
 
-</script>
-</body>
-<!-- InstanceEnd --></html>
+}else $lang= 'en';
 
+$_SESSION['lang'] = $lang;
+
+setcookie('lang' , $lang , time()+60*60*24*30);
+
+require_once "lang/lang_$lang.php"; 
+
+ob_start(); 
+
+include "home.php"; 
+
+$str=ob_get_clean();
+
+$str = str_replace("{xemtatca}" , xemtatca, $str);
+
+$str = str_replace("{thuvienanh}" , thuvienanh, $str);
+
+$str = str_replace("{trangchu}" , trangchu , $str);
+
+$str = str_replace("{lienhe}" , lienhe , $str); 
+
+$str = str_replace("{gioithieu}" , gioithieu, $str);
+
+$str = str_replace("{dichvu}" , dichvu, $str);
+
+$str = str_replace("{datphong}" , datphong , $str);
+
+$str = str_replace("{dienthoai}" , dienthoai , $str);
+
+$str = str_replace("{ngaydi}" , ngaydi , $str);
+
+$str = str_replace("{ngayden}" , ngayden , $str);
+
+
+
+$str = str_replace("{gui}" , gui , $str);
+
+$str = str_replace("{lamlai}" , lamlai , $str);
+
+$str = str_replace("{nguoilon}" , nguoilon , $str);
+
+$str = str_replace("{treem}" , treem , $str);
+
+$str = str_replace("{gioithieuvethepalmyhotel}" , gioithieuvethepalmyhotel , $str);
+
+
+$str = str_replace("{xembando}" , xembando , $str);
+
+$str = str_replace("{dc}" , dc , $str);
+
+
+
+$str = str_replace("{letter}" , letter , $str); 
+
+$str = str_replace("{tuyendung}" , tuyendung , $str); 
+
+$str = str_replace("{diachi}" , diachi , $str);
+
+$str = str_replace("{footer}" , footer , $str);  
+
+$str = str_replace("{gioithieucty}" , gioithieucty , $str);
+
+$str = str_replace("{chitiet}" , chitiet , $str);
+
+
+$str = str_replace("{tintuctonghop}" , tintuctonghop , $str); 
+
+$str = str_replace("{tinchuyennganh}" , tinchuyennganh , $str);
+
+
+
+$str = str_replace("{quatrinhsanxuat}" , quatrinhsanxuat , $str);
+
+$str = str_replace("{thongsonhom}" , thongsonhom , $str);
+
+$str = str_replace("{noidungsanxuat}" , noidungsanxuat , $str);
+
+  
+
+  $str = str_replace("{thuvienanh}" , thuvienanh , $str);
+
+  $str = str_replace("{sanphamchinh}" , sanphamchinh , $str);
+
+  $str = str_replace("{tinlienquan}" , tinlienquan , $str);
+
+  $str = str_replace("{trove}" , trove , $str);
+
+  
+
+  $str = str_replace("{xembando}" , xembando , $str);
+
+  $str = str_replace("{tencty}" , tencty , $str);
+
+  $str = str_replace("{diachilienhe}" , diachilienhe , $str);
+
+  $str = str_replace("{email}" , email , $str);
+
+  $str = str_replace("{noidung}" , noidung , $str);
+
+  $str = str_replace("{gui}" , gui , $str);
+
+  $str = str_replace("{hoten}" , hoten , $str);
+
+  echo $str;
+
+?>

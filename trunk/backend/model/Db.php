@@ -1,16 +1,22 @@
 <?php
-require_once('class.phpmailer.php'); 
+//ini_set('display_errors', '1');
+require_once('phpmailer/class.phpmailer.php'); 
 define('GUSER', 'onbusvn@gmail.com');
 define('GPWD', 'onbus123');
 class db {
 
-    private $host = "localhost";   
+    /*private $host = "localhost";   
     private $user = "onbus_onbusvn";
     private $pass = "lpt!@#lpt";
-    private $db = "onbus_onbusvn";
+    private $db = "onbus_onbusvn";*/
+
+    private $host = "localhost";   
+    private $user = "root";
+    private $pass = "root";
+    private $db = "onbus";
 
     function __construct() {
-        mysql_connect($this->host, $this->user, $this->pass) or die("Can't connect to server");
+		mysql_connect($this->host, $this->user, $this->pass) or die("Can't connect to server");
         mysql_select_db($this->db) or die("Can't connect database");
         mysql_query("SET NAMES 'utf8'") or die(mysql_error());
     }
@@ -32,7 +38,7 @@ class db {
         $str = str_replace(" ", "-", $str);
         $str = str_replace("---", "-", $str);
         $str = str_replace("--", "-", $str);
-        $str = str_replace('"', '', $str);
+        $str = str_replace('"', '', $str); 
         $str = str_replace('"', "", $str);
         $str = str_replace(":", "", $str);
         $str = str_replace("(", "", $str);
@@ -205,10 +211,12 @@ class db {
 		echo "</ul></div>";
 	}
     function smtpmailer($to, $from, $from_name, $subject, $body) { 
+		 
+		ini_set('display_errors',1);
         global $error;
         $mail = new PHPMailer(); 
         $mail->IsSMTP(); 
-        $mail->SMTPDebug = 0;
+        $mail->SMTPDebug = 1;
         $mail->SMTPAuth = true; 
         $mail->SMTPSecure = 'ssl'; 
         $mail->Host = 'smtp.gmail.com';
@@ -220,7 +228,8 @@ class db {
         $mail->Body = $body;
         $mail->CharSet="utf-8";
         $mail->IsHTML(true);
-        $mail->AddAddress($to);
+        $mail->AddAddress($to);		
+		var_dump($mail->ErrorInfo);
         if(!$mail->Send()) {
             $error = 'Gởi mail bị lỗi : '.$mail->ErrorInfo; 
             return false;
