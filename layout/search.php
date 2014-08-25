@@ -18,7 +18,7 @@ foreach ($arrTinhHaveTicket as $value) {
     <div class="wrap">
         <div class="tabs">
             <ul>
-                <li><a href="#"><span class="icon-font active">Tìm vé xe</span></a></li>
+                <li><a href="#"><span class="icon-font active">{timvexe}</span></a></li>
                 <li class="sologan_txt">Chia sẻ cùng chúng tôi hành trình của bạn.</li>
             </ul>
         </div>
@@ -27,16 +27,16 @@ foreach ($arrTinhHaveTicket as $value) {
         <ul class="menu triptype clearfix">
             <li class="oneway">
                 <input data-ticket="type-1" id="ticket-1" type="radio" name="ticket-type" value="1" checked="checked"/>
-                <label for="ticket-1">Vé 1 chiều</label>
+                <label for="ticket-1">{ve1chieu}</label>
             </li>
             <li class="return selected">
                 <input type="radio" data-ticket="type-2" id="ticket-2" name="ticket-type" value="2"  />
-                <label for="ticket-2">Vé khứ hồi</label>
+                <label for="ticket-2">{vekhuhoi}</label>
             </li>
         </ul>
         <div class="left item-search">
             <input type="hidden" name="vstart" value="" id="vstart" />
-            <label for="departPlace">Nơi đi</label>
+            <label for="departPlace">{diemkhoihanh}</label>
             <input id="departPlace" type="text" class="form-control input-txt place ui-autocomplete-input" placeholder="Chọn nơi đi" accesskey="1" tabindex="1" autocomplete="off">
             
             <div id="departPlaceSelector" class="place-selector rounded-5 clearfix" style="display:none;">
@@ -119,28 +119,28 @@ foreach ($arrTinhHaveTicket as $value) {
                                     </div>
         <div class="right item-search">
             <input type="hidden" name="vend" value="" id="vend"/>
-            <label for="departPlace">Nơi đến</label>
+            <label for="departPlace">{noiden}</label>
             <input id="destination" type="text" class="form-control input-txt place ui-autocomplete-input" placeholder="Chọn nơi đến" accesskey="1" tabindex="1" autocomplete="off">                        
             <div id="destinationSelector" class="place-selector rounded-5 clearfix" style="display:none;">
                 
                                         </div>
                                     </div>
         <div class="left item-search">
-            <label for="departPlace">Ngày đi</label>
-            <input id="departDate" name="dstart" type="text" class="input-txt date form-control" placeholder="Chọn ngày đi" accesskey="3" tabindex="3" />
+            <label for="departPlace">{ngaydi}</label>
+            <input id="departDate" name="dstart" type="text" class="input-txt date form-control" placeholder="Chọn ngày đi" accesskey="3" tabindex="3" autocomplete="off"/>
 
         </div>
         <div class="right item-search ticket-2">
-            <label for="departPlace">Ngày về</label>
-            <input id="returnDate" type="text" name="dend" class="input-txt date form-control" placeholder="Chọn ngày về" accesskey="4" tabindex="4" />
+            <label for="departPlace">{ngayve}</label>
+            <input id="returnDate" type="text" name="dend" class="input-txt date form-control" placeholder="Chọn ngày về" accesskey="4" tabindex="4" autocomplete="off"/>
 
         </div>
         <div class="btn-search-ticket">
-            <button type="button" id="btnSearch" class="btn btn-warning right btn-blue">Tìm vé xe</button>
+            <button type="button" id="btnSearch" class="btn btn-warning right btn-blue">{timvexe}</button>
             <div class="left item-search">
-                <label for="departPlace">Nhà xe</label>
+                <label for="departPlace">{nhaxe}</label>
                 <select class="form-control input-sm left" name="car" id="car">
-                    <option>Chọn nhà xe</option>
+                    <option>{chonnhaxe}</option>
                     <?php foreach ($arrNhaXe['data'] as $key => $value) {
                     ?>
                     <option value="<?php echo $value['nhaxe_id']; ?>"><?php echo $value['nhaxe_name_'.$lang];?></option>

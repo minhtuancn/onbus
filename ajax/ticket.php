@@ -1,6 +1,6 @@
 <?php 
 include "../defined.php"; 
-$lang = "vi";
+$lang = "en";
 require_once "../backend/model/Ticket.php";
 $modelTicket = new Ticket();
 
@@ -99,22 +99,24 @@ $arrTicket_end = $modelTicket->getListTicketFE($car,$vstart,$vend,$dstart,$servi
                     <span>Good: 8.3</span>
                     <span class="num-rating">(105 rating)</span>
                 </div>
-                <div class="rating_nhaxe">
-                    <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
-                    <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
-                    <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
-                    <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
-                    <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
+                <div class="rate sprite-rating_s rating_s">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
             </div>
             <div class="left a-right">
                 <ul class="list-logo-xe">
-                    <li><a href="#"><img src="<?php echo $arrDetailNhaxe['image_url']; ?>" style="height:30px" alt="<?php echo $arrDetailNhaxe["nhaxe_name_".$lang]; ?>" title="<?php echo $arrDetailNhaxe["nhaxe_name_".$lang]; ?>"/></a></li>                                            
+                    <li><a href="#"><img src="<?php echo $arrDetailNhaxe['image_url']; ?>" style="height:30px" alt="<?php echo $arrDetailNhaxe["nhaxe_name_".$lang]; ?>" title="<?php echo $arrDetailNhaxe["nhaxe_name_".$lang]; ?>"/></a>
+                        <span><?php echo $arrDetailNhaxe['nhaxe_name_'.$lang]; ?></span>
+                    </li>                                            
                 </ul>
                 <div class="clear"></div>
                 <p><b>DEPART ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_start']); ?></p>
                 <p><b>ARRIVE ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_end']); ?></p>
-                <a href="#" class="right show_map" data-url-map="https://dl.dropboxusercontent.com/u/43486987/Hoang/HTML/<?php echo STATIC_URL; ?>/images/map.jpg" data-toggle="modal" data-target="">Xem lộ trình</a>
+                <a href="#" class="right show_map" data-url-map="https://dl.dropboxusercontent.com/u/43486987/Hoang/HTML/<?php echo STATIC_URL; ?>/images/map.jpg" data-toggle="modal" data-target="">{xemlotrinh}</a>
                 <div class="type-ticket" id="time_<?php echo $ticket['ticket_id']; ?>">
                 <p>Select time:</p>
                 <ul>

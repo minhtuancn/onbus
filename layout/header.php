@@ -26,10 +26,10 @@
             <div class="left"><a href="index.php" class="logo-header"><img src="<?php echo STATIC_URL; ?>/images/logo2_final.png" /></a></div>
             <div class="menu-header">
                 <ul class="nav nav-pills">
-                  <li class="active hv-1"><a href="index.php">Trang chủ<span></span></a></li>
-                  <li class="hv-4"><a href="#">My ticket<span></span></a></li>
-                  <li class="hv-3"><a href="#">Tin tức và khuyến mãi<span></span></a></li>
-                  <li class="hv-4"><a href="#">Thông tin nhà xe<span></span></a></li>
+                  <li class="active hv-1"><a href="index.php">{trangchu}<span></span></a></li>
+                  <li class="hv-4"><a href="#">{vecuaban}<span></span></a></li>
+                  <li class="hv-3"><a href="#">{tintuc}<span></span></a></li>
+                  <li class="hv-4"><a href="#">{thongtinnhaxe}<span></span></a></li>
                   
                   <!--<li class="cart-icon">
                     <a href="#"><i>&nbsp;</i><b>0</b>Vé</a>

@@ -1,5 +1,5 @@
 <?php 
-$lang = "vi";
+$lang = "en";
 require_once "../backend/model/Nhaxe.php";
 $model = new Nhaxe();
 $vend = (int) $_POST['vend'];
