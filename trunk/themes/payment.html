@@ -170,31 +170,22 @@
                     	<h3>Select payment and Billing information</h3>
                     </div>
                     <div class="content_payment">
-                      <div class="left w_385">
-                          <div class="radio">
+                    	<div class="left w_385">
+                        	<div class="radio">
                               <label class="checkbox-inline">
-                                <input type="radio" name="payment_card" class="show_box_height" data-id="orther_payment_card" value="option1" id="way_1">
-                                  PAY LATER - DOOR TO DOOR
+                                <input type="radio" name="payment_card" class="show_box_height" data-id="orther_payment_card" value="option1" checked="checked">
+                                	PAY LATER - DOOR TO DOOR
                               </label>
                             </div>
                             <div class="radio">
                               <label class="checkbox-inline">
-                                <input type="radio" name="payment_card" class="show_box_height" data-id="orther_payment_card" value="option1" id="way_2">
+                                <input type="radio" name="payment_card" class="show_box_height" data-id="orther_payment_card" value="option1">
                                 INTERNATIONAL PAYMENT CARD
                               </label>
                             </div>
-                            <div class="radio">
-                              <label class="checkbox-inline">
-                                <input type="radio" name="payment_card" class="show_box_height" data-id="orther_payment_card" value="option1" id="way_3">
-                                DOMESTIC ATM
-                              </label>
-                            </div>
-                            <div class="sucu_payment">
-                                <img src="<?php echo STATIC_URL; ?>/images/bg_payment.png">
-                            </div>
                         </div>
-                        <div class="right w_440 " id="pay_later">
-                              <span class="txt_gray">Thanh toán tại nhà với chi phí đính kèm 1$</span>
+                        <div class="right w_440 ">
+	                            <span class="txt_gray">Thanh toán tại nhà với chi phí đính kèm 1$</span>
                                 <fieldset class="field_payment_card">
                               <div class="form-group">
                                 <label class="col-sm-2 control-label">*Address</label>
@@ -205,8 +196,8 @@
                               <div class="form-group frm_inline_box">
                                 <label for="" class="col-sm-2 control-label">*Contact Phone</label>
                                 <div class="col-sm-10">
-                                  <select class="form-control">
-                                      <option>Vietnam (+84)</option>
+                                	<select class="form-control">
+                                    	<option>Vietnam (+84)</option>
                                     </select>
                                     <input type="text" class="form-control">
                                 </div>
@@ -215,7 +206,72 @@
                         </div>
                         <div class="clear"></div>
                     </div>
-                </div>                
+                </div>
+                <div id="orther_payment_card" class="box_payment payment_money hide_check">
+                	<div class="title_payment">
+                    	<h3>Select payment and Billing information</h3>
+                    </div>
+                    <div class="content_payment">
+                    	<div class="left w_385">
+                        	<div class="radio">
+                              <label class="checkbox-inline">
+                                <input type="radio" value="option1" checked>
+                                	PAY LATER - DOOR TO DOOR
+                              </label>
+                            </div>
+                            <div class="radio">
+                              <label class="checkbox-inline">
+                                <input type="radio" value="option1">
+                                INTERNATIONAL PAYMENT CARD
+                              </label>
+                            </div>
+                            <div class="sucu_payment">
+                            	<img src="images/bg_payment.png" />
+                            </div>
+                        </div>
+                        <div class="right w_440">
+                              <div class="form-group">
+                                <label class="col-sm-2 control-label">*Name</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">*Credit Card Type</label>
+                                <div class="col-sm-5">
+                                	<select class="form-control">
+                                    	<option selected="selected">---</option>
+                                    </select>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label class="col-sm-2 control-label">*Credit Card Number:</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="">
+                                </div>
+                              </div>
+                              <div class="form-group frm_inline_box">
+                                <label for="" class="col-sm-2 control-label">*Credit Card Type</label>
+                                <div class="col-sm-10">
+                                	<select class="form-control">
+                                    	<option selected="selected">Select Month</option>
+                                    </select>
+                                    <select class="form-control">
+                                    	<option selected="selected">Select Year</option>
+                                    </select>
+                                </div>
+                              </div>
+                              <div class="form-group frm_inline_box">
+                                <label class="col-sm-2 control-label">*CV Code:</label>
+                                <div class="col-sm-10 fild_cvcode">
+                                  <input type="text" class="form-control" id="">
+                                  <img class="left" src="images/option_payment.png" />
+                                </div>
+                              </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
                 <div class="box_term">
                 	<h1>Terms & Conditions</h1>
                     <p>Please review our full terms and conditions available through the link <a href="#">Terms of User</a></p>
@@ -350,7 +406,7 @@
 <div class="left column w1-4">
 		<div class="medBox">
 			<a href="/"><img src="images/logo2_final.png" /></a>
-            <div class="left"><h4 class="smallBoxHeader">Đặt vé qua vipbus</h4>
+            <div class="left"><h4 class="smallBoxHeader">Đặt vé qua Onbus</h4>
 <p>Chia sẻ cùng chúng tôi hành trình của bạn, chúng tôi sẽ giúp bạn có được giá vé và chất lượng dịch vụ tốt nhất từ những thương hiệu nhà xe uy tín hàng đầu. Đảm bảo cho bạn sự tiện lợi, an toàn và tiết kiệm.</p>
 			<ul>
             	<li><a href="#"><span class="helper"></span><img src="images/comodo-secure-padlock.png" /></a></li>

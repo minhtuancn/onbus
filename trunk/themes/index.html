@@ -306,7 +306,7 @@
                         <div class="left item-search">
                             <label for="departPlace">Nhà xe</label>
                             <select class="form-control input-sm left">
-                            	<option selected="selected">Hoàng Long</option>
+                            	<option selected="selected">Tất cả nhà xe</option>
                                 <option>Vietbus</option>
                                 <option>Danatranco</option>
                                 <option>Vietbus</option>
@@ -373,8 +373,8 @@
         </div>
         <div class="subscriber block-home">
             <div class="message">
-                <div class="title">Thông tin mới nhất từ VIPBUS</div>
-                <div class="subtitle">Nhận thông tin du lịch, khuyến mãi hấp dẫn mỗi ngày từ vipbus.vn</div>
+                <div class="title">Thông tin mới nhất từ Onbus</div>
+                <div class="subtitle">Nhận thông tin du lịch, khuyến mãi hấp dẫn mỗi ngày từ onbus.vn</div>
             </div>
             <div id="newsletter-signup-form" class="subscribe-form">
                 <div class="inputs">
@@ -391,7 +391,7 @@
 <div class="left column w1-4">
 		<div class="medBox">
 			<a href="/"><img src="images/logo2_final.png" /></a>
-            <div class="left"><h4 class="smallBoxHeader">Đặt vé qua vipbus</h4>
+            <div class="left"><h4 class="smallBoxHeader">Đặt vé qua Onbus</h4>
 <p>Chia sẻ cùng chúng tôi hành trình của bạn, chúng tôi sẽ giúp bạn có được giá vé và chất lượng dịch vụ tốt nhất từ những thương hiệu nhà xe uy tín hàng đầu. Đảm bảo cho bạn sự tiện lợi, an toàn và tiết kiệm.</p>
 			<ul>
             	<li><a href="#"><span class="helper"></span><img src="images/comodo-secure-padlock.png" /></a></li>
@@ -472,7 +472,8 @@
 			maxSlides: 1,
 			slideMargin: 0,
 			pager: false,
-			auto: false
+			auto: true,
+			pause: 5000
 		  });
 		  $(function () {
             initSearchTicketWidget();
