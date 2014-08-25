@@ -139,6 +139,12 @@ $(document).ready(function() {
         },1000);
     });
 
+    if($('.col_comment_review').length > 0)
+        $('.col_comment_review').slimScroll({
+            alwaysVisible: true,
+            railVisible: true,
+            height: '500px'
+        });
 
     var sliderBox = '';
     $('.tab_profile .nav-tabs>li>a').click(function(e){
@@ -185,12 +191,13 @@ $(document).ready(function() {
         $(this).parents('.line').toggleClass('active').toggleClass('unactive');
     });
 
-    $('.type-ticket ul li a').on('click',function(){
+    $('.type-ticket ul li a').on('click',function(e){
+        e.preventDefault();
         var _this = $(this);
-        _this.parents('ul').find('li a').removeClass('active');
         if(_this.hasClass('active')){
             _this.removeClass('active');
         }else{
+            $('.type-ticket ul li a').removeClass('active');
             _this.addClass('active');
         }
         return false;

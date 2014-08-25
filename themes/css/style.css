@@ -1527,16 +1527,16 @@ padding:0
 	top: 2px;
 	width: 20px;
 	height: 20px;
-	background: url(../images/common-icons.png) no-repeat
-}
+	/* background: url(../images/common-icons.png) no-repeat
+ */}
 .ui-datepicker .ui-datepicker-prev-hover, .ui-datepicker .ui-datepicker-next-hover {
 	top: 1px
 }
 .ui-datepicker .ui-datepicker-prev {
 	left: 4px;
 	top: 5px;
-	background-position: -123px 0
-}
+	/* background-position: -123px 0
+ */}
 .ui-datepicker .ui-datepicker-next {
 	right: 4px;
 	top: 5px;
@@ -1713,7 +1713,7 @@ body .ui-tooltip {
 	border-width: 2px
 }
 .ui-widget {
-	font-family: Arial, sans-serif;
+	font-family: Calibri, Arial !important;
 	font-size: 1em
 }
 .ui-widget .ui-widget {
@@ -2438,13 +2438,12 @@ ul.triptype li {
 	float: left
 }
 ul.triptype li label {
-	color: #c8bedf;
+	color: #fff;
 	display: inline-block;
 	cursor: pointer
 }
 ul.triptype li label:hover {
-	color: #fff
-}
+	color: #fff}
 ul.triptype li.selected label {
 	font-weight: 700;
 	color: #fff
@@ -2462,10 +2461,12 @@ ul.triptype li input:before {
 	height: 14px;
 	-webkit-border-radius: 30px;
 	border-radius: 30px;
-	background-color: #832574;
+	background-color: #8c3778;
 	border: 1px solid #b6a0e8;
 	margin-right: 5px;
-	transition: background-color 500ms
+	transition: background-color 500ms;
+	border-color: #fff;
+	border-width: 3px;
 }
 ul.triptype li.selected input:before {
 	border-color: #fff;
@@ -2484,6 +2485,8 @@ ul.triptype li.selected input:before {
 	height: 35px;
 	font-size: .9em;
 	width: 100%
+;
+	font-weight: 700;
 }
 .btn-search-ticket .item-search {
 	margin-right: 0;
@@ -2499,6 +2502,7 @@ ul.triptype li.selected input:before {
 	width: 100%
 ;
 	font-weight: bold;
+	color: #333;
 }
 .place-selector ul li a:hover {
 	background: #575757;
@@ -2561,7 +2565,7 @@ ul.triptype li.selected input:before {
 .subscriber .message .title {
 	color: #ffad5b;
 	font-size: 20px;
-	font-weight: 300;
+	font-weight: 700;
 	line-height: 24px
 }
 .subscriber .subscribe-form {
@@ -5671,7 +5675,7 @@ font-size: .74375rem;
 .sologan_txt {
 	color: #fff;
 	height: 35px;
-	font: 500 1em/35px 'arial';
+	font: 700 1em/35px 'arial';
 	padding-left: 25px;
 }
 .place-selector .region-col.last ul {
@@ -6360,12 +6364,12 @@ margin-bottom:5px;
 }
 .list-logo-xe li span{
 	padding:0px 10px;
-	font-size:1em;
+	font-size: 1.2em;
 	font-weight:bold;
 	float:right;
-	margin-top:2px;
+	margin-top: 0px;
 	color: #D11010;
-	text-decoration: underline;
+	/* text-decoration: underline; */
 }
 .list-ticket-search .items .infor-tuyen-search .b-infor .rating_nhaxe{
 	float:left;
@@ -6375,4 +6379,329 @@ margin-bottom:5px;
 }
 .tabs ul li a span:before{
 	top:8px;
+}
+.col_review{
+	width: 47%;
+	padding-right: 3%;
+	border-right: 1px solid #F0F0F0;
+}
+.col_review h3{
+	color: #BE184C;
+	font-size: 2em;
+	font-weight: normal;
+	border-bottom: 1px solid #E3E3E3;
+	padding-bottom:10px;
+}
+.trip_type,
+.col_review .composite {
+	border-right: 1px solid #F0F0F0;
+	float: left;
+	padding: 9px 5px 16px 5px;
+	width: 241px;
+}
+.colTitle{
+	font-size: 1em;
+	margin: 0 0 8px;
+	line-height: 100%;
+}
+.col_review .barChart {
+	/* padding-top: 5px; */
+}
+.barChart .row {
+	margin: 0 0 9px;
+}
+.rdoSet {
+	float: left;
+	width: 60px;
+}
+.barChart li{
+	float:left;
+	width:100%;
+	line-height:100%;
+	margin-bottom:10px;
+}
+.rdoSet label{
+	font-weight:500;
+	font-size:.88em;
+	color: #069;
+}
+.barChart li .line{
+	background: #E9E9E9;
+	border: 0;
+	float: left;
+	font-size: 6px;
+	height: 12px;
+	margin: 1px 4px 0 0;
+	width: 135px;
+}
+.barChart li .compositeCount{
+	font-size:.8em;
+}
+.trip_type{
+	float:left;
+	border-right:none;
+	padding-left: 15px;
+}
+.barChart .fill {
+	background: #9f0234;
+	height: 12px;
+}
+.trip_type .segment {
+	border-bottom: 1px solid #F0F0F0;
+	height: 30px;
+	line-height: 30px;
+	overflow: hidden;
+	padding: 0 10px;
+}
+.sprite-tt-family-active-refresh {
+	background: url('images/bg_common.png') no-repeat 0px -77px;
+}
+.taLnk {
+	color: #069;
+	cursor: pointer;
+}
+.trip_type .segment .filter_selection {
+	float: left;
+	padding: 0 5px 0 45px;
+}
+ .trip_type .segment .value {
+	color: #656565;
+	float: right;
+	margin-left: 5px;
+}
+.filter_connection_wrapper{
+	float:left;
+	width:100%;
+	font-size:.9em;
+}
+.sprite-tt-couples-active-refresh {
+	background: url('images/bg_common.png') no-repeat 0px -35px;
+}
+.sprite-tt-solo-active-refresh {
+	background: url('images/bg_common.png') no-repeat 0px -119px;
+}
+.sprite-tt-business-active-refresh {
+	background: url('images/bg_common.png') no-repeat 0px 6px;
+}
+.roomTip .ugc {
+	color: #666;
+	font-size: 1em;
+}
+.roomTip{
+	border-bottom: 1px solid #E3E3E3;
+	padding-bottom:10px;
+	margin-bottom:15px;
+}
+#SUMMARYBOX .colTitle{
+	font-size:1.2em;
+}
+.subrating ul{
+	float:left;
+	padding-left:20px;
+}
+.subrating ul li{
+	float:left;
+	width:100%;
+	line-height:100%;
+	margin-bottom:5px;
+}
+.subrating li .name {
+	float: left;
+	width: 100px;
+	font-size:.9em;
+}
+.subrating li .sprite-rating_s{
+	float:left;
+	width:150px;
+}
+.sprite-rating_s span{
+	display:inline-block;
+	height:18px;
+	width:18px;
+	background: url('images/icon_rating.png') no-repeat top left;
+	margin-right: 5px;
+}
+.col_comment_review{
+	width: 53%;
+	padding-left: 2%;
+	padding-right: 12px;
+}
+.col_comment_review .avatar {
+	width: 74px;
+	height: 74px;
+	border-radius: 100%;
+	-webkit-border-radius: 100%;
+	-moz-border-radius: 100%;
+	-khtml-border-radius: 100%;
+	-ms-border-radius: 100%;
+}
+.username.mo {
+	height: 100%;
+	overflow: hidden;
+	font-size: 1em;
+	font-weight:bold;
+}
+.col_comment_review .location {
+	word-wrap: break-word;
+	color: #2C2C2C;
+	font-size: .9em;
+}
+.memberBadging .reviewerTitle {
+	font-weight: bold;
+	margin: 5px 0 5px;
+	line-height:100%;
+}
+.totalReviewBadge ul li{
+	line-height:100%;
+	float:left;
+	width:100%;
+	margin-bottom:5px;
+}
+.sprite-badge_srcontributor {
+	background-image: url('images/member_badges_pack-v42ad8d467cf538e7eba5233b101d3849.png');
+	background-position: left -72px;
+	width: 25px;
+	height: 24px;
+	background-repeat: no-repeat;
+	float:left;
+}
+.memberBadging .badgeText {
+	float:left;
+	margin-left:10px;
+	margin-top:5px;
+	font-size:.9em;
+}
+.sprite-badge_hotels_2nd {
+	background-image: url('images/member_badges_pack-v42ad8d467cf538e7eba5233b101d3849.png');
+	background-position: left -144px;
+	width: 25px;
+	height: 24px;
+	background-repeat: no-repeat;
+	float:left;
+}
+.sprite-badge_helpful {
+	background-image: url('images/member_badges_pack-v42ad8d467cf538e7eba5233b101d3849.png');
+	background-position: left -336px;
+	width: 25px;
+	height: 24px;
+	background-repeat: no-repeat;
+	float:left;
+}
+.col1of2 {
+	width: 140px;
+	float: left;
+}
+.col2of2 {
+	height: 100%;
+	overflow: visible;
+	border: 4px solid #F1F1F1;
+	border-radius: 4px;
+	margin-left: 155px;
+}
+.col2of2 .innerBubble {
+	border: 1px solid #E3E3E3;
+	color: #4A4A4A;
+	padding: 20px;
+	position: relative;
+}
+.col2of2 .innerBubble:before,
+.col2of2 .innerBubble:after {
+	border-style: solid;
+	content: "";
+	display: block;
+	position: absolute;
+	width: 0;
+}
+.col2of2 .innerBubble:before {
+	border-color: transparent #E3E3E3;
+	border-color: rgba(255,255,255,0) #E3E3E3;
+	border-width: 13px 15px 13px 0;
+	left: -15px;
+	top: 25px;
+}
+.col2of2 .innerBubble:after {
+	border-color: transparent #FFF;
+	border-color: rgba(255,255,255,0) #FFF;
+	border-width: 13px 15px 13px 0;
+	left: -14px;
+	top: 25px;
+}
+.col2of2 .innerBubble .wrap .quote a{
+	display:block;
+	line-height:100%;
+	font-size:1.2em;
+	margin-bottom:5px;
+}
+.reviewItemInline{
+	width:100%;
+	text-align:left;
+	margin-bottom:15px;
+	float:left;
+	width:100%;
+}
+.reviewItemInline span{
+	color:#333;
+	font-size:.8em;
+	font-weight:500;	
+	float:left;
+	margin-top:2px;
+}
+.reviewItemInline .sprite-rating_s{
+	float:left;
+	margin-right:10px;
+}
+.reviewItemInline .sprite-rating_s span{
+	margin-right:0px;
+	margin-top:0px;
+}
+.items_comment_review{
+	margin-bottom:20px;
+}
+.ui-datepicker .ui-datepicker-next,
+.ui-datepicker .ui-datepicker-prev{
+	display: inline-block;
+	font-family: 'Glyphicons Halflings';
+	font-style: normal;
+	font-weight: 400;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	color:#fff;
+	margin-top:4px;
+}
+.ui-datepicker .ui-datepicker-prev:before {
+	content: "\e079";
+}
+.ui-datepicker .ui-datepicker-next:before {
+	content: "\e080";
+}
+.ui-datepicker .ui-datepicker-next{
+	margin-top:2px;
+}
+.ui-datepicker .ui-datepicker-next:hover,
+.ui-datepicker .ui-datepicker-prev:hover{
+	border:none;
+	cursor:pointer;
+	opacity:.8;
+}
+.ui-datepicker .ui-datepicker-next:hover{
+	right:4px;
+	top:5px;
+}
+.ui-datepicker .ui-datepicker-prev:hover{
+	left:4px;
+	top:5px;
+}
+.list-ticket-search .items .infor-tuyen-search .img-logo .sprite-rating_s{
+	float:right;
+	line-heigth:100%;
+	width:100%;
+	margin-top:5px;
+}
+.list-ticket-search .items .infor-tuyen-search .img-logo .sprite-rating_s span{
+	float:right;
+	margin-right:2px;
+	height: 13px;
+	width: 13px;
+	background: url('images/icon_rating_small.png') no-repeat top left;
 }
