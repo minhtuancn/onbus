@@ -1,5 +1,5 @@
 <div class="dd-hd right box-common-border">
-    <h1>TOP điểm đến hấp dẫn nhất</h1>
+    <h1>{topdiemden}</h1>
     <ul>
         <?php foreach ($arrDiemDenHot['data'] as $key => $value) {
             ?>

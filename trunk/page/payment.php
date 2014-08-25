@@ -209,7 +209,7 @@ if(!empty($_SESSION['bookticket'])){
                             <h2>Ho Chi Minh - Vung Tau</h2>
                             <div class="nhaxe"><i class="icon_cart"></i> <?php echo $modelNhaxe->getNhaxeNameByID($value['nhaxe_id']); ?></div>
                             <div class="time_move">
-                                <div class="left">Số lượng vé: <?php echo $arrAmount[$value['ticket_id']]; ?></div>
+                                <div class="left">{soluongve}: <?php echo $arrAmount[$value['ticket_id']]; ?></div>
                                 <span>|</span>
                                 <div class="right"><i class="icon_time"></i> <?php echo $value['duration']; ?></div>
                             </div>
@@ -218,7 +218,7 @@ if(!empty($_SESSION['bookticket'])){
                         <div title="" data-toggle="tooltip" class="left icon_start" data-original-title="Khởi hành"></div>
                         <div class="left time_diadiem">
                             <h4><?php echo $modelTime->getTimeByID($arrTime[$value['ticket_id']]);?></h4>
-                            <p><span><?php echo $modelPlace->getPlaceNameByID($value['place_id_start']); ?></span><a href="#" class="right">xem thông tin</a></p>
+                            <p><span><?php echo $modelPlace->getPlaceNameByID($value['place_id_start']); ?></span><a href="#" class="right">{xemthongtin}</a></p>
                         </div>
                         <div class="clear"></div>
                         <div title="" data-toggle="tooltip" class="left icon_end" data-original-title="Điểm đến"></div>
@@ -241,7 +241,7 @@ if(!empty($_SESSION['bookticket'])){
                             $h_end = str_pad($h_end, 2, "0", STR_PAD_LEFT);                             
                             ?>
                             <h4><?php echo $h_end?>:<?php echo $m_end; ?></h4>
-                            <p><span><?php echo $modelPlace->getPlaceNameByID($value['place_id_end']); ?></span><a href="#" class="right">xem thông tin</a></p>
+                            <p><span><?php echo $modelPlace->getPlaceNameByID($value['place_id_end']); ?></span><a href="#" class="right">{xemthongtin}</a></p>
                         </div>
                         <div class="line_center"></div>
                         <?php } // foreach

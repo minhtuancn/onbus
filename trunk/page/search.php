@@ -85,15 +85,15 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
             <div class="process_bar nav">
                 <ul>
                     <li class="finish_process active">
-                        <a class="btn-search-bus ic-search " id="select-trip"><span class="glyphicon glyphicon-ok form-control-feedback"></span>Tìm kiếm</a>
+                        <a class="btn-search-bus ic-search " id="select-trip"><span class="glyphicon glyphicon-ok form-control-feedback"></span>{timkiem}</a>
                         <span class="line_process"></span>
                     </li>
                     <li class="finish_process active">
-                        <a class="btn-seat ic-seat" id="select-seat"><span class="glyphicon glyphicon-ok form-control-feedback"></span>Kết quả</a>
+                        <a class="btn-seat ic-seat" id="select-seat"><span class="glyphicon glyphicon-ok form-control-feedback"></span>{ketqua}</a>
                         <span class="line_process"></span>
                     </li>
                     <li class="end">
-                        <a class="btn-payment ic-cart"><span class="glyphicon glyphicon-ok form-control-feedback"></span>Thanh toán</a>
+                        <a class="btn-payment ic-cart"><span class="glyphicon glyphicon-ok form-control-feedback"></span>{thanhtoan}</a>
                     </li>
                 </ul>
                 <div class="dotted-line"></div>
@@ -105,14 +105,14 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                     <div class="filter tien-ich">
                         <div class="tabs">
                             <ul>
-                                <li><a href="#"><span class="icon-font active">Tìm vé xe</span></a></li>
+                                <li><a href="#"><span class="icon-font active">{timvexe}</span></a></li>
                             </ul>
                         </div>                        
                         <form class="frm-search-vx">
                             <div class=" item-search">
                                  <input type="hidden" name="vstart_search" id="vstart_search" value="<?php echo $vstart; ?>" />
                                 <input type="hidden" name="vend_search" id="vend_search" value="<?php echo $vend; ?>" />
-                                <label for="departPlace2">Điểm đi</label>
+                                <label for="departPlace2">{diemkhoihanh}</label>
                                 <input id="departPlace2" type="text" class="form-control input-txt place ui-autocomplete-input" placeholder="Chọn điểm đi" accesskey="1" tabindex="1" autocomplete="off" value="<?php echo $arrListTinhKey[$vstart]['tinh_name_'.$lang];?>">
                                 <div id="departPlaceSelector2" class="place-selector rounded-5 clearfix" style="display: none;">
                                     <div class="inner rel-pos">
@@ -134,7 +134,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                 </div>
                             </div>
                             <div class=" item-search">
-                                <label for="destination2">Điểm đến</label>
+                                <label for="destination2">{noiden}</label>
                                 <input id="destination2" type="text" class="form-control input-txt place ui-autocomplete-input" placeholder="Chọn điểm đến" accesskey="1" tabindex="1" autocomplete="off" value="<?php echo $arrListTinhKey[$vend]['tinh_name_'.$lang];?>">
                                 <div id="destinationSelector2" class="place-selector rounded-5 clearfix" style="display: none;">
                                     <div class="inner rel-pos">
@@ -147,13 +147,13 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                 </div>
                             </div>
                             <div class=" item-search">
-                                <label for="start_date">Ngày đi</label>
+                                <label for="start_date">{ngaydi}</label>
                                 <input id="departDate" type="text" class="input-txt form-control" placeholder="Chọn ngày đi" accesskey="3" tabindex="3" value="<?php echo date('d-m-Y',$dstart); ?>">
         
                             </div>
                             <?php if($type==2){ ?>
                             <div class=" item-search">
-                                <label for="start_date">Ngày về</label>
+                                <label for="start_date">{ngayve}</label>
                                 <input id="returnDate" type="text" class="input-txt form-control" placeholder="Chọn ngày về" accesskey="4" tabindex="4" value="<?php echo date('d-m-Y',$dend); ?>">        
                             </div>
                             <?php } ?>
@@ -173,7 +173,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                     
                     <div class="filter tien-ich">
                         <div class="header">
-                            <h2>Tiện ích</h2>
+                            <h2>{tienich}</h2>
                         </div>
                         <div class="radio">
                         <?php 
@@ -184,7 +184,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                             <div class="control">
                                 <label>
                                     <input type="checkbox" <?php if(is_array($arrServiceSearch) && in_array($ser['service_id'],$arrServiceSearch)) echo "checked"; ?> value="<?php echo $ser['service_id']?>" name="service[]">
-                                    <?php echo $ser['service_name_vi']?>
+                                    <?php echo $ser['service_name_'.$lang];?>
                                 </label>                                
                             </div>                                                        
                          </div>
@@ -194,7 +194,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                     </div>
                     <div class="filter hang-xe">
                         <div class="header">
-                            <h2>Các Hãng Xe</h2>                            
+                            <h2>{cachangxe}</h2>                            
                         </div>
                         <div class="radio">
                         <?php if(!empty($arrNhaXeID)){ 
@@ -225,15 +225,15 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                         </div>
                         <div class="infor-ticket-tn">
                             <div class="price-ticket right">
-                                <label for="departPlace">Sort by:</label>
+                                <label for="departPlace">{sapxep}:</label>
                                 <select class="form-control input-sm left">
                                     <option selected="selected">rating ̣low to high</option>
                                     <option>rating ̣low to high</option>
                                 </select>
                             </div>
                             <div class="left txt-vtn">
-                                <p>Length:<span><?php echo $routeDetail['distance'];?>km</span></p>
-                                <p>Duration: <span><?php echo $routeDetail['duration'];?></span></p>
+                                <p>{chieudai}:<span><?php echo $routeDetail['distance'];?>km</span></p>
+                                <p>{thoigian}: <span><?php echo $routeDetail['duration'];?></span></p>
                             </div>
                             
                         </div>
@@ -268,22 +268,24 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                             <span>Good: 8.3</span>
                                             <span class="num-rating">(105 rating)</span>
                                         </div>
-                                        <div class="rating_nhaxe">
-                                            <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
-                                            <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
-                                            <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
-                                            <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
-                                            <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
+                                        <div class="rate sprite-rating_s rating_s">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
                                         </div>
                                     </div>
                                     <div class="left a-right">
                                         <ul class="list-logo-xe">
-                                            <li><a href="#"><img src="<?php echo $arrDetailNhaxe['image_url']; ?>" style="height:30px" alt="<?php echo $arrDetailNhaxe["nhaxe_name_".$lang]; ?>" title="<?php echo $arrDetailNhaxe["nhaxe_name_".$lang]; ?>"/></a></li>                                            
+                                            <li><a href="#"><img src="<?php echo $arrDetailNhaxe['image_url']; ?>" style="height:30px" alt="<?php echo $arrDetailNhaxe["nhaxe_name_".$lang]; ?>" title="<?php echo $arrDetailNhaxe["nhaxe_name_".$lang]; ?>"/></a>
+                                                <span><?php echo $arrDetailNhaxe['nhaxe_name_'.$lang]; ?></span>
+                                            </li>                                            
                                         </ul>
                                         <div class="clear"></div>
                                         <p><b>DEPART ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_start']); ?></p>
                                         <p><b>ARRIVE ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_end']); ?></p>
-                                        <a href="#" class="right show_map" data-url-map="https://dl.dropboxusercontent.com/u/43486987/Hoang/HTML/<?php echo STATIC_URL; ?>/images/map.jpg" data-toggle="modal" data-target="">Xem lộ trình</a>
+                                        <a href="#" class="right show_map" data-url-map="https://dl.dropboxusercontent.com/u/43486987/Hoang/HTML/<?php echo STATIC_URL; ?>/images/map.jpg" data-toggle="modal" data-target="">{xemlotrinh}</a>
                                         <div class="type-ticket" id="time_<?php echo $ticket['ticket_id']; ?>">
                                         <p>Select time:</p>
                                         <ul>
@@ -346,17 +348,19 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                             <span>Good: 8.3</span>
                                             <span class="num-rating">(105 rating)</span>
                                         </div>
-                                        <div class="rating_nhaxe">
-                                            <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
-                                            <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
-                                            <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
-                                            <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
-                                            <span><img src="<?php echo STATIC_URL; ?>/images/BigStar.png" alt="star"></span>
+                                        <div class="rate sprite-rating_s rating_s">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
                                         </div>
                                     </div>
                                     <div class="left a-right">
                                         <ul class="list-logo-xe">
-                                            <li><a href="#"><img src="<?php echo $arrDetailNhaxe['image_url']; ?>" style="height:30px" alt="<?php echo $arrDetailNhaxe["nhaxe_name_".$lang]; ?>" title="<?php echo $arrDetailNhaxe["nhaxe_name_".$lang]; ?>"/></a></li>                                            
+                                            <li><a href="#"><img src="<?php echo $arrDetailNhaxe['image_url']; ?>" style="height:30px" alt="<?php echo $arrDetailNhaxe["nhaxe_name_".$lang]; ?>" title="<?php echo $arrDetailNhaxe["nhaxe_name_".$lang]; ?>"/></a>
+                                                <span><?php echo $arrDetailNhaxe['nhaxe_name_'.$lang]; ?></span>
+                                            </li>                                            
                                         </ul>
                                         <div class="clear"></div>
                                         <p><b>DEPART ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_start']); ?></p>
@@ -428,8 +432,8 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                 <h1>hồ chí minh - vũng tàu</h1>
                 <div class="clear"></div>
             </div>
-            <div class="abc-dkh"><b>Điểm khởi hành:</b>Chợ Tân Sơn Nhất (Gò Vấp)<a href="#" class="right">(Xem bản đồ)</a></div>
-            <div class="abc-dkh"><b>Điểm đến:</b>Chợ Tân Sơn Nhất (Gò Vấp)<a href="#" class="right">(Xem bản đồ)</a></div>
+            <div class="abc-dkh"><b>{diemkhoihanh}:</b>Chợ Tân Sơn Nhất (Gò Vấp)<a href="#" class="right">(Xem bản đồ)</a></div>
+            <div class="abc-dkh"><b>{noiden}:</b>Chợ Tân Sơn Nhất (Gò Vấp)<a href="#" class="right">(Xem bản đồ)</a></div>
             <div class="type-ticket">
                 <p>Chọn thời gian khởi hành trước khi mua vé*</p>
                 <ul>

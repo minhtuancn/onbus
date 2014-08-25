@@ -1,5 +1,5 @@
 <?php 
-$lang = "vi";
+$lang = "en";
 require_once "../backend/model/Route.php";
 $model = new Route();
 $type = (int) $_POST['type'];

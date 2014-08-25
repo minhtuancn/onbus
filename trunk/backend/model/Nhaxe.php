@@ -19,11 +19,11 @@ class Nhaxe extends Db {
         return $row;
     }
 
-    function getNhaxeNameByID($id) {
-        $sql = "SELECT nhaxe_name_vi FROM nhaxe WHERE nhaxe_id = $id";
+    function getNhaxeNameByID($id,$lang="vi") {
+        $sql = "SELECT * FROM nhaxe WHERE nhaxe_id = $id";
         $rs = mysql_query($sql) or die(mysql_error());
         $row = mysql_fetch_assoc($rs);
-        return $row['nhaxe_name_vi'];
+        return $row['nhaxe_name_'.$lang];
     }
    
     function getListNhaxeHaveTicket($vstart,$vend,$dstart){
