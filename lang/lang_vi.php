@@ -42,4 +42,8 @@ define("xemthongtin", "Xem thông tin");
 define("timkiem", "Tìm kiếm");
 define("ketqua", "Kết quả");
 define("thanhtoan", "Thanh toán");
+define("chitiet", "Chi tiết");
+define("chonnoidi", "Chọn nơi đi");
+define("chonnoiden", "Chọn nơi đến");
+define("chiasehanhtrinhcuaban","Chia sẻ cùng chúng tôi hành trình của bạn.");
 ?>

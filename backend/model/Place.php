@@ -23,15 +23,15 @@ class Place extends Db {
     }
 
 
-    function getAddressByID($id) {
+    function getAddressByID($id,$lang="vi") {
 
-        $sql = "SELECT address_vi FROM place WHERE place_id = $id";
+        $sql = "SELECT address_vi,address_en FROM place WHERE place_id = $id";
 
         $rs = mysql_query($sql) or die(mysql_error());
 
         $row = mysql_fetch_assoc($rs);
-
-        return $row['address_vi'];
+        
+        return $row['address_'.$lang];
 
     }
 

@@ -42,4 +42,8 @@ define("xemthongtin", "Details");
 define("timkiem", "Search");
 define("ketqua", "Result");
 define("thanhtoan", "Payment");
+define("chitiet", "Detail");
+define("chonnoidi", "Enter a city");
+define("chonnoiden", "Enter a city");
+define("chiasehanhtrinhcuaban","Share us your journey.");
 ?>

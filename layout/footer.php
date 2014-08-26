@@ -33,7 +33,7 @@
             <ul>
                 <?php foreach ($arrRoute['data'] as $key => $value) {
                 ?>
-                    <li><a href="#"><?php echo str_replace("-","→",$value['route_name_'.$lang]); ?></a></li>
+                    <li><a href="index.php?mod=search&type=1&vstart=<?php echo $value['tinh_id_start']?>&vend=<?php echo $value['tinh_id_end']?>&dstart=<?php echo date('d-m-Y',strtotime('tomorrow')); ?>"><?php echo str_replace("-","→",$value['route_name_'.$lang]); ?></a></li>
                 <?php } ?>                
           </ul>
         </div>

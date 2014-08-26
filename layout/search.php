@@ -19,7 +19,7 @@ foreach ($arrTinhHaveTicket as $value) {
         <div class="tabs">
             <ul>
                 <li><a href="#"><span class="icon-font active">{timvexe}</span></a></li>
-                <li class="sologan_txt">Chia sẻ cùng chúng tôi hành trình của bạn.</li>
+                <li class="sologan_txt">{chiasehanhtrinhcuaban}</li>
             </ul>
         </div>
         <div class="wrap-frm-search">
@@ -37,7 +37,7 @@ foreach ($arrTinhHaveTicket as $value) {
         <div class="left item-search">
             <input type="hidden" name="vstart" value="" id="vstart" />
             <label for="departPlace">{diemkhoihanh}</label>
-            <input id="departPlace" type="text" class="form-control input-txt place ui-autocomplete-input" placeholder="Chọn nơi đi" accesskey="1" tabindex="1" autocomplete="off">
+            <input id="departPlace" type="text" class="form-control input-txt place ui-autocomplete-input" placeholder="{chonnoidi}" accesskey="1" tabindex="1" autocomplete="off">
             
             <div id="departPlaceSelector" class="place-selector rounded-5 clearfix" style="display:none;">
                 <div class="inner rel-pos">
@@ -120,19 +120,19 @@ foreach ($arrTinhHaveTicket as $value) {
         <div class="right item-search">
             <input type="hidden" name="vend" value="" id="vend"/>
             <label for="departPlace">{noiden}</label>
-            <input id="destination" type="text" class="form-control input-txt place ui-autocomplete-input" placeholder="Chọn nơi đến" accesskey="1" tabindex="1" autocomplete="off">                        
+            <input id="destination" type="text" class="form-control input-txt place ui-autocomplete-input" placeholder="{chonnoiden}" accesskey="1" tabindex="1" autocomplete="off">                        
             <div id="destinationSelector" class="place-selector rounded-5 clearfix" style="display:none;">
                 
                                         </div>
                                     </div>
         <div class="left item-search">
             <label for="departPlace">{ngaydi}</label>
-            <input id="departDate" name="dstart" type="text" class="input-txt date form-control" placeholder="Chọn ngày đi" accesskey="3" tabindex="3" autocomplete="off"/>
+            <input id="departDate" name="dstart" type="text" class="input-txt date form-control" placeholder="dd-mm-yy" accesskey="3" tabindex="3" autocomplete="off"/>
 
         </div>
         <div class="right item-search ticket-2">
             <label for="departPlace">{ngayve}</label>
-            <input id="returnDate" type="text" name="dend" class="input-txt date form-control" placeholder="Chọn ngày về" accesskey="4" tabindex="4" autocomplete="off"/>
+            <input id="returnDate" type="text" name="dend" class="input-txt date form-control" placeholder="dd-mm-yy" accesskey="4" tabindex="4" autocomplete="off"/>
 
         </div>
         <div class="btn-search-ticket">

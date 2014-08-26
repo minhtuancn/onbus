@@ -31,12 +31,12 @@ if(isset($_GET['service']) && trim($_GET['service']!="")){
 if(isset($_GET['dstart'])){
     $dstart = $modelTicket->processData($_GET['dstart']);
     $link.="&dstart=".$dstart;
-    $dstart = strtotime($dstart);
+    $dstart = strtotime($dstart) + 3600;
 }
 if(isset($_GET['dend']) && $type==2){
     $dend = $modelTicket->processData($_GET['dend']);
     $link.="&dend=".$dend;
-    $dend = strtotime($dend);
+    $dend = strtotime($dend) + 3600;
 }
 
 $arrNhaXeID = array();
@@ -85,11 +85,11 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
             <div class="process_bar nav">
                 <ul>
                     <li class="finish_process active">
-                        <a class="btn-search-bus ic-search " id="select-trip"><span class="glyphicon glyphicon-ok form-control-feedback"></span>{timkiem}</a>
+                        <a class="btn-search-bus ic-search " id="select-trip" href="http://onbus.vn"><span class="glyphicon glyphicon-ok form-control-feedback"></span>{timkiem}</a>
                         <span class="line_process"></span>
                     </li>
                     <li class="finish_process active">
-                        <a class="btn-seat ic-seat" id="select-seat"><span class="glyphicon glyphicon-ok form-control-feedback"></span>{ketqua}</a>
+                        <a class="btn-seat ic-seat" id="select-seat" href="<?php echo $_SERVER['REQUEST_URI']; ?>"><span class="glyphicon glyphicon-ok form-control-feedback"></span>{ketqua}</a>
                         <span class="line_process"></span>
                     </li>
                     <li class="end">
@@ -283,8 +283,8 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                             </li>                                            
                                         </ul>
                                         <div class="clear"></div>
-                                        <p><b>DEPART ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_start']); ?></p>
-                                        <p><b>ARRIVE ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_end']); ?></p>
+                                        <p><b>DEPART ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_start'],$lang); ?></p>
+                                        <p><b>ARRIVE ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_end'],$lang); ?></p>
                                         <a href="#" class="right show_map" data-url-map="https://dl.dropboxusercontent.com/u/43486987/Hoang/HTML/<?php echo STATIC_URL; ?>/images/map.jpg" data-toggle="modal" data-target="">{xemlotrinh}</a>
                                         <div class="type-ticket" id="time_<?php echo $ticket['ticket_id']; ?>">
                                         <p>Select time:</p>
@@ -311,7 +311,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                     </div>
                                     <div class="clear"></div>
                                     <a href="javascript:void(0)" data-value="<?php echo $ticket['ticket_id']; ?>" data-toggle="modal" data-target="#popup_book_ticket" class="btn-muave">book now</a>
-                                    <a href="#" class="btn-chitiet"  data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-info-sign"></span>Detail</a>
+                                    <a href="#" class="btn-chitiet"  data-toggle="modal" data-target="#myModal" onclick="return loadDetail(<?php echo $ticket['ticket_id']; ?>)"><span class="glyphicon glyphicon-info-sign"></span>{chitiet}</a>
                                 </div>
                             </div>
                             <div class="clear"></div>
@@ -363,8 +363,8 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                             </li>                                            
                                         </ul>
                                         <div class="clear"></div>
-                                        <p><b>DEPART ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_start']); ?></p>
-                                        <p><b>ARRIVE ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_end']); ?></p>
+                                        <p><b>DEPART ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_start'],$lang); ?></p>
+                                        <p><b>ARRIVE ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_end'],$lang); ?></p>
                                         <a href="#" class="right show_map" data-url-map="https://dl.dropboxusercontent.com/u/43486987/Hoang/HTML/<?php echo STATIC_URL; ?>/images/map.jpg" data-toggle="modal" data-target="">Xem lộ trình</a>
                                         <div class="type-ticket" id="time_<?php echo $ticket['ticket_id']; ?>">
                                         <p>Select time:</p>
@@ -391,7 +391,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                     </div>
                                     <div class="clear"></div>
                                     <a href="javascript:void(0)" data-value="<?php echo $ticket['ticket_id']; ?>" data-toggle="modal" data-target="#popup_book_ticket" class="btn-muave">book now</a>
-                                    <a href="#" class="btn-chitiet"  data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-info-sign"></span>Detail</a>
+                                    <a href="#" class="btn-chitiet" onclick="return loadDetail(<?php echo $ticket['ticket_id']; ?>)" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-info-sign"></span>Detail</a>
                                 </div>
                             </div>
                             <div class="clear"></div>
@@ -413,79 +413,10 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
         <!-- InstanceEndEditable -->
         <div class="clear"></div>
 <div class="modal fade" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div class="popup_detail">
-    <div class="wrap-popup">
-        <a href="#" class="close-popup" data-dismiss="modal"></a>
-        <div class="title-detail">
-            <h1>Check your details: <span>Return Trip</span><span class="a-num"><b>1</b><span>x</span><i></i></span></h1>
-        </div>
-        <div class="left detail-a">
-            <h1 class="bg-x"><span>Detail</span></h1>
-            <div class="ab-dd">
-                <ul class="right">
-                    <li><i class="icon-wifi"></i></li>
-                    <li><i class="icon-ge"></i></li>
-                </ul>
-                <h1>hồ chí minh - vũng tàu</h1>
-                <div class="clear"></div>
-            </div>
-            <div class="abc-dkh"><b>{diemkhoihanh}:</b>Chợ Tân Sơn Nhất (Gò Vấp)<a href="#" class="right">(Xem bản đồ)</a></div>
-            <div class="abc-dkh"><b>{noiden}:</b>Chợ Tân Sơn Nhất (Gò Vấp)<a href="#" class="right">(Xem bản đồ)</a></div>
-            <div class="type-ticket">
-                <p>Chọn thời gian khởi hành trước khi mua vé*</p>
-                <ul>
-                    <li><a href="#">08:40 AM</a></li>
-                    <li><a href="#">08:40 AM</a></li>
-                    <li><a href="#">08:40 AM</a></li>
-                    <li><a href="#">08:40 AM</a></li>
-                    <li><a href="#">08:40 AM</a></li>
-                    <li><a href="#">08:40 AM</a></li>
-                    <li><a href="#">08:40 AM</a></li>
-                    <li><a href="#">08:40 AM</a></li>
-                    <li><a href="#">08:40 AM</a></li>
-                    <li><a href="#">08:40 AM</a></li>
-                </ul>
-                <div class="clear"></div>
-            </div>
-            <div class="left abc-sche">
-                <h1>SCHEDULE:</h1>
-                <div class="dd-point">
-                    <p>2 giờ 30 phút</p>
-                    <div class="line-dd"></div>
-                    <span class="point point-1" data-toggle="tooltip" title="" data-original-title="Trạm dừng 1"></span>
-                    <span class="point point-2" data-toggle="tooltip" title="" data-original-title="Trạm dừng 2"></span>
-                    <p>2 trạm dừng</p>
-                </div>
-            </div>
-            <div class="right abc-sche">
-                <h1>PRICE:</h1>
-                <div class="abc-price">
-                    <span>150,000<span>VNĐ</span></span>
-                </div>
-            </div>
-        </div>
-        <div class="right option-a">
-            <h1 class="bg-x"><span>Service Included</span></h1>         
-            <div class="ab-dd">
-                <p>Giá trên đã bao gồm các dịch vụ</p>
-            </div>
-            <div>
-                <p><b>- Holine 24/24 hỗ trợ:</b> Mô tả mô tả mô tảt Mô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô</p>
-                <p><b>- Bản đồ và cẩm nang du lịch onbus.vn:</b> Mô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảt</p>
-                <p><b>- Vé chiều đi của hành trình:</b> Mô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảt</p>
-                <p><b>- Phí Bảo Hiểm Du Lịch:</b> Mô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tả</p>
-            </div>
-        </div>
-        <div class="clear"></div>    
-    </div>
+  
 </div>
-      </div>
-    </div>
-  </div>
-</div>
+
+
 <div class="modal fade" id="mymap">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -577,7 +508,8 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                         });
                     }
                     
-                });            
+                });
+
                 $('.btn-muave').on('click',function(){
                     var ticket_id = $(this).attr('data-value');
                     var check_time = $('#time_' + ticket_id).find('a.active').length;
@@ -891,4 +823,16 @@ foreach ($arrTinhHaveTicket as $value) {
                 });
             }          
          });
+function loadDetail(id){
+    $.ajax({
+        url: "ajax/detail.php",
+        type: "POST",
+        async: false,                             
+        data: {"ticket_id":id},
+        success: function(data){      
+            $('#myModal').html(data);
+        }
+    });
+    return true;
+}
     </script>        

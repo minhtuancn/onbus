@@ -116,6 +116,10 @@ $str = str_replace("{chieudai}" , chieudai , $str);
   $str = str_replace("{soluongve}" , soluongve , $str);
 
   $str = str_replace("{xemthongtin}" , xemthongtin , $str);
+  $str = str_replace("{chitiet}" , chitiet , $str);
+  $str = str_replace("{chonnoidi}" , chonnoidi , $str);
+  $str = str_replace("{chonnoiden}" , chonnoiden , $str);
+  $str = str_replace("{chiasehanhtrinhcuaban}" , chiasehanhtrinhcuaban , $str);
  
   echo $str;
 
