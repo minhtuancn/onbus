@@ -1,6 +1,7 @@
 <?php 
 include "../defined.php"; 
-$lang = "en";
+$lang = $_SESSION['lang'];
+var_dump($lang);
 require_once "../backend/model/Ticket.php";
 $modelTicket = new Ticket();
 
@@ -22,72 +23,85 @@ $modelService = new Services;
 require_once "../backend/model/Time.php";
 
 $modelTime = new Time;
+require_once "../backend/model/Route.php";
+
+$modelRoute = new Route;
 
 if(isset($_POST['ticket_id'])){
     $ticket_id = (int) $_POST['ticket_id'];
 }
 $tab = (int) $_POST['tab'];
 $arrDetail = $modelTicket->getDetailTicket($ticket_id);
-var_dump($arrDetail);
+$routeDetail = $modelRoute->detailRoute($arrDetail['tinh_id_start'],$arrDetail['tinh_id_end']);
+var_dump($routeDetail);
 ?>
 <div class="modal-dialog">
+    <?php //var_dump($arrDetail);?>
     <div class="modal-content">
       <div class="modal-body">
         <div class="popup_detail">
     <div class="wrap-popup">
         <a href="#" class="close-popup" data-dismiss="modal"></a>
         <div class="title-detail">
-            <h1>Check your details: <span>Return Trip</span><span class="a-num"><b>1</b><span>x</span><i></i></span></h1>
+            <h1><?php echo ($lang=="vi") ? "Chi tiết vé" : "Check your details"; ?> : <span>
+                <?php 
+                 if($tab==1){ 
+                     echo ($lang=="vi") ? "Chiều đi" : "Onward Trip"; 
+                 }else{ 
+                    echo ($lang=="vi") ? "Chiều về" : "Return Trip"; 
+                 } 
+                 ?>
+            </span></h1>            
         </div>
         <div class="left detail-a">
-            <h1 class="bg-x"><span>Detail</span></h1>
+            <h1 class="bg-x"><span><?php echo ($lang=="vi") ? "Chi tiết" : "Detail"; ?></span></h1>
             <div class="ab-dd">
                 <ul class="right">
                     <li><i class="icon-wifi"></i></li>
                     <li><i class="icon-ge"></i></li>
                 </ul>
-                <h1>hồ chí minh - vũng tàu</h1>
+                <h1><?php echo $routeDetail['route_name_'.$lang]; ?></h1>
                 <div class="clear"></div>
             </div>
-            <div class="abc-dkh"><b>{diemkhoihanh}:</b>Chợ Tân Sơn Nhất (Gò Vấp)<a href="#" class="right">(Xem bản đồ)</a></div>
-            <div class="abc-dkh"><b>{noiden}:</b>Chợ Tân Sơn Nhất (Gò Vấp)<a href="#" class="right">(Xem bản đồ)</a></div>
-            <div class="type-ticket">
-                <p>Chọn thời gian khởi hành trước khi mua vé*</p>
+            <div class="abc-dkh"><b><?php echo ($lang=="vi") ? "Điểm khởi hành" : "Depart"; ?>:</b><?php echo $modelPlace->getAddressByID($arrDetail['place_id_start'],$lang); ?><a href="#" class="right">(<?php echo ($lang=="vi") ? "Xem bản đồ" : "View on map"; ?>)</a></div>
+            <div class="abc-dkh"><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?>:</b><?php echo $modelPlace->getAddressByID($arrDetail['place_id_end'],$lang); ?><a href="#" class="right">(<?php echo ($lang=="vi") ? "Xem bản đồ" : "View on map"; ?>)</a></div>
+            <div class="type-ticket" id="time_popup_<?php echo $arrDetail['ticket_id']; ?>">
+                <p><?php echo ($lang=="vi") ? "Chọn thời gian khởi hành trước khi mua vé" : "Choose your departure time before booking tickets"; ?>*</p>
                 <ul>
-                    <li><a href="#">08:40 AM</a></li>
-                    <li><a href="#">08:40 AM</a></li>
-                    <li><a href="#">08:40 AM</a></li>
-                    <li><a href="#">08:40 AM</a></li>
-                    <li><a href="#">08:40 AM</a></li>
-                    <li><a href="#">08:40 AM</a></li>
-                    <li><a href="#">08:40 AM</a></li>
-                    <li><a href="#">08:40 AM</a></li>
-                    <li><a href="#">08:40 AM</a></li>
-                    <li><a href="#">08:40 AM</a></li>
+                    <?php $arrTimeTicket = $modelTicket->getTimeTicket($arrDetail['ticket_id']); 
+
+                    ?>
+                    <?php if(!empty($arrTimeTicket)) { 
+                        foreach ($arrTimeTicket as $time) {                                                   
+                        
+                    ?>
+                    <li><a href="javascript:void(0)" data-value="<?php echo $time; ?>"><?php echo $modelTime->getTimeByID($time);?></a></li>
+                    <?php } }?>
                 </ul>
                 <div class="clear"></div>
             </div>
             <div class="left abc-sche">
                 <h1>SCHEDULE:</h1>
                 <div class="dd-point">
-                    <p>2 giờ 30 phút</p>
+                    <p style="text-align:center"><?php echo $arrDetail['duration']; ?></p>
                     <div class="line-dd"></div>
-                    <span class="point point-1" data-toggle="tooltip" title="" data-original-title="Trạm dừng 1"></span>
-                    <span class="point point-2" data-toggle="tooltip" title="" data-original-title="Trạm dừng 2"></span>
-                    <p>2 trạm dừng</p>
+                    <?php for($i=1;$i<=$arrDetail['stop']; $i++){                        ?>
+                    <span class="point point-<?php echo $i; ?>"></span>
+                    <?php } ?>                    
+                    <p><?php echo $arrDetail['stop']; ?> <?php echo ($lang=="vi") ? "trạm dừng" : "bus-stop"; ?> </p>
                 </div>
             </div>
             <div class="right abc-sche">
-                <h1>PRICE:</h1>
+                <h1><?php echo ($lang=="vi") ? "GIÁ" : "PRICE"; ?>:</h1>
                 <div class="abc-price">
-                    <span>150,000<span>VNĐ</span></span>
+                    <span><?php echo number_format($arrDetail['price']); ?><span>VNĐ</span></span>
                 </div>
             </div>
         </div>
         <div class="right option-a">
-            <h1 class="bg-x"><span>Service Included</span></h1>         
+            <h1 class="bg-x"><span><?php echo ($lang=="vi") ? "Ghi chú" : "Notes"; ?></span></h1>         
             <div class="ab-dd">
-                <p>Giá trên đã bao gồm các dịch vụ</p>
+                <p><?php echo ($lang=="vi") ? "Quý khách có thể thanh toán bằng các hình thức sau:" : "Quý khách có thể thanh toán bằng các hình thức sau:"; ?> </p>
             </div>
             <div>
                 <p><b>- Holine 24/24 hỗ trợ:</b> Mô tả mô tả mô tảt Mô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô</p>
