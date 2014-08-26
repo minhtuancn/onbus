@@ -31,12 +31,12 @@ if(isset($_GET['service']) && trim($_GET['service']!="")){
 if(isset($_GET['dstart'])){
     $dstart = $modelTicket->processData($_GET['dstart']);
     $link.="&dstart=".$dstart;
-    $dstart = strtotime($dstart) + 3600;
+    $dstart = strtotime($dstart);
 }
 if(isset($_GET['dend']) && $type==2){
     $dend = $modelTicket->processData($_GET['dend']);
     $link.="&dend=".$dend;
-    $dend = strtotime($dend) + 3600;
+    $dend = strtotime($dend);
 }
 
 $arrNhaXeID = array();
@@ -339,10 +339,10 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                         </div>
                                         </div>
                                         <ul class="icon-tien-ich">
-                                            <li><i  data-toggle="tooltip" title="Toilet" class="icon-wc""></i></li>
-                                            <li><i  data-toggle="tooltip" title="Wifi Free" class="icon-wifi""></i></li>
-                                            <li><i  data-toggle="tooltip" title="Toilet" class="icon-ge""></i></li>
-                                            <li><i  data-toggle="tooltip" title="Toilet" class="icon-ta""></i></li>
+                                            <li><i  data-toggle="tooltip" title="Toilet" class="icon-wc"></i></li>
+                                            <li><i  data-toggle="tooltip" title="Wifi Free" class="icon-wifi"></i></li>
+                                            <li><i  data-toggle="tooltip" title="Toilet" class="icon-ge"></i></li>
+                                            <li><i  data-toggle="tooltip" title="Toilet" class="icon-ta"></i></li>
                                         </ul>
                                         <div class="right rating">
                                             <span>Good: 8.3</span>
@@ -828,9 +828,11 @@ function loadDetail(id){
         url: "ajax/detail.php",
         type: "POST",
         async: false,                             
-        data: {"ticket_id":id},
+        data: {"ticket_id":id,'tab':$('#tab').val()},
         success: function(data){      
+            var vl = $("#time_"+ id).find("a.active").attr('data-value');            
             $('#myModal').html(data);
+            $('#time_popup_'+id).find('a[data-value="'+vl+'"]').addClass('active');
         }
     });
     return true;
