@@ -7,6 +7,7 @@ if(!empty($_SESSION['bookticket'])){
     $arrTicket = array();
     foreach ($_SESSION['bookticket'] as $key => $value) {                        
         $arrAmount[$value['ticket_id']] = $value['amount'];
+        $amount+=$value['amount'];
         $arrTime[$value['ticket_id']] = $value['time'];
         $ticket_id = $value['ticket_id'];
         $arrTicket[$ticket_id] = $modelTicket->getDetailTicket($ticket_id);
@@ -19,15 +20,15 @@ if(!empty($_SESSION['bookticket'])){
             <div class="process_bar nav">
                 <ul>
                     <li class="finish_process active">
-                        <a class="btn-search-bus ic-search " id="select-trip"><span class="glyphicon glyphicon-ok form-control-feedback"></span>Tìm kiếm</a>
+                        <a class="btn-search-bus ic-search " id="select-trip" href="http://onbus.vn"><span class="glyphicon glyphicon-ok form-control-feedback"></span>{timkiem}</a>
                         <span class="line_process"></span>
                     </li>
                     <li class="finish_process active">
-                        <a class="btn-seat ic-seat" id="select-seat"><span class="glyphicon glyphicon-ok form-control-feedback"></span>Kết quả</a>
+                        <a class="btn-seat ic-seat" id="select-seat" href="<?php echo $_SERVER['HTTP_REFERER']; ?>"><span class="glyphicon glyphicon-ok form-control-feedback"></span>{ketqua}</a>
                         <span class="line_process"></span>
                     </li>
                     <li class="end active">
-                        <a class="btn-payment ic-cart"><span class="glyphicon glyphicon-ok form-control-feedback"></span>Thanh toán</a>
+                        <a class="btn-payment ic-cart"><span class="glyphicon glyphicon-ok form-control-feedback" href="index.php?mod=payment" ></span>{thanhtoan}</a>
                     </li>
                 </ul>
                 <div class="dotted-line"></div>
@@ -123,9 +124,10 @@ if(!empty($_SESSION['bookticket'])){
                               </label>
                             </div>
                             <div class="radio">
-                              <label class="checkbox-inline">
+                              <label class="checkbox-inline"  style="margin-bottom:0px">
                                 <input type="radio" id="way_2" value="2" data-id="orther_payment_card" class="show_box_height" name="payment_card">
-                                INTERNATIONAL PAYMENT CARD
+                                INTERNATIONAL PAYMENT CARD &nbsp;&nbsp;
+                                <img src="<?php echo STATIC_URL; ?>/images/visamaster.jpg" align="right"/>
                               </label>
                             </div>
                             <div class="radio">
@@ -133,9 +135,10 @@ if(!empty($_SESSION['bookticket'])){
                                 <input type="radio" id="way_3" value="3" data-id="orther_payment_card" class="show_box_height" name="payment_card">
                                 DOMESTIC ATM
                               </label>
+                              <div style="float:right"><img src="<?php echo STATIC_URL; ?>/images/bg_payment.png"></div>
                             </div>
                             <div class="sucu_payment">
-                                <img src="<?php echo STATIC_URL; ?>/images/bg_payment.png">
+                                
                             </div>
                         </div>
                         <div id="pay_later" class="right w_440 ">
@@ -218,7 +221,7 @@ if(!empty($_SESSION['bookticket'])){
                         <div title="" data-toggle="tooltip" class="left icon_start" data-original-title="Khởi hành"></div>
                         <div class="left time_diadiem">
                             <h4><?php echo $modelTime->getTimeByID($arrTime[$value['ticket_id']]);?></h4>
-                            <p><span><?php echo $modelPlace->getPlaceNameByID($value['place_id_start']); ?></span><a href="#" class="right">{xemthongtin}</a></p>
+                            <p><span><?php echo $modelPlace->getAddressByID($value['place_id_start'],$lang); ?></span><a href="#" class="right">{xemthongtin}</a></p>
                         </div>
                         <div class="clear"></div>
                         <div title="" data-toggle="tooltip" class="left icon_end" data-original-title="Điểm đến"></div>
@@ -241,7 +244,7 @@ if(!empty($_SESSION['bookticket'])){
                             $h_end = str_pad($h_end, 2, "0", STR_PAD_LEFT);                             
                             ?>
                             <h4><?php echo $h_end?>:<?php echo $m_end; ?></h4>
-                            <p><span><?php echo $modelPlace->getPlaceNameByID($value['place_id_end']); ?></span><a href="#" class="right">{xemthongtin}</a></p>
+                            <p><span><?php echo $modelPlace->getAddressByID($value['place_id_end'],$lang); ?></span><a href="#" class="right">{xemthongtin}</a></p>
                         </div>
                         <div class="line_center"></div>
                         <?php } // foreach
@@ -259,7 +262,7 @@ if(!empty($_SESSION['bookticket'])){
                             <h2 class="left"><b>TOTAL:</b></h2>
                             <span class="price"><?php echo number_format($total); ?> VND</span>
                          </div>
-                        <h3>Passenger: 01</h3>
+                        <h3>No. of ticket: <?php echo $amount; ?></h3>
                         <h3>Price Summary:</h3>
                         <ul>
                             <li>

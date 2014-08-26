@@ -130,11 +130,11 @@ class Tinh extends Db {
 
                     tinh_name_safe_en = '$tinh_name_safe_en', 
 
-                    hot = $hot , ";
+                    hot = $hot, ";
 
-        if($image_url!=NULL)   $sql.= ",image_url = '$image_url' ,";         
+        if($image_url!=NULL)   $sql.= " image_url = '$image_url' ,";         
 
-        if($price_between!=NULL)   $sql.= ",price_between = '$price_between' ,";                           
+        if($price_between!=NULL)   $sql.= " price_between = '$price_between' ,";                           
 
                     $sql .="mien_id = $mien_id,                   
 
