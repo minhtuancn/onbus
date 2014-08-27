@@ -31,12 +31,12 @@ if(isset($_GET['service']) && trim($_GET['service']!="")){
 if(isset($_GET['dstart'])){
     $dstart = $modelTicket->processData($_GET['dstart']);
     $link.="&dstart=".$dstart;
-    $dstart = strtotime($dstart) + 3600;
+    $dstart = strtotime($dstart);
 }
 if(isset($_GET['dend']) && $type==2){
     $dend = $modelTicket->processData($_GET['dend']);
     $link.="&dend=".$dend;
-    $dend = strtotime($dend) + 3600;
+    $dend = strtotime($dend);
 }
 
 $arrNhaXeID = array();
@@ -259,10 +259,18 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                         </div>
                                         </div>
                                         <ul class="icon-tien-ich">
-                                            <li><i  data-toggle="tooltip" title="Toilet" class="icon-wc""></i></li>
-                                            <li><i  data-toggle="tooltip" title="Wifi Free" class="icon-wifi""></i></li>
-                                            <li><i  data-toggle="tooltip" title="Toilet" class="icon-ge""></i></li>
-                                            <li><i  data-toggle="tooltip" title="Toilet" class="icon-ta""></i></li>
+                                            <?php if(!empty($arrServiceTicket)) { 
+                                                foreach ($arrServiceTicket as $ser) {         
+                                                                                        
+                                                if($ser==1) $classIcon = "icon-nuoc";
+                                                elseif($ser==2) $classIcon = "icon-wifi";
+                                                elseif($ser==3) $classIcon = "icon-khan";
+                                                elseif($ser==4) $classIcon = "icon-chan";
+                                                elseif($ser==5) $classIcon = "icon-wc";
+                                            ?>
+                                            <li><i  data-toggle="tooltip" title="<?php echo $modelService->getServiceNameByID($ser); ?>" class="<?php echo $classIcon; ?>"></i></li>
+                                            <?php }}?>                                           
+                                            
                                         </ul>
                                         <div class="right rating">
                                             <span>Good: 8.3</span>
@@ -339,10 +347,17 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                         </div>
                                         </div>
                                         <ul class="icon-tien-ich">
-                                            <li><i  data-toggle="tooltip" title="Toilet" class="icon-wc"></i></li>
-                                            <li><i  data-toggle="tooltip" title="Wifi Free" class="icon-wifi"></i></li>
-                                            <li><i  data-toggle="tooltip" title="Toilet" class="icon-ge"></i></li>
-                                            <li><i  data-toggle="tooltip" title="Toilet" class="icon-ta"></i></li>
+                                            <?php if(!empty($arrServiceTicket)) { 
+                                                foreach ($arrServiceTicket as $ser) {         
+                                                                                        
+                                                if($ser==1) $classIcon = "icon-nuoc";
+                                                elseif($ser==2) $classIcon = "icon-wifi";
+                                                elseif($ser==3) $classIcon = "icon-khan";
+                                                elseif($ser==4) $classIcon = "icon-chan";
+                                                elseif($ser==5) $classIcon = "icon-wc";
+                                            ?>
+                                            <li><i  data-toggle="tooltip" title="<?php echo $modelService->getServiceNameByID($ser); ?>" class="<?php echo $classIcon; ?>"></i></li>
+                                            <?php }}?> 
                                         </ul>
                                         <div class="right rating">
                                             <span>Good: 8.3</span>

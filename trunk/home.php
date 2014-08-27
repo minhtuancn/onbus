@@ -115,7 +115,8 @@ foreach ($arrTinhHaveTicket as $value) {
             maxSlides: 1,
             slideMargin: 0,
             pager: false,
-            auto: false
+            auto: true,
+            pause: 3000
           });
           $(function () {
            
