@@ -90,10 +90,17 @@ $arrTicket_end = $modelTicket->getListTicketFE($car,$vstart,$vend,$dstart,$servi
                 </div>
                 </div>
                 <ul class="icon-tien-ich">
-                    <li><i  data-toggle="tooltip" title="Toilet" class="icon-wc""></i></li>
-                    <li><i  data-toggle="tooltip" title="Wifi Free" class="icon-wifi""></i></li>
-                    <li><i  data-toggle="tooltip" title="Toilet" class="icon-ge""></i></li>
-                    <li><i  data-toggle="tooltip" title="Toilet" class="icon-ta""></i></li>
+                    <?php if(!empty($arrServiceTicket)) { 
+                            foreach ($arrServiceTicket as $ser) {         
+                                                                    
+                            if($ser==1) $classIcon = "icon-nuoc";
+                            elseif($ser==2) $classIcon = "icon-wifi";
+                            elseif($ser==3) $classIcon = "icon-khan";
+                            elseif($ser==4) $classIcon = "icon-chan";
+                            elseif($ser==5) $classIcon = "icon-wc";
+                        ?>
+                        <li><i  data-toggle="tooltip" title="<?php echo $modelService->getServiceNameByID($ser); ?>" class="<?php echo $classIcon; ?>"></i></li>
+                        <?php }}?> 
                 </ul>
                 <div class="right rating">
                     <span>Good: 8.3</span>

@@ -35,6 +35,7 @@ if(isset($_POST['ticket_id'])){
 $tab = (int) $_POST['tab'];
 $arrDetail = $modelTicket->getDetailTicket($ticket_id);
 $routeDetail = $modelRoute->detailRoute($arrDetail['tinh_id_start'],$arrDetail['tinh_id_end']);
+ $arrServiceTicket = $modelTicket->getServiceTicket($ticket_id);  
 ?>
 <div class="modal-dialog">
     <?php //var_dump($arrDetail);?>
@@ -58,8 +59,17 @@ $routeDetail = $modelRoute->detailRoute($arrDetail['tinh_id_start'],$arrDetail['
             <h1 class="bg-x"><span><?php echo ($lang=="vi") ? "Chi tiết" : "Detail"; ?></span></h1>
             <div class="ab-dd">
                 <ul class="right">
-                    <li><i class="icon-wifi"></i></li>
-                    <li><i class="icon-ge"></i></li>
+                    <?php if(!empty($arrServiceTicket)) { 
+                            foreach ($arrServiceTicket as $ser) {         
+                                                                    
+                            if($ser==1) $classIcon = "icon-nuoc";
+                            elseif($ser==2) $classIcon = "icon-wifi";
+                            elseif($ser==3) $classIcon = "icon-khan";
+                            elseif($ser==4) $classIcon = "icon-chan";
+                            elseif($ser==5) $classIcon = "icon-wc";
+                        ?>
+                        <li><i  data-toggle="tooltip" title="<?php echo $modelService->getServiceNameByID($ser); ?>" class="<?php echo $classIcon; ?>"></i></li>
+                        <?php }}?>
                 </ul>
                 <h1><?php echo $routeDetail['route_name_'.$lang]; ?></h1>
                 <div class="clear"></div>
@@ -117,4 +127,17 @@ $routeDetail = $modelRoute->detailRoute($arrDetail['tinh_id_start'],$arrDetail['
       </div>
     </div>
   </div>
+<script type="text/javascript">
 
+$('.type-ticket ul li a').unbind( "click" ).bind("click",function(){
+    var _this = $(this);
+    _this.parents('ul').find('li a').removeClass('active');
+    if(_this.hasClass('active')){
+        _this.removeClass('active');
+    }else{
+        _this.addClass('active');
+    }
+    return false;
+});  
+
+</script>

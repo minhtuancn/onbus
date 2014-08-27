@@ -22,15 +22,15 @@ class Services extends Db {
         return $row;
 
     }
-    function getServiceNameByID($id) {
+    function getServiceNameByID($id,$lang="vi") {
 
-        $sql = "SELECT service_name_vi FROM services WHERE service_id = $id";
+        $sql = "SELECT service_name_vi,service_name_en FROM services WHERE service_id = $id";
 
         $rs = mysql_query($sql) or die(mysql_error());
 
         $row = mysql_fetch_assoc($rs);
-
-        return $row['service_name_vi'];
+        
+        return $row['service_name_'.$lang];
 
     }
    
