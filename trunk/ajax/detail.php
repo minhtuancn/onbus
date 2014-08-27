@@ -1,7 +1,9 @@
 <?php 
 include "../defined.php"; 
+if(!isset($_SESSION)){
+    session_start();
+}
 $lang = $_SESSION['lang'];
-var_dump($lang);
 require_once "../backend/model/Ticket.php";
 $modelTicket = new Ticket();
 
@@ -33,7 +35,6 @@ if(isset($_POST['ticket_id'])){
 $tab = (int) $_POST['tab'];
 $arrDetail = $modelTicket->getDetailTicket($ticket_id);
 $routeDetail = $modelRoute->detailRoute($arrDetail['tinh_id_start'],$arrDetail['tinh_id_end']);
-var_dump($routeDetail);
 ?>
 <div class="modal-dialog">
     <?php //var_dump($arrDetail);?>
