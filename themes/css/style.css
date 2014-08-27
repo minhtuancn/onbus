@@ -3323,6 +3323,27 @@ a.book_step span {
 	background: url(images/icon-ge.png) no-repeat;
 	margin-top: 2px;
 }
+.icon-nuoc {
+display: block;
+width: 13px;
+height: 13px;
+background: url(images/nuoc.png) no-repeat;
+margin-top: 2px;
+}
+.icon-khan {
+display: block;
+width: 19px;
+height: 13px;
+background: url(images/khan.png) no-repeat;
+margin-top: 2px;
+}
+.icon-chan {
+display: block;
+width: 18px;
+height: 13px;
+background: url(images/chan.png) no-repeat;
+margin-top: 2px;
+}
 .dd-point {
 	position: relative;
 	width: 100%;
