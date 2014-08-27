@@ -24,6 +24,9 @@ $modelService = new Services;
 require_once "../backend/model/Time.php";
 
 $modelTime = new Time;
+require_once "../backend/model/Image.php";
+
+$modelImage = new Image;
 $vstart = $vend = $dstart = $dend = -1;
 $car = $service = ""; 
 $page_show = 5;
@@ -86,9 +89,16 @@ $arrTicket_end = $modelTicket->getListTicketFE($car,$vstart,$vend,$dstart,$servi
             <div class="img-logo left">
                 <div data-toggle="tooltip" title="Click để xem hình" class="wrap-slider">
                 <div class="slider_nx">
-                    <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/Du-lich-bui-tren-dao-Binh-Ba_1a.jpg" data-lightbox="example-set" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/img_166x104.png" /></a></div>
-                    <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/mailinh vanluong.jpg" data-lightbox="example-set" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/images.jpg" /></a></div>
-                    <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/images (1).jpg" data-lightbox="example-set" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/images413681_images337275_anh_tin_Dau_tu_12_ti_mua_them_xe_buyt.JPG" /></a></div>
+                    <?php $arrRsImg = $modelImage->getListImageByNhaxe($ticket['nhaxe_id'],-1,-1);
+                                            if(mysql_num_rows($arrRsImg) >0) {
+                                            while($row = mysql_fetch_assoc($arrRsImg)){    
+                                            ?>
+                                            <div class="slide"><a href="<?php echo $row['image_url']?>" data-lightbox="example-set" class="wrap-img"><img src="<?php echo $row['image_url']?>" /></a></div>
+                                            <?php }}else{ ?>
+                                            <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/Du-lich-bui-tren-dao-Binh-Ba_1a.jpg" data-lightbox="example-set" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/img_166x104.png" /></a></div>
+                                            <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/mailinh vanluong.jpg" data-lightbox="example-set" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/images.jpg" /></a></div>
+                                            <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/images (1).jpg" data-lightbox="example-set" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/images413681_images337275_anh_tin_Dau_tu_12_ti_mua_them_xe_buyt.JPG" /></a></div>
+                                            <?php } ?>
                 </div>
                 </div>
                 <ul class="icon-tien-ich">
@@ -161,6 +171,14 @@ $arrTicket_end = $modelTicket->getListTicketFE($car,$vstart,$vend,$dstart,$servi
 echo $modelTicket->pagination($page,$page_show,$total_page,$link,2);
  } ?>  
 <script type="text/javascript">
+$('.slider_nx').bxSlider({
+    slideWidth: 560,
+    minSlides: 1,
+    maxSlides: 1,
+    slideMargin: 0,
+    pager: false,
+    auto: false
+});
 $(function(){
     $('.type-ticket ul li a').unbind( "click" ).bind("click",function(){
         var _this = $(this);

@@ -28,7 +28,7 @@
                 <ul class="nav nav-pills">
                   <li class="active hv-1"><a href="index.php">{trangchu}<span></span></a></li>
                   <li class="hv-4"><a href="#">{vecuaban}<span></span></a></li>
-                  <li class="hv-3"><a href="#">{tintuc}<span></span></a></li>
+                  <li class="hv-3"><a href="index.php?mod=news">{tintuc}<span></span></a></li>
                   <li class="hv-4"><a href="index.php?mod=nhaxe">{thongtinnhaxe}<span></span></a></li>
                   
                   <!--<li class="cart-icon">

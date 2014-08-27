@@ -255,9 +255,16 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                     <div class="img-logo left">
                                         <div data-toggle="tooltip" title="Click để xem hình" class="wrap-slider">
                                         <div class="slider_nx">
+                                            <?php $arrRsImg = $modelImage->getListImageByNhaxe($ticket['nhaxe_id'],-1,-1);
+                                            if(mysql_num_rows($arrRsImg) >0) {
+                                            while($row = mysql_fetch_assoc($arrRsImg)){    
+                                            ?>
+                                            <div class="slide"><a href="<?php echo $row['image_url']?>" data-lightbox="example-set" class="wrap-img"><img src="<?php echo $row['image_url']?>" /></a></div>
+                                            <?php }}else{ ?>
                                             <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/Du-lich-bui-tren-dao-Binh-Ba_1a.jpg" data-lightbox="example-set" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/img_166x104.png" /></a></div>
                                             <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/mailinh vanluong.jpg" data-lightbox="example-set" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/images.jpg" /></a></div>
                                             <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/images (1).jpg" data-lightbox="example-set" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/images413681_images337275_anh_tin_Dau_tu_12_ti_mua_them_xe_buyt.JPG" /></a></div>
+                                            <?php } ?>
                                         </div>
                                         </div>
                                         <ul class="icon-tien-ich">
@@ -343,9 +350,16 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                     <div class="img-logo left">
                                         <div data-toggle="tooltip" title="Click để xem hình" class="wrap-slider">
                                         <div class="slider_nx">
+                                            <?php $arrRsImg = $modelImage->getListImageByNhaxe($ticket['nhaxe_id'],-1,-1);
+                                            if(mysql_num_rows($arrRsImg) >0) {
+                                            while($row = mysql_fetch_assoc($arrRsImg)){    
+                                            ?>
+                                            <div class="slide"><a href="<?php echo $row['image_url']?>" data-lightbox="example-set" class="wrap-img"><img src="<?php echo $row['image_url']?>" /></a></div>
+                                            <?php }}else{ ?>
                                             <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/Du-lich-bui-tren-dao-Binh-Ba_1a.jpg" data-lightbox="example-set" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/img_166x104.png" /></a></div>
                                             <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/mailinh vanluong.jpg" data-lightbox="example-set" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/images.jpg" /></a></div>
                                             <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/images (1).jpg" data-lightbox="example-set" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/images413681_images337275_anh_tin_Dau_tu_12_ti_mua_them_xe_buyt.JPG" /></a></div>
+                                            <?php } ?>
                                         </div>
                                         </div>
                                         <ul class="icon-tien-ich">

@@ -30,6 +30,10 @@ $modelTime = new Time;
 require_once "backend/model/Route.php";
 
 $modelRoute = new Route;
+
+require_once "backend/model/Image.php";
+
+$modelImage = new Image;
 $arrNhaXeUyTin = $modelNhaxe->getListNhaxe('',1,0,8);
 
 $arrNhaXe = $modelNhaxe->getListNhaxe('',-1,-1,-1);
