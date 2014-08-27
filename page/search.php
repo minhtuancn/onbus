@@ -217,9 +217,11 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                     <div class="left ticket-tn">
                         <div class="tab-option">
                             <ul class="nav nav-tabs" role="tablist">
-                              <li class="active" ><a href="#vechieudi"  role="tab" data-toggle="tab"><span class="icon-font active">Vé chiều đi</span></a></li>
+                              <li class="active" ><a href="#vechieudi"  role="tab" data-toggle="tab"><span class="icon-font active">
+                                <?php echo $lang=="vi" ? "Vé chiều đi" : "Onward"; ?></span></a></li>
                               <?php if($type==2){ ?>
-                              <li class=""><a href="#vechieuve" role="tab" data-toggle="tab"><span class="icon-font active">Vé chiều về</span></a></li>
+                              <li class=""><a href="#vechieuve" role="tab" data-toggle="tab"><span class="icon-font active">
+                                <?php echo $lang=="vi" ? "Vé chiều về" : "Return"; ?></span></a></li>
                               <?php } ?>
                             </ul>                            
                         </div>
@@ -291,11 +293,11 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                             </li>                                            
                                         </ul>
                                         <div class="clear"></div>
-                                        <p><b>DEPART ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_start'],$lang); ?></p>
-                                        <p><b>ARRIVE ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_end'],$lang); ?></p>
+                                        <p><b><?php echo ($lang=="vi") ? "Điểm khởi hành" : "Depart"; ?> ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_start'],$lang); ?></p>
+                                        <p><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?> ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_end'],$lang); ?></p>
                                         <a href="#" class="right show_map" data-url-map="https://dl.dropboxusercontent.com/u/43486987/Hoang/HTML/<?php echo STATIC_URL; ?>/images/map.jpg" data-toggle="modal" data-target="">{xemlotrinh}</a>
                                         <div class="type-ticket" id="time_<?php echo $ticket['ticket_id']; ?>">
-                                        <p>Select time:</p>
+                                        <p><?php echo $lang=="vi" ? "Chọn giờ khởi hành" : "Select time"; ?>:</p>
                                         <ul>
                                             <?php if(!empty($arrTimeTicket)) { 
                                                 foreach ($arrTimeTicket as $time) {                                                   
@@ -304,7 +306,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                             <li><a href="javascript:void(0)" data-value="<?php echo $time; ?>"><?php echo $modelTime->getTimeByID($time);?></a></li>
                                             <?php }}  ?>                                            
                                         </ul>
-                                        <p class="error_time" id="error_time_<?php echo $ticket['ticket_id']; ?>" style="display:none;padding-top:10px;color:red;font-style:italic">Vui lòng chọn giờ khởi hành trước khi đặt vé.</p>
+                                        <p class="error_time" id="error_time_<?php echo $ticket['ticket_id']; ?>"><?php echo ($lang=="vi") ? "Chọn thời gian khởi hành trước khi mua vé." : "Choose your departure time before booking tickets."; ?></p>
                                         <div class="clear"></div>
                                         </div>
                                     </div>
@@ -378,11 +380,11 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                             </li>                                            
                                         </ul>
                                         <div class="clear"></div>
-                                        <p><b>DEPART ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_start'],$lang); ?></p>
-                                        <p><b>ARRIVE ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_end'],$lang); ?></p>
+                                        <p><b><?php echo ($lang=="vi") ? "Điểm khởi hành" : "Depart"; ?> ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_start'],$lang); ?></p>
+                                        <p><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?> ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_end'],$lang); ?></p>
                                         <a href="#" class="right show_map" data-url-map="https://dl.dropboxusercontent.com/u/43486987/Hoang/HTML/<?php echo STATIC_URL; ?>/images/map.jpg" data-toggle="modal" data-target="">Xem lộ trình</a>
                                         <div class="type-ticket" id="time_<?php echo $ticket['ticket_id']; ?>">
-                                        <p>Select time:</p>
+                                        <p><?php echo $lang=="vi" ? "Chọn giờ khởi hành" : "Select time"; ?>:</p>
                                         <ul>
                                             <?php if(!empty($arrTimeTicket)) { 
                                                 foreach ($arrTimeTicket as $time) {                                                   
@@ -391,7 +393,8 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                             <li><a href="javascript:void(0)" data-value="<?php echo $time; ?>"><?php echo $modelTime->getTimeByID($time);?></a></li>
                                             <?php }}  ?>                                            
                                         </ul>
-                                        <p class="error_time" id="error_time_<?php echo $ticket['ticket_id']; ?>" style="display:none;padding-top:10px;color:red;font-style:italic">Vui lòng chọn giờ khởi hành trước khi đặt vé.</p>
+                                        <p class="error_time" id="error_time_<?php echo $ticket['ticket_id']; ?>">
+                                            <?php echo ($lang=="vi") ? "Chọn thời gian khởi hành trước khi mua vé" : "Choose your departure time before booking tickets"; ?>.</p>
                                         <div class="clear"></div>
                                     </div>
                                     </div>

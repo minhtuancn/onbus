@@ -1,6 +1,8 @@
 <?php 
 include "../defined.php"; 
-$lang = "en";
+if(!isset($_SESSION)){
+    session_start();
+}
 require_once "../backend/model/Ticket.php";
 $modelTicket = new Ticket();
 
@@ -99,7 +101,7 @@ $arrTicket_end = $modelTicket->getListTicketFE($car,$vstart,$vend,$dstart,$servi
                             elseif($ser==4) $classIcon = "icon-chan";
                             elseif($ser==5) $classIcon = "icon-wc";
                         ?>
-                        <li><i  data-toggle="tooltip" title="<?php echo $modelService->getServiceNameByID($ser); ?>" class="<?php echo $classIcon; ?>"></i></li>
+                        <li><i  data-toggle="tooltip" title="<?php echo $modelService->getServiceNameByID($ser,$lang); ?>" class="<?php echo $classIcon; ?>"></i></li>
                         <?php }}?> 
                 </ul>
                 <div class="right rating">
@@ -121,11 +123,12 @@ $arrTicket_end = $modelTicket->getListTicketFE($car,$vstart,$vend,$dstart,$servi
                     </li>                                            
                 </ul>
                 <div class="clear"></div>
-                <p><b>DEPART ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_start']); ?></p>
-                <p><b>ARRIVE ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_end']); ?></p>
-                <a href="#" class="right show_map" data-url-map="https://dl.dropboxusercontent.com/u/43486987/Hoang/HTML/<?php echo STATIC_URL; ?>/images/map.jpg" data-toggle="modal" data-target="">{xemlotrinh}</a>
+                <p><b><?php echo ($lang=="vi") ? "Điểm khởi hành" : "Depart"; ?> ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_start'],$lang); ?></p>
+                <p><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?> ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_end'],$lang); ?></p>
+                <a href="#" class="right show_map" data-url-map="https://dl.dropboxusercontent.com/u/43486987/Hoang/HTML/<?php echo STATIC_URL; ?>/images/map.jpg" data-toggle="modal" data-target="">
+                    <?php echo $lang=="vi" ? "Xem lộ trình" : "Route details"?></a>
                 <div class="type-ticket" id="time_<?php echo $ticket['ticket_id']; ?>">
-                <p>Select time:</p>
+                <p><?php echo $lang=="vi" ? "Chọn giờ khởi hành" : "Select time"; ?>:</p>
                 <ul>
                     <?php if(!empty($arrTimeTicket)) { 
                         foreach ($arrTimeTicket as $time) {                                                   
@@ -134,7 +137,8 @@ $arrTicket_end = $modelTicket->getListTicketFE($car,$vstart,$vend,$dstart,$servi
                     <li><a href="javascript:void(0)" data-original-title="" title=""><?php echo $modelTime->getTimeByID($time);?></a></li>
                     <?php }}  ?>                                            
                 </ul>
-                <p class="error_time" id="error_time_<?php echo $ticket['ticket_id']; ?>" style="display:none;padding-top:10px;color:red;font-style:italic">Vui lòng chọn giờ khởi hành trước khi đặt vé.</p>
+                <p class="error_time" id="error_time_<?php echo $ticket['ticket_id']; ?>">
+                    <?php echo $lang=="vi" ? "Vui lòng chọn giờ khởi hành trước khi đặt vé." :  "Choose your departure time before booking tickets." ; ?></p>
                 <div class="clear"></div>
             </div>
             </div>
