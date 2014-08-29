@@ -32,8 +32,9 @@
             <h4 class="smallBoxHeader">{tuyenduongphobien}</h4>
             <ul>
                 <?php foreach ($arrRoute['data'] as $key => $value) {
+                    //ve-xe-khach-di-tu-ho-chi-minh-den-ba-ria-vung-tau-ngay-30-09-2014-1_1t3.html
                 ?>
-                    <li><a href="index.php?mod=search&type=1&vstart=<?php echo $value['tinh_id_start']?>&vend=<?php echo $value['tinh_id_end']?>&dstart=<?php echo date('d-m-Y',strtotime('tomorrow')); ?>"><?php echo str_replace("-","→",$value['route_name_'.$lang]); ?></a></li>
+                    <li><a href="<?php echo $lang;?>/ve-xe-khach-di-tu-<?php echo $modelTinh->getTinhNameSafeByID($value['tinh_id_start']);?>-den-<?php echo $modelTinh->getTinhNameSafeByID($value['tinh_id_end'])?>-ngay-<?php echo date('d-m-Y',strtotime('tomorrow')); ?>-1_<?php echo $value['tinh_id_start'];?>t<?php echo $value['tinh_id_end']?>.html"><?php echo str_replace("-","→",$value['route_name_'.$lang]); ?></a></li>
                 <?php } ?>                
           </ul>
         </div>

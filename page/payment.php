@@ -28,7 +28,9 @@ if(!empty($_SESSION['bookticket'])){
                         <span class="line_process"></span>
                     </li>
                     <li class="end active">
-                        <a class="btn-payment ic-cart"><span class="glyphicon glyphicon-ok form-control-feedback" href="index.php?mod=payment" ></span>{thanhtoan}</a>
+                        <a class="btn-payment ic-cart">
+                            <span class="glyphicon glyphicon-ok form-control-feedback" href="<?php echo $lang; ?>/payment.html" >
+                            </span>{thanhtoan}</a>
                     </li>
                 </ul>
                 <div class="dotted-line"></div>

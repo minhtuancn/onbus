@@ -36,6 +36,7 @@ foreach ($arrTinhHaveTicket as $value) {
         </ul>
         <div class="left item-search">
             <input type="hidden" name="vstart" value="" id="vstart" />
+            <input type="hidden" name="lang" value="<?php echo $lang; ?>" id="lang" />
             <label for="departPlace">{diemkhoihanh}</label>
             <input id="departPlace" type="text" class="form-control input-txt place ui-autocomplete-input" placeholder="{chonnoidi}" accesskey="1" tabindex="1" autocomplete="off">
             
