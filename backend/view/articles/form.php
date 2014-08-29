@@ -11,7 +11,10 @@ if(isset($_GET['article_id'])){
     $detail = $model->getDetailArticle($article_id);
 
 }
+require_once "model/Tinh.php";
 
+$modelTinh = new Tinh;
+$arrHot = $modelTinh->getListTinh(-1,'',1,0, 20);
 ?>
 
 <script type="text/javascript" src="static/ckeditor/ckeditor.js"></script>
@@ -126,6 +129,20 @@ function SetFileField( fileUrl, data ){
                 </label>                                                
 
                 </div>
+            <div class="form-group">
+
+                <label>Điểm đến HOT</label>
+
+                <select class="form-control" name="tinh_id" id="tinh_id">
+
+                    <option value="0">---chọn---</option>
+                    <?php foreach($arrHot as $hot){ ?>
+                    <option value="<?php echo $hot['tinh_id']; ?>" <?php echo ($detail['tinh_id']==$hot['tinh_id']) ? "selected" : ""; ?>><?php echo $hot['tinh_name_vi']; ?></option>
+                    <?php } ?>                        
+
+                </select>
+
+            </div>    
             <div class="form-group">
 
                 <label>Nội dung <span class="required"> ( * ) </span></label>                        
