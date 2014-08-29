@@ -1,6 +1,6 @@
 <?php
 session_start();
-//require_once 'blocks/seo.php';
+require_once 'ajax/seo.php';
 $lang_arr=array("vi","en");
 
 if (isset($lang) == true){

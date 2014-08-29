@@ -1,5 +1,8 @@
 <?php 
-$lang = "en";
+if(!isset($_SESSION)){
+	session_start();
+}
+$lang = $_SESSION['lang'];
 require_once "../backend/model/Nhaxe.php";
 $model = new Nhaxe();
 $vend = (int) $_POST['vend'];

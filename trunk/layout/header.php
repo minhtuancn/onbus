@@ -3,7 +3,7 @@
             <div class="right">
                 <div class="dropdown tiente">
                     <div class="cell_header">CURRENCY</div>
-                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown">
                     VNĐ<span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
@@ -14,19 +14,20 @@
                 <div class="dropdown">
                 <div class="cell_header">Language</div>
                   <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                    Tiếng Việt <span class="caret"></span>
+                     <?php echo ($lang=="vi") ? "Tiếng Việt" : "English" ; ?>
+                     <span class="caret"></span>                     
                   </button>
                   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="flag-vn"></span>Tiếng Việt</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="flag-en"></span>English</a></li>
+                    <li role="presentation"><a data-value="vi" role="menuitem" tabindex="-1" href="javascript:;" class="changelang"><span class="flag-vn"></span>Tiếng Việt</a></li>
+                    <li role="presentation"><a data-value="en" role="menuitem" tabindex="-1" href="javascript:;" class="changelang"><span class="flag-en"></span>English &nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                   </ul>
                 </div>
                 <div class="clear"></div>
             </div>
-            <div class="left"><a href="index.php" class="logo-header"><img src="<?php echo STATIC_URL; ?>/images/logo2_final.png" /></a></div>
+            <div class="left"><a href="<?php echo HOST; ?>" class="logo-header"><img src="<?php echo STATIC_URL; ?>/images/logo2_final.png" /></a></div>
             <div class="menu-header">
                 <ul class="nav nav-pills">
-                  <li class="active hv-1"><a href="index.php">{trangchu}<span></span></a></li>
+                  <li class="active hv-1"><a href="<?php echo HOST; ?>">{trangchu}<span></span></a></li>
                   <li class="hv-4"><a href="#">{vecuaban}<span></span></a></li>
                   <li class="hv-3"><a href="index.php?mod=news">{tintuc}<span></span></a></li>
                   <li class="hv-4"><a href="index.php?mod=nhaxe">{thongtinnhaxe}<span></span></a></li>
@@ -39,3 +40,12 @@
             <div class="clear"></div>
         </div>
     </header>
+    <script type="text/javascript">
+$(function(){
+  $('.changelang').click(function(){
+      $('#dropdownMenu1').html($(this).html()+'<span class="caret"></span>');   
+      var lang = $(this).attr('data-value');
+      location.href="<?php echo HOST; ?>/" + lang + '/'; 
+  });
+});
+    </script>

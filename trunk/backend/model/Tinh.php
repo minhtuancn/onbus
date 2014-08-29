@@ -55,6 +55,17 @@ class Tinh extends Db {
         return $row['tinh_name_vi'];
 
     }
+    function getTinhNameSafeByID($id) {
+
+        $sql = "SELECT tinh_name_safe_vi FROM tinh WHERE tinh_id = $id";
+
+        $rs = mysql_query($sql) or die(mysql_error());
+
+        $row = mysql_fetch_assoc($rs);
+
+        return $row['tinh_name_safe_vi'];
+
+    }
 
    
 

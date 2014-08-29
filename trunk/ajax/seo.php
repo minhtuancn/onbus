@@ -1,13 +1,11 @@
 <?php
-require_once 'admin/Model/Home.php';
-$modelHome = new home;
-$mod = isset($_GET['mod']) ? $_GET['mod'] : "";
-function checkCat($uri) {
-    $p_lang = '#lang/[a-z]#';
+require_once 'backend/model/Ticket.php';
+$model = new Ticket;
+function checkCat($uri) {    
     $p_detail = '#details/[a-z0-9\-]+\-\d+.html#';
     $p_tag = '#/tag/[a-z\-]+.html#';
 	$p_contact = '#/lien-he+.html#';
-    $p_reservation = '#/dat-phong+.html#';
+    $p_payment = '#/[a-z\-]/payment+.html#';
     $p_about = '#/gioi-thieu+.html#'; 
     $p_thuvienanh = '#/thu-vien-anh+.html#'; 
 	$p_tintuc = '#/tin-tuc+.html#';
@@ -20,29 +18,27 @@ function checkCat($uri) {
     $p_promotion =  '#/promotion+.html#';
     $p_tour =  '#/tour-and-travel+.html#';
 
+    //ve-xe-khach-di-tu-ho-chi-minh-den-ba-ria-vung-tau-ngay-29-08-2014-den-29-09-2014-2-1t3l19.html
+    $p_search = "#/ve-xe-khach-[a-z\-]+.html#";
 
-
-    $mod = "";
-    $page_id = "";
-    if (preg_match($p_lang, $uri)) {
-        $tmp_lang = explode("/", $uri);        
-        $lang = $tmp_lang[2];        
+    $mod = "home";
+    $page_id = "";    
+    if (strpos( $uri,'ve-xe-khach')>-1) {        
+        $mod = "search";
     } 
+    if (strpos( $uri,'payment')>-1) {        
+        $mod = "payment";
+    }        
 	if (preg_match($p_contact, $uri)) {
         $mod = "contact";
     } 
     if (preg_match($p_about, $uri)) {
         $mod = "about";
     } 
-	if (preg_match($p_giaithuong, $uri)) {
-        $mod = "giaithuong";
-    } 
+	
     if (preg_match($p_thuvienanh, $uri)) {
         $mod = "thuvienanh";
-    } 
-    if (preg_match($p_reservation, $uri)) {
-        $mod = "reservation";
-    } 
+    }    
     
     if (preg_match($p_detail, $uri)) {
         $mod = "detail";
@@ -73,14 +69,20 @@ function checkCat($uri) {
         $mod = "tour";        
     } 
 
-    return array("lang"=>$lang, "mod" =>$mod,'page_id' => $page_id);
+    return array("mod" =>$mod,'page_id' => $page_id);
 }
 
-$uri = str_replace("/palmy", "", $_SERVER['REQUEST_URI']);
+$uri = str_replace("/onbus", "", $_SERVER['REQUEST_URI']);
+$tmpURI = explode("/",$uri);
+if(in_array($tmpURI[1], array("vi","en"))){
+    $lang = $tmpURI[1];
+    $_SESSION['lang'] = $lang;
+    $arrRS = checkCat($tmpURI[2]);        
+}else{
+    $error404 = true;
+}   
+$mod = $arrRS['mod']==null ? "home" : $arrRS['mod']; 
 
-$arrRS = checkCat($uri);
-$mod = $arrRS['mod'];
-$lang = $arrRS['lang'];
 $page_id = $arrRS['page_id'];
 $uri = str_replace(".html", "", $uri);
 $tmp_uri = explode("/", $uri);
@@ -138,7 +140,46 @@ switch ($mod) {
         $metaD = $arrDetailPage["meta_d"];
         $metaK = $arrDetailPage["meta_k"];
         break;
-
+    case "search":     
+        $vstart = $vend = $dstart = $dend = -1;
+        $car = "";
+        $str1 = strstr($tmp_uri[2], 'ngay');
+        $str1 = str_replace("ngay-", "", $str1);
+        $tmp_uri = explode("-den-",$str1);        
+        
+        if(isset($tmp_uri[1])){
+            $date_start = $tmp_uri[0];
+            $str2 = $tmp_uri[1];
+            $tmp_uri = explode("-",$str2);
+            $str3 = end($tmp_uri);
+            $date_end = str_replace("-".$str3,"", $str2);   
+            $tmp_uri = explode("_", $str3);
+            $type = (int) $tmp_uri[0];
+            //1t3l19
+            $tmp = explode("l",$tmp_uri[1]);
+            if(isset($tmp[1])){
+                $car = $tmp[1];            
+            }
+            $tmp = explode("t",$tmp[0]);
+            $vstart = $tmp[0];
+            $vend = $tmp[1];           
+        }else{ // ve 1 chieu
+            //30-08-2014-1_1t9
+            $tmp = explode("-",$tmp_uri[0]);            
+            $str2 = end($tmp);
+            $date_start = str_replace("-".$str2,"", $tmp_uri[0]);
+            $tmp = explode("_", $str2);
+            $type = (int) $tmp[0];            
+            $tmp = explode("l",$tmp[1]);
+            if(isset($tmp[1])){
+                $car = $tmp[1];            
+            }
+            $tmp = explode("t",$tmp[0]);
+            $vstart = $tmp[0];
+            $vend = $tmp[1];                
+        }        
+    
+        break;    
     default :        
             $title = "The Palmy Hotel";
             $metaD = "The Palmy Hotel";

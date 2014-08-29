@@ -1,42 +1,28 @@
 <?php 
 $arrTinhHaveTicket = $modelTinh->getListTinhHaveTicket($vstart);
-
 $link = "index.php?mod=search&";
-$vstart = $vend = $dstart = $dend = -1;
-$car = $service = ""; 
+ 
 $page_show = 5;
 $limit = 10;
-if(isset($_GET['type'])){
-    $type = (int) $_GET['type'];
+if($type== 1 || $type==2){    
     $link.="type=".$type;
 }
-if(isset($_GET['vstart'])){
-    $vstart = (int) $_GET['vstart'];
+if($vstart){    
     $link.="&vstart=".$vstart;
 }
-if(isset($_GET['vend'])){
-    $vend = (int) $_GET['vend'];
+if($vend){    
     $link.="&vend=".$vend;
 }
-if(isset($_GET['car']) && trim($_GET['car']!="") && trim($_GET['car']!="Chọn nhà xe")){
-    $car = $modelTicket->processData($_GET['car']);
-    $link.="&car=".$car;
-    $arrCarSearch = explode(',',$car);
+if($car > 0){    
+    $link.="&car=".$car;    
 }
-if(isset($_GET['service']) && trim($_GET['service']!="")){
-    $service = $modelTicket->processData($_GET['service']);
-    $link.="&service=".rtrim($service,",");
-    $arrServiceSearch = explode(',',rtrim($service,","));
+if($date_start){    
+    $link.="&dstart=".$date_start;
+    $dstart = strtotime($date_start) + 3600;
 }
-if(isset($_GET['dstart'])){
-    $dstart = $modelTicket->processData($_GET['dstart']);
-    $link.="&dstart=".$dstart;
-    $dstart = strtotime($dstart) + 3600;
-}
-if(isset($_GET['dend']) && $type==2){
-    $dend = $modelTicket->processData($_GET['dend']);
-    $link.="&dend=".$dend;
-    $dend = strtotime($dend) + 3600;
+if($date_end){    
+    $link.="&dend=".$date_end;
+    $dend = strtotime($date_end) + 3600;
 }
 
 $arrNhaXeID = array();
@@ -535,7 +521,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                             async: false,                             
                             data: {"time_book":time_book,"ticket_id_book":ticket_id_book,'price_book': price_book,'tab' : tab,'amount':amount},
                             success: function(data){                    
-                                location.href ="index.php?mod=payment";
+                                location.href ="<?php echo $lang;?>/payment.html";
                             }
                         });
                     }
