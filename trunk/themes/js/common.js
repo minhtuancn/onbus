@@ -204,6 +204,26 @@ $(document).ready(function() {
         return false;
     });
 
+    $('.col_question ul li a').on('click',function(e){
+        e.preventDefault();
+        var _this = $(this);
+        
+        if(_this.hasClass('activeShow')){
+            _this.parents('.box_question').find('.content_faq').slideUp();
+            _this.removeClass('activeShow');
+            _this.parents('.box_question').find('li a span').removeClass('glyphicon-minus').addClass('glyphicon-plus');
+        }else{
+            _this.parents('.box_question').find('li a').removeClass('activeShow');
+            _this.addClass('activeShow');
+            _this.parents('.box_question').find('.content_faq').slideUp();
+            _this.parents('.box_question').find('li a span').removeClass('glyphicon-minus').addClass('glyphicon-plus');
+            _this.parent('li').find('.content_faq').slideDown();
+            _this.find('span').removeClass('glyphicon-plus').addClass('glyphicon-minus');    
+        }
+        
+        return false;
+    });
+
 });
 $.fn.loading = function(options) {
     $('.loading').remove();
