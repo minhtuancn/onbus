@@ -152,12 +152,13 @@ $(document).ready(function() {
         if(idTab == '#hinhanh'){
             setTimeout(function(){
                 sliderBox = $('.bxslider_profile').bxSlider({
-                    slideWidth: 650,
+                    slideWidth: 1020,
                     minSlides: 1,
                     maxSlides: 1,
                     slideMargin: 0,
                     auto: false,
-                    pagerCustom: '#bx-pager'
+                    speed: 200,
+                    pager: false,
                 });
             },1500);
         }else{
