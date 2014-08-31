@@ -62,7 +62,7 @@ $payment->setVirtualPaymentUrl("https://migs.mastercard.com.au/vpcpay");
  
 $_params= array("vpc_Version" => "1", "vpc_Command" => "pay", "vpc_AccessCode" => "72AD46B6", "vpc_MerchTxnRef" => "$order_code_new".time(),
  "vpc_Merchant" => "test03051980", "vpc_OrderInfo" => "Order infoaaa", "vpc_Amount" => $total, "vpc_Locale" => "vn" ,
- "vpc_Currency" => "VND", "vpc_ReturnURL" => "http://onbus.vn/index.php?mod=thanks", "vpc_BackURL" => "http://onbus.vn/index.php?mod=thanks&e=1");
+ "vpc_Currency" => "VND", "vpc_ReturnURL" => "http://onbus.vn/index.php?mod=thanks", "vpc_BackURL" => "http://onbus.vn");
 
 $payment->redirect($_params);
 }elseif($method==3){	
@@ -85,7 +85,7 @@ $payment->redirect($_params);
 	 	"vpc_Locale" => "vn" ,	 	
 	 	"vpc_Currency" => "VND", 
 	 	"vpc_ReturnURL" => "http://onbus.vn/index.php?mod=thanks", 
-	 	"vpc_BackURL" => "http://onbus.vn/index.php?mod=thanks&e=1");	
+	 	"vpc_BackURL" => "http://onbus.vn");	
 	$payment->redirect($_params);	
 	
 }
