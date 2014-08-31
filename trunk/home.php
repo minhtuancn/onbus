@@ -79,10 +79,15 @@ $arrRoute = $modelRoute->getListRoute('',-1,-1,1, 0, 8);
     <div class="chrm-toggle"><span class="">Feedback</span></div>
 </div>
     <?php include URL_LAYOUT."/header.php"; ?>    
-    
+    <?php if($mod=="hot-detail") {?>
+    <div class="wrap_layout_2">
+    <?php } ?>
     <div id="wrapper-container" class="w-center <?php if($mod=="thanks") echo "thanks_page"; ?>">
         <?php include "page/".$mod.".php"; ?>
     </div>
+    <?php if($mod=="hot-detail") {?>
+    </div>
+    <?php } ?>
 <?php include URL_LAYOUT."/footer.php"; ?>
 <!-- InstanceBeginEditable name="EditRegion3" -->
 <div id="scr"></div>
