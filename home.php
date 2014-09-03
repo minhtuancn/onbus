@@ -100,9 +100,14 @@ $arrRoute = $modelRoute->getListRoute('',-1,-1,1, 0, 8);
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/searchWidget1.0.min.js"></script>
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/helper1.0.min.js"></script>    
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/jquery.bxslider.js"></script>
+    <?php if($mod=="detail-nhaxe"){ ?>
+    <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/jquery.slimscroll.js"></script>
+    <?php } ?>
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/common.js"></script> 
+
     <?php if($mod!="payment") {?>   
     <script type="text/javascript">
+    <?php if($mod=="home" || $mod =="search") { ?>
         var statecity = [
         <?php 
 foreach ($arrTinhHaveTicket as $value) {
@@ -116,6 +121,7 @@ foreach ($arrTinhHaveTicket as $value) {
 }
         ?>
         ];        
+        <?php } ?>
         $(document).ready(function(){
           $('.ticket-2').hide();  
           $('.bxslider').bxSlider({

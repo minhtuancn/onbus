@@ -3,6 +3,7 @@ include "../defined.php";
 if(!isset($_SESSION)){
     session_start();
 }
+$lang= $_SESSION['lang'];
 require_once "../backend/model/Ticket.php";
 $modelTicket = new Ticket();
 
@@ -58,12 +59,12 @@ if(isset($_POST['service']) && trim($_POST['service']!="")){
 if(isset($_POST['dstart'])){
     $dstart = $modelTicket->processData($_POST['dstart']);
     $link.="&dstart=".$dstart;
-    $dstart = strtotime($dstart) + 3600;
+    $dstart = strtotime($dstart);
 }
 if(isset($_POST['dend'])){
     $dend = $modelTicket->processData($_POST['dend']);
     $link.="&dend=".$dend;
-    $dend = strtotime($dend) + 3600;
+    $dend = strtotime($dend);
 }
 $tab = (int) $_POST['tab'];
 if($tab==1){
@@ -78,11 +79,11 @@ $arrTicket_end = $modelTicket->getListTicketFE($car,$vstart,$vend,$dstart,$servi
 ?>
 
 <?php if(!empty($arrTicket_end['data'])){ 
-                            foreach($arrTicket_end['data']  as $ticket){
-                                $arrServiceTicket = $modelTicket->getServiceTicket($ticket['ticket_id']);                                 
-                                 $arrTimeTicket = $modelTicket->getTimeTicket($ticket['ticket_id']);
-                                 $arrDetailNhaxe = $modelNhaxe->getDetailNhaxe($ticket['nhaxe_id']);                                 
-                            ?>
+    foreach($arrTicket_end['data']  as $ticket){
+        $arrServiceTicket = $modelTicket->getServiceTicket($ticket['ticket_id']);                                 
+         $arrTimeTicket = $modelTicket->getTimeTicket($ticket['ticket_id']);
+         $arrDetailNhaxe = $modelNhaxe->getDetailNhaxe($ticket['nhaxe_id']);                                 
+    ?>
     <div class="items">
     <div class=" infor-tuyen-search">
         <div class="b-infor">

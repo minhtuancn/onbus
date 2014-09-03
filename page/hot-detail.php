@@ -34,42 +34,42 @@
             <ul>
                 <li>
                     <a href="#">
-                    	<div class="wrap-img left"><img src="<?php echo STATIC_URL; ?>/images/fashion2.jpg"></div>
+                    	<div class="wrap-img left"><img src="<?php echo STATIC_URL; ?>/images/bus-1.jpg"></div>
                     	<div class="left  tlq_items"><strong>Nam Convallis Pellentesque Nisl</strong>
             			<span>Thursday, December 22, 2011</span></div>
                     </a>
 		        </li>
                 <li>
                     <a href="#">
-                    	<div class="wrap-img left"><img src="<?php echo STATIC_URL; ?>/images/fashion2.jpg"></div>
+                    	<div class="wrap-img left"><img src="<?php echo STATIC_URL; ?>/images/bus-1.jpg"></div>
                     	<div class="left  tlq_items"><strong>Nam Convallis Pellentesque Nisl</strong>
             			<span>Thursday, December 22, 2011</span></div>
                     </a>
 		        </li>
                 <li>
                     <a href="#">
-                    	<div class="wrap-img left"><img src="<?php echo STATIC_URL; ?>/images/fashion2.jpg"></div>
+                    	<div class="wrap-img left"><img src="<?php echo STATIC_URL; ?>/images/bus-1.jpg"></div>
                     	<div class="left  tlq_items"><strong>Nam Convallis Pellentesque Nisl</strong>
             			<span>Thursday, December 22, 2011</span></div>
                     </a>
 		        </li>
                 <li>
                     <a href="#">
-                    	<div class="wrap-img left"><img src="<?php echo STATIC_URL; ?>/images/fashion2.jpg"></div>
+                    	<div class="wrap-img left"><img src="<?php echo STATIC_URL; ?>/images/bus-1.jpg"></div>
                     	<div class="left  tlq_items"><strong>Nam Convallis Pellentesque Nisl</strong>
             			<span>Thursday, December 22, 2011</span></div>
                     </a>
 		        </li>
                 <li>
                     <a href="#">
-                    	<div class="wrap-img left"><img src="<?php echo STATIC_URL; ?>/images/fashion2.jpg"></div>
+                    	<div class="wrap-img left"><img src="<?php echo STATIC_URL; ?>/images/bus-1.jpg"></div>
                     	<div class="left  tlq_items"><strong>Nam Convallis Pellentesque Nisl</strong>
             			<span>Thursday, December 22, 2011</span></div>
                     </a>
 		        </li>
                 <li>
                     <a href="#">
-                    	<div class="wrap-img left"><img src="<?php echo STATIC_URL; ?>/images/fashion2.jpg"></div>
+                    	<div class="wrap-img left"><img src="<?php echo STATIC_URL; ?>/images/bus-1.jpg"></div>
                     	<div class="left  tlq_items"><strong>Nam Convallis Pellentesque Nisl</strong>
             			<span>Thursday, December 22, 2011</span></div>
                     </a>
