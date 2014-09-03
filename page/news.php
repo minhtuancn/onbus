@@ -204,3 +204,22 @@
 		</div>
 	</div>
   <div class="clear"></div>
+  <script language="javascript" type="text/javascript" src="<?php echo STATIC_URL;?>/js/jquery.easing.js"></script>
+  <script language="javascript" type="text/javascript" src="<?php echo STATIC_URL;?>/js/script.js"></script>
+  <script type="text/javascript">
+  $(document).ready( function(){  
+    var buttons = { previous:$('#jslidernews2 .button-previous') ,
+            next:$('#jslidernews2 .button-next') };      
+    $('#jslidernews2').lofJSidernews( { 
+      interval:5000,
+      easing:'easeInOutQuad',
+      duration:1200,
+      auto:true,
+      mainWidth:700,
+      mainHeight:300,
+      navigatorHeight   : 100,
+      navigatorWidth    : 120,
+      maxItemDisplay:3,
+      buttons:buttons } );            
+    });
+  </script>
