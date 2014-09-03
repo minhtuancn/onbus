@@ -36,7 +36,16 @@ function checkCat($uri) {
     } 
     if (strpos( $uri,'payment')>-1) {        
         $mod = "payment";
+    } 
+    if (strpos( $uri,'thong-tin-nha-xe')>-1) {        
+        $mod = "nhaxe";
+    }
+    if (strpos( $uri,'tin-tuc')>-1) {        
+        $mod = "news";
     }   
+    if (strpos( $uri,'payment')>-1) {        
+        $mod = "payment";
+    } 
     if (strpos( $uri,'diem-den')>-1) {        
         $mod = "hot-detail";
     }      
