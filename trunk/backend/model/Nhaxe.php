@@ -18,7 +18,17 @@ class Nhaxe extends Db {
         $row = mysql_fetch_assoc($rs);
         return $row;
     }
+    function getIDByNameSafe($str) {
 
+        $sql = "SELECT nhaxe_id FROM nhaxe WHERE nhaxe_name_safe_vi = '$str' AND status > 0 ";
+
+        $rs = mysql_query($sql) or die(mysql_error());
+
+        $row = mysql_fetch_assoc($rs);
+
+        return $row['nhaxe_id'];
+
+    }
     function getNhaxeNameByID($id,$lang="vi") {
         $sql = "SELECT * FROM nhaxe WHERE nhaxe_id = $id";
         $rs = mysql_query($sql) or die(mysql_error());

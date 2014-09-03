@@ -3,6 +3,8 @@ require_once 'backend/model/Ticket.php';
 $model = new Ticket;
 require_once 'backend/model/Tinh.php';
 $modelTinh = new Tinh;
+require_once 'backend/model/Nhaxe.php';
+$modelNhaxe = new Nhaxe;
 function checkCat($uri) {    
     $p_detail = '#details/[a-z0-9\-]+\-\d+.html#';
     $p_tag = '#/tag/[a-z\-]+.html#';
@@ -28,6 +30,9 @@ function checkCat($uri) {
     $page_id = "";    
     if (strpos( $uri,'ve-xe-khach')>-1) {        
         $mod = "search";
+    } 
+    if (strpos( $uri,'chi-tiet-nha-xe')>-1) {        
+        $mod = "detail-nhaxe";
     } 
     if (strpos( $uri,'payment')>-1) {        
         $mod = "payment";
@@ -136,6 +141,11 @@ switch ($mod) {
         $rs = mysql_query($sql);
         $row_hot = mysql_fetch_assoc($rs);
         break;
+    case "detail-nhaxe":
+        $nhaxe_name_safe_vi = str_replace("chi-tiet-nha-xe-", "", $tmp_uri[2]);
+        $nhaxe_id = (int) $modelNhaxe->getIDByNameSafe($nhaxe_name_safe_vi);                
+        $row_nhaxe = $modelNhaxe->getDetailNhaxe($nhaxe_id);        
+        break;    
     case "page":                
         $rs_article = $modelHome->getDetailPage($page_id);         
         $arrDetailPage = mysql_fetch_assoc($rs_article); 

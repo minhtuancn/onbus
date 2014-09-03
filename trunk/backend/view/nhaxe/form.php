@@ -3,7 +3,7 @@ if(isset($_GET['nhaxe_id'])){
     $nhaxe_id = (int) $_GET['nhaxe_id'];
     require_once "model/Nhaxe.php";
     $model = new Nhaxe;
-    $detail = $model->getDetailNhaxe($nhaxe_id);
+    $detail = $model->getDetailNhaxe($nhaxe_id);    
 }
 ?>
 <script type="text/javascript" src="static/ckeditor/ckeditor.js"></script>
