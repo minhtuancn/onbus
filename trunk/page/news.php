@@ -108,74 +108,26 @@
           <div class="button-next">Next</div>
           <div class="button-control action-start hover-stop"><span></span></div>
 	 </div> 
+        <?php 
+        $rs = mysql_query("SELECT * FROM articles WHERE status > 0 ");
+        while($row = mysql_fetch_assoc($rs)){
+        ?>
 				<div class="post archive">
 				
-					<div class="post-tnail"><a href="#"><img src="<?php echo STATIC_URL;?>/images/jj.jpg" class="attachment-post-thumbnail wp-post-image" alt="Praesent Placerat Risus Quis Eros"><span>&nbsp;</span></a></div>					
+					<div class="post-tnail">
+            <a href="<?php echo $lang; ?>/details/<?php echo $row['title_safe']?>-<?php echo $row['article_id'];?>.html"><img src="<?php echo $row['image_url']; ?>" class="attachment-post-thumbnail wp-post-image" alt="Praesent Placerat Risus Quis Eros"><span>&nbsp;</span></a></div>					
 					<div class="post-content">
-						<h2><a href="#">Ben Tre</a></h2>
-						<div class="post-date">February 22, 2012 <span>|</span> <a href="#">4 Comments</a></div>
-												<p>As tourism took off in the Mekong Delta, the picturesque little province of Ben Tre was always one ferry beyond the tourist traffic of My Tho and consequently has developed at a more languid pace. The opening of a new bridge has (thus far) done little to change that. The town's sleepy waterfront, lined with ageing villas, is easy to explore on foot, as is the rustic settlement across the bridge to the south of the centre. This is also a good place to arrange boat trips in the area, particularly for those wanting to escape the tour buses.[…]</p>
-						<p class="more"><a href="#">Continue reading...</a></p>
+						<h2><a href="<?php echo $lang; ?>/details/<?php echo $row['title_safe']?>-<?php echo $row['article_id'];?>.html"><?php echo $row['title']; ?></a></h2>
+						<div class="post-date"><?php echo date('M d,Y',$row['creation_time']); ?> <span>|</span> <a href="#">4 Comments</a></div>
+												<p><?php echo $row['description']; ?>[…]</p>
+						<p class="more"><a href="<?php echo $lang; ?>/details/<?php echo $row['title_safe']?>-<?php echo $row['article_id'];?>.html">Continue reading...</a></p>
 					</div>
 					<div class="clear"></div>
 				</div>
-                <div class="post archive">
-				
-					<div class="post-tnail"><a href="#"><img src="<?php echo STATIC_URL;?>/images/jj.jpg" class="attachment-post-thumbnail wp-post-image" alt="Praesent Placerat Risus Quis Eros"><span>&nbsp;</span></a></div>					
-					<div class="post-content">
-						<h2><a href="#">Hướng dẫn kinh nghiệm đi xe giường nằm dịp Tết</a></h2>
-						<div class="post-date">February 22, 2012 <span>|</span> <a href="#">4 Comments</a></div>
-												<p>As tourism took off in the Mekong Delta, the picturesque little province of Ben Tre was always one ferry beyond the tourist traffic of My Tho and consequently has developed at a more languid pace. The opening of a new bridge has (thus far) done little to change that. The town's sleepy waterfront, lined with ageing villas, is easy to explore on foot, as is the rustic settlement across the bridge to the south of the centre. This is also a good place to arrange boat trips in the area, particularly for those wanting to escape the tour buses.[…]</p>
-						<p class="more"><a href="#">Continue reading...</a></p>
-					</div>
-					<div class="clear"></div>
-				</div>
-                <div class="post archive">
-				
-					<div class="post-tnail"><a href="#"><img src="<?php echo STATIC_URL;?>/images/jj.jpg" class="attachment-post-thumbnail wp-post-image" alt="Praesent Placerat Risus Quis Eros"><span>&nbsp;</span></a></div>					
-					<div class="post-content">
-						<h2><a href="#">10 Top Tourist Attractions in Vietnam</a></h2>
-						<div class="post-date">February 22, 2012 <span>|</span> <a href="#">4 Comments</a></div>
-												<p>As tourism took off in the Mekong Delta, the picturesque little province of Ben Tre was always one ferry beyond the tourist traffic of My Tho and consequently has developed at a more languid pace. The opening of a new bridge has (thus far) done little to change that. The town's sleepy waterfront, lined with ageing villas, is easy to explore on foot, as is the rustic settlement across the bridge to the south of the centre. This is also a good place to arrange boat trips in the area, particularly for those wanting to escape the tour buses.[…]</p>
-						<p class="more"><a href="#">Continue reading...</a></p>
-					</div>
-					<div class="clear"></div>
-				</div>
-                <div class="post archive">
-				
-					<div class="post-tnail"><a href="#"><img src="<?php echo STATIC_URL;?>/images/jj.jpg" class="attachment-post-thumbnail wp-post-image" alt="Praesent Placerat Risus Quis Eros"><span>&nbsp;</span></a></div>					
-					<div class="post-content">
-						<h2><a href="#">Xe khách giường nằm '5 sao' đầu tiên tại VN</a></h2>
-						<div class="post-date">February 22, 2012 <span>|</span> <a href="#">4 Comments</a></div>
-												<p>As tourism took off in the Mekong Delta, the picturesque little province of Ben Tre was always one ferry beyond the tourist traffic of My Tho and consequently has developed at a more languid pace. The opening of a new bridge has (thus far) done little to change that. The town's sleepy waterfront, lined with ageing villas, is easy to explore on foot, as is the rustic settlement across the bridge to the south of the centre. This is also a good place to arrange boat trips in the area, particularly for those wanting to escape the tour buses.[…]</p>
-						<p class="more"><a href="#">Continue reading...</a></p>
-					</div>
-					<div class="clear"></div>
-				</div>
-                <div class="post archive">
-				
-					<div class="post-tnail"><a href="#"><img src="<?php echo STATIC_URL;?>/images/jj.jpg" class="attachment-post-thumbnail wp-post-image" alt="Praesent Placerat Risus Quis Eros"><span>&nbsp;</span></a></div>					
-					<div class="post-content">
-						<h2><a href="#">Xe khách giường nằm '5 sao' đầu tiên tại VN</a></h2>
-						<div class="post-date">February 22, 2012 <span>|</span> <a href="#">4 Comments</a></div>
-												<p>As tourism took off in the Mekong Delta, the picturesque little province of Ben Tre was always one ferry beyond the tourist traffic of My Tho and consequently has developed at a more languid pace. The opening of a new bridge has (thus far) done little to change that. The town's sleepy waterfront, lined with ageing villas, is easy to explore on foot, as is the rustic settlement across the bridge to the south of the centre. This is also a good place to arrange boat trips in the area, particularly for those wanting to escape the tour buses.[…]</p>
-						<p class="more"><a href="#">Continue reading...</a></p>
-					</div>
-					<div class="clear"></div>
-				</div>
-                <div class="post archive">
-				
-					<div class="post-tnail"><a href="#"><img src="<?php echo STATIC_URL;?>/images/jj.jpg" class="attachment-post-thumbnail wp-post-image" alt="Praesent Placerat Risus Quis Eros"><span>&nbsp;</span></a></div>					
-					<div class="post-content">
-						<h2><a href="#">Xe khách giường nằm '5 sao' đầu tiên tại VN</a></h2>
-						<div class="post-date">February 22, 2012 <span>|</span> <a href="#">4 Comments</a></div>
-												<p>As tourism took off in the Mekong Delta, the picturesque little province of Ben Tre was always one ferry beyond the tourist traffic of My Tho and consequently has developed at a more languid pace. The opening of a new bridge has (thus far) done little to change that. The town's sleepy waterfront, lined with ageing villas, is easy to explore on foot, as is the rustic settlement across the bridge to the south of the centre. This is also a good place to arrange boat trips in the area, particularly for those wanting to escape the tour buses.[…]</p>
-						<p class="more"><a href="#">Continue reading...</a></p>
-					</div>
-					<div class="clear"></div>
-				</div>
+        <?php } ?>
+               
                 <div class="wp-pagenavi">
-<span class="pages">Page 1 of 2</span><span class="current">1</span><a class="page larger" href="#">2</a><a class="nextpostslink" href="#">»</a>
+<span class="pages">Page 1 of 2</span><span class="current">1</span><a class="page larger" href="">2</a><a class="nextpostslink" href="#">»</a>
 </div>
 			</div>
 			<div id="sidebar2" class="sidebar">
