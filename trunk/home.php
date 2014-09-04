@@ -161,6 +161,26 @@ foreach ($arrTinhHaveTicket as $value) {
 </div>
 <style type="text/css">
 .vxr-loading-overlay{background:none repeat scroll 0 0 #FFFFFF;height:100%;opacity:0.5;position:fixed;text-align:center;width:100%;z-index:9999;top:0;left:0;display:none}.vxr-loading-overlay img{margin-top:40%}
+.icon-nuoc {
+    width: 16px;
+    height: 16px;
+    background: url(themes/css/images/nuoc.png) no-repeat;
+    display: block;
+}
+.icon-khan {
+    width: 16px;
+    height: 16px;
+    background: url(themes/css/images/khan.png) no-repeat;
+    display: block;
+}
+.icon-chan {
+    width: 16px;
+    height: 16px;
+    background: url(themes/css/images/chan.png) no-repeat;
+    display: block;
+}
+.list-logo-xe li span{float:none !important;}
+p.error_time{display: none;font-style: italic;}
 </style>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
