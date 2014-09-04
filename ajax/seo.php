@@ -40,6 +40,9 @@ function checkCat($uri) {
     if (strpos( $uri,'thong-tin-nha-xe')>-1) {        
         $mod = "nhaxe";
     }
+    if (strpos( $uri,'details')>-1) {        
+        $mod = "details";
+    }
     if (strpos( $uri,'tin-tuc')>-1) {        
         $mod = "news";
     }   
@@ -108,14 +111,17 @@ $uri = str_replace(".html", "", $uri);
 $tmp_uri = explode("/", $uri);
 switch ($mod) {    
     
-    case "news":  
-		$tieude_id = $tmp_uri[1];
+    case "details":  
+		$tieude_id = $tmp_uri[3];
+        
         $arr = explode("-", $tieude_id);   
-		$page = (int) end($arr);
-		$page = ($page==0) ? 1 : $page;
-		$title = "Tin tức";
-		$metaD = "Tin tức";
-		$metaK = "Tin tức";        
+		$article_id = (int) end($arr);
+        $sql = "SELECT * FROM articles WHERE article_id = $article_id";
+        $rs = mysql_query($sql);
+        $row_details = mysql_fetch_assoc($rs);        
+		$title = $row['title'];
+		$metaD = $row['title'];
+		$metaK = $row['title'];        
         break;   
     
     case "contact":
