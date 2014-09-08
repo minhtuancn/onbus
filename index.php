@@ -120,6 +120,7 @@ $str = str_replace("{chieudai}" , chieudai , $str);
   $str = str_replace("{chonnoidi}" , chonnoidi , $str);
   $str = str_replace("{chonnoiden}" , chonnoiden , $str);
   $str = str_replace("{chiasehanhtrinhcuaban}" , chiasehanhtrinhcuaban , $str);
+  $str = str_replace("{tatcanhaxe}" , tatcanhaxe , $str);
  
   echo $str;
 

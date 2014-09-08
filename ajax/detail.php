@@ -68,14 +68,16 @@ $routeDetail = $modelRoute->detailRoute($arrDetail['tinh_id_start'],$arrDetail['
                             elseif($ser==4) $classIcon = "icon-chan";
                             elseif($ser==5) $classIcon = "icon-wc";
                         ?>
-                        <li><i  data-toggle="tooltip" title="<?php echo $modelService->getServiceNameByID($ser); ?>" class="<?php echo $classIcon; ?>"></i></li>
+                        <li><i  data-toggle="tooltip" title="<?php echo $modelService->getServiceNameByID($ser,$lang); ?>" class="<?php echo $classIcon; ?>"></i></li>
                         <?php }}?>
                 </ul>
                 <h1><?php echo $routeDetail['route_name_'.$lang]; ?></h1>
                 <div class="clear"></div>
             </div>
-            <div class="abc-dkh"><b><?php echo ($lang=="vi") ? "Điểm khởi hành" : "Depart"; ?>:</b><?php echo $modelPlace->getAddressByID($arrDetail['place_id_start'],$lang); ?><a href="#" class="right">(<?php echo ($lang=="vi") ? "Xem bản đồ" : "View on map"; ?>)</a></div>
-            <div class="abc-dkh"><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?>:</b><?php echo $modelPlace->getAddressByID($arrDetail['place_id_end'],$lang); ?><a href="#" class="right">(<?php echo ($lang=="vi") ? "Xem bản đồ" : "View on map"; ?>)</a></div>
+            <div class="abc-dkh"><b><?php echo ($lang=="vi") ? "Điểm khởi hành" : "Depart"; ?>:</b>
+                <?php echo $modelPlace->getPlaceNameByID($arrDetail['place_id_start'],$lang); ?> (<?php echo $modelPlace->getAddressByID($arrDetail['place_id_start'],$lang); ?>)<a href="#" class="right">(<?php echo ($lang=="vi") ? "Xem bản đồ" : "View on map"; ?>)</a></div>
+            <div class="abc-dkh"><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?>:</b>
+                <?php echo $modelPlace->getPlaceNameByID($arrDetail['place_id_end'],$lang); ?> (<?php echo $modelPlace->getAddressByID($arrDetail['place_id_end'],$lang); ?>)<a href="#" class="right">(<?php echo ($lang=="vi") ? "Xem bản đồ" : "View on map"; ?>)</a></div>
             <div class="type-ticket" id="time_popup_<?php echo $arrDetail['ticket_id']; ?>">
                 <p><?php echo ($lang=="vi") ? "Chọn thời gian khởi hành trước khi mua vé" : "Choose your departure time before booking tickets"; ?>*</p>
                 <ul>
@@ -114,11 +116,22 @@ $routeDetail = $modelRoute->detailRoute($arrDetail['tinh_id_start'],$arrDetail['
             <div class="ab-dd">
                 <p><?php echo ($lang=="vi") ? "Quý khách có thể thanh toán bằng các hình thức sau:" : "Quý khách có thể thanh toán bằng các hình thức sau:"; ?> </p>
             </div>
-            <div>
-                <p><b>- Holine 24/24 hỗ trợ:</b> Mô tả mô tả mô tảt Mô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô</p>
-                <p><b>- Bản đồ và cẩm nang du lịch onbus.vn:</b> Mô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảt</p>
-                <p><b>- Vé chiều đi của hành trình:</b> Mô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảt</p>
-                <p><b>- Phí Bảo Hiểm Du Lịch:</b> Mô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tảtMô tả mô tả mô tả</p>
+            <div style="padding-left:20px;text-align:justify;font-weight:bold">
+            <ul>
+                <li style="list-style-type: circle;margin:left:15px">
+                    Đặt chỗ v&agrave; thanh to&aacute;n ngay&nbsp;</li>
+                <li style="list-style-type: circle;margin:left:15px">
+                    Thanh to&aacute;n quốc tế: &nbsp;VISA, MasterCard.</li>
+                <li style="list-style-type: circle;margin:left:15px">
+                    Internet banking</li>
+                <li style="list-style-type: circle;margin:left:15px">
+                    Giao v&eacute; tận nơi</li>
+                <li style="list-style-type: circle;margin:left:15px">
+                    Chủ thẻ c&oacute; thể thanh to&aacute;n cho bản th&acirc;n hoặc cho người kh&aacute;c.</li>
+                <li style="list-style-type: circle;margin:left:15px">
+                    Kh&aacute;ch h&agrave;ng c&oacute; mặt tại trạm khởi h&agrave;nh trước 15p để nhận v&eacute;. Trong trường hợp trễ thời gian quy định tr&ecirc;n Onbus sẽ đảm bảo cho kh&aacute;ch h&agrave;ng c&oacute; chỗ cho chuyến xe c&oacute; thời gian gần nhất tiếp theo.</li>
+            </ul>
+
             </div>
         </div>
         <div class="clear"></div>    
@@ -131,6 +144,10 @@ $routeDetail = $modelRoute->detailRoute($arrDetail['tinh_id_start'],$arrDetail['
 
 $('.type-ticket ul li a').unbind( "click" ).bind("click",function(){
     var _this = $(this);
+    var value = _this.attr('data-value');
+    $('#time_<?php echo $ticket_id; ?>').find('ul').find('li a').removeClass('active');
+    $('#time_<?php echo $ticket_id; ?>').find('ul').find('li a[data-value="'+value+'"]').addClass('active');
+
     _this.parents('ul').find('li a').removeClass('active');
     if(_this.hasClass('active')){
         _this.removeClass('active');
