@@ -141,7 +141,7 @@ foreach ($arrTinhHaveTicket as $value) {
             <div class="left item-search">
                 <label for="departPlace">{nhaxe}</label>
                 <select class="form-control input-sm left" name="car" id="car">
-                    <option>{chonnhaxe}</option>
+                    <option>{tatcanhaxe}</option>
                     <?php foreach ($arrNhaXe['data'] as $key => $value) {
                     ?>
                     <option value="<?php echo $value['nhaxe_id']; ?>"><?php echo $value['nhaxe_name_'.$lang];?></option>

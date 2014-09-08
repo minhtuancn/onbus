@@ -286,8 +286,8 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                             </li>                                            
                                         </ul>
                                         <div class="clear"></div>
-                                        <p><b><?php echo ($lang=="vi") ? "Điểm khởi hành" : "Depart"; ?> :</b><?php echo $modelPlace->getAddressByID($ticket['place_id_start'],$lang); ?></p>
-                                        <p><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?> :</b><?php echo $modelPlace->getAddressByID($ticket['place_id_end'],$lang); ?></p>
+                                        <p><b><?php echo ($lang=="vi") ? "Điểm khởi hành" : "Depart"; ?>:</b><?php echo $modelPlace->getPlaceNameByID($ticket['place_id_start'],$lang); ?> (<?php echo $modelPlace->getAddressByID($ticket['place_id_start'],$lang); ?>)</p>
+                                        <p><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?>:</b><?php echo $modelPlace->getPlaceNameByID($ticket['place_id_end'],$lang); ?> (<?php echo $modelPlace->getAddressByID($ticket['place_id_end'],$lang); ?>)</p>
                                         <a href="#" class="right show_map" data-url-map="https://dl.dropboxusercontent.com/u/43486987/Hoang/HTML/<?php echo STATIC_URL; ?>/images/map.jpg" data-toggle="modal" data-target="">{xemlotrinh}</a>
                                         <div class="type-ticket" id="time_<?php echo $ticket['ticket_id']; ?>">
                                         <p><?php echo $lang=="vi" ? "Chọn giờ khởi hành" : "Select time"; ?>:</p>
@@ -380,8 +380,8 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                             </li>                                            
                                         </ul>
                                         <div class="clear"></div>
-                                        <p><b><?php echo ($lang=="vi") ? "Điểm khởi hành" : "Depart"; ?> :</b><?php echo $modelPlace->getAddressByID($ticket['place_id_start'],$lang); ?></p>
-                                        <p><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?> :</b><?php echo $modelPlace->getAddressByID($ticket['place_id_end'],$lang); ?></p>
+                                        <p><b><?php echo ($lang=="vi") ? "Điểm khởi hành" : "Depart"; ?>:</b><?php echo $modelPlace->getPlaceNameByID($ticket['place_id_start'],$lang); ?> (<?php echo $modelPlace->getAddressByID($ticket['place_id_start'],$lang); ?>)</p>
+                                        <p><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?>:</b><?php echo $modelPlace->getPlaceNameByID($ticket['place_id_end'],$lang); ?> (<?php echo $modelPlace->getAddressByID($ticket['place_id_end'],$lang); ?>)</p>
                                         <a href="#" class="right show_map" data-url-map="https://dl.dropboxusercontent.com/u/43486987/Hoang/HTML/<?php echo STATIC_URL; ?>/images/map.jpg" data-toggle="modal" data-target="">Xem lộ trình</a>
                                         <div class="type-ticket" id="time_<?php echo $ticket['ticket_id']; ?>">
                                         <p><?php echo $lang=="vi" ? "Chọn giờ khởi hành" : "Select time"; ?>:</p>
@@ -507,7 +507,10 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
 <script type="text/javascript">
          $(document).ready(function(){
               $(function () {
+
                 initSearchTicketWidget();    
+                clickOutsideSelector("#departPlaceSelector2");
+                clickOutsideSelector("#destinationSelector2");
                 $('#btnBookNow').click(function(){
                     var time_book = $('#time_book').val();
                     var ticket_id_book = $('#ticket_id_book').val();
@@ -841,6 +844,13 @@ foreach ($arrTinhHaveTicket as $value) {
                 });
             }          
          });
+function clickOutsideSelector(a) {
+    $(document).mouseup(function(b) {
+        var c = $(a),
+            e = c.prev();
+        !c.is(":visible") || e.is(":focus") || c.is(b.target) || 0 !== c.has(b.target).length || c.hide()
+    })
+}
 function loadDetail(id){
     $.ajax({
         url: "ajax/detail.php",

@@ -46,4 +46,5 @@ define("chitiet", "Detail");
 define("chonnoidi", "Enter a city");
 define("chonnoiden", "Enter a city");
 define("chiasehanhtrinhcuaban","Share us your journey.");
+define("tatcanhaxe","All bus operator");
 ?>

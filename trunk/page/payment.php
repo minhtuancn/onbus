@@ -223,7 +223,7 @@ if(!empty($_SESSION['bookticket'])){
                         <div title="" data-toggle="tooltip" class="left icon_start" data-original-title="Khởi hành"></div>
                         <div class="left time_diadiem">
                             <h4><?php echo $modelTime->getTimeByID($arrTime[$value['ticket_id']]);?></h4>
-                            <p><span><?php echo $modelPlace->getAddressByID($value['place_id_start'],$lang); ?></span><a href="#" class="right">{xemthongtin}</a></p>
+                            <p><span><?php echo $modelPlace->getPlaceNameByID($ticket['place_id_start'],$lang); ?> (<?php echo $modelPlace->getAddressByID($value['place_id_start'],$lang); ?>)</span><a href="#" class="right">{xemthongtin}</a></p>
                         </div>
                         <div class="clear"></div>
                         <div title="" data-toggle="tooltip" class="left icon_end" data-original-title="Điểm đến"></div>
@@ -246,7 +246,7 @@ if(!empty($_SESSION['bookticket'])){
                             $h_end = str_pad($h_end, 2, "0", STR_PAD_LEFT);                             
                             ?>
                             <h4><?php echo $h_end?>:<?php echo $m_end; ?></h4>
-                            <p><span><?php echo $modelPlace->getAddressByID($value['place_id_end'],$lang); ?></span><a href="#" class="right">{xemthongtin}</a></p>
+                            <p><span><?php echo $modelPlace->getPlaceNameByID($ticket['place_id_end'],$lang); ?> (<?php echo $modelPlace->getAddressByID($value['place_id_end'],$lang); ?>)</span><a href="#" class="right">{xemthongtin}</a></p>
                         </div>
                         <div class="line_center"></div>
                         <?php } // foreach
