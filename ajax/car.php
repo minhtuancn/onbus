@@ -12,7 +12,8 @@ if(isset($_POST['dstart'])){
     $dstart = strtotime($dstart);
 }
 $arrResult = $model->getListNhaxeHaveTicket($vstart,$vend,$dstart);
-$str = '<option value="0">Chọn nhà xe</option>';
+$a = ($lang == "vi") ? "Tất cả nhà xe" : "All bus operator";
+$str = '<option value="0">'.$a.'</option>';
 if(!empty($arrResult) && is_array($arrResult)){
   foreach ($arrResult as $value) {
       $str.='<option value="'.$value["nhaxe_id"].'">'.$value["nhaxe_name_".$lang].'</option>';
