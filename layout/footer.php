@@ -19,7 +19,7 @@
             <ul>
                 <?php foreach ($arrNhaXeUyTin['data'] as $key => $value) {
                 ?>
-                <li><a id="BaseFooter_HyperLinkFlights" href="#"><?php echo $value['nhaxe_name_'.$lang]?></a></li>
+                <li><a id="BaseFooter_HyperLinkFlights" href="<?php echo $lang;?>/chi-tiet-nha-xe-<?php echo $value['nhaxe_name_safe_vi']; ?>.html"><?php echo $value['nhaxe_name_'.$lang]?></a></li>
                 <?php    
                 }?> 
         
@@ -42,7 +42,7 @@
 <div id="BaseFooter_domainLinks" class="medBox seoLinks">
     <ul>
         <li><a href="#">{vechungtoi}</a></li>
-        <li><a href="#">{lienhe}</a></li>
+        <li><a href="<?php echo $lang; ?>/contact.html">{lienhe}</a></li>
         <li><a href="<?php echo $lang; ?>/faq.html">{hoidap}</a></li>
         <li><a href="#">{dieukhoansudung}</a></li>
         <li><a href="#">{phanhoi}</a></li>

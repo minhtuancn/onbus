@@ -18,10 +18,23 @@ function BrowseServer( startupPath, functionData ){
     //finder.selectThumbnailActionFunction = ShowThumbnails; //hàm sẽ được gọi khi 1 file thumnail được chọn    
     finder.popup(); // Bật cửa sổ CKFinder
 } //BrowseServer
+function BrowseServer2( startupPath, functionData ){    
+    var finder = new CKFinder();
+    finder.basePath = 'ckfinder/'; //Đường path nơi đặt ckfinder
+    finder.startupPath = startupPath; //Đường path hiện sẵn cho user chọn file
+    finder.selectActionFunction = SetFileField2; // hàm sẽ được gọi khi 1 file được chọn
+    finder.selectActionData = functionData; //id của text field cần hiện địa chỉ hình
+    //finder.selectThumbnailActionFunction = ShowThumbnails; //hàm sẽ được gọi khi 1 file thumnail được chọn    
+    finder.popup(); // Bật cửa sổ CKFinder
+} //BrowseServer
 
 function SetFileField( fileUrl, data ){
     document.getElementById( data["selectActionData"] ).value = fileUrl;
-    $('#hinh_dai_dien').attr('src','../' + fileUrl).show();
+    $('#hinh_dai_dien').attr('src', fileUrl).show();
+}
+function SetFileField2( fileUrl, data ){
+    document.getElementById( data["selectActionData"] ).value = fileUrl;
+    $('#thumbnail_url_input').attr('src', fileUrl).show();
 }
 </script>
 <div class="row">
@@ -90,10 +103,18 @@ function SetFileField( fileUrl, data ){
                     <input type="text" name="phone" class="form-control required" value="<?php echo isset($detail['phone'])  ? $detail['phone'] : "" ?>">
                 </div>
                 <div class="form-group">
-                    <label>Logo/Hình đại diện &nbsp;&nbsp;&nbsp;</label>
+                    <label>Logo &nbsp;&nbsp;&nbsp;</label>
                     <input type="hidden" name="image_url" id="image_url" class="form-control" value="<?php echo isset($detail['image_url'])  ? $detail['image_url'] : "" ?>">
-                    <img src="<?php echo isset($detail['image_url'])  ? "../".$detail['image_url'] : "" ?>" id="hinh_dai_dien" width="400" style="<?php echo isset($detail['image_url'])  ? "" : "display:none;" ?>margin-top:5px"/>
+                    <img src="<?php echo isset($detail['image_url'])  ? "../".$detail['image_url'] : "" ?>" id="hinh_dai_dien" width="200" style="<?php echo isset($detail['image_url'])  ? "" : "display:none;" ?>margin-top:5px"/>
                     <button class="btn btn-primary" type="button" onclick="BrowseServer('Images:/','image_url')" >Chọn ảnh</button>
+                </div>
+                <div class="form-group">
+                    <label>Hình đại diện &nbsp;&nbsp;&nbsp;</label>
+                    <input type="hidden" name="thumbnail_url" id="thumbnail_url" class="form-control" value="<?php echo isset($detail['thumbnail_url'])  ? $detail['thumbnail_url'] : "" ?>">
+                    
+                    <img src="<?php echo  "../".$detail['thumbnail_url']; ?>" id="thumbnail_url_input" width="400" style="<?php echo isset($detail['thumbnail_url'])  ? "" : "display:none;" ?>margin-top:5px"/>
+                    
+                    <button class="btn btn-primary" type="button" onclick="BrowseServer2('Images:/','thumbnail_url')" >Chọn ảnh</button>
                 </div>
             </div>
             <div class="button">
