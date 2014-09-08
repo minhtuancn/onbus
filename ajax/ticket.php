@@ -134,8 +134,8 @@ $arrTicket_end = $modelTicket->getListTicketFE($car,$vstart,$vend,$dstart,$servi
                     </li>                                            
                 </ul>
                 <div class="clear"></div>
-                <p><b><?php echo ($lang=="vi") ? "Điểm khởi hành" : "Depart"; ?> ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_start'],$lang); ?></p>
-                <p><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?> ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_end'],$lang); ?></p>
+                <p><b><?php echo ($lang=="vi") ? "Điểm khởi hành" : "Depart"; ?> :</b><?php echo $modelPlace->getAddressByID($ticket['place_id_start'],$lang); ?></p>
+                <p><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?> :</b><?php echo $modelPlace->getAddressByID($ticket['place_id_end'],$lang); ?></p>
                 <a href="#" class="right show_map" data-url-map="https://dl.dropboxusercontent.com/u/43486987/Hoang/HTML/<?php echo STATIC_URL; ?>/images/map.jpg" data-toggle="modal" data-target="">
                     <?php echo $lang=="vi" ? "Xem lộ trình" : "Route details"?></a>
                 <div class="type-ticket" id="time_<?php echo $ticket['ticket_id']; ?>">

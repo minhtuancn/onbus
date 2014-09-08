@@ -263,7 +263,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                                 elseif($ser==4) $classIcon = "icon-chan";
                                                 elseif($ser==5) $classIcon = "icon-wc";
                                             ?>
-                                            <li><i  data-toggle="tooltip" title="<?php echo $modelService->getServiceNameByID($ser); ?>" class="<?php echo $classIcon; ?>"></i></li>
+                                            <li><i  data-toggle="tooltip" title="<?php echo $modelService->getServiceNameByID($ser,$lang); ?>" class="<?php echo $classIcon; ?>"></i></li>
                                             <?php }}?>                                           
                                             
                                         </ul>
@@ -286,8 +286,8 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                             </li>                                            
                                         </ul>
                                         <div class="clear"></div>
-                                        <p><b><?php echo ($lang=="vi") ? "Điểm khởi hành" : "Depart"; ?> ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_start'],$lang); ?></p>
-                                        <p><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?> ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_end'],$lang); ?></p>
+                                        <p><b><?php echo ($lang=="vi") ? "Điểm khởi hành" : "Depart"; ?> :</b><?php echo $modelPlace->getAddressByID($ticket['place_id_start'],$lang); ?></p>
+                                        <p><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?> :</b><?php echo $modelPlace->getAddressByID($ticket['place_id_end'],$lang); ?></p>
                                         <a href="#" class="right show_map" data-url-map="https://dl.dropboxusercontent.com/u/43486987/Hoang/HTML/<?php echo STATIC_URL; ?>/images/map.jpg" data-toggle="modal" data-target="">{xemlotrinh}</a>
                                         <div class="type-ticket" id="time_<?php echo $ticket['ticket_id']; ?>">
                                         <p><?php echo $lang=="vi" ? "Chọn giờ khởi hành" : "Select time"; ?>:</p>
@@ -358,7 +358,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                                 elseif($ser==4) $classIcon = "icon-chan";
                                                 elseif($ser==5) $classIcon = "icon-wc";
                                             ?>
-                                            <li><i  data-toggle="tooltip" title="<?php echo $modelService->getServiceNameByID($ser); ?>" class="<?php echo $classIcon; ?>"></i></li>
+                                            <li><i  data-toggle="tooltip" title="<?php echo $modelService->getServiceNameByID($ser,$lang); ?>" class="<?php echo $classIcon; ?>"></i></li>
                                             <?php }}?> 
                                         </ul>
                                         <div class="right rating">
@@ -380,8 +380,8 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                             </li>                                            
                                         </ul>
                                         <div class="clear"></div>
-                                        <p><b><?php echo ($lang=="vi") ? "Điểm khởi hành" : "Depart"; ?> ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_start'],$lang); ?></p>
-                                        <p><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?> ::</b><?php echo $modelPlace->getAddressByID($ticket['place_id_end'],$lang); ?></p>
+                                        <p><b><?php echo ($lang=="vi") ? "Điểm khởi hành" : "Depart"; ?> :</b><?php echo $modelPlace->getAddressByID($ticket['place_id_start'],$lang); ?></p>
+                                        <p><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?> :</b><?php echo $modelPlace->getAddressByID($ticket['place_id_end'],$lang); ?></p>
                                         <a href="#" class="right show_map" data-url-map="https://dl.dropboxusercontent.com/u/43486987/Hoang/HTML/<?php echo STATIC_URL; ?>/images/map.jpg" data-toggle="modal" data-target="">Xem lộ trình</a>
                                         <div class="type-ticket" id="time_<?php echo $ticket['ticket_id']; ?>">
                                         <p><?php echo $lang=="vi" ? "Chọn giờ khởi hành" : "Select time"; ?>:</p>
