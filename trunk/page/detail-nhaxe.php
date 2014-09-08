@@ -13,15 +13,16 @@ $row = mysql_fetch_assoc($arrImage);
                 <span><img alt="star" src="<?php echo STATIC_URL;?>/images/BigStar.png"></span>
             </div>
             <h1><?php echo $row_nhaxe['nhaxe_name_'.$lang]; ?></h1>
-            <div>
+            <div style="text-align:justify">
                 <?php echo $row_nhaxe['description_'.$lang]; ?>        
             </div>
                 
             </div>
             <div id="holiday-product-right-top">
                 <div id="holiday-product-right-image">
-                    <?php if($row['image_url']!='') {?>
-                        <img src="<?php echo $row['image_url']; ?>">
+                    <?php 
+                    if(strlen($row_nhaxe['thumbnail_url'])>10) {?>
+                        <img src="<?php echo $row_nhaxe['thumbnail_url']; ?>">
                     <?php }else{ ?>
                 	<img src="<?php echo STATIC_URL;?>/images/1.jpg">
                     <?php } ?>
@@ -31,16 +32,16 @@ $row = mysql_fetch_assoc($arrImage);
             </div>
             <div class="tab_profile">
             	<ul role="tablist" class="nav nav-tabs">
-                  <li class=""><a data-toggle="tab" role="tab" href="#danhgia">Đánh giá</a></li>
+                  <li class="active"><a data-toggle="tab" role="tab" href="#danhgia">Đánh giá</a></li>
                   <li class=""><a data-toggle="tab" role="tab" href="#hinhanh">Hình ảnh</a></li>
-                  <li class="active"><a data-toggle="tab" role="tab" href="#tuyenphobien">Các tuyến phổ biến</a></li>
+                  <li class=""><a data-toggle="tab" role="tab" href="#tuyenphobien">Các tuyến phổ biến</a></li>
                 </ul>
                 <div class="tab-content">
-                  <div id="danhgia" class="tab-pane fade">
-                  	<div class="left col_review">
-                    	<h3>3,211 people have reviewed this hotel</h3>
+                  <div id="danhgia" class="tab-pane fade in active">
+                    <div class="left col_review">
+                        <h3>3,211 people have reviewed this hotel</h3>
                         <div class="content wrap trip_type_layout">
-                        	<div class="composite">
+                            <div class="composite">
                                 <div class="colTitle">Traveler rating</div>
                                     <ul class="barChart">
                                         <li class="wrap">
@@ -80,7 +81,7 @@ $row = mysql_fetch_assoc($arrImage);
                                         </li>
                                     </ul> 
                                 </div>
-                            <div class="trip_type">
+                            <!--<div class="trip_type">
                                 <div class="colTitle">See reviews for</div>
                                 <div class="segment segment1">
                                     <div class="filter_connection_wrapper">
@@ -106,7 +107,7 @@ $row = mysql_fetch_assoc($arrImage);
                                         <div class="value">34</div>
                                     </div>
                                 </div>
-                        	</div>
+                            </div>-->
                             <div class="clear"></div>
                         </div>
                         <div class="roomTip">
@@ -114,12 +115,12 @@ $row = mysql_fetch_assoc($arrImage);
                             <span class="taLnk ulBlueLinks">Room tips (737)</span>
                         </div>
                         <div class="wrap subrating" id="SUMMARYBOX">
-                        	<div class="colTitle">Rating summary</div>
+                            <div class="colTitle">Rating summary</div>
                             <ul>
                                 <li>
                                     <div class="name">Sleep Quality</div>
                                     <div class="rate sprite-rating_s rating_s">
-                                    	<span></span>
+                                        <span></span>
                                         <span></span>
                                         <span></span>
                                         <span></span>
@@ -129,7 +130,7 @@ $row = mysql_fetch_assoc($arrImage);
                                 <li>
                                     <div class="name">Location</div>
                                     <div class="rate sprite-rating_s rating_s">
-                                    	<span></span>
+                                        <span></span>
                                         <span></span>
                                         <span></span>
                                         <span></span>
@@ -139,7 +140,7 @@ $row = mysql_fetch_assoc($arrImage);
                                 <li>
                                     <div class="name">Rooms</div>
                                     <div class="rate sprite-rating_s rating_s">
-                                    	<span></span>
+                                        <span></span>
                                         <span></span>
                                         <span></span>
                                         <span></span>
@@ -149,13 +150,13 @@ $row = mysql_fetch_assoc($arrImage);
                                 <li>
                                     <div class="name">Service</div>
                                     <div class="rate sprite-rating_s rating_s">
-                                    	<span></span>
+                                        <span></span>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="name">Value</div>
                                     <div class="rate sprite-rating_s rating_s">
-                                    	<span></span>
+                                        <span></span>
                                         <span></span>
                                         <span></span>
                                         <span></span>
@@ -164,7 +165,7 @@ $row = mysql_fetch_assoc($arrImage);
                                 <li>
                                     <div class="name">Cleanliness</div>
                                     <div class="rate sprite-rating_s rating_s">
-                                    	<span></span>
+                                        <span></span>
                                         <span></span>
                                     </div>
                                 </li>
@@ -172,7 +173,7 @@ $row = mysql_fetch_assoc($arrImage);
                         </div>
                     </div>
                     <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 500px;"><div class="left col_comment_review" style="overflow: hidden; width: auto; height: 500px;">
-                    	<div class="items_comment_review">
+                        <div class="items_comment_review">
                             <div class="col1of2">
                                 <div class="member_info">
                                     <div class="memberOverlayLink">
@@ -198,9 +199,7 @@ $row = mysql_fetch_assoc($arrImage);
                                     <li>
                                         <span class="icon lazy badge_helpful sprite-badge_helpful"></span><span class="badgeText">44 helpful votes</span>    
                                     </li>
-                                    <li>
-                                        <span class="icon lazy badge_srcontributor sprite-badge_srcontributor"></span><span class="badgeText">21 reviews</span>    
-                                    </li>
+                                    
                                 </ul>
                                 </div>
                                 
@@ -259,9 +258,7 @@ $row = mysql_fetch_assoc($arrImage);
                                     <li>
                                         <span class="icon lazy badge_helpful sprite-badge_helpful"></span><span class="badgeText">44 helpful votes</span>    
                                     </li>
-                                    <li>
-                                        <span class="icon lazy badge_srcontributor sprite-badge_srcontributor"></span><span class="badgeText">21 reviews</span>    
-                                    </li>
+                                    
                                 </ul>
                                 </div>
                                 
@@ -320,9 +317,7 @@ $row = mysql_fetch_assoc($arrImage);
                                     <li>
                                         <span class="icon lazy badge_helpful sprite-badge_helpful"></span><span class="badgeText">44 helpful votes</span>    
                                     </li>
-                                    <li>
-                                        <span class="icon lazy badge_srcontributor sprite-badge_srcontributor"></span><span class="badgeText">21 reviews</span>    
-                                    </li>
+                                    
                                 </ul>
                                 </div>
                                 
@@ -355,7 +350,7 @@ $row = mysql_fetch_assoc($arrImage);
                             </div> </div> </div>
                             <div class="clear"></div>
                         </div>
-                    </div><div class="slimScrollBar ui-draggable" style="background: none repeat scroll 0% 0% rgb(159, 2, 52); width: 7px; position: absolute; opacity: 0.7; border-radius: 7px; z-index: 99; right: 1px; top: 0px; height: 290.36px; display: block;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: block; border-radius: 7px; background: none repeat scroll 0% 0% rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+                    </div><div class="slimScrollBar ui-draggable" style="background: none repeat scroll 0% 0% rgb(159, 2, 52); width: 7px; position: absolute; opacity: 0.7; border-radius: 7px; z-index: 99; right: 1px; top: 171px; height: 328.947px; display: block;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: block; border-radius: 7px; background: none repeat scroll 0% 0% rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
                     <div class="clear"></div>
                   </div>
                   <div id="hinhanh" class="tab-pane fade">
@@ -398,7 +393,7 @@ $row = mysql_fetch_assoc($arrImage);
                      </div>
                      <div class="clear"></div>
                   </div>
-                  <div id="tuyenphobien" class="tab-pane fade active in">
+                  <div id="tuyenphobien" class="tab-pane fade in">
                   	<table class="table table-hover">
                     	<thead>
 						<tr>

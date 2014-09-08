@@ -37,6 +37,9 @@ function checkCat($uri) {
     if (strpos( $uri,'payment')>-1) {        
         $mod = "payment";
     } 
+    if (strpos( $uri,'faq')>-1) {        
+        $mod = "faq";
+    } 
     if (strpos( $uri,'thong-tin-nha-xe')>-1) {        
         $mod = "nhaxe";
     }
@@ -52,9 +55,9 @@ function checkCat($uri) {
     if (strpos( $uri,'diem-den')>-1) {        
         $mod = "hot-detail";
     }      
-	if (preg_match($p_contact, $uri)) {
+	if (strpos( $uri,'contact')>-1) {        
         $mod = "contact";
-    } 
+    }  
     if (preg_match($p_about, $uri)) {
         $mod = "about";
     } 
@@ -167,6 +170,11 @@ switch ($mod) {
         $title = $arrDetailPage["title"];
         $metaD = $arrDetailPage["meta_d"];
         $metaK = $arrDetailPage["meta_k"];
+        break;
+    case "faq":                        
+        //$title = $arrDetailPage["title"];
+        //$metaD = $arrDetailPage["meta_d"];
+        //$metaK = $arrDetailPage["meta_k"];
         break;
     case "search":     
         $vstart = $vend = $dstart = $dend = -1;

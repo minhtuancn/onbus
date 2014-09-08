@@ -82,9 +82,27 @@ $arrRoute = $modelRoute->getListRoute('',-1,-1,1, 0, 8);
     <?php if($mod=="hot-detail" || $mod=="details") {?>
     <div class="wrap_layout_2">
     <?php } ?>
+    <?php if($mod=="contact") { ?>
+    <div class="page_lienhe">
+    <?php } ?>
+    <?php if($mod=="faq") {?>
+    <div class="faq_page">
+        <div class="title_faq">
+            <div class="w-center">
+            <h2>FAQ Accordion</h2>
+            <p>Find answers and help fast</p>
+            </div>
+        </div>
+    <?php } ?>
     <div id="wrapper-container" class="w-center <?php if($mod=="thanks") echo "thanks_page"; ?>">
         <?php include "page/".$mod.".php"; ?>
     </div>
+    <?php if($mod=="contact") { ?>
+    </div>
+    <?php } ?>
+    <?php if($mod=="faq") {?>
+    </div>
+    <?php } ?>
     <?php if($mod=="hot-detail" || $mod=="details") {?>
     </div>
     <?php } ?>

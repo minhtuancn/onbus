@@ -87,7 +87,7 @@ class Nhaxe extends Db {
         mysql_query($sql) or die(mysql_error() . $sql);
     }
 
-    function updateNhaxe($id,$nhaxe_name_vi,$nhaxe_name_en,$nhaxe_name_safe_vi,$nhaxe_name_safe_en,$address_vi,$address_en,$phone,$description_vi,$description_en,$image_url,$hot){
+    function updateNhaxe($id,$nhaxe_name_vi,$nhaxe_name_en,$nhaxe_name_safe_vi,$nhaxe_name_safe_en,$address_vi,$address_en,$phone,$description_vi,$description_en,$image_url,$thumbnail_url,$hot){
         $time = time();
         $user_id = $_SESSION['user_id'];
         $sql = "UPDATE nhaxe
@@ -101,18 +101,19 @@ class Nhaxe extends Db {
                     description_vi = '$description_vi',
                     description_en  = '$description_en',
                     image_url = '$image_url',
+                    thumbnail_url = '$thumbnail_url',
                     hot = $hot,
                     update_time =  $time,
                     user_id = $user_id         
                     WHERE nhaxe_id = $id ";
         mysql_query($sql) or die(mysql_error() . $sql);
     }
-    function insertNhaxe($nhaxe_name_vi,$nhaxe_name_en,$nhaxe_name_safe_vi,$nhaxe_name_safe_en,$address_vi,$address_en,$phone,$description_vi,$description_en,$image_url,$hot){
+    function insertNhaxe($nhaxe_name_vi,$nhaxe_name_en,$nhaxe_name_safe_vi,$nhaxe_name_safe_en,$address_vi,$address_en,$phone,$description_vi,$description_en,$image_url,$thumbnail_url,$hot){
         try{
             $user_id = $_SESSION['user_id'];
             $time = time();
             $sql = "INSERT INTO nhaxe VALUES(NULL,'$nhaxe_name_vi','$nhaxe_name_safe_vi','$nhaxe_name_en','$nhaxe_name_safe_en','$address_vi','$address_en','$phone',
-                '$description_vi','$description_en','$image_url',$time,$time,$hot,1,$user_id)";
+                '$description_vi','$description_en','$image_url','$thumbnail_url',$time,$time,$hot,1,$user_id)";
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());       
         }catch(Exception $ex){            
             $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Nhaxe','function' => 'insertNhaxe' , 'error'=>$ex->getMessage(),'sql'=>$sql);
