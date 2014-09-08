@@ -191,6 +191,23 @@
 
 
 
+            <a href="<?php echo BASE_URL; ?>question&act=list">
+
+
+
+                <i class="fa fa-th"></i> <span>FAQ</span> <!--<small class="badge pull-right bg-green">new</small>-->
+
+
+
+            </a>
+
+
+
+        </li>
+        <li>
+
+
+
             <a href="<?php echo BASE_URL; ?>page&act=list">
 
 
