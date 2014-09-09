@@ -7,78 +7,76 @@ $row = mysql_fetch_assoc($arrImage);
 <div class="detail-nhaxe">
         	<div class="header_top">
         	<div id="holiday-product-left-top">
-            	<div class="rate sprite-rating_s rating_s">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <h1><?php echo $row_nhaxe['nhaxe_name_'.$lang]; ?></h1>
-                <div style="text-align:justify">
-                    <?php echo $row_nhaxe['description_'.$lang]; ?>        
-                </div>
+            	<div class="star-rating-container">
+                <span><img alt="star" src="<?php echo STATIC_URL;?>/images/BigStar.png"></span>
+                <span><img alt="star" src="<?php echo STATIC_URL;?>/images/BigStar.png"></span>
+                <span><img alt="star" src="<?php echo STATIC_URL;?>/images/BigStar.png"></span>
+            </div>
+            <h1><?php echo $row_nhaxe['nhaxe_name_'.$lang]; ?></h1>
+            <div style="text-align:justify">
+                <?php echo $row_nhaxe['description_'.$lang]; ?>        
+            </div>
                 
             </div>
             <div id="holiday-product-right-top">
                 <div id="holiday-product-right-image">
-                	<?php 
+                    <?php 
                     if(strlen($row_nhaxe['thumbnail_url'])>10) {?>
                         <img src="<?php echo $row_nhaxe['thumbnail_url']; ?>">
                     <?php }else{ ?>
-                    <img src="<?php echo STATIC_URL;?>/images/1.jpg">
+                	<img src="<?php echo STATIC_URL;?>/images/1.jpg">
                     <?php } ?>
                </div>
             </div>
             <div class="clear"></div>
             </div>
             <div class="tab_profile">
-            	<ul class="nav nav-tabs" role="tablist">
-                  <li class="active"><a href="#danhgia" role="tab" data-toggle="tab">Đánh giá</a></li>
-                  <li><a href="#hinhanh" role="tab" data-toggle="tab">Hình ảnh</a></li>
-                  <li><a href="#tuyenphobien" role="tab" data-toggle="tab">Các tuyến phổ biến</a></li>
+            	<ul role="tablist" class="nav nav-tabs">
+                  <li class="active"><a data-toggle="tab" role="tab" href="#danhgia">Đánh giá</a></li>
+                  <li class=""><a data-toggle="tab" role="tab" href="#hinhanh">Hình ảnh</a></li>
+                  <li class=""><a data-toggle="tab" role="tab" href="#tuyenphobien">Các tuyến phổ biến</a></li>
                 </ul>
                 <div class="tab-content">
-                  <div class="tab-pane fade in active" id="danhgia">
-                  	<div class="left col_review">
-                    	<h3>3,211 people have reviewed this hotel</h3>
+                  <div id="danhgia" class="tab-pane fade in active">
+                    <div class="left col_review">
+                        <h3>3,211 people have reviewed this hotel</h3>
                         <div class="content wrap trip_type_layout">
-                        	<div class="composite">
+                            <div class="composite">
                                 <div class="colTitle">Traveler rating</div>
                                     <ul class="barChart">
                                         <li class="wrap">
                                             <span class="rdoSet">
-                                                <label class=" selected" for="com1"><span class="text">Excellent</span></label>
+                                                <label for="com1" class=" selected"><span class="text">Excellent</span></label>
                                             </span>
-                                            <div class="line clickable"><div class="fill" style="width:70%"></div></div>
+                                            <div class="line clickable"><div style="width:70%" class="fill"></div></div>
                                             <span class="compositeCount selected">2,676</span>
                                         </li>
                                         <li class="wrap">
                                             <span class="rdoSet">
-                                                <label class=" selected" for="com1"><span class="text">Very good</span></label>
+                                                <label for="com1" class=" selected"><span class="text">Very good</span></label>
                                             </span>
-                                            <div class="line clickable"><div class="fill" style="width:10%"></div></div>
+                                            <div class="line clickable"><div style="width:10%" class="fill"></div></div>
                                             <span class="compositeCount selected">2,676</span>
                                         </li>
                                         <li class="wrap">
                                             <span class="rdoSet">
-                                                <label class=" selected" for="com1"><span class="text">Average</span></label>
+                                                <label for="com1" class=" selected"><span class="text">Average</span></label>
                                             </span>
-                                            <div class="line clickable"><div class="fill" style="width:40%"></div></div>
+                                            <div class="line clickable"><div style="width:40%" class="fill"></div></div>
                                             <span class="compositeCount selected">2,676</span>
                                         </li>
                                         <li class="wrap">
                                             <span class="rdoSet">
-                                                <label class=" selected" for="com1"><span class="text">Poor</span></label>
+                                                <label for="com1" class=" selected"><span class="text">Poor</span></label>
                                             </span>
-                                            <div class="line clickable"><div class="fill" style="width:4%"></div></div>
+                                            <div class="line clickable"><div style="width:4%" class="fill"></div></div>
                                             <span class="compositeCount selected">2,676</span>
                                         </li>
                                         <li class="wrap">
                                             <span class="rdoSet">
-                                                <label class=" selected" for="com1"><span class="text">Terrible</span></label>
+                                                <label for="com1" class=" selected"><span class="text">Terrible</span></label>
                                             </span>
-                                            <div class="line clickable"><div class="fill" style="width:2%"></div></div>
+                                            <div class="line clickable"><div style="width:2%" class="fill"></div></div>
                                             <span class="compositeCount selected">2,676</span>
                                         </li>
                                     </ul> 
@@ -109,20 +107,20 @@ $row = mysql_fetch_assoc($arrImage);
                                         <div class="value">34</div>
                                     </div>
                                 </div>
-                        	</div>-->
+                            </div>-->
                             <div class="clear"></div>
                         </div>
                         <div class="roomTip">
                             <span class="ugc">Traveler tips help you choose the right room. </span> &nbsp;
                             <span class="taLnk ulBlueLinks">Room tips (737)</span>
                         </div>
-                        <div id="SUMMARYBOX" class="wrap subrating">
-                        	<div class="colTitle">Rating summary</div>
+                        <div class="wrap subrating" id="SUMMARYBOX">
+                            <div class="colTitle">Rating summary</div>
                             <ul>
                                 <li>
                                     <div class="name">Sleep Quality</div>
                                     <div class="rate sprite-rating_s rating_s">
-                                    	<span></span>
+                                        <span></span>
                                         <span></span>
                                         <span></span>
                                         <span></span>
@@ -132,7 +130,7 @@ $row = mysql_fetch_assoc($arrImage);
                                 <li>
                                     <div class="name">Location</div>
                                     <div class="rate sprite-rating_s rating_s">
-                                    	<span></span>
+                                        <span></span>
                                         <span></span>
                                         <span></span>
                                         <span></span>
@@ -142,7 +140,7 @@ $row = mysql_fetch_assoc($arrImage);
                                 <li>
                                     <div class="name">Rooms</div>
                                     <div class="rate sprite-rating_s rating_s">
-                                    	<span></span>
+                                        <span></span>
                                         <span></span>
                                         <span></span>
                                         <span></span>
@@ -152,13 +150,13 @@ $row = mysql_fetch_assoc($arrImage);
                                 <li>
                                     <div class="name">Service</div>
                                     <div class="rate sprite-rating_s rating_s">
-                                    	<span></span>
+                                        <span></span>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="name">Value</div>
                                     <div class="rate sprite-rating_s rating_s">
-                                    	<span></span>
+                                        <span></span>
                                         <span></span>
                                         <span></span>
                                         <span></span>
@@ -167,7 +165,7 @@ $row = mysql_fetch_assoc($arrImage);
                                 <li>
                                     <div class="name">Cleanliness</div>
                                     <div class="rate sprite-rating_s rating_s">
-                                    	<span></span>
+                                        <span></span>
                                         <span></span>
                                     </div>
                                 </li>
@@ -175,12 +173,12 @@ $row = mysql_fetch_assoc($arrImage);
                         </div>
                     </div>
                     <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 500px;"><div class="left col_comment_review" style="overflow: hidden; width: auto; height: 500px;">
-                    	<div class="items_comment_review">
+                        <div class="items_comment_review">
                             <div class="col1of2">
                                 <div class="member_info">
                                     <div class="memberOverlayLink">
                                         <div class="avatar">
-                                        <a><img height="74" width="74" class="avatar potentialFacebookAvatar" src="http://media-cdn.tripadvisor.com/media/photo-l/01/2e/70/57/avatar030.jpg"></a>
+                                        <a><img width="74" height="74" src="http://media-cdn.tripadvisor.com/media/photo-l/01/2e/70/57/avatar030.jpg" class="avatar potentialFacebookAvatar"></a>
                                         </div>
                                         <div class="username mo">
                                             <span class="expand_inline scrname">marc l</span>
@@ -221,7 +219,7 @@ $row = mysql_fetch_assoc($arrImage);
                                     <span></span>
                                     <span></span>
                                 </div>
-                                <span class="ratingDate relativeDate" title="August 13, 2014">Reviewed 1 week ago</span>
+                                <span title="August 13, 2014" class="ratingDate relativeDate">Reviewed 1 week ago</span>
                             </div>
                             <div class="entry">
                             <p class="partial_entry">
@@ -239,7 +237,7 @@ $row = mysql_fetch_assoc($arrImage);
                                 <div class="member_info">
                                     <div class="memberOverlayLink">
                                         <div class="avatar">
-                                        <a><img height="74" width="74" class="avatar potentialFacebookAvatar" src="http://media-cdn.tripadvisor.com/media/photo-l/01/2e/70/57/avatar030.jpg"></a>
+                                        <a><img width="74" height="74" src="http://media-cdn.tripadvisor.com/media/photo-l/01/2e/70/57/avatar030.jpg" class="avatar potentialFacebookAvatar"></a>
                                         </div>
                                         <div class="username mo">
                                             <span class="expand_inline scrname">marc l</span>
@@ -280,7 +278,7 @@ $row = mysql_fetch_assoc($arrImage);
                                     <span></span>
                                     <span></span>
                                 </div>
-                                <span class="ratingDate relativeDate" title="August 13, 2014">Reviewed 1 week ago</span>
+                                <span title="August 13, 2014" class="ratingDate relativeDate">Reviewed 1 week ago</span>
                             </div>
                             <div class="entry">
                             <p class="partial_entry">
@@ -298,7 +296,7 @@ $row = mysql_fetch_assoc($arrImage);
                                 <div class="member_info">
                                     <div class="memberOverlayLink">
                                         <div class="avatar">
-                                        <a><img height="74" width="74" class="avatar potentialFacebookAvatar" src="http://media-cdn.tripadvisor.com/media/photo-l/01/2e/70/57/avatar030.jpg"></a>
+                                        <a><img width="74" height="74" src="http://media-cdn.tripadvisor.com/media/photo-l/01/2e/70/57/avatar030.jpg" class="avatar potentialFacebookAvatar"></a>
                                         </div>
                                         <div class="username mo">
                                             <span class="expand_inline scrname">marc l</span>
@@ -339,7 +337,7 @@ $row = mysql_fetch_assoc($arrImage);
                                     <span></span>
                                     <span></span>
                                 </div>
-                                <span class="ratingDate relativeDate" title="August 13, 2014">Reviewed 1 week ago</span>
+                                <span title="August 13, 2014" class="ratingDate relativeDate">Reviewed 1 week ago</span>
                             </div>
                             <div class="entry">
                             <p class="partial_entry">
@@ -352,50 +350,50 @@ $row = mysql_fetch_assoc($arrImage);
                             </div> </div> </div>
                             <div class="clear"></div>
                         </div>
-                    </div><div class="slimScrollBar ui-draggable" style="width: 7px; position: absolute; opacity: 0.7; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; right: 1px; top: 0px; height: 330.687830687831px; display: block; background: rgb(159, 2, 52);"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: block; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(51, 51, 51);"></div></div>
+                    </div><div class="slimScrollBar ui-draggable" style="background: none repeat scroll 0% 0% rgb(159, 2, 52); width: 7px; position: absolute; opacity: 0.7; border-radius: 7px; z-index: 99; right: 1px; top: 171px; height: 328.947px; display: block;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: block; border-radius: 7px; background: none repeat scroll 0% 0% rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
                     <div class="clear"></div>
                   </div>
-                  <div class="tab-pane fade" id="hinhanh">
+                  <div id="hinhanh" class="tab-pane fade">
                   	 <div id="wrap_slider_profile">
                      	<ul class="bxslider_profile">
                           <li>
-                          	<div class="wrap_slider_profile"><img src="images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></div>
+                          	<div class="wrap_slider_profile"><img src="<?php echo STATIC_URL;?>/images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></div>
                             <div class="thum_slider">
-                            	<a href=""><img src="images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></a>
-                                  <a href=""><img src="images/thumb.jpg"></a>
-                                  <a href=""><img src="images/images (2).jpg"></a>
-                                  <a href=""><img src="images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></a>
-                                  <a href=""><img src="images/thumb.jpg"></a>
-                                  <a href=""><img src="images/images (2).jpg"></a>
+                            	<a href=""><img src="<?php echo STATIC_URL;?>/images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL;?>/images/thumb.jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL;?>/images/images (2).jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL;?>/images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL;?>/images/thumb.jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL;?>/images/images (2).jpg"></a>
                             </div>
                           </li>
                           <li>
-                          	<div class="wrap_slider_profile"><img src="images/bus-1.jpg"></div>
+                          	<div class="wrap_slider_profile"><img src="<?php echo STATIC_URL;?>/images/bus-1.jpg"></div>
                             <div class="thum_slider">
-                            	<a href=""><img src="images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></a>
-                                  <a href=""><img src="images/thumb.jpg"></a>
-                                  <a href=""><img src="images/images (2).jpg"></a>
-                                  <a href=""><img src="images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></a>
-                                  <a href=""><img src="images/thumb.jpg"></a>
-                                  <a href=""><img src="images/images (2).jpg"></a>
+                            	<a href=""><img src="<?php echo STATIC_URL;?>/images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL;?>/images/thumb.jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL;?>/images/images (2).jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL;?>/images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL;?>/images/thumb.jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL;?>/images/images (2).jpg"></a>
                             </div>
                           </li>
                           <li>
-                          	<div class="wrap_slider_profile"><img src="images/bg-capbus.jpg"></div>
+                          	<div class="wrap_slider_profile"><img src="<?php echo STATIC_URL;?>/images/bg-capbus.jpg"></div>
                             <div class="thum_slider">
-                            	<a href=""><img src="images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></a>
-                                  <a href=""><img src="images/thumb.jpg"></a>
-                                  <a href=""><img src="images/images (2).jpg"></a>
-                                  <a href=""><img src="images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></a>
-                                  <a href=""><img src="images/thumb.jpg"></a>
-                                  <a href=""><img src="images/images (2).jpg"></a>
+                            	<a href=""><img src="<?php echo STATIC_URL;?>/images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL;?>/images/thumb.jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL;?>/images/images (2).jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL;?>/images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL;?>/images/thumb.jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL;?>/images/images (2).jpg"></a>
                             </div>
                           </li>
                         </ul>
                      </div>
                      <div class="clear"></div>
                   </div>
-                  <div class="tab-pane fade" id="tuyenphobien">
+                  <div id="tuyenphobien" class="tab-pane fade in">
                   	<table class="table table-hover">
                     	<thead>
 						<tr>
@@ -433,7 +431,7 @@ $row = mysql_fetch_assoc($arrImage);
                                 <div>Based on <i>6</i> ratings</div>
                             </td>
                             <td class="td_end">
-                            	<a href="#" class="btn-muave">book now</a>
+                            	<a class="btn-muave" href="#">book now</a>
                             </td>
                         </tr>
                         <tr>
@@ -462,7 +460,7 @@ $row = mysql_fetch_assoc($arrImage);
                                 <div>Based on <i>6</i> ratings</div>
                             </td>
                             <td class="td_end">
-                            	<a href="#" class="btn-muave">book now</a>
+                            	<a class="btn-muave" href="#">book now</a>
                             </td>
                         </tr>
                         <tr>
@@ -491,7 +489,7 @@ $row = mysql_fetch_assoc($arrImage);
                                 <div>Based on <i>6</i> ratings</div>
                             </td>
                             <td class="td_end">
-                            	<a href="#" class="btn-muave">book now</a>
+                            	<a class="btn-muave" href="#">book now</a>
                             </td>
                         </tr>
                         <tr>
@@ -520,7 +518,7 @@ $row = mysql_fetch_assoc($arrImage);
                                 <div>Based on <i>6</i> ratings</div>
                             </td>
                             <td class="td_end">
-                            	<a href="#" class="btn-muave">book now</a>
+                            	<a class="btn-muave" href="#">book now</a>
                             </td>
                         </tr>
                         <tr>
@@ -549,7 +547,7 @@ $row = mysql_fetch_assoc($arrImage);
                                 <div>Based on <i>6</i> ratings</div>
                             </td>
                             <td class="td_end">
-                            	<a href="#" class="btn-muave">book now</a>
+                            	<a class="btn-muave" href="#">book now</a>
                             </td>
                         </tr>
                         <tr>
@@ -578,7 +576,7 @@ $row = mysql_fetch_assoc($arrImage);
                                 <div>Based on <i>6</i> ratings</div>
                             </td>
                             <td class="td_end">
-                            	<a href="#" class="btn-muave">book now</a>
+                            	<a class="btn-muave" href="#">book now</a>
                             </td>
                         </tr>
                         <tr>
@@ -607,7 +605,7 @@ $row = mysql_fetch_assoc($arrImage);
                                 <div>Based on <i>6</i> ratings</div>
                             </td>
                             <td class="td_end">
-                            	<a href="#" class="btn-muave">book now</a>
+                            	<a class="btn-muave" href="#">book now</a>
                             </td>
                         </tr>
                         <tr>
@@ -636,7 +634,7 @@ $row = mysql_fetch_assoc($arrImage);
                                 <div>Based on <i>6</i> ratings</div>
                             </td>
                             <td class="td_end">
-                            	<a href="#" class="btn-muave">book now</a>
+                            	<a class="btn-muave" href="#">book now</a>
                             </td>
                         </tr>
                         <tr>
@@ -665,7 +663,7 @@ $row = mysql_fetch_assoc($arrImage);
                                 <div>Based on <i>6</i> ratings</div>
                             </td>
                             <td class="td_end">
-                            	<a href="#" class="btn-muave">book now</a>
+                            	<a class="btn-muave" href="#">book now</a>
                             </td>
                         </tr>
                         <tr>
@@ -694,7 +692,7 @@ $row = mysql_fetch_assoc($arrImage);
                                 <div>Based on <i>6</i> ratings</div>
                             </td>
                             <td class="td_end">
-                            	<a href="#" class="btn-muave">book now</a>
+                            	<a class="btn-muave" href="#">book now</a>
                             </td>
                         </tr>
                     </tbody></table>

@@ -95,6 +95,18 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                         </div>                        
                         <form class="frm-search-vx">
                             <div class=" item-search">
+                            <ul class="menu triptype clearfix">
+                                <li class="oneway selected">
+                                    <input data-ticket="type-1" id="ticket-1" type="radio" name="ticket-type" checked="checked">
+                                    <label for="ticket-1">Vé 1 chiều</label>
+                                </li>
+                                <li class="return">
+                                    <input type="radio" data-ticket="type-2" id="ticket-2" name="ticket-type">
+                                    <label for="ticket-2">Vé khứ hồi</label>
+                                </li>
+                            </ul>
+                            </div>
+                            <div class=" item-search">
                                  <input type="hidden" name="vstart_search" id="vstart_search" value="<?php echo $vstart; ?>" />
                                 <input type="hidden" name="vend_search" id="vend_search" value="<?php echo $vend; ?>" />
                                 <label for="departPlace2">{diemkhoihanh}</label>
