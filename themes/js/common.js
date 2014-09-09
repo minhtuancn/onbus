@@ -40,7 +40,7 @@ $(document).ready(function() {
     });
     
     //var topFirstBox = $('.scrollbar_fixed').length > 0 ? $item.offset().top : 0;
-    $(window).on('scroll', function() {
+    /*$(window).on('scroll', function() {
         
         var $item = $('.scrollbar_fixed'),
             topItem = $('.scrollbar_fixed').length > 0 ? $item.offset().top : 0,
@@ -83,7 +83,7 @@ $(document).ready(function() {
                 $item.parent('.block-subpage-col').css('background', '#1F1F1F');
             }
         }
-    });
+    });*/
 
     $('.show_map').click(function(e) {
         e.preventDefault();
@@ -144,6 +144,13 @@ $(document).ready(function() {
             alwaysVisible: true,
             railVisible: true,
             height: '500px'
+        });
+
+    if($('.box_term').length > 0)
+        $('.box_term').slimScroll({
+            alwaysVisible: true,
+            railVisible: true,
+            height: '130px'
         });
 
     var sliderBox = '';
