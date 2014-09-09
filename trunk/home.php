@@ -76,7 +76,7 @@ $arrRoute = $modelRoute->getListRoute('',-1,-1,1, 0, 8);
     </a>
 </div>
 <div id="FeedbackButton" class="chrm-btn chrm-feedback">
-    <div class="chrm-toggle"><span class="">Feedback</span></div>
+    <div class="chrm-toggle"><a href="#" data-toggle="modal" data-target="#popup_feedback">Feedback</a></div>
 </div>
     <?php include URL_LAYOUT."/header.php"; ?>    
     <?php if($mod=="hot-detail" || $mod=="details") {?>
@@ -176,6 +176,147 @@ foreach ($arrTinhHaveTicket as $value) {
     <!-- InstanceEndEditable -->
     <div class="vxr-loading-overlay">
     <img src="themes/images/ajax_loader.gif" style="width: 75px; height: 75px;" />
+</div>
+<!-- InstanceEndEditable --> 
+    <div class="modal fade" id="popup_feedback">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          </div>
+      <div class="modal-body">
+        <div class="popup_detail">
+            <div class="wrap-popup">
+                <a href="#" class="close-popup" data-dismiss="modal"></a>
+                <p><b>Onbus</b> chân thành cảm ơn sự quan tâm của quý khách hàng đến dịch vụ của chúng tôi. Để gửi nội dung phản hồi, quý khách vui lòng điền thông tin vào ô bên dưới:</p>
+                <form class="form-horizontal" role="form">
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Điện thoại:</label>
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                    </div>
+                  </div>
+                  <div class="form-group txt_feedback">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Nội dung:</label>
+                    <div class="col-sm-10">
+                      <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group btn_feedback">
+                    <a class="logo_contact" href="#"><img src="<?php echo STATIC_URL; ?>/images/logo2_final.png" width="150"></a>
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-default">Gửi</button>
+                    </div>
+                  </div>
+                </form>
+                <div class="clear"></div>    
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="popup_myticket">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          </div>
+      <div class="modal-body">
+        <div class="popup_detail">
+            <div class="wrap-popup">
+                <a href="#" class="close-popup" data-dismiss="modal"></a>
+                <div class="box_myticket left">
+                    <h1>Thông tin khách hàng</h1>
+                    <ul>
+                        <li>
+                            <span class="bg_full">Tên khách hàng</span>
+                            <span>Điển Trương Hoàng</span>
+                        </li>
+                        <li>
+                            <span class="bg_full">Email</span>
+                            <span>Điển Trương Hoàng</span>
+                        </li>
+                        <li>
+                            <span class="bg_full">Số điện thoại</span>
+                            <span>Điển Trương Hoàng</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="box_myticket left logo">
+                    <a class="logo_contact" href="#"><img src="<?php echo STATIC_URL; ?>/images/logo2_final.png" width="250"></a>
+                </div>
+                <div class="clear"></div>
+                <div class="box_myticket left">
+                    <h1>Vé chiều đi<p>hồ chí minh - bến tre - số lượng: 01</p></h1>
+                    
+                    <ul>
+                    <li>
+                            <span class="bg_full">Mã vé</span>
+                            <span>Điển Trương Hoàng</span>
+                        </li>
+                    <li>
+                        <span class="bg_full">Điểm khởi hành</span>
+                        <span>Điển Trương Hoàng</span>
+                    </li>
+                    <li>
+                        <span class="bg_full">Điểm đến</span>
+                        <span>Điển Trương Hoàng</span>
+                    </li>
+                    <li>
+                            <span class="bg_full">Ngày & Giờ khởi hàng</span>
+                            <span>Điển Trương Hoàng</span>
+                        </li>
+                    <li>
+                        <span class="bg_full">Số ghế</span>
+                        <span>Điển Trương Hoàng</span>
+                    </li>
+                    <li>
+                        <span class="bg_full">Số xe</span>
+                        <span>Điển Trương Hoàng</span>
+                    </li>
+                    </ul>
+                    <div id="newsletter-signup-button" class="submit-form left"><span class="label">Hủy vé</span></div>
+                </div>
+                <div class="box_myticket left">
+                    <h1>Vé chiều về<p>hồ chí minh - bến tre - số lượng: 01</p></h1>
+                    <ul>
+                    <li>
+                            <span class="bg_full">Mã vé</span>
+                            <span>Điển Trương Hoàng</span>
+                        </li>
+                    <li>
+                        <span class="bg_full">Điểm khởi hành</span>
+                        <span>Điển Trương Hoàng</span>
+                    </li>
+                    <li>
+                        <span class="bg_full">Điểm đến</span>
+                        <span>Điển Trương Hoàng</span>
+                    </li>
+                    <li>
+                            <span class="bg_full">Ngày & Giờ khởi hàng</span>
+                            <span>Điển Trương Hoàng</span>
+                        </li>
+                    <li>
+                        <span class="bg_full">Số ghế</span>
+                        <span>Điển Trương Hoàng</span>
+                    </li>
+                    <li>
+                        <span class="bg_full">Số xe</span>
+                        <span>Điển Trương Hoàng</span>
+                    </li>
+                    </ul>
+                </div>
+                <div class="clear"></div>    
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <style type="text/css">
 .vxr-loading-overlay{background:none repeat scroll 0 0 #FFFFFF;height:100%;opacity:0.5;position:fixed;text-align:center;width:100%;z-index:9999;top:0;left:0;display:none}.vxr-loading-overlay img{margin-top:40%}
