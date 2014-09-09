@@ -9,8 +9,7 @@ function checkCat($uri) {
     $p_detail = '#details/[a-z0-9\-]+\-\d+.html#';
     $p_tag = '#/tag/[a-z\-]+.html#';
 	$p_contact = '#/lien-he+.html#';
-    $p_payment = '#/[a-z\-]/payment+.html#';
-    $p_about = '#/gioi-thieu+.html#'; 
+    $p_payment = '#/[a-z\-]/payment+.html#';    
     $p_thuvienanh = '#/thu-vien-anh+.html#'; 
 	$p_tintuc = '#/tin-tuc+.html#';
 	$p_tintuc_pt = '#/tin-tuc-\d+.html#';
@@ -30,6 +29,9 @@ function checkCat($uri) {
     $page_id = "";   
     if (strpos( $uri,'ve-xe-khach')>-1) {        
         $mod = "search";
+    } 
+    if (strpos( $uri,'about-us')>-1) {        
+        $mod = "about";
     } 
     if (strpos( $uri,'policy')>-1) {        
         $mod = "policy";
@@ -64,42 +66,11 @@ function checkCat($uri) {
 	if (strpos( $uri,'contact')>-1) {        
         $mod = "contact";
     }  
-    if (preg_match($p_about, $uri)) {
-        $mod = "about";
-    } 
-	
+    
     if (preg_match($p_thuvienanh, $uri)) {
         $mod = "thuvienanh";
-    }    
-    
-    if (preg_match($p_detail, $uri)) {
-        $mod = "detail";
-    }
-	if (preg_match($p_tintuc, $uri) || preg_match($p_tintuc_pt, $uri)) {
-        $mod = "news";
-    } 
-    if (preg_match($p_accommodation, $uri)) {
-        $mod = "page";
-        $page_id = 2;
-    } 
-    if (preg_match($p_dinning, $uri)) {
-        $mod = "page";
-        $page_id = 4;
-    } 
-    if (preg_match($p_service, $uri)) {
-        $mod = "page";
-        $page_id = 5;
-    } 
-    if (preg_match($p_guide, $uri)) {
-        $mod = "page";
-        $page_id = 6;
-    } 
-    if (preg_match($p_promotion, $uri)) {
-        $mod = "promotion";        
-    } 
-    if (preg_match($p_tour, $uri)) {
-        $mod = "tour";        
-    } 
+    }       
+   
 
     return array("mod" =>$mod,'page_id' => $page_id);
 }
@@ -154,9 +125,7 @@ switch ($mod) {
     case "about":
             $title = "Giới thiệu";
             $metaD = "Giới thiệu";
-            $metaK = "Giới thiệu";
-            $rs_article = $modelHome->getDetailPage(1);         
-            $arrDetailPage = mysql_fetch_assoc($rs_article); 
+            $metaK = "Giới thiệu";           
         break;   
     case "hot-detail":
         $tinh_name_safe_vi = str_replace("diem-den-", "", $tmp_uri[2]);
