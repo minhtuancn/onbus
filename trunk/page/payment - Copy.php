@@ -293,14 +293,7 @@ if(!empty($_SESSION['bookticket'])){
         </div>
 
 <script type="text/javascript">
-$(function(){
-    $('#pay_later').hide();
-    $('#way_1').click(function(){
-        $('#pay_later').show();
-    });
-    $('#way_2,#way_3').click(function(){
-        $('#pay_later').hide();
-    });
+$(function(){    
     $('#btnProcess').click(function(){
         var fullname = $.trim($('#fullname').val());
         var phone = $.trim($('#phone').val());

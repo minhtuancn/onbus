@@ -131,7 +131,7 @@ if(!empty($_SESSION['bookticket'])){
                 </div>
             </div>
         	<div class="right w_825 hBoxBig">
-            	<form class="form-horizontal" role="form">
+            	<form class="form-horizontal" role="form" id="paymentFrm" action="ajax/payment.php" method="post">
             	<div class="box_payment">
                 	<div class="title_payment">
                     	<h3>Contact information and passenger detail</h3>
@@ -142,13 +142,13 @@ if(!empty($_SESSION['bookticket'])){
                               <div class="form-group">
                                 <label class="col-sm-2 control-label">*Name:</label>
                                 <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="">
+                                  <input type="text" class="form-control" id="fullname" name="fullname">
                                 </div>
                               </div>
                               <div class="form-group">
                                 <label for="" class="col-sm-2 control-label">*Email:</label>
                                 <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="">
+                                  <input type="text" class="form-control" id="email" name="email">
                                 </div>
                               </div>
                               <div class="form-group frm_inline_box">
@@ -157,7 +157,7 @@ if(!empty($_SESSION['bookticket'])){
                                 	<select class="form-control">
                                     	<option>Vietnam (+84)</option>
                                     </select>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="phone" name="phone" />
                                 </div>
                               </div>
                         </div>
@@ -178,7 +178,7 @@ if(!empty($_SESSION['bookticket'])){
                         	<p><b>Thanh toán trực tuyến Senpay</b></p>
                         	<div class="radio">
                               <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                <input type="radio" id="way_3" value="3" name="payment_card">
                                 Online bằng thẻ ATM ngân hàng
                               </label>
                             </div>
@@ -204,7 +204,7 @@ if(!empty($_SESSION['bookticket'])){
                             <div class="clear"></div>
                             <div class="radio">
                               <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                <input type="radio" id="way_2" value="2" name="payment_card">
 								Visa/Master Card
                               </label>
                             </div>
@@ -215,7 +215,7 @@ if(!empty($_SESSION['bookticket'])){
                         <div class="right cod_nh">
                         	<div class="radio">
                               <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                <input type="radio" name="payment_card" id="way_1" value="1">
 								Thanh toán khi nhận hàng COD
                               </label>
                             </div>
@@ -223,7 +223,7 @@ if(!empty($_SESSION['bookticket'])){
                             <div class="form-group">
                                 <label for="" class="col-sm-2 control-label">*Address:</label>
                                 <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="">
+                                  <input type="text" class="form-control" id="address" name="address" />
                                 </div>
                               </div>
                               <div class="form-group frm_inline_box">
@@ -232,7 +232,7 @@ if(!empty($_SESSION['bookticket'])){
                                 	<select class="form-control">
                                     	<option>Vietnam (+84)</option>
                                     </select>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="phone_contact" name="phone_contact" />
                                 </div>
                               </div>
                         </div>
@@ -260,9 +260,9 @@ if(!empty($_SESSION['bookticket'])){
                 </div><div class="slimScrollBar ui-draggable" style="width: 7px; position: absolute; top: 0px; opacity: 0.7; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; right: 1px; height: 30px; display: block; background: rgb(159, 2, 52);"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: block; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(51, 51, 51);"></div></div>
                 <div class="checkbox bottom_frm">
                   <label>
-                    <input type="checkbox"> You must click here to indicate that you have read and accepted the fare Rule and Purchase Conditions
+                    <input type="checkbox" name="accept" id="accept"> You must click here to indicate that you have read and accepted the fare Rule and Purchase Conditions
                   </label>
-                  <input type="submit" class="right btn btn_submit_payment">
+                  <input type="button" class="right btn btn_submit_payment" id="btnProcess">
                 </div>
                 </form>
             </div>
@@ -270,14 +270,7 @@ if(!empty($_SESSION['bookticket'])){
             <div class="clear"></div>
         </div>
 <script type="text/javascript">
-$(function(){
-    $('#pay_later').hide();
-    $('#way_1').click(function(){
-        $('#pay_later').show();
-    });
-    $('#way_2,#way_3').click(function(){
-        $('#pay_later').hide();
-    });
+$(function(){    
     $('#btnProcess').click(function(){
         var fullname = $.trim($('#fullname').val());
         var phone = $.trim($('#phone').val());
