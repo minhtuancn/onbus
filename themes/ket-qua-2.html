@@ -25,7 +25,7 @@
     </a>
 </div>
 <div id="FeedbackButton" class="chrm-btn chrm-feedback">
-    <div class="chrm-toggle"><span class="">Feedback</span></div>
+    <div class="chrm-toggle"><a href="#" data-toggle="modal" data-target="#popup_feedback">Feedback</a></div>
 </div>
     <header>
         <div class="w-center header-wrap">
@@ -72,7 +72,7 @@
                                 <label for="exampleInputEmail1">Mã vé</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                               </div>
-                              <button type="submit" class="btn btn-default">Tiếp tục</button>
+                              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#popup_myticket">Tiếp tục</button>
                             </form>
                         </div>
                     </div>
@@ -854,8 +854,7 @@
             <div class="left"><h4 class="smallBoxHeader">Đặt vé qua Onbus</h4>
 <p>Chia sẻ cùng chúng tôi hành trình của bạn, chúng tôi sẽ giúp bạn có được giá vé và chất lượng dịch vụ tốt nhất từ những thương hiệu nhà xe uy tín hàng đầu. Đảm bảo cho bạn sự tiện lợi, an toàn và tiết kiệm.</p>
 			<ul>
-            	<li><a href="#"><span class="helper"></span><img src="images/comodo-secure-padlock.png" /></a></li>
-                <li><a href="#"><span class="helper"></span><img src="images/NortonSecuredSeal-Symantec.jpg" /></a></li>
+                <li><a href="#"><span class="helper"></span><img src="images/SSL-logo.png" /></a></li>
             </ul>
             </div>
 		</div>
@@ -1000,7 +999,147 @@
   </div>
 </div>
 <!-- InstanceEndEditable --> 
-<script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
+	<div class="modal fade" id="popup_feedback">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    	<div class="modal-header">
+          </div>
+      <div class="modal-body">
+		<div class="popup_detail">
+            <div class="wrap-popup">
+                <a href="#" class="close-popup" data-dismiss="modal"></a>
+				<p><b>Onbus</b> chân thành cảm ơn sự quan tâm của quý khách hàng đến dịch vụ của chúng tôi. Để gửi nội dung phản hồi, quý khách vui lòng điền thông tin vào ô bên dưới:</p>
+                <form class="form-horizontal" role="form">
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Điện thoại:</label>
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                    </div>
+                  </div>
+                  <div class="form-group txt_feedback">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Nội dung:</label>
+                    <div class="col-sm-10">
+                      <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group btn_feedback">
+                  	<a class="logo_contact" href="#"><img src="images/logo2_final.png" width="150"></a>
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-default">Gửi</button>
+                    </div>
+                  </div>
+                </form>
+                <div class="clear"></div>    
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="popup_myticket">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    	<div class="modal-header">
+          </div>
+      <div class="modal-body">
+		<div class="popup_detail">
+            <div class="wrap-popup">
+                <a href="#" class="close-popup" data-dismiss="modal"></a>
+                <div class="box_myticket left">
+                    <h1>Thông tin khách hàng</h1>
+                    <ul>
+                        <li>
+                            <span class="bg_full">Tên khách hàng</span>
+                            <span>Điển Trương Hoàng</span>
+                        </li>
+                        <li>
+                            <span class="bg_full">Email</span>
+                            <span>Điển Trương Hoàng</span>
+                        </li>
+                        <li>
+                            <span class="bg_full">Số điện thoại</span>
+                            <span>Điển Trương Hoàng</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="box_myticket left logo">
+                	<a class="logo_contact" href="#"><img src="images/logo2_final.png" width="250"></a>
+                </div>
+                <div class="clear"></div>
+                <div class="box_myticket left">
+                	<h1>Vé chiều đi<p>hồ chí minh - bến tre - số lượng: 01</p></h1>
+                    
+                    <ul>
+                    <li>
+                            <span class="bg_full">Mã vé</span>
+                            <span>Điển Trương Hoàng</span>
+                        </li>
+                    <li>
+                        <span class="bg_full">Điểm khởi hành</span>
+                        <span>Điển Trương Hoàng</span>
+                    </li>
+                    <li>
+                        <span class="bg_full">Điểm đến</span>
+                        <span>Điển Trương Hoàng</span>
+                    </li>
+                    <li>
+                            <span class="bg_full">Ngày & Giờ khởi hàng</span>
+                            <span>Điển Trương Hoàng</span>
+                        </li>
+                    <li>
+                        <span class="bg_full">Số ghế</span>
+                        <span>Điển Trương Hoàng</span>
+                    </li>
+                    <li>
+                        <span class="bg_full">Số xe</span>
+                        <span>Điển Trương Hoàng</span>
+                    </li>
+                    </ul>
+                    <div id="newsletter-signup-button" class="submit-form left"><span class="label">Hủy vé</span></div>
+                </div>
+                <div class="box_myticket left">
+                	<h1>Vé chiều về<p>hồ chí minh - bến tre - số lượng: 01</p></h1>
+                    <ul>
+                    <li>
+                            <span class="bg_full">Mã vé</span>
+                            <span>Điển Trương Hoàng</span>
+                        </li>
+                    <li>
+                        <span class="bg_full">Điểm khởi hành</span>
+                        <span>Điển Trương Hoàng</span>
+                    </li>
+                    <li>
+                        <span class="bg_full">Điểm đến</span>
+                        <span>Điển Trương Hoàng</span>
+                    </li>
+                    <li>
+                            <span class="bg_full">Ngày & Giờ khởi hàng</span>
+                            <span>Điển Trương Hoàng</span>
+                        </li>
+                    <li>
+                        <span class="bg_full">Số ghế</span>
+                        <span>Điển Trương Hoàng</span>
+                    </li>
+                    <li>
+                        <span class="bg_full">Số xe</span>
+                        <span>Điển Trương Hoàng</span>
+                    </li>
+                    </ul>
+                </div>
+                <div class="clear"></div>    
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+	<script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
 	<script src="js/jquery-ui.min.js" type="text/javascript"></script>
     <script src="js/bootstrap.min.js" type="text/javascript"></script>
     <!-- InstanceBeginEditable name="JS" -->
