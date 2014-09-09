@@ -79,6 +79,9 @@ $arrRoute = $modelRoute->getListRoute('',-1,-1,1, 0, 8);
     <div class="chrm-toggle"><a href="#" data-toggle="modal" data-target="#popup_feedback">Feedback</a></div>
 </div>
     <?php include URL_LAYOUT."/header.php"; ?>    
+    <?php if($mod =="privacy"){ ?>
+    <div class="page_cstt">
+    <?php }?>
     <?php if($mod=="hot-detail" || $mod=="details") {?>
     <div class="wrap_layout_2">
     <?php } ?>
@@ -97,15 +100,10 @@ $arrRoute = $modelRoute->getListRoute('',-1,-1,1, 0, 8);
     <div id="wrapper-container" class="w-center <?php if($mod=="thanks") echo "thanks_page"; ?>">
         <?php include "page/".$mod.".php"; ?>
     </div>
-    <?php if($mod=="contact") { ?>
+    <?php if($mod=="contact" || $mod=="faq" || $mod=="hot-detail" || $mod=="details" || $mod=="privacy") { ?>
     </div>
-    <?php } ?>
-    <?php if($mod=="faq") {?>
-    </div>
-    <?php } ?>
-    <?php if($mod=="hot-detail" || $mod=="details") {?>
-    </div>
-    <?php } ?>
+    <?php } ?>    
+   
 <?php include URL_LAYOUT."/footer.php"; ?>
 <!-- InstanceBeginEditable name="EditRegion3" -->
 <div id="scr"></div>
