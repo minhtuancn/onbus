@@ -24,16 +24,17 @@
                 </div>
                 <div class="clear"></div>
             </div>
-            <div class="left"><a href="<?php echo HOST; ?>" class="logo-header"><img src="<?php echo STATIC_URL; ?>/images/logo2_final.png" /></a></div>
+            <div class="left"><a href="<?php echo HOST; ?>" class="logo-header">
+            <img src="<?php echo STATIC_URL; ?>/images/logo2_final.png" /></a></div>
             <div class="menu-header">
                 <ul class="nav nav-pills">
-                  <li class="active hv-1"><a href="<?php echo HOST; ?>">{trangchu}<span></span></a></li>
-                  <li class="hv-4"><a href="#">{vecuaban}<span></span></a>
+                  <li class="<?php echo ($mod=="home") ? "active": ""; ?> hv-1"><a href="<?php echo HOST; ?>">{trangchu}<span></span></a></li>
+                  <li class="hv-4"><a href="javascript:void(0)">{vecuaban}<span></span></a>
                     <div class="submenu">
                       <div class="wrap_sub">
                           <div class="title">
                               <h2>Tình trạng vé</h2>
-                                <a href="#" class="close_icon"><span class="glyphicon glyphicon-remove"></span></a>
+                                <a href="javascript:void(0)" class="close_icon"><span class="glyphicon glyphicon-remove"></span></a>
                             </div>
                             <form role="form">
                               <div class="form-group">
@@ -49,8 +50,8 @@
                         </div>
                     </div>
                   </li>
-                  <li class="hv-3"><a href="<?php echo $lang; ?>/tin-tuc.html">{tintuc}<span></span></a></li>
-                  <li class="hv-4"><a href="<?php echo $lang; ?>/thong-tin-nha-xe.html">{thongtinnhaxe}<span></span></a></li>
+                  <li class="<?php echo ($mod=="news" || $mod =="details") ? "active": ""; ?> hv-3"><a href="<?php echo $lang; ?>/tin-tuc.html">{tintuc}<span></span></a></li>
+                  <li class="<?php echo ($mod=="nhaxe" || $mod =="detail-nhaxe") ? "active": ""; ?> hv-4"><a href="<?php echo $lang; ?>/thong-tin-nha-xe.html">{thongtinnhaxe}<span></span></a></li>
                   
                   <!--<li class="cart-icon">
                     <a href="#"><i>&nbsp;</i><b>0</b>Vé</a>
