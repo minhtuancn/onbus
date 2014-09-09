@@ -18,11 +18,11 @@ if($car > 0){
 }
 if($date_start){    
     $link.="&dstart=".$date_start;
-    $dstart = strtotime($date_start) +3600*9;
+    $dstart = strtotime($date_start);
 }
 if($date_end){    
     $link.="&dend=".$date_end;
-    $dend = strtotime($date_end)+3600*9;
+    $dend = strtotime($date_end);
 } 
 $arrNhaXeID = array();
 
@@ -574,10 +574,9 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                             url: "ajax/book.php",
                             type: "POST",
                             async: false,                             
-                            data: {"time_book":time_book,"ticket_id_book":ticket_id_book,'price_book': price_book,'tab' : tab,'amount':amount},
-                            success: function(data){                    
-                                var r =$('#tab').val() == 1 ? 2 : 1;
-                                location.href =$('#back_url').val() + '&r=' + r;
+                            data: {"tab" : tab,"time_book":time_book,"ticket_id_book":ticket_id_book,'price_book': price_book,'tab' : tab,'amount':amount},
+                            success: function(data){                                                                                    
+                                window.location.reload();
                             }
                         });
                     }
@@ -626,9 +625,12 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                     minDate: new Date,
                     numberOfMonths: 2
                 });
-                <?php if(isset($_GET['r']) && $_GET['r']==2){ ?>
+                <?php if(isset($_SESSION['tab']) && $_SESSION['tab']==1){ ?>
                     $('a[href="#vechieuve"]').click();
-                <?php } ?>    
+                <?php } ?>
+                <?php if(isset($_SESSION['tab']) && $_SESSION['tab']==2){ ?>
+                    $('a[href="#vechieudi"]').click();
+                <?php } ?>     
                 $('input[name="car[]"]').click(function(){
                     var str_car = "";
                     $('input[name="car[]"]:checked').each(function(){                        

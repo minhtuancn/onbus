@@ -79,7 +79,7 @@ $arrRoute = $modelRoute->getListRoute('',-1,-1,1, 0, 8);
     <div class="chrm-toggle"><a href="#" data-toggle="modal" data-target="#popup_feedback">Feedback</a></div>
 </div>
     <?php include URL_LAYOUT."/header.php"; ?>    
-    <?php if($mod =="privacy" || $mod =="policy"){ ?>
+    <?php if($mod =="privacy" || $mod =="pay-policy"){ ?>
     <div class="page_cstt">
     <?php }?>
     <?php if($mod=="hot-detail" || $mod=="details") {?>
@@ -100,7 +100,7 @@ $arrRoute = $modelRoute->getListRoute('',-1,-1,1, 0, 8);
     <div id="wrapper-container" class="w-center <?php if($mod=="thanks") echo "thanks_page"; ?> <?php if($mod=="about") echo "about-page" ; ?>">
         <?php include "page/".$mod.".php"; ?>
     </div>
-    <?php if($mod=="contact" || $mod=="faq" || $mod=="hot-detail" || $mod=="details" || $mod=="privacy" || $mod =="policy") { ?>
+    <?php if($mod=="contact" || $mod=="faq" || $mod=="hot-detail" || $mod=="details" || $mod=="privacy" || $mod =="pay-policy") { ?>
     </div>
     <?php } ?>    
    
