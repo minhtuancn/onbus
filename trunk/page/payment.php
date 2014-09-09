@@ -269,3 +269,46 @@ if(!empty($_SESSION['bookticket'])){
             
             <div class="clear"></div>
         </div>
+<script type="text/javascript">
+$(function(){
+    $('#pay_later').hide();
+    $('#way_1').click(function(){
+        $('#pay_later').show();
+    });
+    $('#way_2,#way_3').click(function(){
+        $('#pay_later').hide();
+    });
+    $('#btnProcess').click(function(){
+        var fullname = $.trim($('#fullname').val());
+        var phone = $.trim($('#phone').val());
+        var email = $.trim($('#email').val());
+        if(fullname=='' || phone=='' || email==''){
+            alert('Please enter name, email and phone !');
+            $('#fullname').focus();
+            return false;
+
+        }
+        var payment = $('input[name="payment_card"]:checked').length;
+        if(payment==0){
+            alert('Please choose payment method');return false;
+        }else{
+            if($('input[name="payment_card"]:checked').val()==1){
+                var address = $.trim($('#address').val());
+                var phone_contact = $.trim($('#phone_contact').val());
+                if(address=='' || phone_contact == ''){
+                    alert('Please enter address and phone contact!');
+                    $('#address').focus();
+                    return false;
+                }
+            }
+        }
+
+        if($('input[name="accept"]:checked').length==0){
+            alert('You must accept the fare Rule and Purchase Conditions');return false;
+        }
+
+        $('#paymentFrm').submit();
+
+    });
+});
+</script>         
