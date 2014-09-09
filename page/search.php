@@ -18,13 +18,12 @@ if($car > 0){
 }
 if($date_start){    
     $link.="&dstart=".$date_start;
-    $dstart = strtotime($date_start);
+    $dstart = strtotime($date_start) +3600*9;
 }
 if($date_end){    
     $link.="&dend=".$date_end;
-    $dend = strtotime($date_end);
-}
-
+    $dend = strtotime($date_end)+3600*9;
+} 
 $arrNhaXeID = array();
 
 $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;

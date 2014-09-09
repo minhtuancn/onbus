@@ -15,9 +15,8 @@ if(!empty($_SESSION['bookticket'])){
     }        
 }
 ?>
-
 <div id="payment">
-            <div class="process_bar nav">
+        	<div class="process_bar nav">
                 <ul>
                     <li class="finish_process active">
                         <a class="btn-search-bus ic-search " id="select-trip" href="http://onbus.vn"><span class="glyphicon glyphicon-ok form-control-feedback"></span>{timkiem}</a>
@@ -35,172 +34,14 @@ if(!empty($_SESSION['bookticket'])){
                 </ul>
                 <div class="dotted-line"></div>
             </div>
-            <div class="left w_825 hBoxBig">
-                <form role="form" class="form-horizontal" id="paymentFrm" action="ajax/payment.php" method="post">
-                <div class="box_payment">
-                    <div class="title_payment">
-                        <h3>Contact information and passenger detail</h3>
-                    </div>
-                    <div class="content_payment infor_person_book">
-                        <div class="right w_440">
-                                <span class="request_txt">*Required Fieds</span>
-                              <div class="form-group">
-                                <label class="col-sm-2 control-label">*Name:</label>
-                                <div class="col-sm-10">
-                                  <input type="text" id="fullname" name="fullname" class="form-control">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="col-sm-2 control-label" for="">*Email:</label>
-                                <div class="col-sm-10">
-                                  <input type="text" id="email" name="email" class="form-control">
-                                </div>
-                              </div>
-                              <div class="form-group frm_inline_box">
-                                <label class="col-sm-2 control-label" for="">*Phone</label>
-                                <div class="col-sm-10">
-                                    <select class="form-control">
-                                        <option>Vietnam (+84)</option>
-                                    </select>
-                                    <input type="text" id="phone" name="phone" class="form-control">
-                                </div>
-                              </div>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                </div>
-                <div class="box_payment promo_box">
-                    <div class="title_payment">
-                        <h3>Promotion code</h3>
-                    </div>
-                    <div class="content_payment">
-                        <div class="form-group">
-                        <label class="col-sm-4 control-label" for="">Please enter promotion code:</label>
-                        <div class="col-sm-5">
-                          <input type="text" id="" class="form-control">
-                          <span class="glyphicon glyphicon-ok form-control-feedback"></span>
-                        </div>
-                      </div>
-                        <div class="clear"></div>
-                    </div>
-                </div>
-                <div class="box_payment">
-                    <div class="title_payment">
-                        <h3><input name="pickup" value="1" type="checkbox" data-id="bus_pickup" class="show_box_height" id="checked_show"><label for="checked_show">Onbus pickup</label></h3>
-                    </div>
-                    <div class="content_payment block_show_checked hide_check" id="bus_pickup">
-                        <div class="left w_385">
-                            <div class="left"><img src="<?php echo STATIC_URL; ?>/images/img_241x181.jpg"></div>
-                            <div class="right">
-                                With $5, you can use Onbus pick up - a special service to assist Onbus's client. We will pick up you from your address to bus station for your safety and in time.
-                            </div>
-                        </div>
-                        <div class="right w_440">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Your address</label>
-                                <input type="email" placeholder="Your address" id="address_pickup" name="address_pickup" class="form-control">
-                              </div>
-                              <div class="form-group">
-                                <label for="exampleInputEmail1">Your phone</label>
-                                <input type="email" placeholder="Your phone" id="phone_pickup" name="phone_pickup" class="form-control">
-                              </div>
-                              <div class="form-group">
-                                <label for="exampleInputEmail1">Note</label>
-                                <textarea placeholder="Ex: Vui lòng gọi trước khi đến" rows="3" class="form-control" name="note" id="note"></textarea>
-                              </div>
-                              
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                </div>
-                <div class="box_payment">
-                    <div class="title_payment">
-                        <h3>Select payment and Billing information</h3>
-                    </div>
-                    <div class="content_payment">
-                      <div class="left w_385">
-                          <div class="radio">
-                              <label class="checkbox-inline">
-                                <input type="radio" id="way_1" value="1" data-id="orther_payment_card" class="show_box_height" name="payment_card">
-                                  PAY LATER - DOOR TO DOOR
-                              </label>
-                            </div>
-                            <div class="radio">
-                              <label class="checkbox-inline"  style="margin-bottom:0px">
-                                <input type="radio" id="way_2" value="2" data-id="orther_payment_card" class="show_box_height" name="payment_card">
-                                INTERNATIONAL PAYMENT CARD &nbsp;&nbsp;
-                                <img src="<?php echo STATIC_URL; ?>/images/visamaster.jpg" align="right"/>
-                              </label>
-                            </div>
-                            <div class="radio">
-                              <label class="checkbox-inline">
-                                <input type="radio" id="way_3" value="3" data-id="orther_payment_card" class="show_box_height" name="payment_card">
-                                DOMESTIC ATM
-                              </label>
-                              <div style="float:right"><img src="<?php echo STATIC_URL; ?>/images/bg_payment.png"></div>
-                            </div>
-                            <div class="sucu_payment">
-                                
-                            </div>
-                        </div>
-                        <div id="pay_later" class="right w_440 ">
-                              <span class="txt_gray">Thanh toán tại nhà với chi phí đính kèm 1$</span>
-                                <fieldset class="field_payment_card">
-                              <div class="form-group">
-                                <label class="col-sm-2 control-label">*Address</label>
-                                <div class="col-sm-10">
-                                  <input type="text" id="address" name="address" class="form-control">
-                                </div>
-                              </div>
-                              <div class="form-group frm_inline_box">
-                                <label class="col-sm-2 control-label" for="">*Contact Phone</label>
-                                <div class="col-sm-10">
-                                  <select class="form-control">
-                                      <option>Vietnam (+84)</option>
-                                    </select>
-                                    <input type="text" id="phone_contact" name="phone_contact" class="form-control">
-                                </div>
-                              </div>
-                              </fieldset>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                </div>                
-                <div class="box_term">
-                    <h1>Terms &amp; Conditions</h1>
-                    <p>Please review our full terms and conditions available through the link <a href="#">Terms of User</a></p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p><p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                </div>
-                <div class="checkbox bottom_frm">
-                  <label>
-                    <input type="checkbox" name="accept" id="accept"> You must click here to indicate that you have read and accepted the fare Rule and Purchase Conditions
-                  </label>
-                  <input type="btn" class="right btn btn_submit_payment" id="btnProcess" />
-                </div>
-                </form>
-            </div>
-            <div class="right w_300">
-                <div class="scrollbar_fixed" style="position: absolute; top: 508.85px;">
-                <div class="box_sidebar">
-                    <div class="title_payment">
-                        <h3>Your Ticket(s)</h3>
+            <div id="scrollFixed" class="left w_300">
+            	<div class="scrollbar_fixed">
+            	<div class="box_sidebar">
+                	<div class="title_payment">
+                    	<h3>Your Ticket(s)</h3>
                     </div>
                     <div class="content_sidebar">
-                        <?php if(!empty($arrTicket)){ 
+                    	<?php if(!empty($arrTicket)){ 
                             foreach ($arrTicket as $key => $value) {
                                 
                             
@@ -223,7 +64,7 @@ if(!empty($_SESSION['bookticket'])){
                         <div title="" data-toggle="tooltip" class="left icon_start" data-original-title="Khởi hành"></div>
                         <div class="left time_diadiem">
                             <h4><?php echo $modelTime->getTimeByID($arrTime[$value['ticket_id']]);?></h4>
-                            <p><span><?php echo $modelPlace->getPlaceNameByID($ticket['place_id_start'],$lang); ?> (<?php echo $modelPlace->getAddressByID($value['place_id_start'],$lang); ?>)</span><a href="#" class="right">{xemthongtin}</a></p>
+                            <p><span><?php echo $modelPlace->getPlaceNameByID($value['place_id_start'],$lang); ?> (<?php echo $modelPlace->getAddressByID($value['place_id_start'],$lang); ?>)</span><a href="#" class="right">{xemthongtin}</a></p>
                         </div>
                         <div class="clear"></div>
                         <div title="" data-toggle="tooltip" class="left icon_end" data-original-title="Điểm đến"></div>
@@ -246,22 +87,22 @@ if(!empty($_SESSION['bookticket'])){
                             $h_end = str_pad($h_end, 2, "0", STR_PAD_LEFT);                             
                             ?>
                             <h4><?php echo $h_end?>:<?php echo $m_end; ?></h4>
-                            <p><span><?php echo $modelPlace->getPlaceNameByID($ticket['place_id_end'],$lang); ?> (<?php echo $modelPlace->getAddressByID($value['place_id_end'],$lang); ?>)</span><a href="#" class="right">{xemthongtin}</a></p>
+                            <p><span><?php echo $modelPlace->getPlaceNameByID($value['place_id_end'],$lang); ?> (<?php echo $modelPlace->getAddressByID($value['place_id_end'],$lang); ?>)</span><a href="#" class="right">{xemthongtin}</a></p>
                         </div>
                         <div class="line_center"></div>
                         <?php } // foreach
                     } // if 
-                    ?>                    
+                    ?>  
                     </div>
                     <div class="clear"></div>
                 </div>
                 <div class="box_sidebar">
-                    <div class="title_payment">
-                        <h3>Total price</h3>
+                	<div class="title_payment">
+                    	<h3>Total price</h3>
                     </div>
                     <div class="content_sidebar">
-                        <div class="total_price">
-                            <h2 class="left"><b>TOTAL:</b></h2>
+                    	<div class="total_price">
+                        	<h2 class="left"><b>TOTAL:</b></h2>
                             <span class="price"><?php echo number_format($total); ?> VND</span>
                          </div>
                         <h3>No. of ticket: <?php echo $amount; ?></h3>
@@ -272,16 +113,16 @@ if(!empty($_SESSION['bookticket'])){
                                 <div class="right"><?php echo number_format($total); ?> VND</div>
                             </li>
                             <li>
-                                <div class="left">Taxes and Fees <a href="#">View</a></div>
+                            	<div class="left">Taxes and Fees <a href="#">View</a></div>
                                 <div class="right">0 VND</div>
                             </li>
                             <li>
-                                <div class="left"><h3>Discount</h3></div>
+                            	<div class="left"><h3>Discount</h3></div>
                                 
                             </li>
                         </ul>
                         <div class="right cost_payment">
-                            <a href="#">View fare Rules</a>
+                        	<a href="#">View fare Rules</a>
                             <a href="#">Purchase Conditions</a>
                         </div>
                     </div>
@@ -289,49 +130,142 @@ if(!empty($_SESSION['bookticket'])){
                 </div>
                 </div>
             </div>
+        	<div class="right w_825 hBoxBig">
+            	<form class="form-horizontal" role="form">
+            	<div class="box_payment">
+                	<div class="title_payment">
+                    	<h3>Contact information and passenger detail</h3>
+                    </div>
+                    <div class="content_payment infor_person_book">
+                    	<div class="right w_440">
+	                            <span class="request_txt">*Required Fieds</span>
+                              <div class="form-group">
+                                <label class="col-sm-2 control-label">*Name:</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">*Email:</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="">
+                                </div>
+                              </div>
+                              <div class="form-group frm_inline_box">
+                                <label for="" class="col-sm-2 control-label">*Phone</label>
+                                <div class="col-sm-10">
+                                	<select class="form-control">
+                                    	<option>Vietnam (+84)</option>
+                                    </select>
+                                    <input type="text" class="form-control">
+                                </div>
+                              </div>
+                        </div>
+                        <div class="form-group promo_box">
+                            <label for="" class="col-sm-4 control-label">Please enter promotion code:</label>
+                            <input type="text" class="form-control" id="">
+                              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                      </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>                
+                <div id="orther_payment_card" class="box_payment payment_money">
+                	<div class="title_payment">
+                    	<h3>Select payment and Billing information</h3>
+                    </div>
+                    <div class="content_payment">                    	
+                        <div class="left icon_nh">
+                        	<p><b>Thanh toán trực tuyến Senpay</b></p>
+                        	<div class="radio">
+                              <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                Online bằng thẻ ATM ngân hàng
+                              </label>
+                            </div>
+                            <ul>
+                            	<li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/ACB.png"></a></li>
+                                <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/CTG.png"></a></li>
+                                <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/DAB.png"></a></li>
+                                <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/HDB.png"></a></li>
+                                <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/EIB.png"></a></li>
+                                <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/icon-amex.jpg"></a></li>
+                                <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/icon-citibank.jpg"></a></li>
+                                <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/icon-dbs.jpg"></a></li>
+                                <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/icon-mcard.jpg"></a></li>
+                                <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/icon-ocbc.jpg"></a></li>
+                                <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/STB.png"></a></li>
+                                <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/TCB.png"></a></li>
+                                <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/trustVN.jpg"></a></li>
+                                <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/VAB.png"></a></li>
+                                <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/VCB.png"></a></li>
+                                <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/VIB.png"></a></li>
+                                <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/VPB.png"></a></li>
+                            </ul>
+                            <div class="clear"></div>
+                            <div class="radio">
+                              <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+								Visa/Master Card
+                              </label>
+                            </div>
+                            <ul>
+                            	<li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/visamaster.jpg"></a></li>
+                            </ul>
+                        </div>
+                        <div class="right cod_nh">
+                        	<div class="radio">
+                              <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+								Thanh toán khi nhận hàng COD
+                              </label>
+                            </div>
+                            <p>Giao hàng và thu tiền tận nơi trên toàn quốc, áp dụng cho đơn hàng có giá trị dưới 10.000.000 đồng</p>
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">*Address:</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="">
+                                </div>
+                              </div>
+                              <div class="form-group frm_inline_box">
+                                <label for="" class="col-sm-2 control-label">*Phone</label>
+                                <div class="col-sm-10">
+                                	<select class="form-control">
+                                    	<option>Vietnam (+84)</option>
+                                    </select>
+                                    <input type="text" class="form-control">
+                                </div>
+                              </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 130px;"><div class="box_term" style="overflow: hidden; width: auto; height: 130px;">
+                	<h1>Terms &amp; Conditions</h1>
+                    <p>Please review our full terms and conditions available through the link <a href="#">Terms of User</a></p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p><p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
+                </div><div class="slimScrollBar ui-draggable" style="width: 7px; position: absolute; top: 0px; opacity: 0.7; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; right: 1px; height: 30px; display: block; background: rgb(159, 2, 52);"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: block; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(51, 51, 51);"></div></div>
+                <div class="checkbox bottom_frm">
+                  <label>
+                    <input type="checkbox"> You must click here to indicate that you have read and accepted the fare Rule and Purchase Conditions
+                  </label>
+                  <input type="submit" class="right btn btn_submit_payment">
+                </div>
+                </form>
+            </div>
+            
             <div class="clear"></div>
         </div>
-
-<script type="text/javascript">
-$(function(){
-    $('#pay_later').hide();
-    $('#way_1').click(function(){
-        $('#pay_later').show();
-    });
-    $('#way_2,#way_3').click(function(){
-        $('#pay_later').hide();
-    });
-    $('#btnProcess').click(function(){
-        var fullname = $.trim($('#fullname').val());
-        var phone = $.trim($('#phone').val());
-        var email = $.trim($('#email').val());
-        if(fullname=='' || phone=='' || email==''){
-            alert('Please enter name, email and phone !');
-            $('#fullname').focus();
-            return false;
-
-        }
-        var payment = $('input[name="payment_card"]:checked').length;
-        if(payment==0){
-            alert('Please choose payment method');return false;
-        }else{
-            if($('input[name="payment_card"]:checked').val()==1){
-                var address = $.trim($('#address').val());
-                var phone_contact = $.trim($('#phone_contact').val());
-                if(address=='' || phone_contact == ''){
-                    alert('Please enter address and phone contact!');
-                    $('#address').focus();
-                    return false;
-                }
-            }
-        }
-
-        if($('input[name="accept"]:checked').length==0){
-            alert('You must accept the fare Rule and Purchase Conditions');return false;
-        }
-
-        $('#paymentFrm').submit();
-
-    });
-});
-</script>        
