@@ -27,9 +27,12 @@ function checkCat($uri) {
     $p_search = "#/ve-xe-khach-[a-z\-]+.html#";
 
     $mod = "home";
-    $page_id = "";    
+    $page_id = "";   
     if (strpos( $uri,'ve-xe-khach')>-1) {        
         $mod = "search";
+    } 
+    if (strpos( $uri,'privacy-policy')>-1) {        
+        $mod = "privacy";
     } 
     if (strpos( $uri,'chi-tiet-nha-xe')>-1) {        
         $mod = "detail-nhaxe";
