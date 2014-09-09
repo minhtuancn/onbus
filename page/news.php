@@ -1,3 +1,9 @@
+<style>
+  .slider-description h1 {
+font-weight: bold;
+}
+
+</style>
 <div id="mid">
 		<div id="mid-inner">			
 			<div id="content" class="content wide">
