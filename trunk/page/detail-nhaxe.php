@@ -359,36 +359,36 @@ $row = mysql_fetch_assoc($arrImage);
                   	 <div id="wrap_slider_profile">
                      	<ul class="bxslider_profile">
                           <li>
-                          	<div class="wrap_slider_profile"><img src="images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></div>
+                          	<div class="wrap_slider_profile"><img src="<?php echo STATIC_URL; ?>/images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></div>
                             <div class="thum_slider">
-                            	<a href=""><img src="images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></a>
-                                  <a href=""><img src="images/thumb.jpg"></a>
-                                  <a href=""><img src="images/images (2).jpg"></a>
-                                  <a href=""><img src="images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></a>
-                                  <a href=""><img src="images/thumb.jpg"></a>
-                                  <a href=""><img src="images/images (2).jpg"></a>
+                            	<a href=""><img src="<?php echo STATIC_URL; ?>/images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL; ?>/images/thumb.jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL; ?>/images/images (2).jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL; ?>/images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL; ?>/images/thumb.jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL; ?>/images/images (2).jpg"></a>
                             </div>
                           </li>
                           <li>
-                          	<div class="wrap_slider_profile"><img src="images/bus-1.jpg"></div>
+                          	<div class="wrap_slider_profile"><img src="<?php echo STATIC_URL; ?>/images/bus-1.jpg"></div>
                             <div class="thum_slider">
-                            	<a href=""><img src="images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></a>
-                                  <a href=""><img src="images/thumb.jpg"></a>
-                                  <a href=""><img src="images/images (2).jpg"></a>
-                                  <a href=""><img src="images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></a>
-                                  <a href=""><img src="images/thumb.jpg"></a>
-                                  <a href=""><img src="images/images (2).jpg"></a>
+                            	<a href=""><img src="<?php echo STATIC_URL; ?>/images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL; ?>/images/thumb.jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL; ?>/images/images (2).jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL; ?>/images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL; ?>/images/thumb.jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL; ?>/images/images (2).jpg"></a>
                             </div>
                           </li>
                           <li>
-                          	<div class="wrap_slider_profile"><img src="images/bg-capbus.jpg"></div>
+                          	<div class="wrap_slider_profile"><img src="<?php echo STATIC_URL; ?>/images/bg-capbus.jpg"></div>
                             <div class="thum_slider">
-                            	<a href=""><img src="images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></a>
-                                  <a href=""><img src="images/thumb.jpg"></a>
-                                  <a href=""><img src="images/images (2).jpg"></a>
-                                  <a href=""><img src="images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></a>
-                                  <a href=""><img src="images/thumb.jpg"></a>
-                                  <a href=""><img src="images/images (2).jpg"></a>
+                            	<a href=""><img src="<?php echo STATIC_URL; ?>/images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL; ?>/images/thumb.jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL; ?>/images/images (2).jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL; ?>/images/251750,xcitefun-ma05-01mini-bus-car-139464f.jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL; ?>/images/thumb.jpg"></a>
+                                  <a href=""><img src="<?php echo STATIC_URL; ?>/images/images (2).jpg"></a>
                             </div>
                           </li>
                         </ul>

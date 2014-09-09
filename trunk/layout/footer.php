@@ -2,7 +2,7 @@
         <div class="center w-center">
 <div class="left column w1-4">
         <div class="medBox">
-            <a href="/"><img src="<?php echo STATIC_URL; ?>/images/logo2_final.png" /></a>
+            <a href="<?php echo HOST; ?>"><img src="<?php echo STATIC_URL; ?>/images/logo2_final.png" /></a>
             <div class="left"><h4 class="smallBoxHeader">{datvequaonbus}</h4>
 <p><?php if($lang=="vi") { ?>Chia sẻ cùng chúng tôi hành trình của bạn, chúng tôi sẽ giúp bạn có được giá vé và chất lượng dịch vụ tốt nhất từ những thương hiệu nhà xe uy tín hàng đầu. Đảm bảo cho bạn sự tiện lợi, an toàn và tiết kiệm.
 <?php }else{ ?>
@@ -45,7 +45,7 @@ Share with us your journey, we will help you choose your ticket with best price 
     </div>
 <div id="BaseFooter_domainLinks" class="medBox seoLinks">
     <ul>
-        <li><a href="#">{vechungtoi}</a></li>
+        <li><a href="<?php echo $lang; ?>/about-us.html">{vechungtoi}</a></li>
         <li><a href="<?php echo $lang; ?>/contact.html">{lienhe}</a></li>
         <li><a href="<?php echo $lang; ?>/faq.html">{hoidap}</a></li>
         <li><a href="#">{dieukhoansudung}</a></li>
