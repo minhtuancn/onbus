@@ -31,6 +31,9 @@ function checkCat($uri) {
     if (strpos( $uri,'ve-xe-khach')>-1) {        
         $mod = "search";
     } 
+    if (strpos( $uri,'policy')>-1) {        
+        $mod = "policy";
+    } 
     if (strpos( $uri,'privacy-policy')>-1) {        
         $mod = "privacy";
     } 
