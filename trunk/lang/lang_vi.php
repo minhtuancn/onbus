@@ -23,7 +23,7 @@ define("nhaxehangdau", "Nhà xe hàng đầu");
 define("vechungtoi", "Về chúng tôi");
 define("lienhe", "Liên hệ");
 define("hoidap", "Hỏi đáp");
-define("dieukhoansudung", "Điều khoản sử dụng");
+define("chinhsachthanhtoan", "Chính sách thanh toán");
 define("phanhoi", "Phản hồi");
 define("chinhsachriengtu", "Chính sách riêng tư");
 define("vechieude", "Vé chiều đi");
