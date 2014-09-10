@@ -45,6 +45,10 @@ $_SESSION['method_id'] = $method;
 // 
 
 if($method==1){
+	include("../backend/model/Payment.php");
+
+	$payment = new Payment();
+
 	$address = $model->processData($_POST['address']);
 	$phone_contact = $model->processData($_POST['phone_contact']);
 	$time = time();
@@ -52,6 +56,7 @@ if($method==1){
 	VALUES (NULL,'$order_code_new',$amount,$total,'$fullname','$phone','$email','$address','$phone_contact',2,$time,1)";
 	mysql_query($sql) or die(mysql_error());
 	$order_id = mysql_insert_id();
+	header('location:http://onbus.vn/vi/thanks-you.html');
 }elseif($method== 2){
 	include("../backend/model/Payment.php");
 $payment = new Payment();
@@ -62,7 +67,7 @@ $payment->setVirtualPaymentUrl("https://migs.mastercard.com.au/vpcpay");
  
 $_params= array("vpc_Version" => "1", "vpc_Command" => "pay", "vpc_AccessCode" => "72AD46B6", "vpc_MerchTxnRef" => "$order_code_new".time(),
  "vpc_Merchant" => "test03051980", "vpc_OrderInfo" => "Order infoaaa", "vpc_Amount" => $total, "vpc_Locale" => "vn" ,
- "vpc_Currency" => "VND", "vpc_ReturnURL" => "http://onbus.vn/index.php?mod=thanks", "vpc_BackURL" => "http://onbus.vn");
+ "vpc_Currency" => "VND", "vpc_ReturnURL" => "http://onbus.vn/vi/thanks-you.html", "vpc_BackURL" => "http://onbus.vn");
 
 $payment->redirect($_params);
 }elseif($method==3){	
@@ -84,13 +89,9 @@ $payment->redirect($_params);
 	 	"vpc_Amount" => $total*100, 
 	 	"vpc_Locale" => "vn" ,	 	
 	 	"vpc_Currency" => "VND", 
-	 	"vpc_ReturnURL" => "http://onbus.vn/index.php?mod=thanks", 
+	 	"vpc_ReturnURL" => "http://onbus.vn/vi/thanks-you.html", 
 	 	"vpc_BackURL" => "http://onbus.vn");	
 	$payment->redirect($_params);	
 	
 }
-
-
-
-
 ?>

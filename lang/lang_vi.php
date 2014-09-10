@@ -45,6 +45,6 @@ define("thanhtoan", "Thanh toán");
 define("chitiet", "Chi tiết");
 define("chonnoidi", "Chọn nơi đi");
 define("chonnoiden", "Chọn nơi đến");
-define("chiasehanhtrinhcuaban","Chia sẻ cùng chúng tôi hành trình của bạn.");
+define("chiasehanhtrinhcuaban","Chia sẻ cùng chúng tôi hành trình của bạn");
 define("tatcanhaxe","Tất cả nhà xe");
 ?>

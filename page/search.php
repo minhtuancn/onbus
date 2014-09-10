@@ -256,15 +256,22 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                     <div class="img-logo left">
                                         <div data-toggle="tooltip" title="Click để xem hình" class="wrap-slider">
                                         <div class="slider_nx">
+                                            <?php if(strlen($arrDetailNhaxe['image_url'])> 10) { ?>
+                                            <div class="slide"><a href="<?php echo $arrDetailNhaxe['image_url']?>" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo $arrDetailNhaxe['image_url']?>" /></a></div>
+                                            <?php } ?>
                                             <?php $arrRsImg = $modelImage->getListImageByNhaxe($ticket['nhaxe_id'],-1,-1);
                                             if(mysql_num_rows($arrRsImg) >0) {
+                                                $count = 0;
                                             while($row = mysql_fetch_assoc($arrRsImg)){    
+                                                $count ++;
+                                                if($count<3){
                                             ?>
-                                            <div class="slide"><a href="<?php echo $row['image_url']?>" data-lightbox="example-set" class="wrap-img"><img src="<?php echo $row['image_url']?>" /></a></div>
-                                            <?php }}else{ ?>
-                                            <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/Du-lich-bui-tren-dao-Binh-Ba_1a.jpg" data-lightbox="example-set" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/img_166x104.png" /></a></div>
-                                            <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/mailinh vanluong.jpg" data-lightbox="example-set" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/images.jpg" /></a></div>
-                                            <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/images (1).jpg" data-lightbox="example-set" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/images413681_images337275_anh_tin_Dau_tu_12_ti_mua_them_xe_buyt.JPG" /></a></div>
+                                            <div class="slide"><a href="<?php echo $row['image_url']?>" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo $row['image_url']?>" /></a></div>
+
+                                            <?php } }}else{ ?>
+                                            <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/Du-lich-bui-tren-dao-Binh-Ba_1a.jpg" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/img_166x104.png" /></a></div>
+                                            <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/mailinh vanluong.jpg" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/images.jpg" /></a></div>
+                                            <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/images (1).jpg" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/images413681_images337275_anh_tin_Dau_tu_12_ti_mua_them_xe_buyt.JPG" /></a></div>
                                             <?php } ?>
                                         </div>
                                         </div>
@@ -303,7 +310,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                         <div class="clear"></div>
                                         <p><b><?php echo ($lang=="vi") ? "Điểm khởi hành" : "Depart"; ?>:</b><?php echo $modelPlace->getPlaceNameByID($ticket['place_id_start'],$lang); ?> (<?php echo $modelPlace->getAddressByID($ticket['place_id_start'],$lang); ?>)</p>
                                         <p><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?>:</b><?php echo $modelPlace->getPlaceNameByID($ticket['place_id_end'],$lang); ?> (<?php echo $modelPlace->getAddressByID($ticket['place_id_end'],$lang); ?>)</p>
-                                        <a href="#" class="right show_map" data-target="#mymap" data-toggle="modal" >{xemlotrinh}</a>
+                                        <a href="#" class="right show_map" onclick="return loadmap();" data-target="#mymap" data-toggle="modal" >{xemlotrinh}</a>
                                         <div class="type-ticket" id="time_<?php echo $ticket['ticket_id']; ?>">
                                         <p><?php echo $lang=="vi" ? "Chọn giờ khởi hành" : "Select time"; ?>:</p>
                                         <ul>
@@ -351,15 +358,21 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                     <div class="img-logo left">
                                         <div data-toggle="tooltip" title="Click để xem hình" class="wrap-slider">
                                         <div class="slider_nx">
+                                            <?php if(strlen($arrDetailNhaxe['image_url'])> 10) { ?>
+                                            <div class="slide"><a href="<?php echo $arrDetailNhaxe['image_url']?>" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo $arrDetailNhaxe['image_url']?>" /></a></div>
+                                            <?php } ?>
                                             <?php $arrRsImg = $modelImage->getListImageByNhaxe($ticket['nhaxe_id'],-1,-1);
                                             if(mysql_num_rows($arrRsImg) >0) {
+                                                $count2=0;
                                             while($row = mysql_fetch_assoc($arrRsImg)){    
+                                                $count++;
+                                                if($count<3){
                                             ?>
-                                            <div class="slide"><a href="<?php echo $row['image_url']?>" data-lightbox="example-set" class="wrap-img"><img src="<?php echo $row['image_url']?>" /></a></div>
-                                            <?php }}else{ ?>
-                                            <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/Du-lich-bui-tren-dao-Binh-Ba_1a.jpg" data-lightbox="example-set" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/img_166x104.png" /></a></div>
-                                            <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/mailinh vanluong.jpg" data-lightbox="example-set" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/images.jpg" /></a></div>
-                                            <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/images (1).jpg" data-lightbox="example-set" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/images413681_images337275_anh_tin_Dau_tu_12_ti_mua_them_xe_buyt.JPG" /></a></div>
+                                            <div class="slide"><a href="<?php echo $row['image_url']?>" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo $row['image_url']?>" /></a></div>
+                                            <?php } } }else{ ?>
+                                            <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/Du-lich-bui-tren-dao-Binh-Ba_1a.jpg" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/img_166x104.png" /></a></div>
+                                            <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/mailinh vanluong.jpg" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/images.jpg" /></a></div>
+                                            <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/images (1).jpg" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/images413681_images337275_anh_tin_Dau_tu_12_ti_mua_them_xe_buyt.JPG" /></a></div>
                                             <?php } ?>
                                         </div>
                                         </div>
@@ -397,7 +410,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                         <div class="clear"></div>
                                         <p><b><?php echo ($lang=="vi") ? "Điểm khởi hành" : "Depart"; ?>:</b><?php echo $modelPlace->getPlaceNameByID($ticket['place_id_start'],$lang); ?> (<?php echo $modelPlace->getAddressByID($ticket['place_id_start'],$lang); ?>)</p>
                                         <p><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?>:</b><?php echo $modelPlace->getPlaceNameByID($ticket['place_id_end'],$lang); ?> (<?php echo $modelPlace->getAddressByID($ticket['place_id_end'],$lang); ?>)</p>
-                                        <a href="#" class="right show_map" data-toggle="modal" data-target="#mymap">Xem lộ trình</a>
+                                        <a href="#" class="right show_map" onclick="return loadmap();" data-toggle="modal" data-target="#mymap">Xem lộ trình</a>
                                         <div class="type-ticket" id="time_<?php echo $ticket['ticket_id']; ?>">
                                         <p><?php echo $lang=="vi" ? "Chọn giờ khởi hành" : "Select time"; ?>:</p>
                                         <ul>    
@@ -450,17 +463,13 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
 </div>
 
 
+
 <div class="modal fade" id="mymap">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
         <div class="popup_detail">
-            <div class="wrap-popup">
-                <a href="javascript:void(0)" class="close-popup" data-dismiss="modal"></a>           
-                
-
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.2971405374396!2d106.69934210000002!3d10.788538799999992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f355086bee9%3A0xc4230970c235ac!2zNjQgTmd1eeG7hW4gxJDDrG5oIENoaeG7g3UsIMSQYSBLYW8sIFF14bqtbiAxLCBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1410186631915" width="670" height="372" frameborder="0" style="border:0"></iframe>
-                <div class="clear"></div>    
+            <div class="wrap-popup" id="loadmap">               
             </div>
         </div>
       </div>
@@ -477,7 +486,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
         <div class="popup_detail">
             <div class="wrap-popup">
                 <a href="#" class="close-popup" data-dismiss="modal"></a>
-                <p>Seat selection is not available. Please choose the number of passengers from the drop down list below.</p>
+                <p>Please choose the number of passengers from the drop down list below.</p>
                 <form class="form-horizontal" role="form" id="paymentForm" method="post" action="index.php?mod=payment">
                   <div class="form-group">
                     <label class="col-sm-2 control-label">No. of tickets: </label>
@@ -490,8 +499,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                           <option>5</option>
                         </select>
                     </div>
-                  </div>
-                  <p>Seats will be assigned closed to one another and at middle area by the best effort.</p>
+                  </div>                 
                   <div class="btn-center">
                     <?php if($type==1) { ?>
                     <input type="button" value="Book now" class="button2" id="btnBookNow">
@@ -907,4 +915,16 @@ $(function(){
       }
   });
 });
-    </script>        
+function loadmap(){
+    $.ajax({
+        url: "ajax/map.php",
+        type: "POST",
+        async: false,                             
+        data: {},
+        success: function(data){                        
+            $('#loadmap').html(data);
+        }
+    });
+}
+    </script>   
+     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=vi"></script>     

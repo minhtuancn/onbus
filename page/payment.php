@@ -52,7 +52,7 @@ if(!empty($_SESSION['bookticket'])){
                             <span class="thu"><?php echo date('D',$value['date_start']); ?></span>
                         </div>
                         <div class="left detail_tuyen">
-                            <h2>Ho Chi Minh - Vung Tau</h2>
+                            <h2><?php echo $modelTinh->getTinhNameByID($value['tinh_id_start'],$lang); ?> - <?php echo $modelTinh->getTinhNameByID($value['tinh_id_end'],$lang); ?></h2>
                             <div class="nhaxe"><i class="icon_cart"></i> <?php echo $modelNhaxe->getNhaxeNameByID($value['nhaxe_id']); ?></div>
                             <div class="time_move">
                                 <div class="left">{soluongve}: <?php echo $arrAmount[$value['ticket_id']]; ?></div>
@@ -64,7 +64,8 @@ if(!empty($_SESSION['bookticket'])){
                         <div title="" data-toggle="tooltip" class="left icon_start" data-original-title="Khởi hành"></div>
                         <div class="left time_diadiem">
                             <h4><?php echo $modelTime->getTimeByID($arrTime[$value['ticket_id']]);?></h4>
-                            <p><span><?php echo $modelPlace->getPlaceNameByID($value['place_id_start'],$lang); ?> (<?php echo $modelPlace->getAddressByID($value['place_id_start'],$lang); ?>)</span><a href="#" class="right">{xemthongtin}</a></p>
+                            <p><span><?php echo $modelPlace->getPlaceNameByID($value['place_id_start'],$lang); ?> (<?php echo $modelPlace->getAddressByID($value['place_id_start'],$lang); ?>)</span>
+                                <a href="javascript:;" class="right" onclick="return loadmap('<?php echo $modelPlace->getAddressByID($value['place_id_start']); ?>'); " data-target="#mymap" data-toggle="modal">{xemthongtin}</a></p>
                         </div>
                         <div class="clear"></div>
                         <div title="" data-toggle="tooltip" class="left icon_end" data-original-title="Điểm đến"></div>
@@ -269,6 +270,8 @@ if(!empty($_SESSION['bookticket'])){
             
             <div class="clear"></div>
         </div>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
 <script type="text/javascript">
 $(function(){    
     $('#btnProcess').click(function(){
@@ -304,4 +307,16 @@ $(function(){
 
     });
 });
+function loadmap(address){
+    $.ajax({
+        url: "ajax/map.php",
+        type: "POST",
+        async: false,                             
+        data: {'address':address},
+        success: function(data){   
+        alert(data);                 
+            $('#loadmap').html(data);
+        }
+    });
+}
 </script>         
