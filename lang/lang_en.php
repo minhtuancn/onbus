@@ -23,7 +23,7 @@ define("nhaxehangdau", "Top bus operator");
 define("vechungtoi", "About Onbus");
 define("lienhe", "Contact");
 define("hoidap", "Question&Answer");
-define("dieukhoansudung", "Terms of use");
+define("chinhsachthanhtoan", "Payment Policy");
 define("phanhoi", "Feedback");
 define("chinhsachriengtu", "Privacy Policy");
 define("vechieude", "Arrival ticket");

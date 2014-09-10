@@ -88,20 +88,23 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                 <div class="detail-search w-240">
                     <div class="route"><?php echo $routeDetail['route_name_'.$lang]; ?></div>                    
                     <div class="filter tien-ich">
+
                         <div class="tabs">
                             <ul>
                                 <li><a href="#"><span class="icon-font active">{timvexe}</span></a></li>
                             </ul>
                         </div>                        
-                        <form class="frm-search-vx">
+                       <form class="frm-search-vx">
                             <div class=" item-search">
+                              
                             <ul class="menu triptype clearfix">
-                                <li class="oneway selected">
-                                    <input data-ticket="type-1" id="ticket-1" type="radio" name="ticket-type" checked="checked">
+
+                                <li class="oneway">
+                                    <input data-ticket="type-1" id="ticket-1" type="radio" name="ticket-type" <?php echo ($type==1) ? "checked='checked'" : ""; ?> value="1">
                                     <label for="ticket-1">Vé 1 chiều</label>
                                 </li>
-                                <li class="return">
-                                    <input type="radio" data-ticket="type-2" id="ticket-2" name="ticket-type">
+                                <li class="return <?php echo ($type==2) ? "selected" : ""; ?>">
+                                    <input type="radio" data-ticket="type-2" id="ticket-2" name="ticket-type" <?php echo ($type==2) ? "checked='checked'" : ""; ?> value="2">
                                     <label for="ticket-2">Vé khứ hồi</label>
                                 </li>
                             </ul>
@@ -143,23 +146,24 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class=" item-search">
                                 <label for="start_date">{ngaydi}</label>
                                 <input id="departDate" type="text" class="input-txt form-control" placeholder="Chọn ngày đi" accesskey="3" tabindex="3" value="<?php echo date('d-m-Y',$dstart); ?>">
         
                             </div>
-                            <?php if($type==2){ ?>
-                            <div class=" item-search">
+                            
+                            <div class=" item-search returnDate"  <?php echo $type==1 ? 'style="display:none"' : ''; ?> >
                                 <label for="start_date">{ngayve}</label>
                                 <input id="returnDate" type="text" class="input-txt form-control" placeholder="Chọn ngày về" accesskey="4" tabindex="4" value="<?php echo date('d-m-Y',$dend); ?>">        
                             </div>
-                            <?php } ?>
+                            
                             
                             <div class="btn-search-ticket">
                                 <button id="btnSearchTicket" type="button" class="btn btn-warning right btn-blue">Tìm vé xe</button>
                             </div>
                             <div class="clear"></div>
-                        </form>
+                       </form>
                     </div>
                     <input type="hidden" name="vstart" id="vstart" value="<?php echo $vstart; ?>" />
                     <input type="hidden" name="vend" id="vend" value="<?php echo $vend; ?>" />
@@ -299,7 +303,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                         <div class="clear"></div>
                                         <p><b><?php echo ($lang=="vi") ? "Điểm khởi hành" : "Depart"; ?>:</b><?php echo $modelPlace->getPlaceNameByID($ticket['place_id_start'],$lang); ?> (<?php echo $modelPlace->getAddressByID($ticket['place_id_start'],$lang); ?>)</p>
                                         <p><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?>:</b><?php echo $modelPlace->getPlaceNameByID($ticket['place_id_end'],$lang); ?> (<?php echo $modelPlace->getAddressByID($ticket['place_id_end'],$lang); ?>)</p>
-                                        <a href="#" class="right show_map" data-url-map="https://dl.dropboxusercontent.com/u/43486987/Hoang/HTML/<?php echo STATIC_URL; ?>/images/map.jpg" data-toggle="modal" data-target="">{xemlotrinh}</a>
+                                        <a href="#" class="right show_map" data-target="#mymap" data-toggle="modal" >{xemlotrinh}</a>
                                         <div class="type-ticket" id="time_<?php echo $ticket['ticket_id']; ?>">
                                         <p><?php echo $lang=="vi" ? "Chọn giờ khởi hành" : "Select time"; ?>:</p>
                                         <ul>
@@ -393,10 +397,10 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                         <div class="clear"></div>
                                         <p><b><?php echo ($lang=="vi") ? "Điểm khởi hành" : "Depart"; ?>:</b><?php echo $modelPlace->getPlaceNameByID($ticket['place_id_start'],$lang); ?> (<?php echo $modelPlace->getAddressByID($ticket['place_id_start'],$lang); ?>)</p>
                                         <p><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?>:</b><?php echo $modelPlace->getPlaceNameByID($ticket['place_id_end'],$lang); ?> (<?php echo $modelPlace->getAddressByID($ticket['place_id_end'],$lang); ?>)</p>
-                                        <a href="#" class="right show_map" data-url-map="https://dl.dropboxusercontent.com/u/43486987/Hoang/HTML/<?php echo STATIC_URL; ?>/images/map.jpg" data-toggle="modal" data-target="">Xem lộ trình</a>
+                                        <a href="#" class="right show_map" data-toggle="modal" data-target="#mymap">Xem lộ trình</a>
                                         <div class="type-ticket" id="time_<?php echo $ticket['ticket_id']; ?>">
                                         <p><?php echo $lang=="vi" ? "Chọn giờ khởi hành" : "Select time"; ?>:</p>
-                                        <ul>
+                                        <ul>    
                                             <?php if(!empty($arrTimeTicket)) { 
                                                 foreach ($arrTimeTicket as $time) {                                                   
                                                 
@@ -452,8 +456,10 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
       <div class="modal-body">
         <div class="popup_detail">
             <div class="wrap-popup">
-                <a href="#" class="close-popup" data-dismiss="modal"></a>
-                <img src="" />
+                <a href="javascript:void(0)" class="close-popup" data-dismiss="modal"></a>           
+                
+
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.2971405374396!2d106.69934210000002!3d10.788538799999992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f355086bee9%3A0xc4230970c235ac!2zNjQgTmd1eeG7hW4gxJDDrG5oIENoaeG7g3UsIMSQYSBLYW8sIFF14bqtbiAxLCBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1410186631915" width="670" height="372" frameborder="0" style="border:0"></iframe>
                 <div class="clear"></div>    
             </div>
         </div>
@@ -582,35 +588,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                     }
 
                 });
-                $('#btnSearchTicket').click(function(){
-                    var vstart = $('#vstart_search').val();
-                    var vend = $('#vend_search').val();
-                    var dstart = $('#departDate').val();
-                    var type = <?php echo $type; ?>;
-                    if(vstart >0 ){
-                        if(vend > 0){
-                            if(dstart !=''){
-                                search();
-                                if(type==2){
-                                    var dend = $('#returnDate').val();
-                                    if(dend!=''){
-                                        search();
-                                    }else{
-                                        $('#returnDate').focus();return false;
-                                    }
-                                }else{
-                                    search();
-                                }
-                            }else{
-                                $('#departDate').focus();return false;
-                            }
-                        }else{
-                            $('#destination2').focus();return false;
-                        }
-                    }else{
-                        $('#departPlace2').focus();return false;
-                    }
-                });
+                
                 $('#destination2').blur(function(){
                     if($.trim($(this).val())=='' || $(this).val()=='Chọn điểm đến'){
                         $('#vend_search').val(0);
@@ -878,4 +856,55 @@ function loadDetail(id){
     });
     return true;
 }
+$(function(){    
+    $('#ticket-1').click(function(){        
+        $('.returnDate').hide();
+    });
+    $('#ticket-2').click(function(){
+        $('.returnDate').show();
+    });
+    $('#btnSearchTicket').click(function(){
+      var noidi = $('#departPlace2').val();
+      var noiden = $('#destination2').val();  
+      var type = $('input[name="ticket-type"]:checked').val();      
+      var vstart = $('#vstart_search').val();
+      var vend = $('#vend_search').val();
+      var dstart = $.trim($('#departDate').val());
+      var dend = $.trim($('#returnDate').val());
+      var lang = '<?php echo $lang; ?>';
+      if(vstart >0 ){
+          if(vend > 0){
+              if(dstart !=''){
+                   var url = "index.php?mod=search&type="+ type +"&vstart=" + vstart + "&vend=" + vend + "&dstart=" + dstart ;
+                   var strSubmit = "ve-xe-khach-di-tu "+ noidi + " den " + noiden + " ngay " + dstart;
+                   if(type==2){
+                        if(dend != ''){
+                            url+= "&dend=" + dend;
+                            strSubmit+=' den '+ dend;
+                        }else{
+                            $('#returnDate').focus();return false;                            
+                        }
+                   }
+                   strSubmit = tripunicode(strSubmit) + "-" +type+ "_" + vstart+"t"+vend;
+                   var car = $("#car").val();
+                   if(car > 0){
+                        url+= "&car=" + car;
+                        strSubmit +="l"+car;                   
+                   }   
+                   strSubmit+='.html';                   
+                   showLoading();
+                   location.href=lang + '/' + strSubmit;
+                   
+
+              }else{
+                  $('#departDate').focus();return false;
+              }
+          }else{
+              $('#destination').focus();return false;
+          }
+      }else{
+          $('#departPlace').focus();return false;
+      }
+  });
+});
     </script>        
