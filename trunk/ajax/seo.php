@@ -33,6 +33,9 @@ function checkCat($uri) {
     if (strpos( $uri,'about-us')>-1) {        
         $mod = "about";
     } 
+    if (strpos( $uri,'thanks-you')>-1) {        
+        $mod = "thanks";
+    } 
     if (strpos( $uri,'pay-policy')>-1) {        
         $mod = "pay-policy";
     } 

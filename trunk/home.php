@@ -316,6 +316,21 @@ foreach ($arrTinhHaveTicket as $value) {
     </div>
   </div>
 </div>
+<div class="modal fade" id="mymap">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="popup_detail">
+            <div class="wrap-popup" id="loadmap">
+                                      
+
+                 
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <style type="text/css">
 .vxr-loading-overlay{background:none repeat scroll 0 0 #FFFFFF;height:100%;opacity:0.5;position:fixed;text-align:center;width:100%;z-index:9999;top:0;left:0;display:none}.vxr-loading-overlay img{margin-top:40%}
 .icon-nuoc {

@@ -44,15 +44,15 @@ class Tinh extends Db {
         return $arrResult;
     }
 
-    function getTinhNameByID($id) {
+    function getTinhNameByID($id,$lang='vi') {
 
-        $sql = "SELECT tinh_name_vi FROM tinh WHERE tinh_id = $id";
+        $sql = "SELECT tinh_name_vi,tinh_name_en FROM tinh WHERE tinh_id = $id";
 
         $rs = mysql_query($sql) or die(mysql_error());
 
         $row = mysql_fetch_assoc($rs);
 
-        return $row['tinh_name_vi'];
+        return $row['tinh_name_'.$lang];
 
     }
     function getTinhNameSafeByID($id) {

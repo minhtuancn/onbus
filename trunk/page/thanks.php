@@ -1,4 +1,3 @@
-
 <div class="wrap_thanks">
 	<h1>Congratulation !!!</h1>
 	<p>Hệ thống xác nhận đơn hàng: <b><?php echo $_SESSION['order_code']; ?></b> của quý khách đã được thanh toán thành công. </p>
