@@ -5052,6 +5052,7 @@ input[type=radio], input[type=checkbox] {
 }
 #mymap .wrap-popup {
 	padding: 10px;
+	height: 384px;
 }
 #mymap .popup_detail, #mymap .modal-dialog {
 	width: 699px;
@@ -6884,14 +6885,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c3778', end
 }
 .box_infor_team {
 	background: #451f58;
-	padding: 20px 25px;
+	padding: 10px 25px;
 	margin-top: 20px;
 	color: #fff;
 }
 .box_infor_team div {
 	line-height: 100%;
-	margin-bottom: 10px;
+	margin-bottom: 13px;
 	font-size: 1.5em;
+	float:left;
+	width:100%;
 }
 .team_person {
 	width: 570px;
@@ -6903,19 +6906,29 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c3778', end
 }
 .team_person ul li {
 	float: left;
-	margin-left: 50px;
-	width: 134px;
+	margin-left: 30px;
+	width: 149px;
 	margin-bottom: 30px;
 	text-align: center;
+	height: 240px;
+}
+.team_person ul li img{
+	max-width: 100%;
+	/* height:200px; */
 }
 .about-us .team_person ul li p {
 	line-height: 100%;
 	padding: 0px;
 	margin-top: 8px;
+	font-weight:bold;
+}
+.about-us .team_person ul li p.position_team{
+	font-weight:500;
+	margin-top:5px;
 }
 .rkh_box {
 	float: left;
-	width: 400px;
+	width: 330px;
 	;
 	margin-top: 30px;
 }
@@ -7731,4 +7744,51 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c3778', end
 }
 .item-search.ticket-2{
 	display:none;
+}
+.box_infor_team div.icon_phone{
+	line-height:38px;
+}
+.box_infor_team div.icon_phone i{
+	width:45px;
+	height:38px;
+	background: url('images/icon_phone.png') no-repeat top left;
+	margin-right:20px;
+	display: inline-block;
+	float:left;
+}
+.box_infor_team div.icon_email{
+	line-height: 34px;
+}
+.box_infor_team div.icon_email i{
+	width:45px;
+	height: 34px;
+	background: url('images/icon_letter.png') no-repeat top left;
+	margin-right:20px;
+	display: inline-block;
+	float:left;
+}
+.box_infor_team div.icon_coffe{
+	line-height: 43px;
+	margin-bottom: 0px;
+}
+.box_infor_team div.icon_coffe i{
+	width:45px;
+	height: 43px;
+	background: url('images/icon_coffee.png') no-repeat top left;
+	margin-right:20px;
+	display: inline-block;
+	float:left;
+}
+.team_person ul li span{
+	display:block;
+	width:100%;
+	height:200px;
+}
+.icon_nh ul.visa_card{
+	border-bottom:1px solid #cccccc;
+}
+.icon_nh ul.list_nhlogo li{
+	width: 79px;
+	text-align:center;
+	border: 1px solid #ECECEC;
 }

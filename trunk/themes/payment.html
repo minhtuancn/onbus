@@ -132,13 +132,13 @@
                         <div class="left icon_start" data-toggle="tooltip" title="Khởi hành"></div>
                         <div class="left time_diadiem">
                         	<h4>12:55</h4>
-                            <p><span>Bến xe Miền Tay</span><a class="right" href="#">xem thông tin</a></p>
+                            <p><span>Bến xe Miền Tay</span><a href="#" class="right show_map" data-toggle="modal" data-target="#mymap">Xem thong tin</a></p>
                         </div>
                         <div class="clear"></div>
                         <div class="left icon_end" data-toggle="tooltip" title="Điểm đến"></div>
                         <div class="left time_diadiem">
                         	<h4>12:55</h4>
-                            <p><span>Bến xe Miền Tay</span><a class="right" href="#">xem thông tin</a></p>
+                            <p><span>Bến xe Miền Tay</span><a href="#" class="right show_map" data-toggle="modal" data-target="#mymap">Xem thong tin</a></p>
                         </div>
                         <div class="line_center"></div>
                         <div class="left block_date">
@@ -159,13 +159,13 @@
                         <div class="left icon_start" data-toggle="tooltip" title="Khởi hành"></div>
                         <div class="left time_diadiem">
                         	<h4>12:55</h4>
-                            <p><span>Bến xe Miền Tay</span><a class="right" href="#">xem thông tin</a></p>
+                            <p><span>Bến xe Miền Tay</span><a href="#" class="right show_map" data-toggle="modal" data-target="#mymap">Xem thong tin</a></p>
                         </div>
                         <div class="clear"></div>
                         <div class="left icon_end" data-toggle="tooltip" title="Điểm đến"></div>
                         <div class="left time_diadiem">
                         	<h4>12:55</h4>
-                            <p><span>Bến xe Miền Tay</span><a class="right" href="#">xem thông tin</a></p>
+                            <p><span>Bến xe Miền Tay</span><a href="#" class="right show_map" data-toggle="modal" data-target="#mymap">Xem thong tin</a></p>
                         </div>
                     </div>
                     <div class="clear"></div>
@@ -350,6 +350,16 @@
                               </div>
                         </div>-->
                         <div class="left icon_nh">
+                        	<div class="radio">
+                              <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+								Visa/Master Card
+                              </label>
+                            </div>
+                            <ul class="visa_card">
+                            	<li><a href="#"><img src="images/visamaster.jpg" /></a></li>
+                            </ul>
+                            <div class="clear"></div>
                         	<p><b>Thanh toán trực tuyến Senpay</b></p>
                         	<div class="radio">
                               <label>
@@ -357,7 +367,7 @@
                                 Online bằng thẻ ATM ngân hàng
                               </label>
                             </div>
-                            <ul>
+                            <ul class="list_nhlogo">
                             	<li><a href="#"><img src="images/ACB.png" /></a></li>
                                 <li><a href="#"><img src="images/CTG.png" /></a></li>
                                 <li><a href="#"><img src="images/DAB.png" /></a></li>
@@ -376,16 +386,7 @@
                                 <li><a href="#"><img src="images/VIB.png" /></a></li>
                                 <li><a href="#"><img src="images/VPB.png" /></a></li>
                             </ul>
-                            <div class="clear"></div>
-                            <div class="radio">
-                              <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-								Visa/Master Card
-                              </label>
-                            </div>
-                            <ul>
-                            	<li><a href="#"><img src="images/visamaster.jpg" /></a></li>
-                            </ul>
+                            
                         </div>
                         <div class="right cod_nh">
                         	<div class="radio">
@@ -413,25 +414,6 @@
                         </div>
                         <div class="clear"></div>
                     </div>
-                </div>
-                <div class="box_term">
-                	<h1>Terms & Conditions</h1>
-                    <p>Please review our full terms and conditions available through the link <a href="#">Terms of User</a></p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p><p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
                 </div>
                 <div class="checkbox bottom_frm">
                   <label>
@@ -654,7 +636,22 @@
 	<script src="js/jquery-ui.min.js" type="text/javascript"></script>
     <script src="js/bootstrap.min.js" type="text/javascript"></script>
     <!-- InstanceBeginEditable name="JS" --> 
-<script type="text/javascript" src="js/jquery.slimscroll.js"></script>
+    <div class="modal fade" id="mymap">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="popup_detail">
+                <div class="wrap-popup">
+                    <a href="#" class="close-popup" data-dismiss="modal"></a>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.2971405374396!2d106.69934210000002!3d10.788538799999992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f355086bee9%3A0xc4230970c235ac!2zNjQgTmd1eeG7hW4gxJDDrG5oIENoaeG7g3UsIMSQYSBLYW8sIFF14bqtbiAxLCBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1410186631915" width="670" height="372" frameborder="0" style="border:0"></iframe>
+                    <div class="clear"></div>    
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+	<script type="text/javascript" src="js/jquery.slimscroll.js"></script>
      <script type="text/javascript" src="js/common.js"></script> 
 <!-- InstanceEndEditable -->
 </body>

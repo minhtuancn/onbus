@@ -85,18 +85,7 @@ $(document).ready(function() {
         }
     });*/
 
-    $('.show_map').click(function(e) {
-        e.preventDefault();
-        var _this = $(this),
-            urlmap = _this.data().urlMap;
-        $(this).loading();
-        $('#mymap .wrap-popup img').attr('src', '');
-        $('#mymap .wrap-popup img').attr('src', urlmap).load(function() {
-            $(this).unloading();
-            $('#mymap').modal('show');
-        });
-
-    });
+    /**/
     var slideItems = [];
     $('#vechieudi .slider_nx').each(function(){
         var _this = $(this), test;
@@ -145,14 +134,6 @@ $(document).ready(function() {
             railVisible: true,
             height: '500px'
         });
-
-    if($('.box_term').length > 0)
-        $('.box_term').slimScroll({
-            alwaysVisible: true,
-            railVisible: true,
-            height: '130px'
-        });
-
     var sliderBox = '';
     $('.tab_profile .nav-tabs>li>a').click(function(e){
         var idTab = $(this).attr('href');
