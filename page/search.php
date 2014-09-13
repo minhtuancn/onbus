@@ -18,11 +18,11 @@ if($car > 0){
 }
 if($date_start){    
     $link.="&dstart=".$date_start;
-    $dstart = strtotime($date_start);
+    $dstart = strtotime($date_start) + 3600;
 }
 if($date_end){    
     $link.="&dend=".$date_end;
-    $dend = strtotime($date_end);
+    $dend = strtotime($date_end) + 3600;
 } 
 $arrNhaXeID = array();
 
@@ -310,7 +310,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                         <div class="clear"></div>
                                         <p><b><?php echo ($lang=="vi") ? "Điểm khởi hành" : "Depart"; ?>:</b><?php echo $modelPlace->getPlaceNameByID($ticket['place_id_start'],$lang); ?> (<?php echo $modelPlace->getAddressByID($ticket['place_id_start'],$lang); ?>)</p>
                                         <p><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?>:</b><?php echo $modelPlace->getPlaceNameByID($ticket['place_id_end'],$lang); ?> (<?php echo $modelPlace->getAddressByID($ticket['place_id_end'],$lang); ?>)</p>
-                                        <a href="#" class="right show_map" onclick="return loadmap();" data-target="#mymap" data-toggle="modal" >{xemlotrinh}</a>
+                                        <a href="javascript:;" class="right show_map" onclick="return loadmap('<?php echo $modelPlace->getAddressByID($ticket['place_id_start'],'vi'); ?>','<?php echo $modelPlace->getAddressByID($ticket['place_id_end'],'vi'); ?>');" data-target="#mymap" data-toggle="modal" >{xemlotrinh}</a>
                                         <div class="type-ticket" id="time_<?php echo $ticket['ticket_id']; ?>">
                                         <p><?php echo $lang=="vi" ? "Chọn giờ khởi hành" : "Select time"; ?>:</p>
                                         <ul>
@@ -410,7 +410,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                         <div class="clear"></div>
                                         <p><b><?php echo ($lang=="vi") ? "Điểm khởi hành" : "Depart"; ?>:</b><?php echo $modelPlace->getPlaceNameByID($ticket['place_id_start'],$lang); ?> (<?php echo $modelPlace->getAddressByID($ticket['place_id_start'],$lang); ?>)</p>
                                         <p><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?>:</b><?php echo $modelPlace->getPlaceNameByID($ticket['place_id_end'],$lang); ?> (<?php echo $modelPlace->getAddressByID($ticket['place_id_end'],$lang); ?>)</p>
-                                        <a href="#" class="right show_map" onclick="return loadmap();" data-toggle="modal" data-target="#mymap">Xem lộ trình</a>
+                                        <a href="javascript:;" class="right show_map" onclick="return loadmap('<?php echo $modelPlace->getAddressByID($ticket['place_id_start'],'vi'); ?>','<?php echo $modelPlace->getAddressByID($ticket['place_id_end'],'vi'); ?>');" data-toggle="modal" data-target="#mymap">Xem lộ trình</a>
                                         <div class="type-ticket" id="time_<?php echo $ticket['ticket_id']; ?>">
                                         <p><?php echo $lang=="vi" ? "Chọn giờ khởi hành" : "Select time"; ?>:</p>
                                         <ul>    
@@ -915,16 +915,16 @@ $(function(){
       }
   });
 });
-function loadmap(){
+function loadmap(start,end){
     $.ajax({
         url: "ajax/map.php",
         type: "POST",
         async: false,                             
-        data: {},
-        success: function(data){                        
-            $('#loadmap').html(data);
+        data: {'start':start,'end':end},
+        success: function(data){ 
+            setTimeout(function(){$('#loadmap').html(data)}, 1000);                                 
         }
     });
 }
-    </script>   
-     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=vi"></script>     
+</script>   
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=vi"></script>     
