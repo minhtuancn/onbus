@@ -65,7 +65,7 @@ if(!empty($_SESSION['bookticket'])){
                         <div class="left time_diadiem">
                             <h4><?php echo $modelTime->getTimeByID($arrTime[$value['ticket_id']]);?></h4>
                             <p><span><?php echo $modelPlace->getPlaceNameByID($value['place_id_start'],$lang); ?> (<?php echo $modelPlace->getAddressByID($value['place_id_start'],$lang); ?>)</span>
-                                <a href="javascript:;" class="right" onclick="return loadmap('<?php echo $modelPlace->getAddressByID($value['place_id_start']); ?>'); " data-target="#mymap" data-toggle="modal">{xemthongtin}</a></p>
+                                <a href="javascript:;" class="right" onclick="return loadmap('<?php echo $modelPlace->getAddressByID($value['place_id_start'],'vi'); ?>','<?php echo $modelPlace->getAddressByID($value['place_id_start'],'vi'); ?>');" data-target="#mymap" data-toggle="modal">{xemthongtin}</a></p>
                         </div>
                         <div class="clear"></div>
                         <div title="" data-toggle="tooltip" class="left icon_end" data-original-title="Điểm đến"></div>
@@ -88,7 +88,9 @@ if(!empty($_SESSION['bookticket'])){
                             $h_end = str_pad($h_end, 2, "0", STR_PAD_LEFT);                             
                             ?>
                             <h4><?php echo $h_end?>:<?php echo $m_end; ?></h4>
-                            <p><span><?php echo $modelPlace->getPlaceNameByID($value['place_id_end'],$lang); ?> (<?php echo $modelPlace->getAddressByID($value['place_id_end'],$lang); ?>)</span><a href="#" class="right">{xemthongtin}</a></p>
+                            <p><span><?php echo $modelPlace->getPlaceNameByID($value['place_id_end'],$lang); ?> (<?php echo $modelPlace->getAddressByID($value['place_id_end'],$lang); ?>)</span>
+                            <a href="javascript:;" class="right" onclick="return loadmap('<?php echo $modelPlace->getAddressByID($value['place_id_end'],'vi'); ?>','<?php echo $modelPlace->getAddressByID($value['place_id_end'],'vi'); ?>');" data-toggle="modal" data-target="#mymap">{xemthongtin}</a>
+                        </p>
                         </div>
                         <div class="line_center"></div>
                         <?php } // foreach
@@ -176,14 +178,26 @@ if(!empty($_SESSION['bookticket'])){
                     </div>
                     <div class="content_payment">                    	
                         <div class="left icon_nh">
-                        	<p><b>Thanh toán trực tuyến Senpay</b></p>
+                            When choosing this Form of Payment, you will be prompted to enter Internet Banking Services though Smartlink.
+                            <div class="radio">
+                              <label>
+                                <input type="radio" id="way_2" value="2" name="payment_card">
+                                International Payment Card
+                              </label>
+                            </div>
+                            <ul class="visa_card">
+                                <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/visamaster.jpg" /></a></li>
+                            </ul>
+                            <div class="clear"></div>
+
+                        	
                         	<div class="radio">
                               <label>
                                 <input type="radio" id="way_3" value="3" name="payment_card">
-                                Online bằng thẻ ATM ngân hàng
+                                Viet Nam Local Internet Banking
                               </label>
                             </div>
-                            <ul>
+                            <ul class="list_nhlogo">
                             	<li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/ACB.png"></a></li>
                                 <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/CTG.png"></a></li>
                                 <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/DAB.png"></a></li>
@@ -202,25 +216,16 @@ if(!empty($_SESSION['bookticket'])){
                                 <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/VIB.png"></a></li>
                                 <li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/VPB.png"></a></li>
                             </ul>
-                            <div class="clear"></div>
-                            <div class="radio">
-                              <label>
-                                <input type="radio" id="way_2" value="2" name="payment_card">
-								Visa/Master Card
-                              </label>
-                            </div>
-                            <ul>
-                            	<li><a href="#"><img src="<?php echo STATIC_URL; ?>/images/visamaster.jpg"></a></li>
-                            </ul>
+                            <div class="clear"></div>                           
                         </div>
                         <div class="right cod_nh">
                         	<div class="radio">
                               <label>
                                 <input type="radio" name="payment_card" id="way_1" value="1">
-								Thanh toán khi nhận hàng COD
+								Cash Payment (applied for persons staying in Vietnam)
                               </label>
                             </div>
-                            <p>Giao hàng và thu tiền tận nơi trên toàn quốc, áp dụng cho đơn hàng có giá trị dưới 10.000.000 đồng</p>
+                            <p>You pay cash when receiving bus ticket at your address. Please fill in your information as below: </p>
                             <div class="form-group">
                                 <label for="" class="col-sm-2 control-label">*Address:</label>
                                 <div class="col-sm-10">
@@ -238,27 +243,10 @@ if(!empty($_SESSION['bookticket'])){
                               </div>
                         </div>
                         <div class="clear"></div>
+                        Whichever method you choose, you can rest assured that your payment is always safe.
+                        
                     </div>
-                </div>
-                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 130px;"><div class="box_term" style="overflow: hidden; width: auto; height: 130px;">
-                	<h1>Terms &amp; Conditions</h1>
-                    <p>Please review our full terms and conditions available through the link <a href="#">Terms of User</a></p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p><p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                    <p>You must acknowledge that you have reviewed and accepted these terms and conditions before acknowledge that you have..</p>
-                </div><div class="slimScrollBar ui-draggable" style="width: 7px; position: absolute; top: 0px; opacity: 0.7; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; right: 1px; height: 30px; display: block; background: rgb(159, 2, 52);"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: block; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(51, 51, 51);"></div></div>
+                </div>                
                 <div class="checkbox bottom_frm">
                   <label>
                     <input type="checkbox" name="accept" id="accept"> You must click here to indicate that you have read and accepted the fare Rule and Purchase Conditions
@@ -270,6 +258,18 @@ if(!empty($_SESSION['bookticket'])){
             
             <div class="clear"></div>
         </div>
+<div class="modal fade" id="mymap">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="popup_detail">
+            <div class="wrap-popup" id="loadmap">               
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>        
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 
 <script type="text/javascript">
@@ -307,16 +307,15 @@ $(function(){
 
     });
 });
-function loadmap(address){
+function loadmap(start,end){
     $.ajax({
         url: "ajax/map.php",
         type: "POST",
         async: false,                             
-        data: {'address':address},
-        success: function(data){   
-        alert(data);                 
-            $('#loadmap').html(data);
+        data: {'start':start,'end':end},
+        success: function(data){ 
+            setTimeout(function(){$('#loadmap').html(data)}, 1000);                                 
         }
     });
 }
-</script>         
+</script>   
