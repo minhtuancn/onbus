@@ -21,10 +21,17 @@ if($type==1){
     }
   }
 ?>
-<?php $str1 ='<div class="inner rel-pos">
+<?php 
+  $miennam = $lang=="vi" ? "Miền Nam":"Southern"; 
+  $mientrung =  $lang=="vi" ? "Miền Trung - Tây Nguyên":"Midland & Highland"; 
+  $mienbac =  $lang=="vi" ? "Miền Bắc":"Northern"; 
+?>
+<?php 
+
+$str1 ='<div class="inner rel-pos">
     <a id="closeDept" class="close" href="javascript:;">Đóng</a>
     <div class="region-col first fl-l clearfix">
-        <h3>Miền Nam</h3>
+        <h3>'.$miennam.'</h3>
         <ul class="city-list fl-l">';
        if(!empty($arrTinh_Nam)){
           $i = 0;
@@ -45,7 +52,7 @@ if($type==1){
     $str1.='</div>
 
     <div class="region-col fl-l clearfix">
-        <h3>Miền Trung - Tây Nguyên</h3>
+        <h3>'.$mientrung.'</h3>
         <ul class="city-list fl-l">'; 
         if(!empty($arrTinh_Trung)){
           $i = 0;
@@ -61,7 +68,7 @@ if($type==1){
           }
             }else{ $str1.='<li class="city">&nbsp;</li>';}   
         $str1.='</ul></div><div class="region-col last fl-l clearfix">
-        <h3>Miền Bắc</h3>
+        <h3>'.$mienbac.'</h3>
         <ul class="city-list fl-l">';       
         
          if(!empty($arrTinh_Bac)){
