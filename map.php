@@ -1,4 +1,6 @@
- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
 <a href="javascript:void(0)" class="close-popup" data-dismiss="modal"></a>           
 
 <div class="map_canvas" id="map-canvas" style="width: 100%; height: 440px; position: relative; background-color: rgb(229, 227, 223);"></div>
@@ -90,12 +92,13 @@ jQuery.fn.getMapDirection = function (param) {
             }
 
         } else {
-            alert("Lịch trình đang được cập nhật...");
+            alert("www.VeXeRe.com");
         }
     });
 };
      $(function () {
-        jQuery("#map-canvas").getMapDirection(["<?php echo $_POST['start']; ?>","<?php echo $_POST['end']; ?>"]);
+        jQuery("#map-canvas").getMapDirection(["Phạm Ngũ Lão, Quận 1, Hồ Chí Minh"," Cam Ranh, Khánh Hòa"]);
     });
 </script>
  <div class="clear"></div>   
+
