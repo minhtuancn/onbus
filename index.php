@@ -122,6 +122,8 @@ $str = str_replace("{chieudai}" , chieudai , $str);
   $str = str_replace("{chiasehanhtrinhcuaban}" , chiasehanhtrinhcuaban , $str);
   $str = str_replace("{tatcanhaxe}" , tatcanhaxe , $str);
   $str = str_replace("{chinhsachthanhtoan}" , chinhsachthanhtoan , $str);
+  $str = str_replace("{phuongthucthanhtoan}" , phuongthucthanhtoan , $str);
+  $str = str_replace("{dieukhoansudung}" , dieukhoansudung , $str);  
  
   echo $str;
 

@@ -49,7 +49,8 @@ Share with us your journey, we will help you choose your ticket with best price 
         <li><a href="<?php echo $lang; ?>/contact.html">{lienhe}</a></li>
         <li><a href="<?php echo $lang; ?>/faq.html">{hoidap}</a></li>
         <li><a href="<?php echo $lang; ?>/pay-policy.html">{chinhsachthanhtoan}</a></li>
-        <li><a href="#">{phanhoi}</a></li>
+        <li><a href="<?php echo $lang; ?>/terms-and-conditions.html">{dieukhoansudung}</a></li>
+        <li><a href="<?php echo $lang; ?>/method.html">{phuongthucthanhtoan}</a></li>
         <li><a href="<?php echo $lang; ?>/privacy-policy.html">{chinhsachriengtu}</a></li>
         <li><a href="#">Blog</a></li>
     </ul>
