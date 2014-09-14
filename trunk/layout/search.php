@@ -42,9 +42,9 @@ foreach ($arrTinhHaveTicket as $value) {
             
             <div id="departPlaceSelector" class="place-selector rounded-5 clearfix" style="display:none;">
                 <div class="inner rel-pos">
-                    <a id="closeDept" class="close" href="javascript:;">Đóng</a>
+                    <a id="closeDept" class="close" href="javascript:;"><?php echo $lang=="vi" ? "Đóng" : "Close"; ?></a>
                     <div class="region-col first fl-l clearfix">
-                        <h3>Miền Nam</h3>
+                        <h3><?php echo $lang=="vi" ? "Miền Nam":"Southern"; ?></h3>
                         <ul class="city-list fl-l">
                         <?php if(!empty($arrTinh_Nam)){?>
                           <?php
@@ -68,7 +68,7 @@ foreach ($arrTinhHaveTicket as $value) {
                     </div>
 
                     <div class="region-col fl-l clearfix">
-                        <h3>Miền Trung - Tây Nguyên</h3>
+                        <h3><?php echo $lang=="vi" ? "Miền Trung - Tây Nguyên":"Midland & Highland"; ?></h3>
                         <ul class="city-list fl-l">
                           <?php if(!empty($arrTinh_Trung)){?>
                           <?php
@@ -90,7 +90,7 @@ foreach ($arrTinhHaveTicket as $value) {
                     </div>
                     
                     <div class="region-col last fl-l clearfix">
-                        <h3>Miền Bắc</h3>
+                        <h3><?php echo $lang=="vi" ? "Miền Bắc":"Northern"; ?></h3>
                         <ul class="city-list fl-l">
                         <?php if(!empty($arrTinh_Bac)){?>
                           <?php

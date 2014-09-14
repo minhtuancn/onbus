@@ -42,11 +42,17 @@ function checkCat($uri) {
     if (strpos( $uri,'privacy-policy')>-1) {        
         $mod = "privacy";
     } 
+    if (strpos( $uri,'method')>-1) {        
+        $mod = "method";
+    } 
     if (strpos( $uri,'chi-tiet-nha-xe')>-1) {        
         $mod = "detail-nhaxe";
     } 
     if (strpos( $uri,'payment')>-1) {        
         $mod = "payment";
+    } 
+    if (strpos( $uri,'terms')>-1) {        
+        $mod = "term";
     } 
     if (strpos( $uri,'faq')>-1) {        
         $mod = "faq";

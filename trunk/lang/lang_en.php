@@ -47,4 +47,6 @@ define("chonnoidi", "Enter a city");
 define("chonnoiden", "Enter a city");
 define("chiasehanhtrinhcuaban","Share with us your journey");
 define("tatcanhaxe","All bus operator");
+define("phuongthucthanhtoan","Payment method");
+define("dieukhoansudung","Terms and Conditions");
 ?>

@@ -114,9 +114,10 @@ $routeDetail = $modelRoute->detailRoute($arrDetail['tinh_id_start'],$arrDetail['
         <div class="right option-a">
             <h1 class="bg-x"><span><?php echo ($lang=="vi") ? "Ghi chú" : "Notes"; ?></span></h1>         
             <div class="ab-dd">
-                <p><?php echo ($lang=="vi") ? "Quý khách có thể thanh toán bằng các hình thức sau:" : "Quý khách có thể thanh toán bằng các hình thức sau:"; ?> </p>
+                <p><?php echo ($lang=="vi") ? "Quý khách có thể thanh toán bằng các hình thức sau:" : "You can pay by the following methods:"; ?> </p>
             </div>
             <div style="padding-left:20px;text-align:justify;font-weight:bold">
+                <?php if($lang=="vi"){ ?>
             <ul>
                 <li style="list-style-type: circle;margin:left:15px">
                     Đặt chỗ v&agrave; thanh to&aacute;n ngay&nbsp;</li>
@@ -131,6 +132,24 @@ $routeDetail = $modelRoute->detailRoute($arrDetail['tinh_id_start'],$arrDetail['
                 <li style="list-style-type: circle;margin:left:15px">
                     Kh&aacute;ch h&agrave;ng c&oacute; mặt tại trạm khởi h&agrave;nh trước 15p để nhận v&eacute;. Trong trường hợp trễ thời gian quy định tr&ecirc;n Onbus sẽ đảm bảo cho kh&aacute;ch h&agrave;ng c&oacute; chỗ cho chuyến xe c&oacute; thời gian gần nhất tiếp theo.</li>
             </ul>
+            <?php }else{ ?>
+            <ul>
+                <li style="list-style-type: circle;margin:left:15px">
+                    International Payments: VISA, MasterCard.</li>
+                <li style="list-style-type: circle;margin:left:15px">
+                    Cardholders can pay for themselves or for others. </li>
+                <li style="list-style-type: circle;margin:left:15px">
+                    Local internet banking through Smartlink card service</li>
+                <li style="list-style-type: circle;margin:left:15px">
+                    Cash on delivery -COD</li>
+                <li style="list-style-type: circle;margin:left:15px">
+                    Customers pay directly to the employee selling tickets at the departure station.</li>
+                <li style="list-style-type: circle;margin:left:15px">
+                    Customers must be at the station 30 minutes before departure to get tickets. Onbus will not be responsible if you do not come before 30 minutes.</li>
+            </ul>
+            <p>Customers at the station before departure to get tickets 15p. In case the time delay Onbus regulations will ensure that customers have a place to ride there next nearest time.</p>
+            <?php } ?>
+            
 
             </div>
         </div>

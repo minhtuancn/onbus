@@ -79,7 +79,7 @@ $arrRoute = $modelRoute->getListRoute('',-1,-1,1, 0, 8);
     <div class="chrm-toggle"><a href="#" data-toggle="modal" data-target="#popup_feedback">Feedback</a></div>
 </div>
     <?php include URL_LAYOUT."/header.php"; ?>    
-    <?php if($mod =="privacy" || $mod =="pay-policy"){ ?>
+    <?php if($mod=="term" || $mod=="method" || $mod =="privacy" || $mod =="pay-policy"){ ?>
     <div class="page_cstt">
     <?php }?>
     <?php if($mod=="hot-detail" || $mod=="details") {?>
@@ -100,7 +100,7 @@ $arrRoute = $modelRoute->getListRoute('',-1,-1,1, 0, 8);
     <div id="wrapper-container" class="w-center <?php if($mod=="thanks") echo "thanks_page"; ?> <?php if($mod=="about") echo "about-page" ; ?>">
         <?php include "page/".$mod.".php"; ?>
     </div>
-    <?php if($mod=="contact" || $mod=="faq" || $mod=="hot-detail" || $mod=="details" || $mod=="privacy" || $mod =="pay-policy") { ?>
+    <?php if($mod=="term" || $mod=="method" || $mod=="contact" || $mod=="faq" || $mod=="hot-detail" || $mod=="details" || $mod=="privacy" || $mod =="pay-policy") { ?>
     </div>
     <?php } ?>    
    
@@ -110,7 +110,11 @@ $arrRoute = $modelRoute->getListRoute('',-1,-1,1, 0, 8);
 <!-- InstanceEndEditable --> 
 
     <!-- InstanceBeginEditable name="JS" -->
+    <?php if($lang=='vi'){?>
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/customDatePicker1.0.min.js"></script>
+    <?php }else{ ?>
+    <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/customDatePickeren.min.js"></script>
+    <?php } ?>
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/customAutoComplete1.0.min.js"></script>
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/jquery.customSelect.min.js"></script>
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/searchWidget1.0.min.js"></script>
@@ -185,7 +189,12 @@ foreach ($arrTinhHaveTicket as $value) {
         <div class="popup_detail">
             <div class="wrap-popup">
                 <a href="#" class="close-popup" data-dismiss="modal"></a>
-                <p><b>Onbus</b> chân thành cảm ơn sự quan tâm của quý khách hàng đến dịch vụ của chúng tôi. Để gửi nội dung phản hồi, quý khách vui lòng điền thông tin vào ô bên dưới:</p>
+                <p><?php if($lang=="vi") {?>
+                    <b>Onbus</b> chân thành cảm ơn sự quan tâm của quý khách hàng đến dịch vụ của chúng tôi. Để gửi nội dung phản hồi, quý khách vui lòng điền thông tin vào ô bên dưới:
+                <?php } else{ ?>
+                Thank you for your interest in our services. Please fill in the feedback box below.
+                <?php } ?>
+                </p>
                 <form class="form-horizontal" role="form">
                   <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
@@ -194,13 +203,13 @@ foreach ($arrTinhHaveTicket as $value) {
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Điện thoại:</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label"><?php echo $lang =="vi" ? "Điện thoại" : "Phone number"; ?></label>
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                      <input type="email" class="form-control" id="inputEmail3" placeholder="<?php echo $lang =="vi" ? "Điện thoại" : "Your phone number"; ?>">
                     </div>
                   </div>
                   <div class="form-group txt_feedback">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Nội dung:</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label"><?php echo $lang =="vi" ? "Nội dung" : "Content"; ?></label>
                     <div class="col-sm-10">
                       <textarea class="form-control" rows="3"></textarea>
                     </div>
@@ -208,7 +217,7 @@ foreach ($arrTinhHaveTicket as $value) {
                   <div class="form-group btn_feedback">
                     <a class="logo_contact" href="#"><img src="<?php echo STATIC_URL; ?>/images/logo2_final.png" width="150"></a>
                     <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-default">Gửi</button>
+                      <button type="submit" class="btn btn-default"><?php echo $lang =="vi" ? "Gửi" : "Send"; ?></button>
                     </div>
                   </div>
                 </form>
