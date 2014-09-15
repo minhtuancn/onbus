@@ -1,4 +1,18 @@
 <?php
+$urlp = $_SERVER['QUERY_STRING'];
+if($urlp!=''){
+    if (strpos( $urlp,'tigia')>-1) {        
+        $tmp = explode("=",$urlp);
+        $tigia = (int) $tmp[1]; 
+    }else{
+        $tigia = 1;
+    }
+    
+}else{
+    $tigia = $_SESSION['tigia'];
+}
+$_SESSION['tigia'] = $tigia;
+var_dump($_SESSION['tigia']);
 require_once 'backend/model/Ticket.php';
 $model = new Ticket;
 require_once 'backend/model/Tinh.php';

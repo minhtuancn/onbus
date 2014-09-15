@@ -27,6 +27,16 @@ class db {
         }
         return $str;
     }
+    function cal($gia, $tigia){
+        if($tigia == 1){
+            return $gia;
+        }else{
+            $rs = mysql_query("SELECT tigia FROM tigia WHERE id = 1");
+            $row = mysql_fetch_assoc($rs);
+            $tg = $row['tigia'];
+            return round($gia/$tg, 2);
+        }
+    }
     function changeTitle($str) {
         $str = $this->stripUnicode($str);
         $str = str_replace("?", "", $str);
