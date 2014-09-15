@@ -174,9 +174,9 @@ if(!empty($_SESSION['bookticket'])){
                 </div>                
                 <div id="orther_payment_card" class="box_payment payment_money">
                 	<div class="title_payment">
-                    	<h3>Select payment and Billing information</h3>
+                    	<h3>Select payment method and Billing information</h3>
                     </div>
-                    <div class="content_payment">                    	
+                    <div class="content_payment">                    	                        
                         <div class="left icon_nh">
                             When choosing this Form of Payment, you will be prompted to enter Internet Banking Services though Smartlink.
                             <div class="radio">
@@ -278,8 +278,7 @@ $(function(){
         var fullname = $.trim($('#fullname').val());
         var phone = $.trim($('#phone').val());
         var email = $.trim($('#email').val());
-        if(fullname=='' || phone=='' || email==''){
-            alert('Please enter name, email and phone !');
+        if(fullname=='' || phone=='' || email==''){            
             $('#fullname').focus();
             return false;
 

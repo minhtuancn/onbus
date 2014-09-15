@@ -124,7 +124,7 @@ class Route extends Db {
 
 
 
-    function updateRoute($id,$route_name_vi,$route_name_en,$route_name_safe_vi,$route_name_safe_en,$hot,$description,$tinh_id_start,$tinh_id_end,$distance,$duration) {        
+    function updateRoute($id,$route_name_vi,$route_name_en,$route_name_safe_vi,$route_name_safe_en,$abbreviation,$hot,$description,$tinh_id_start,$tinh_id_end,$distance,$duration) {        
 
         $time = time();
 
@@ -139,6 +139,8 @@ class Route extends Db {
                     route_name_safe_vi  = '$route_name_safe_vi',
 
                     route_name_safe_en = '$route_name_safe_en',
+
+                    abbreviation = '$abbreviation',
 
                     update_time =  $time,
 
@@ -162,7 +164,7 @@ class Route extends Db {
 
     }
 
-    function insertRoute($route_name_vi,$route_name_en,$route_name_safe_vi,$route_name_safe_en,$hot,$description,$tinh_id_start,$tinh_id_end,$distance,$duration){
+    function insertRoute($route_name_vi,$route_name_en,$route_name_safe_vi,$route_name_safe_en,$abbreviation,$hot,$description,$tinh_id_start,$tinh_id_end,$distance,$duration){
 
         try{
 
@@ -170,7 +172,7 @@ class Route extends Db {
 
             $time = time();
 
-            $sql = "INSERT INTO route VALUES(NULL,'$route_name_vi','$route_name_safe_vi','$route_name_en','$route_name_safe_en',$hot,'$description',$tinh_id_start,$tinh_id_end,'$distance','$duration',$time,$time,1,$user_id)";
+            $sql = "INSERT INTO route VALUES(NULL,'$route_name_vi','$route_name_safe_vi','$route_name_en','$route_name_safe_en','$abbreviation',$hot,'$description',$tinh_id_start,$tinh_id_end,'$distance','$duration',$time,$time,1,$user_id)";
 
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());       
 
