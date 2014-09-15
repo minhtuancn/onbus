@@ -331,7 +331,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                             <div class=" x-right">
                                 <div class="book-btn">
                                     <div class="d-price">                                        
-                                        <input type="hidden" id="price_<?php echo $ticket['ticket_id']; ?>" value="<?php echo $modelTicket->cal($ticket['price'],$_SESSION['onbustigia']); ?>"/>
+                                        <input type="hidden" id="price_<?php echo $ticket['ticket_id']; ?>" value="<?php echo $_SESSION['onbustigia'] == 2 ? $modelTicket->cal($ticket['price'],$_SESSION['onbustigia']) : $ticket['price']; ?>"/>
                                         <span><?php echo $modelTicket->cal($ticket['price'],$_SESSION['onbustigia']); ?><span><?php echo ($_SESSION['onbustigia'] == 1) ? "VNĐ" : "USD"; ?></span></span>
                                     </div>
                                     <div class="clear"></div>
@@ -433,7 +433,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                 <div class="book-btn">
                                     <div class="d-price">
                                         <span><?php echo $modelTicket->cal($ticket['price'],$_SESSION['onbustigia']); ?><span><?php echo ($_SESSION['onbustigia'] == 1) ? "VNĐ" : "USD"; ?></span></span>
-                                        <input type="hidden" id="price_<?php echo $ticket['ticket_id']; ?>" value="<?php echo $modelTicket->cal($ticket['price'],$_SESSION['onbustigia']); ?>"/>
+                                        <input type="hidden" id="price_<?php echo $ticket['ticket_id']; ?>" value="<?php echo $_SESSION['onbustigia'] == 2 ? $modelTicket->cal($ticket['price'],$_SESSION['onbustigia']) : $ticket['price']; ?>"/>
                                     </div>
                                     <div class="clear"></div>
                                     <a href="javascript:void(0)" data-value="<?php echo $ticket['ticket_id']; ?>" data-toggle="modal" data-target="#popup_book_ticket" class="btn-muave">book now</a>

@@ -1,3 +1,27 @@
+<?php 
+/*
+include("Payment.php");
+$payment = new Payment();
+$payment->setSecureSecret("198BE3F2E8C75A53F38C1C4A5B6DBA27");
+$payment->checkSum($_GET);
+if ($payment->isEmptySecureSecret()) {
+    $hashValidated = "<FONT color='orange'><strong>Not Calculated - No 'SECURE_SECRET' present.</strong></FONT>";
+} else {
+    if ($payment->isValidSecureHash()) {
+        $hashValidated = "<FONT color='#00AA00'><strong>CORRECT</strong></FONT>";
+    } else {
+        $hashValidated = "<FONT color='#FF0066'><strong>INVALID HASH</strong></FONT>";
+    }
+}
+
+$txnResponseCode = $payment->getParameter("vpc_TxnResponseCode");
+$errorTxt = "";
+// Show this page as an error page if vpc_TxnResponseCode doesn't exist or doesn't equals '0'
+if ($txnResponseCode != "0" || $txnResponseCode == "No Value Returned" || !$payment->isValidSecureHash()) {
+    $errorTxt = "Error ";
+}
+*/
+?>
 <div class="wrap_thanks">
 	<h1>Congratulation !!!</h1>
 	<p>Hệ thống xác nhận đơn hàng: <b><?php echo $_SESSION['order_code']; ?></b> của quý khách đã được thanh toán thành công. </p>
@@ -134,7 +158,7 @@ if(!isset($_GET['e'])){
 
         var_dump($modelTicket->smtpmailer($email, 'lahavafashion2013@gmail.com', 'ONBUS.VN',$tieudethu,$noidungthu));	
 	
-		//session_destroy();
+		session_destroy();
 	}
 }
 ?>
