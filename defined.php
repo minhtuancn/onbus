@@ -10,9 +10,9 @@ define('LIMIT',20);
 
 define('STATIC_URL','themes');
 
-//define('HOST',"http://localhost/onbus");
+define('HOST',"http://localhost/onbus");
 
-define('TIMEPLUS',0);
-define('HOST',"http://onbus.vn");
+define('TIMEPLUS',3600);
+//define('HOST',"http://onbus.vn");
 
 ?>

@@ -18,11 +18,11 @@ if($car > 0){
 }
 if($date_start){    
     $link.="&dstart=".$date_start;
-    $dstart = strtotime($date_start) + TIMEPLUS;
+    $dstart = strtotime($date_start) + 3600;
 }
 if($date_end){    
     $link.="&dend=".$date_end;
-    $dend = strtotime($date_end) + TIMEPLUS;
+    $dend = strtotime($date_end) + 3600;
 } 
 $arrNhaXeID = array();
 
@@ -331,8 +331,9 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                             <div class=" x-right">
                                 <div class="book-btn">
                                     <div class="d-price">
+                                        <?php var_dump($_SESSION['tigia']); ?>
                                         <input type="hidden" id="price_<?php echo $ticket['ticket_id']; ?>" value="<?php echo $ticket['price']; ?>"/>
-                                        <span><?php echo number_format($ticket['price']); ?><span>VNĐ</span></span>
+                                        <span><?php echo number_format($modelTicket->cal($ticket['price'],$_SESSION['tigia'])); ?><span>VNĐ</span></span>
                                     </div>
                                     <div class="clear"></div>
                                     <a href="javascript:void(0)" data-value="<?php echo $ticket['ticket_id']; ?>" data-toggle="modal" data-target="#popup_book_ticket" class="btn-muave">book now</a>
