@@ -18,11 +18,11 @@ if($car > 0){
 }
 if($date_start){    
     $link.="&dstart=".$date_start;
-    $dstart = strtotime($date_start) + 3600;
+    $dstart = strtotime($date_start);
 }
 if($date_end){    
     $link.="&dend=".$date_end;
-    $dend = strtotime($date_end) + 3600;
+    $dend = strtotime($date_end);
 } 
 $arrNhaXeID = array();
 

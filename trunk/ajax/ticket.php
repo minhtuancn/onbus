@@ -59,12 +59,12 @@ if(isset($_POST['service']) && trim($_POST['service']!="")){
 if(isset($_POST['dstart'])){
     $dstart = $modelTicket->processData($_POST['dstart']);
     $link.="&dstart=".$dstart;
-    $dstart = strtotime($dstart) + TIMEPLUS;
+    $dstart = strtotime($dstart);
 }
 if(isset($_POST['dend'])){
     $dend = $modelTicket->processData($_POST['dend']);
     $link.="&dend=".$dend;
-    $dend = strtotime($dend) + TIMEPLUS;
+    $dend = strtotime($dend);
 }
 $tab = (int) $_POST['tab'];
 if($tab==1){
@@ -160,7 +160,7 @@ $arrTicket_end = $modelTicket->getListTicketFE($car,$vstart,$vend,$dstart,$servi
     <div class=" x-right">
         <div class="book-btn">
             <div class="d-price">
-                <span><?php echo number_format($ticket['price']); ?><span>VNĐ</span></span>
+                <span><?php echo $modelTicket->cal($ticket['price'],$_SESSION['onbustigia']); ?><span><?php echo ($_SESSION['onbustigia'] == 1) ? "VNĐ" : "USD"; ?></span></span>
             </div>
             <div class="clear"></div>
             <a href="javascript:void(0)" data-value="<?php echo $ticket['ticket_id']; ?>" data-toggle="modal" data-target="#popup_book_ticket" class="btn-muave">book now</a>
