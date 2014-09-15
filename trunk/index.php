@@ -2,6 +2,11 @@
 session_start();
 require_once 'ajax/seo.php';
 $lang_arr=array("vi","en");
+if (isset($_SESSION['onbustigia']) == true){ 
+
+ if (in_array($_SESSION['onbustigia'],array('1,2')) == true) $tigia = $_SESSION['onbustigia'];
+
+}else $tigia= 1;
 
 if (isset($lang) == true){
 

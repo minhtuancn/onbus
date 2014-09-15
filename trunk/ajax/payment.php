@@ -62,12 +62,12 @@ if($method==1){
 $payment = new Payment();
 $payment->setSecureSecret("B575ED17E000D6E2BD8634FD0E6B042D");
 $payment->setVirtualPaymentUrl("https://migs.mastercard.com.au/vpcpay");
-
+$vpc_Currency = $_SESSION['onbustigia'] == 1 ? "VND" : "USD";
 
  
 $_params= array("vpc_Version" => "1", "vpc_Command" => "pay", "vpc_AccessCode" => "72AD46B6", "vpc_MerchTxnRef" => "$order_code_new".time(),
  "vpc_Merchant" => "test03051980", "vpc_OrderInfo" => "Order infoaaa", "vpc_Amount" => $total, "vpc_Locale" => "vn" ,
- "vpc_Currency" => "VND", "vpc_ReturnURL" => "http://onbus.vn/vi/thanks-you.html", "vpc_BackURL" => "http://onbus.vn");
+ "vpc_Currency" => $vpc_Currency, "vpc_ReturnURL" => "http://onbus.vn/vi/thanks-you.html", "vpc_BackURL" => "http://onbus.vn");
 
 $payment->redirect($_params);
 }elseif($method==3){	
@@ -78,7 +78,8 @@ $payment->redirect($_params);
 	$payment->setSecureSecret("198BE3F2E8C75A53F38C1C4A5B6DBA27");
 	$payment->setVirtualPaymentUrl("https://paymentcert.smartlink.com.vn:8181/vpcpay.do");
 	
-
+	$vpc_Currency = $_SESSION['onbustigia'] == 1 ? "VND" : "USD";
+	$total = $_SESSION['onbustigia'] == 1 ? $total*100 : $total;
 	$_params= array(
 		"vpc_Version" => "1", 
 		"vpc_Command" => "pay", 
@@ -88,7 +89,7 @@ $payment->redirect($_params);
 	 	"vpc_OrderInfo" => "Thanh toan cho don hang $order_code_new tai onbus.vn", 
 	 	"vpc_Amount" => $total*100, 
 	 	"vpc_Locale" => "vn" ,	 	
-	 	"vpc_Currency" => "VND", 
+	 	"vpc_Currency" => $vpc_Currency, 
 	 	"vpc_ReturnURL" => "http://onbus.vn/vi/thanks-you.html", 
 	 	"vpc_BackURL" => "http://onbus.vn");	
 	$payment->redirect($_params);	

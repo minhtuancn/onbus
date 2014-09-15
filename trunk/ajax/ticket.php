@@ -59,12 +59,12 @@ if(isset($_POST['service']) && trim($_POST['service']!="")){
 if(isset($_POST['dstart'])){
     $dstart = $modelTicket->processData($_POST['dstart']);
     $link.="&dstart=".$dstart;
-    $dstart = strtotime($dstart);
+    $dstart = strtotime($dstart) + TIMEPLUS;
 }
 if(isset($_POST['dend'])){
     $dend = $modelTicket->processData($_POST['dend']);
     $link.="&dend=".$dend;
-    $dend = strtotime($dend);
+    $dend = strtotime($dend) + TIMEPLUS;
 }
 $tab = (int) $_POST['tab'];
 if($tab==1){

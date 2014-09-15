@@ -1,7 +1,7 @@
 <?php 
 session_start();
 $ticket_id =  (int) $_POST['ticket_id_book'];
-$price =  (int) $_POST['price_book'];
+$price =  $_POST['price_book'];
 $amount =  (int) $_POST['amount'];
 $tab =  (int) $_POST['tab'];
 $time = (int) $_POST['time_book'];

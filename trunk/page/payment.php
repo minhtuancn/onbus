@@ -106,18 +106,18 @@ if(!empty($_SESSION['bookticket'])){
                     <div class="content_sidebar">
                     	<div class="total_price">
                         	<h2 class="left"><b>TOTAL:</b></h2>
-                            <span class="price"><?php echo number_format($total); ?> VND</span>
+                            <span class="price"><?php echo ($_SESSION['onbustigia'] == 1) ? number_format($total) : $total; ?> <?php echo ($_SESSION['onbustigia'] == 1) ? "VNĐ" : "USD"; ?></span>
                          </div>
                         <h3>No. of ticket: <?php echo $amount; ?></h3>
                         <h3>Price Summary:</h3>
                         <ul>
                             <li>
                                 <div class="left">Fare <a href="#">View</a></div>
-                                <div class="right"><?php echo number_format($total); ?> VND</div>
+                                <div class="right"><?php echo ($_SESSION['onbustigia'] == 1) ? number_format($total) : $total; ?> <?php echo ($_SESSION['onbustigia'] == 1) ? "VNĐ" : "USD"; ?></div>
                             </li>
                             <li>
                             	<div class="left">Taxes and Fees <a href="#">View</a></div>
-                                <div class="right">0 VND</div>
+                                <div class="right">0 <?php echo ($_SESSION['onbustigia'] == 1) ? "VNĐ" : "USD"; ?></div>
                             </li>
                             <li>
                             	<div class="left"><h3>Discount</h3></div>
