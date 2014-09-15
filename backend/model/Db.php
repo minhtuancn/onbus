@@ -29,12 +29,12 @@ class db {
     }
     function cal($gia, $tigia){
         if($tigia == 1){
-            return $gia;
+            return number_format($gia);
         }else{
             $rs = mysql_query("SELECT tigia FROM tigia WHERE id = 1");
             $row = mysql_fetch_assoc($rs);
             $tg = $row['tigia'];
-            return round($gia/$tg, 2);
+            return round($gia/$tg, 1);
         }
     }
     function changeTitle($str) {

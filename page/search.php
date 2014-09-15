@@ -330,10 +330,9 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                             </div>
                             <div class=" x-right">
                                 <div class="book-btn">
-                                    <div class="d-price">
-                                        <?php var_dump($_SESSION['tigia']); ?>
-                                        <input type="hidden" id="price_<?php echo $ticket['ticket_id']; ?>" value="<?php echo $ticket['price']; ?>"/>
-                                        <span><?php echo number_format($modelTicket->cal($ticket['price'],$_SESSION['tigia'])); ?><span>VNĐ</span></span>
+                                    <div class="d-price">                                        
+                                        <input type="hidden" id="price_<?php echo $ticket['ticket_id']; ?>" value="<?php echo $modelTicket->cal($ticket['price'],$_SESSION['onbustigia']); ?>"/>
+                                        <span><?php echo $modelTicket->cal($ticket['price'],$_SESSION['onbustigia']); ?><span><?php echo ($_SESSION['onbustigia'] == 1) ? "VNĐ" : "USD"; ?></span></span>
                                     </div>
                                     <div class="clear"></div>
                                     <a href="javascript:void(0)" data-value="<?php echo $ticket['ticket_id']; ?>" data-toggle="modal" data-target="#popup_book_ticket" class="btn-muave">book now</a>
@@ -433,8 +432,8 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                             <div class=" x-right">
                                 <div class="book-btn">
                                     <div class="d-price">
-                                        <span><?php echo number_format($ticket['price']); ?><span>VNĐ</span></span>
-                                        <input type="hidden" id="price_<?php echo $ticket['ticket_id']; ?>" value="<?php echo $ticket['price']; ?>"/>
+                                        <span><?php echo $modelTicket->cal($ticket['price'],$_SESSION['onbustigia']); ?><span><?php echo ($_SESSION['onbustigia'] == 1) ? "VNĐ" : "USD"; ?></span></span>
+                                        <input type="hidden" id="price_<?php echo $ticket['ticket_id']; ?>" value="<?php echo $modelTicket->cal($ticket['price'],$_SESSION['onbustigia']); ?>"/>
                                     </div>
                                     <div class="clear"></div>
                                     <a href="javascript:void(0)" data-value="<?php echo $ticket['ticket_id']; ?>" data-toggle="modal" data-target="#popup_book_ticket" class="btn-muave">book now</a>

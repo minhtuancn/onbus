@@ -107,7 +107,7 @@ $routeDetail = $modelRoute->detailRoute($arrDetail['tinh_id_start'],$arrDetail['
             <div class="right abc-sche">
                 <h1><?php echo ($lang=="vi") ? "GIÁ" : "PRICE"; ?>:</h1>
                 <div class="abc-price">
-                    <span><?php echo number_format($arrDetail['price']); ?><span>VNĐ</span></span>
+                    <span><?php echo $modelTicket->cal($arrDetail['price'],$_SESSION['onbustigia']); ?><span><?php echo ($tigia == 1) ? "VNĐ" : "USD"; ?></span></span>
                 </div>
             </div>
         </div>
