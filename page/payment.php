@@ -38,7 +38,7 @@ if(!empty($_SESSION['bookticket'])){
             	<div class="scrollbar_fixed">
             	<div class="box_sidebar">
                 	<div class="title_payment">
-                    	<h3>Your Ticket(s)</h3>
+                    	<h3>{vecuabans}</h3>
                     </div>
                     <div class="content_sidebar">
                     	<?php if(!empty($arrTicket)){ 
@@ -101,32 +101,28 @@ if(!empty($_SESSION['bookticket'])){
                 </div>
                 <div class="box_sidebar">
                 	<div class="title_payment">
-                    	<h3>Total price</h3>
+                    	<h3>{tongtien}</h3>
                     </div>
                     <div class="content_sidebar">
                     	<div class="total_price">
-                        	<h2 class="left"><b>TOTAL:</b></h2>
+                        	<h2 class="left"><b>{tong}:</b></h2>
                             <span class="price"><?php echo ($_SESSION['onbustigia'] == 1) ? number_format($total) : $total; ?> <?php echo ($_SESSION['onbustigia'] == 1) ? "VNĐ" : "USD"; ?></span>
                          </div>
-                        <h3>No. of ticket: <?php echo $amount; ?></h3>
-                        <h3>Price Summary:</h3>
+                        <h3>{tongsove}: <?php echo $amount; ?></h3>
+                        <h3>{tienvetongcong}:</h3>
                         <ul>
                             <li>
-                                <div class="left">Fare <a href="#">View</a></div>
+                                <div class="left">{tienve}</div>
                                 <div class="right"><?php echo ($_SESSION['onbustigia'] == 1) ? number_format($total) : $total; ?> <?php echo ($_SESSION['onbustigia'] == 1) ? "VNĐ" : "USD"; ?></div>
-                            </li>
+                            </li>                            
                             <li>
-                            	<div class="left">Taxes and Fees <a href="#">View</a></div>
-                                <div class="right">0 <?php echo ($_SESSION['onbustigia'] == 1) ? "VNĐ" : "USD"; ?></div>
-                            </li>
-                            <li>
-                            	<div class="left"><h3>Discount</h3></div>
+                            	<div class="left"><h3>{giamgia}</h3></div>
                                 
                             </li>
                         </ul>
                         <div class="right cost_payment">
-                        	<a href="#">View fare Rules</a>
-                            <a href="#">Purchase Conditions</a>
+                        	<a href="<?php echo $lang; ?>/terms-and-conditions.html">{quydinhvexe}</a>
+                            <a href="<?php echo $lang; ?>/pay-policy.html">{dieukhoanthanhtoan}</a>
                         </div>
                     </div>
                     <div class="clear"></div>
@@ -137,13 +133,13 @@ if(!empty($_SESSION['bookticket'])){
             	<form class="form-horizontal" role="form" id="paymentFrm" action="ajax/payment.php" method="post">
             	<div class="box_payment">
                 	<div class="title_payment">
-                    	<h3>Contact information and passenger detail</h3>
+                    	<h3>{thongtinhanhkhach}</h3>
                     </div>
                     <div class="content_payment infor_person_book">
                     	<div class="right w_440">
-	                            <span class="request_txt">*Required Fieds</span>
+	                            <span class="request_txt">*{batbuocnhap}</span>
                               <div class="form-group">
-                                <label class="col-sm-2 control-label">*Name:</label>
+                                <label class="col-sm-2 control-label">*{hoten}:</label>
                                 <div class="col-sm-10">
                                   <input type="text" class="form-control" id="fullname" name="fullname">
                                 </div>
@@ -155,7 +151,7 @@ if(!empty($_SESSION['bookticket'])){
                                 </div>
                               </div>
                               <div class="form-group frm_inline_box">
-                                <label for="" class="col-sm-2 control-label">*Phone</label>
+                                <label for="" class="col-sm-2 control-label">*{dienthoai}</label>
                                 <div class="col-sm-10">
                                 	<select class="form-control">
                                     	<option>Vietnam (+84)</option>
@@ -165,7 +161,7 @@ if(!empty($_SESSION['bookticket'])){
                               </div>
                         </div>
                         <div class="form-group promo_box">
-                            <label for="" class="col-sm-4 control-label">Please enter promotion code:</label>
+                            <label for="" class="col-sm-4 control-label">{nhapmakhuyenmai}:</label>
                             <input type="text" class="form-control" id="">
                               <span class="glyphicon glyphicon-ok form-control-feedback"></span>
                       </div>
@@ -174,15 +170,15 @@ if(!empty($_SESSION['bookticket'])){
                 </div>                
                 <div id="orther_payment_card" class="box_payment payment_money">
                 	<div class="title_payment">
-                    	<h3>Select payment method and Billing information</h3>
+                    	<h3>{chonphuongthuc}</h3>
                     </div>
                     <div class="content_payment">                    	                        
                         <div class="left icon_nh">
-                            When choosing this Form of Payment, you will be prompted to enter Internet Banking Services though Smartlink.
+                            {whenchoosingthis}
                             <div class="radio">
                               <label>
                                 <input type="radio" id="way_2" value="2" name="payment_card">
-                                International Payment Card
+                                {thequocte}
                               </label>
                             </div>
                             <ul class="visa_card">
@@ -194,7 +190,7 @@ if(!empty($_SESSION['bookticket'])){
                         	<div class="radio">
                               <label>
                                 <input type="radio" id="way_3" value="3" name="payment_card">
-                                Viet Nam Local Internet Banking
+                                {thenoidia}
                               </label>
                             </div>
                             <ul class="list_nhlogo">
@@ -222,18 +218,18 @@ if(!empty($_SESSION['bookticket'])){
                         	<div class="radio">
                               <label>
                                 <input type="radio" name="payment_card" id="way_1" value="1">
-								Cash Payment (applied for persons staying in Vietnam)
+								{thanhtoankhinhanve}
                               </label>
                             </div>
-                            <p>You pay cash when receiving bus ticket at your address. Please fill in your information as below: </p>
+                            <p>{youpaycash}: </p>
                             <div class="form-group">
-                                <label for="" class="col-sm-2 control-label">*Address:</label>
+                                <label for="" class="col-sm-2 control-label">*{diachi}:</label>
                                 <div class="col-sm-10">
                                   <input type="text" class="form-control" id="address" name="address" />
                                 </div>
                               </div>
                               <div class="form-group frm_inline_box">
-                                <label for="" class="col-sm-2 control-label">*Phone</label>
+                                <label for="" class="col-sm-2 control-label">*{dienthoai}</label>
                                 <div class="col-sm-10">
                                 	<select class="form-control">
                                     	<option>Vietnam (+84)</option>
@@ -243,13 +239,13 @@ if(!empty($_SESSION['bookticket'])){
                               </div>
                         </div>
                         <div class="clear"></div>
-                        Whichever method you choose, you can rest assured that your payment is always safe.
+                        {whichevermethod}
                         
                     </div>
                 </div>                
                 <div class="checkbox bottom_frm">
                   <label>
-                    <input type="checkbox" name="accept" id="accept"> You must click here to indicate that you have read and accepted the fare Rule and Purchase Conditions
+                    <input type="checkbox" name="accept" id="accept"> {youmustclick}
                   </label>
                   <input type="button" class="right btn btn_submit_payment" id="btnProcess">
                 </div>
@@ -291,7 +287,11 @@ $(function(){
                 var address = $.trim($('#address').val());
                 var phone_contact = $.trim($('#phone_contact').val());
                 if(address=='' || phone_contact == ''){
+                    <?php if($lang=="en"){ ?>
                     alert('Please enter address and phone contact!');
+                    <?php }else{ ?>
+                        alert('Vui lòng nhập địa chỉ và số điện thoại liên hệ!');
+                    <?php } ?>    
                     $('#address').focus();
                     return false;
                 }
@@ -299,7 +299,8 @@ $(function(){
         }
 
         if($('input[name="accept"]:checked').length==0){
-            alert('You must accept the fare Rule and Purchase Conditions');return false;
+            alert('You must accept the fare Rule and Purchase Conditions');
+            return false;
         }
 
         $('#paymentFrm').submit();

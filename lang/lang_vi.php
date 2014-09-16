@@ -49,4 +49,26 @@ define("chiasehanhtrinhcuaban","Chia sẻ cùng chúng tôi hành trình của b
 define("tatcanhaxe","Tất cả nhà xe");
 define("phuongthucthanhtoan","Phương thức thanh toán");
 define("dieukhoansudung","Điều khoản sử dụng");
+define("tongtien","Tổng tiền");
+define("vecuabans","Vé của bạn");
+define("tongsove","Tổng số vé");
+define("tienvetongcong","Tiền vé tổng cộng");
+define("giamgia","Giảm giá");
+define("quydinhvexe","Quy định về vé xe");
+define("dieukhoanthanhtoan","Điều khoản thanh toán");
+define("tienve","Tiền vé");
+define("thongtinhanhkhach","Chi tiết thông tin liên hệ hành khách");
+define("batbuocnhap","Bắt buộc nhập");
+define("hoten","Họ tên");
+define("dienthoai","Điện thoại");
+define("diachi","Địa chỉ");
+define("nhapmakhuyenmai","Nhập mã khuyến mãi");
+define("chonphuongthuc","Chọn phương thức thanh toán");
+define("whenchoosingthis","Quý khách sẽ được chuyển đến trang thanh toán của dịch vụ smartlink sau khi chọn nút 'Thanh toán' bên dưới (Áp dụng cho thẻ quốc tế và thanh toán qua thẻ ATM  nội địa).");
+define("thequocte","Thanh toán quốc tế");
+define("thenoidia","Thanh toán qua thẻ ATM nội địa");
+define("thanhtoankhinhanve","Thanh toán khi nhận vé");
+define("youpaycash","Với phương thức thanh toán này, quý khách trả tiền mặt cho nhân viên giao hàng ngay khi nhận được vé xe. Chúng tôi chấp nhận hình thức thanh toán khi nhận hàng (COD) cho tất cả các đơn hàng trên toàn quốc");
+define("whichevermethod","Thông tin của quý khách được đảm bảo an toàn với tất cả các hình thức thanh toán online.");
+define("youmustclick","Tôi đã xem và đồng ý với nội dung điều khoản thanh toán tại website Onbus.vn");
 ?>

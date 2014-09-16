@@ -237,33 +237,16 @@
 
 
 
-        </li>
+        </li>        
         <li>
 
 
 
-            <a href="<?php echo BASE_URL; ?>newsletter&act=list">
+            <a href="<?php echo BASE_URL; ?>troute&act=list">
 
 
 
-                <i class="fa fa-th"></i> <span>Newsletter</span> <!--<small class="badge pull-right bg-green">new</small>-->
-
-
-
-            </a>
-
-
-
-        </li>
-        <li>
-
-
-
-            <a href="<?php echo BASE_URL; ?>feedback&act=list">
-
-
-
-                <i class="fa fa-th"></i> <span>Feedback</span> <!--<small class="badge pull-right bg-green">new</small>-->
+                <i class="fa fa-th"></i> <span>Tuyến đường phổ biến</span> <!--<small class="badge pull-right bg-green">new</small>-->
 
 
 
@@ -319,7 +302,8 @@
 
             <ul class="treeview-menu">
 
-
+                <li><a href="<?php echo BASE_URL; ?>feedback&act=list"><i class="fa fa-angle-double-right"></i> Feedback</a></li>
+                <li><a href="<?php echo BASE_URL; ?>newsletter&act=list"><i class="fa fa-angle-double-right"></i> Newsletter</a></li>
 
                 <li><a href="<?php echo BASE_URL; ?>tinh&act=list"><i class="fa fa-angle-double-right"></i> Nơi đi/nơi đến</a></li>                
 

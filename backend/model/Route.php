@@ -52,7 +52,12 @@ class Route extends Db {
         $row = mysql_fetch_assoc($rs);
         return $row; 
     }
-
+    function getRouteNameByID($id,$lang="vi") {
+        $sql = "SELECT route_name_vi,route_name_en FROM route WHERE route_id = $id";
+        $rs = mysql_query($sql) or die(mysql_error());
+        $row = mysql_fetch_assoc($rs);
+        return $row['route_name_'.$lang];
+    }
 
     function getListRoute($keyword='',$tinh_id_start=-1,$tinh_id_end=-1,$hot=-1,$offset = -1, $limit = -1) {
 
