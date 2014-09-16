@@ -255,23 +255,14 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                 <div class="b-infor">
                                     <div class="img-logo left">
                                         <div data-toggle="tooltip" title="Click để xem hình" class="wrap-slider">
-                                        <div class="slider_nx">
-                                            <?php if(strlen($arrDetailNhaxe['image_url'])> 10) { ?>
-                                            <div class="slide"><a href="<?php echo $arrDetailNhaxe['image_url']?>" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo $arrDetailNhaxe['image_url']?>" /></a></div>
-                                            <?php } ?>
+                                        <div class="slider_nx">                                           
                                             <?php $arrRsImg = $modelImage->getListImageByNhaxe($ticket['nhaxe_id'],-1,-1);
-                                            if(mysql_num_rows($arrRsImg) >0) {
-                                                $count = 0;
-                                            while($row = mysql_fetch_assoc($arrRsImg)){    
-                                                $count ++;
-                                                if($count<3){
+                                            if(mysql_num_rows($arrRsImg) >0) {                                       
+                                            while($row = mysql_fetch_assoc($arrRsImg)){                                                 
                                             ?>
                                             <div class="slide"><a href="<?php echo $row['image_url']?>" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo $row['image_url']?>" /></a></div>
-
-                                            <?php } }}else{ ?>
-                                            <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/Du-lich-bui-tren-dao-Binh-Ba_1a.jpg" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/img_166x104.png" /></a></div>
-                                            <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/mailinh vanluong.jpg" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/images.jpg" /></a></div>
-                                            <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/images (1).jpg" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/images413681_images337275_anh_tin_Dau_tu_12_ti_mua_them_xe_buyt.JPG" /></a></div>
+                                            <?php }}else{ ?>
+                                            <div class="slide"><a href="<?php echo $arrDetailNhaxe['image_url']?>" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo $arrDetailNhaxe['image_url']?>" /></a></div>
                                             <?php } ?>
                                         </div>
                                         </div>
@@ -335,7 +326,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                         <span><?php echo $modelTicket->cal($ticket['price'],$_SESSION['onbustigia']); ?><span><?php echo ($_SESSION['onbustigia'] == 1) ? "VNĐ" : "USD"; ?></span></span>
                                     </div>
                                     <div class="clear"></div>
-                                    <a href="javascript:void(0)" data-value="<?php echo $ticket['ticket_id']; ?>" data-toggle="modal" data-target="#popup_book_ticket" class="btn-muave">book now</a>
+                                    <a href="javascript:void(0)" data-value="<?php echo $ticket['ticket_id']; ?>" data-toggle="modal" data-target="#popup_book_ticket" class="btn-muave"><?php echo $lang=="vi" ? "Đặt vé" : "Book now"; ?></a>
                                     <a href="#" class="btn-chitiet"  data-toggle="modal" data-target="#myModal" onclick="return loadDetail(<?php echo $ticket['ticket_id']; ?>)"><span class="glyphicon glyphicon-info-sign"></span>{chitiet}</a>
                                 </div>
                             </div>
@@ -357,22 +348,14 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                 <div class="b-infor">
                                     <div class="img-logo left">
                                         <div data-toggle="tooltip" title="Click để xem hình" class="wrap-slider">
-                                        <div class="slider_nx">
-                                            <?php if(strlen($arrDetailNhaxe['image_url'])> 10) { ?>
-                                            <div class="slide"><a href="<?php echo $arrDetailNhaxe['image_url']?>" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo $arrDetailNhaxe['image_url']?>" /></a></div>
-                                            <?php } ?>
+                                        <div class="slider_nx">                                            
                                             <?php $arrRsImg = $modelImage->getListImageByNhaxe($ticket['nhaxe_id'],-1,-1);
-                                            if(mysql_num_rows($arrRsImg) >0) {
-                                                $count2=0;
-                                            while($row = mysql_fetch_assoc($arrRsImg)){    
-                                                $count++;
-                                                if($count<3){
+                                            if(mysql_num_rows($arrRsImg) >0) {                                         
+                                            while($row = mysql_fetch_assoc($arrRsImg)){                                             
                                             ?>
                                             <div class="slide"><a href="<?php echo $row['image_url']?>" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo $row['image_url']?>" /></a></div>
-                                            <?php } } }else{ ?>
-                                            <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/Du-lich-bui-tren-dao-Binh-Ba_1a.jpg" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/img_166x104.png" /></a></div>
-                                            <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/mailinh vanluong.jpg" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/images.jpg" /></a></div>
-                                            <div class="slide"><a href="<?php echo STATIC_URL; ?>/images/images (1).jpg" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/images413681_images337275_anh_tin_Dau_tu_12_ti_mua_them_xe_buyt.JPG" /></a></div>
+                                            <?php } }else{ ?>
+                                            <div class="slide"><a href="<?php echo $arrDetailNhaxe['image_url']?>" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo $arrDetailNhaxe['image_url']?>" /></a></div>
                                             <?php } ?>
                                         </div>
                                         </div>
@@ -436,7 +419,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                         <input type="hidden" id="price_<?php echo $ticket['ticket_id']; ?>" value="<?php echo $_SESSION['onbustigia'] == 2 ? $modelTicket->cal($ticket['price'],$_SESSION['onbustigia']) : $ticket['price']; ?>"/>
                                     </div>
                                     <div class="clear"></div>
-                                    <a href="javascript:void(0)" data-value="<?php echo $ticket['ticket_id']; ?>" data-toggle="modal" data-target="#popup_book_ticket" class="btn-muave">book now</a>
+                                    <a href="javascript:void(0)" data-value="<?php echo $ticket['ticket_id']; ?>" data-toggle="modal" data-target="#popup_book_ticket" class="btn-muave"><?php echo $lang=="vi" ? "Đặt vé" : "Book now"; ?></a>
                                     <a href="#" class="btn-chitiet" onclick="return loadDetail(<?php echo $ticket['ticket_id']; ?>)" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-info-sign"></span>Detail</a>
                                 </div>
                             </div>
@@ -502,14 +485,14 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                   </div>                 
                   <div class="btn-center">
                     <?php if($type==1) { ?>
-                    <input type="button" value="Book now" class="button2" id="btnBookNow">
+                    <input type="button" value="<?php echo $lang=="vi" ? "Đặt vé" : "Book now"; ?>" class="button2" id="btnBookNow">
                     <?php }else{ 
 
                         if(count($_SESSION['bookticket'])==0){
                         ?>
                     <input type="button" id="booktoo" value="Chọn vé chiều còn lại" class="button2">
                     <?php }else{ ?>
-                    <input type="button" id="btnBookNow" value="Book now" class="button2">
+                    <input type="button" id="btnBookNow" value="<?php echo $lang=="vi" ? "Đặt vé" : "Book now"; ?>" class="button2">
                     <?php }
                     } ?>
                   </div>

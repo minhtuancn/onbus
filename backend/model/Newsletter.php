@@ -26,6 +26,33 @@ class Newsletter extends Db {
                     WHERE id = $id ";
         mysql_query($sql) or die(mysql_error() . $sql);
     }
+    function insertemailnewsletter($email){
+        $date = time();
+        try{
+        $sql = "INSERT INTO newsletter VALUES (NULL,'$email',$date,$date,1)";
+        $rs = mysql_query($sql) or $this->throw_ex(mysql_error());       
+
+        }catch(Exception $ex){            
+
+            $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Newsletter','function' => 'insertemailnewsletter' , 'error'=>$ex->getMessage(),'sql'=>$sql);
+
+            $this->logError($arrLog);
+
+        }
+    }
+    function insertFeedback($email,$mobile,$content){
+        $date = time();
+        try{
+        $sql = "INSERT INTO feedback VALUES (NULL,'$email','$mobile','$content',$date,$date,1)";
+        $rs = mysql_query($sql) or $this->throw_ex(mysql_error());       
+
+        }catch(Exception $ex){                        
+            $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Newsletter','function' => 'insertFeedback' , 'error'=>$ex->getMessage(),'sql'=>$sql);
+
+            $this->logError($arrLog);
+
+        }
+    }
 
 }
 
