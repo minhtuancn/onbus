@@ -248,6 +248,16 @@ class db {
             return true;
         }
     }
+    function checkemailexist($email){
+        $sql = "SELECT id FROM newsletter WHERE email = '$email' AND status = 1 ";
+        $rs = mysql_query($sql) or die(mysql_error());
+        $row = mysql_num_rows($rs);
+        if($row==0){
+            return "1";
+        }else{
+            return "0";
+        }
+    }
     
 
 }

@@ -199,29 +199,30 @@ foreach ($arrTinhHaveTicket as $value) {
                   <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                      <input type="text" id="f_email" name="f_email"  class="form-control"  placeholder="Email">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label"><?php echo $lang =="vi" ? "Điện thoại" : "Phone number"; ?></label>
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputEmail3" placeholder="<?php echo $lang =="vi" ? "Điện thoại" : "Your phone number"; ?>">
+                      <input type="text" id="f_mobile" name="f_mobile"  class="form-control" placeholder="<?php echo $lang =="vi" ? "Điện thoại" : "Your phone number"; ?>">
                     </div>
                   </div>
                   <div class="form-group txt_feedback">
                     <label for="inputEmail3" class="col-sm-2 control-label"><?php echo $lang =="vi" ? "Nội dung" : "Content"; ?></label>
                     <div class="col-sm-10">
-                      <textarea class="form-control" rows="3"></textarea>
+                      <textarea type="textarea" id="f_content" name="f_content" class="form-control" rows="3"></textarea>
                     </div>
                   </div>
                   <div class="form-group btn_feedback">
                     <a class="logo_contact" href="#"><img src="<?php echo STATIC_URL; ?>/images/logo2_final.png" width="150"></a>
                     <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-default"><?php echo $lang =="vi" ? "Gửi" : "Send"; ?></button>
+                      <button type="button" id="btnFeedBack" class="btn btn-default"><?php echo $lang =="vi" ? "Gửi" : "Send"; ?></button>
                     </div>
                   </div>
                 </form>
-                <div class="clear"></div>    
+                <div class="clear"></div>
+                <p id="mess_feedback" style="text-align:center;color:red" class="error_time">Vui lòng nhập đầy đủ thông tin!</p>    
             </div>
         </div>
       </div>
@@ -340,29 +341,6 @@ foreach ($arrTinhHaveTicket as $value) {
     </div>
   </div>
 </div>
-<style type="text/css">
-.vxr-loading-overlay{background:none repeat scroll 0 0 #FFFFFF;height:100%;opacity:0.5;position:fixed;text-align:center;width:100%;z-index:9999;top:0;left:0;display:none}.vxr-loading-overlay img{margin-top:40%}
-.icon-nuoc {
-    width: 16px;
-    height: 16px;
-    background: url(themes/css/images/nuoc.png) no-repeat;
-    display: block;
-}
-.icon-khan {
-    width: 16px;
-    height: 16px;
-    background: url(themes/css/images/khan.png) no-repeat;
-    display: block;
-}
-.icon-chan {
-    width: 16px;
-    height: 16px;
-    background: url(themes/css/images/chan.png) no-repeat;
-    display: block;
-}
-.list-logo-xe li span{float:none !important;}
-p.error_time{display: none;font-style: italic;}
-</style>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -372,6 +350,78 @@ p.error_time{display: none;font-style: italic;}
   ga('create', 'UA-54111010-1', 'auto');
   ga('send', 'pageview');
 
+</script>
+<script type="text/javascript">
+$(function(){
+    $('#btnDK').click(function(){
+        
+        var  email = $.trim($('#emailregis').val());
+
+        if(email!=''){
+            $.ajax({
+                url: "ajax/process.php",
+                type: "POST",
+                async: true,
+                data: {
+                    'mod':'newsletter',
+                    'email': email
+                },
+                success: function(data){
+                    if($.trim(data)!=''){
+                        $('#mess_letter').html(data).show(); 
+                        setTimeout(function(){
+                            $('#mess_letter').hide();
+                            $('#emailregis').val('');
+                        }, 4000);
+                    }
+                }
+                });
+        }else{
+            $('#mess_letter').show();
+            $('#emailregis').focus();
+            setTimeout(function(){$('#mess_letter').hide();}, 4000);            
+            return false;
+        }
+    });
+    $('#btnFeedBack').click(function(){
+        
+        var  email = $.trim($('#f_email').val());
+        var  mobile = $.trim($('#f_mobile').val());
+        var  content = $.trim($('#f_content').val());
+
+        if(email!='' && mobile !='' && content !=''){
+            $.ajax({
+                url: "ajax/process.php",
+                type: "POST",
+                async: true,
+                data: {
+                    'mod':'feedback',
+                    'email': email,
+                    'mobile' : mobile,
+                    'content' : content
+                },
+                success: function(data){
+                    if($.trim(data)!=''){
+                        $('#mess_feedback').html(data).show();
+                        if($.trim(data)=="Gửi feedback thành công."){
+                            $('#f_email, #f_mobile, #f_content').val('');  
+                        }                        
+                        setTimeout(function(){
+                            $('#mess_feedback').hide();                            
+                            $('#f_email, #f_mobile, #f_content').val('');
+                        }, 4000);                        
+                    }
+                }
+                });
+        }else{
+            $('#mess_feedback').show();
+            $('#f_email').focus();
+            setTimeout(function(){$('#mess_feedback').hide();}, 4000);            
+            return false;
+        }
+    });
+});
+    
 </script>
 </body>
 <!-- InstanceEnd --></html>

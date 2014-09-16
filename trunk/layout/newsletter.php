@@ -5,8 +5,12 @@
     </div>
     <div id="newsletter-signup-form" class="subscribe-form">
         <div class="inputs">
-            <div class="input"><input id="newsletter-signup-email-input" type="email" name="" value="" class="watermark" placeholder="{nhapemail}"></div>
-            <div id="newsletter-signup-button" class="submit-form"><span class="label">{nhanemail}</span></div>
-        </div>
+            <div class="input">
+                <input id="emailregis" type="email" name="" value="" class="watermark" 
+                placeholder="{nhapemail}" />
+            </div>
+            <div id="btnDK" class="submit-form"><span class="label">{nhanemail}</span></div>
+        </div>        
+        <p id="mess_letter" class="error_time">Quý khách chưa nhập email!</p>
     </div>
 </div>
