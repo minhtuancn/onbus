@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 16, 2014 at 06:36 AM
+-- Generation Time: Sep 17, 2014 at 12:02 AM
 -- Server version: 5.5.31
 -- PHP Version: 5.5.12
 
@@ -135,6 +135,31 @@ CREATE TABLE IF NOT EXISTS `coupon` (
   `update_time` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `feedback`
+--
+
+CREATE TABLE IF NOT EXISTS `feedback` (
+`id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `mobile` varchar(20) NOT NULL,
+  `content` text NOT NULL,
+  `creation_time` int(11) NOT NULL,
+  `update_time` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `feedback`
+--
+
+INSERT INTO `feedback` (`id`, `email`, `mobile`, `content`, `creation_time`, `update_time`, `status`) VALUES
+(1, 'hoangnhon@gmail.com', 'asfasfasf', 'asfasfas', 1410914808, 1410914808, 1),
+(2, 'hoang@gmail.com', 'asfasfas', 'fasfasf', 1410914867, 1410914867, 1),
+(3, 'hoangnh@gmail.com', 'oasfasf12', 'fsadfsdafasd', 1410914898, 1410914898, 1);
 
 -- --------------------------------------------------------
 
@@ -288,6 +313,31 @@ CREATE TABLE IF NOT EXISTS `news` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `newsletter`
+--
+
+CREATE TABLE IF NOT EXISTS `newsletter` (
+`id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `creation_time` int(11) NOT NULL,
+  `update_time` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `newsletter`
+--
+
+INSERT INTO `newsletter` (`id`, `email`, `creation_time`, `update_time`, `status`) VALUES
+(1, 'hoangnhonline@gmail.com', 1410913197, 1410913197, 1),
+(2, 'asfasfa@aa.com', 1410914376, 1410914376, 1),
+(3, 'asfasfa@aa.com', 1410914675, 1410914675, 1),
+(4, 'hoang@com.com', 1410914719, 1410914719, 1),
+(5, 'test@gmail.com', 1410886901, 1410886901, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `nhaxe`
 --
 
@@ -370,7 +420,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `method_id` int(11) NOT NULL,
   `is_pay` tinyint(4) NOT NULL,
   `note` varchar(500) DEFAULT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=104 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=112 ;
 
 --
 -- Dumping data for table `orders`
@@ -474,7 +524,15 @@ INSERT INTO `orders` (`order_id`, `order_code`, `total_amount`, `total_price`, `
 (100, 'OB00046', 1, 5, 'sadasfd', 'asdad', 'hoangnhonline@gmail.com', NULL, NULL, NULL, NULL, 2, 1410786195, 1, 0, NULL),
 (101, 'OB00047', 1, 5, 'Asdf', 'wqdwq', 'heocon_111291@yahoo.com', NULL, NULL, NULL, NULL, 2, 1410786226, 1, 0, NULL),
 (102, 'OB00048', 1, 5, 'sd', '111', 'heocon_111291@yahoo.com', NULL, NULL, NULL, NULL, 2, 1410786290, 1, 0, NULL),
-(103, 'OB00049', 1, 5, 'aaaasdfas', 'fsfasf', 'hoangnhonline@gmail.com', NULL, NULL, NULL, NULL, 2, 1410786338, 1, 0, NULL);
+(103, 'OB00049', 1, 5, 'aaaasdfas', 'fsfasf', 'hoangnhonline@gmail.com', NULL, NULL, NULL, NULL, 2, 1410786338, 1, 0, NULL),
+(104, 'OB00050', 1, 95000, 'sd', '07683461212', 'hoangnhonline@gmail.com', 'asfasdf', 'dsfsafasdf', NULL, NULL, 2, 1410835611, 1, 0, NULL),
+(105, 'OB00050', 1, 95000, 'sd', '07683461212', 'hoangnhonline@gmail.com', NULL, NULL, NULL, NULL, 2, 1410835611, 1, 0, NULL),
+(106, 'OB00051', 1, 95000, 'tran trung tin', 'v nvn', 'hyggjdfdg', 'vcc', 'cvjncv', NULL, NULL, 2, 1410846140, 1, 0, NULL),
+(107, 'OB00051', 1, 95000, 'tran trung tin', 'v nvn', 'hyggjdfdg', NULL, NULL, NULL, NULL, 2, 1410846140, 1, 0, NULL),
+(108, 'OB00052', 1, 200000, 'huavanquan', '938989938', 'quanabu@gmail.com', '33 duong 44 p 10 q6', '0938989938', NULL, NULL, 2, 1410851480, 1, 0, NULL),
+(109, 'OB00052', 1, 200000, 'huavanquan', '938989938', 'quanabu@gmail.com', NULL, NULL, NULL, NULL, 2, 1410851480, 1, 0, NULL),
+(110, 'OB00053', 1, 130000, 'quan', '139487', 'huq@yahoo.com', '3 dsfs', '13348348', NULL, NULL, 2, 1410856688, 1, 0, NULL),
+(111, 'OB00053', 1, 130000, 'quan', '139487', 'huq@yahoo.com', NULL, NULL, NULL, NULL, 2, 1410856688, 1, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -719,17 +777,7 @@ CREATE TABLE IF NOT EXISTS `route` (
 --
 
 INSERT INTO `route` (`route_id`, `route_name_vi`, `route_name_safe_vi`, `route_name_en`, `route_name_safe_en`, `abbreviation`, `hot`, `description`, `tinh_id_start`, `tinh_id_end`, `distance`, `duration`, `creation_time`, `update_time`, `status`, `user_id`) VALUES
-(1, 'Sài Gòn - Hà Nội', 'sai-gon-ha-noi', 'Sai Gon - Ha Noi', 'sai-gon-ha-noi', 'SGHN', 0, 'Tuyến xe từ Sài Gòn đi Hà Nội.', 12, 26, '0', '', 1406084756, 1406341967, 0, 0),
-(3, 'Sài Gòn - Nha Trang', 'sai-gon-nha-trang', 'Sai Gon - Nha Trang', 'sai-gon-nha-trang', 'SGNTR', 1, 'Chuyến xe từ Sài gòn đi Nha Trang\r\n', 1, 9, '440', '8h', 1406085862, 1408001286, 0, 13),
 (4, 'Hồ Chí Minh - Mũi Né', 'ho-chi-minh-mui-ne', 'Ho Chi Minh - Mui Ne', 'ho-chi-minh-mui-ne', 'HCMMN', 1, 'Chuyến xe Hồ Chí Minh - Mũi Né\r\n', 1, 23, '250', '4h', 1406087441, 1408001555, 1, 13),
-(5, 'Hà Nội - Thái Bình', 'ha-noi-thai-binh', 'Hà Nội - Thái Bình', 'ha-noi-thai-binh', 'HNTB', 0, 'Hà Nội đi Thái Bình', 32, 33, '0', '', 1406087578, 1406102278, 0, 0),
-(6, 'Hà Nội - Quảng Ninh', 'ha-noi-quang-ninh', 'Hà Nội - Quảng Ninh', 'ha-noi-quang-ninh', 'HNQNI', 0, 'Hà Nội đi Quảng Ninh', 16, 16, '', '', 1406087650, 1408001567, 0, 13),
-(7, 'Sài Gòn - Hà Nội', 'sai-gon-ha-noi', 'Sài Gòn - Hà Nội', 'sai-gon-ha-noi', 'SGHN', 1, 'SG di HN', 1, 14, '0', '', 1406567574, 1408001569, 0, 13),
-(8, 'Sài Gòn - Cần Thơ', 'sai-gon-can-tho', 'Sài Gòn - Cần Thơ', 'sai-gon-can-tho', 'SGCT', 1, 'Sài Gòn - Cần Thơ', 1, 2, '0', '', 1406567609, 1408001569, 0, 13),
-(9, 'Sài Gòn - Đà Lạt', 'sai-gon-da-lat', 'Sài Gòn - Đà Lạt', 'sai-gon-da-lat', 'SGĐL', 1, 'Sài Gòn - Đà Lạt', 1, 11, '0', '', 1406567671, 1408001573, 0, 13),
-(10, 'Hà Nội - Đà Nẵng', 'ha-noi-da-nang', 'Hà Nội - Đà Nẵng', 'ha-noi-da-nang', 'HNDN', 1, 'Hà Nội - Đà Nẵng', 14, 7, '0', '', 1406567702, 1408001573, 0, 13),
-(11, 'Sài Gòn - Đà Nẵng', 'sai-gon-da-nang', 'Sài Gòn - Đà Nẵng', 'sai-gon-da-nang', 'SGDN', 1, 'Sài Gòn - Đà Nẵng', 1, 7, '0', '', 1406567744, 1408001574, 0, 13),
-(12, 'Huế - Hà Nội', 'hue-ha-noi', 'Huế - Hà Nội', 'hue-ha-noi', 'HUHN', 0, 'Huế - Hà Nội', 10, 14, '0', '', 1406567865, 1408001575, 0, 13),
 (13, 'Hồ Chí Minh - Nha Trang', 'ho-chi-minh-nha-trang', 'Ho Chi Minh - Nha Trang', 'ho-chi-minh-nha-trang', 'HCMNTR', 1, 'Tuyến xe từ Hồ Chí Minh - Nha Trang\r\n', 1, 9, '440', '8h', 1407212334, 1408001378, 1, 13),
 (14, 'Hồ Chí Minh - Đà Lạt', 'ho-chi-minh-da-lat', 'Ho Chi Minh - Da Lat', 'ho-chi-minh-da-lat', 'HCMĐL', 1, 'Chuyến xe Hồ Chí Minh - Đà Lạt', 1, 11, '310', '7h', 1408001642, 1408001642, 1, 13),
 (15, 'Nha Trang - Hồ Chí Minh', 'nha-trang-ho-chi-minh', 'Nha Trang - Ho Chi Minh', 'nha-trang-ho-chi-minh', 'NTRHCM', 1, 'Chuyến xe từ Hồ Chí Minh - Nha Trang', 9, 1, '440', '8h', 1408001757, 1408001757, 1, 13),
@@ -164410,6 +164458,30 @@ INSERT INTO `tinh` (`tinh_id`, `tinh_name_vi`, `tinh_name_safe_vi`, `tinh_name_e
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `troute`
+--
+
+CREATE TABLE IF NOT EXISTS `troute` (
+`troute_id` int(11) NOT NULL,
+  `nhaxe_id` int(11) NOT NULL,
+  `route_id` int(11) NOT NULL,
+  `min_time` varchar(20) NOT NULL,
+  `max_time` varchar(20) NOT NULL,
+  `creation_time` int(11) NOT NULL,
+  `update_time` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `troute`
+--
+
+INSERT INTO `troute` (`troute_id`, `nhaxe_id`, `route_id`, `min_time`, `max_time`, `creation_time`, `update_time`, `status`) VALUES
+(4, 19, 4, '08:00 AM', '11:00 PM', 1410879403, 1410881950, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -164464,6 +164536,12 @@ ALTER TABLE `coupon`
  ADD PRIMARY KEY (`coupon_id`);
 
 --
+-- Indexes for table `feedback`
+--
+ALTER TABLE `feedback`
+ ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `image`
 --
 ALTER TABLE `image`
@@ -164474,6 +164552,12 @@ ALTER TABLE `image`
 --
 ALTER TABLE `news`
  ADD PRIMARY KEY (`news_id`);
+
+--
+-- Indexes for table `newsletter`
+--
+ALTER TABLE `newsletter`
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `nhaxe`
@@ -164566,6 +164650,12 @@ ALTER TABLE `tinh`
  ADD PRIMARY KEY (`tinh_id`);
 
 --
+-- Indexes for table `troute`
+--
+ALTER TABLE `troute`
+ ADD PRIMARY KEY (`troute_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -164596,6 +164686,11 @@ MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 ALTER TABLE `coupon`
 MODIFY `coupon_id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `feedback`
+--
+ALTER TABLE `feedback`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT for table `image`
 --
 ALTER TABLE `image`
@@ -164606,6 +164701,11 @@ MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=109;
 ALTER TABLE `news`
 MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `newsletter`
+--
+ALTER TABLE `newsletter`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
 -- AUTO_INCREMENT for table `nhaxe`
 --
 ALTER TABLE `nhaxe`
@@ -164614,7 +164714,7 @@ MODIFY `nhaxe_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=104;
+MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=112;
 --
 -- AUTO_INCREMENT for table `order_detail`
 --
@@ -164670,6 +164770,11 @@ MODIFY `time_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=57;
 --
 ALTER TABLE `tinh`
 MODIFY `tinh_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
+--
+-- AUTO_INCREMENT for table `troute`
+--
+ALTER TABLE `troute`
+MODIFY `troute_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `users`
 --

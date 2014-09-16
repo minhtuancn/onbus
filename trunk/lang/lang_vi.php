@@ -71,4 +71,11 @@ define("thanhtoankhinhanve","Thanh toán khi nhận vé");
 define("youpaycash","Với phương thức thanh toán này, quý khách trả tiền mặt cho nhân viên giao hàng ngay khi nhận được vé xe. Chúng tôi chấp nhận hình thức thanh toán khi nhận hàng (COD) cho tất cả các đơn hàng trên toàn quốc");
 define("whichevermethod","Thông tin của quý khách được đảm bảo an toàn với tất cả các hình thức thanh toán online.");
 define("youmustclick","Tôi đã xem và đồng ý với nội dung điều khoản thanh toán tại website Onbus.vn");
+define("chonsoluongve","Quý khách vui lòng chọn số lượng vé cần đặt tại khung bên dưới.");
+define("datve","Đặt vé");
+define("chonvechieuconlai","Chọn vé chiều còn lại");
+define("chongiokhoihanh","Chọn giờ khởi hành");
+define("errortime","Chọn thời gian khởi hành trước khi mua vé.");
+define("tong","Tổng");
+define("dongythanhtoan","Thanh toán");
 ?>

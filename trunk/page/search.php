@@ -101,11 +101,11 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
 
                                 <li class="oneway">
                                     <input data-ticket="type-1" id="ticket-1" type="radio" name="ticket-type" <?php echo ($type==1) ? "checked='checked'" : ""; ?> value="1">
-                                    <label for="ticket-1">Vé 1 chiều</label>
+                                    <label for="ticket-1">{ve1chieu}</label>
                                 </li>
                                 <li class="return <?php echo ($type==2) ? "selected" : ""; ?>">
                                     <input type="radio" data-ticket="type-2" id="ticket-2" name="ticket-type" <?php echo ($type==2) ? "checked='checked'" : ""; ?> value="2">
-                                    <label for="ticket-2">Vé khứ hồi</label>
+                                    <label for="ticket-2">{vekhuhoi}</label>
                                 </li>
                             </ul>
                             </div>
@@ -160,7 +160,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                             
                             
                             <div class="btn-search-ticket">
-                                <button id="btnSearchTicket" type="button" class="btn btn-warning right btn-blue">Tìm vé xe</button>
+                                <button id="btnSearchTicket" type="button" class="btn btn-warning right btn-blue">{timvexe}</button>
                             </div>
                             <div class="clear"></div>
                        </form>
@@ -303,7 +303,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                         <p><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?>:</b><?php echo $modelPlace->getPlaceNameByID($ticket['place_id_end'],$lang); ?> (<?php echo $modelPlace->getAddressByID($ticket['place_id_end'],$lang); ?>)</p>
                                         <a href="javascript:;" class="right show_map" onclick="return loadmap('<?php echo $modelPlace->getAddressByID($ticket['place_id_start'],'vi'); ?>','<?php echo $modelPlace->getAddressByID($ticket['place_id_end'],'vi'); ?>');" data-target="#mymap" data-toggle="modal" >{xemlotrinh}</a>
                                         <div class="type-ticket" id="time_<?php echo $ticket['ticket_id']; ?>">
-                                        <p><?php echo $lang=="vi" ? "Chọn giờ khởi hành" : "Select time"; ?>:</p>
+                                        <p>{chongiokhoihanh}:</p>
                                         <ul>
                                             <?php if(!empty($arrTimeTicket)) { 
                                                 foreach ($arrTimeTicket as $time) {                                                   
@@ -312,7 +312,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                             <li><a href="javascript:void(0)" data-value="<?php echo $time; ?>"><?php echo $modelTime->getTimeByID($time);?></a></li>
                                             <?php }}  ?>                                            
                                         </ul>
-                                        <p class="error_time" id="error_time_<?php echo $ticket['ticket_id']; ?>"><?php echo ($lang=="vi") ? "Chọn thời gian khởi hành trước khi mua vé." : "Choose your departure time before booking tickets."; ?></p>
+                                        <p class="error_time" id="error_time_<?php echo $ticket['ticket_id']; ?>">{errortime}</p>
                                         <div class="clear"></div>
                                         </div>
                                     </div>
@@ -326,7 +326,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                         <span><?php echo $modelTicket->cal($ticket['price'],$_SESSION['onbustigia']); ?><span><?php echo ($_SESSION['onbustigia'] == 1) ? "VNĐ" : "USD"; ?></span></span>
                                     </div>
                                     <div class="clear"></div>
-                                    <a href="javascript:void(0)" data-value="<?php echo $ticket['ticket_id']; ?>" data-toggle="modal" data-target="#popup_book_ticket" class="btn-muave"><?php echo $lang=="vi" ? "Đặt vé" : "Book now"; ?></a>
+                                    <a href="javascript:void(0)" data-value="<?php echo $ticket['ticket_id']; ?>" data-toggle="modal" data-target="#popup_book_ticket" class="btn-muave">{datve}</a>
                                     <a href="#" class="btn-chitiet"  data-toggle="modal" data-target="#myModal" onclick="return loadDetail(<?php echo $ticket['ticket_id']; ?>)"><span class="glyphicon glyphicon-info-sign"></span>{chitiet}</a>
                                 </div>
                             </div>
@@ -395,7 +395,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                         <p><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?>:</b><?php echo $modelPlace->getPlaceNameByID($ticket['place_id_end'],$lang); ?> (<?php echo $modelPlace->getAddressByID($ticket['place_id_end'],$lang); ?>)</p>
                                         <a href="javascript:;" class="right show_map" onclick="return loadmap('<?php echo $modelPlace->getAddressByID($ticket['place_id_start'],'vi'); ?>','<?php echo $modelPlace->getAddressByID($ticket['place_id_end'],'vi'); ?>');" data-toggle="modal" data-target="#mymap">Xem lộ trình</a>
                                         <div class="type-ticket" id="time_<?php echo $ticket['ticket_id']; ?>">
-                                        <p><?php echo $lang=="vi" ? "Chọn giờ khởi hành" : "Select time"; ?>:</p>
+                                        <p>{chongiokhoihanh}:</p>
                                         <ul>    
                                             <?php if(!empty($arrTimeTicket)) { 
                                                 foreach ($arrTimeTicket as $time) {                                                   
@@ -404,8 +404,7 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                             <li><a href="javascript:void(0)" data-value="<?php echo $time; ?>"><?php echo $modelTime->getTimeByID($time);?></a></li>
                                             <?php }}  ?>                                            
                                         </ul>
-                                        <p class="error_time" id="error_time_<?php echo $ticket['ticket_id']; ?>">
-                                            <?php echo ($lang=="vi") ? "Chọn thời gian khởi hành trước khi mua vé" : "Choose your departure time before booking tickets"; ?>.</p>
+                                        <p class="error_time" id="error_time_<?php echo $ticket['ticket_id']; ?>">{errortime}</p>
                                         <div class="clear"></div>
                                     </div>
                                     </div>
@@ -419,8 +418,8 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                                         <input type="hidden" id="price_<?php echo $ticket['ticket_id']; ?>" value="<?php echo $_SESSION['onbustigia'] == 2 ? $modelTicket->cal($ticket['price'],$_SESSION['onbustigia']) : $ticket['price']; ?>"/>
                                     </div>
                                     <div class="clear"></div>
-                                    <a href="javascript:void(0)" data-value="<?php echo $ticket['ticket_id']; ?>" data-toggle="modal" data-target="#popup_book_ticket" class="btn-muave"><?php echo $lang=="vi" ? "Đặt vé" : "Book now"; ?></a>
-                                    <a href="#" class="btn-chitiet" onclick="return loadDetail(<?php echo $ticket['ticket_id']; ?>)" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-info-sign"></span>Detail</a>
+                                    <a href="javascript:void(0)" data-value="<?php echo $ticket['ticket_id']; ?>" data-toggle="modal" data-target="#popup_book_ticket" class="btn-muave">{datve}</a>
+                                    <a href="#" class="btn-chitiet" onclick="return loadDetail(<?php echo $ticket['ticket_id']; ?>)" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-info-sign"></span>{chitiet}</a>
                                 </div>
                             </div>
                             <div class="clear"></div>
@@ -463,16 +462,16 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
   <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 class="modal-title">Select Seat</h4>
+            <h4 class="modal-title">{soluongve}</h4>
           </div>
       <div class="modal-body">
         <div class="popup_detail">
             <div class="wrap-popup">
                 <a href="#" class="close-popup" data-dismiss="modal"></a>
-                <p>Please choose the number of passengers from the drop down list below.</p>
+                <p>{chonsoluongve}</p>
                 <form class="form-horizontal" role="form" id="paymentForm" method="post" action="index.php?mod=payment">
                   <div class="form-group">
-                    <label class="col-sm-2 control-label">No. of tickets: </label>
+                    <label class="col-sm-2 control-label">{soluongve}: </label>
                     <div class="col-sm-10">
                       <select class="form-control" id="amount" name="amount">
                           <option>1</option>
@@ -485,14 +484,14 @@ $routeDetail = $modelRoute->detailRoute($vstart,$vend);
                   </div>                 
                   <div class="btn-center">
                     <?php if($type==1) { ?>
-                    <input type="button" value="<?php echo $lang=="vi" ? "Đặt vé" : "Book now"; ?>" class="button2" id="btnBookNow">
+                    <input type="button" value="{datve}" class="button2" id="btnBookNow">
                     <?php }else{ 
 
                         if(count($_SESSION['bookticket'])==0){
                         ?>
                     <input type="button" id="booktoo" value="Chọn vé chiều còn lại" class="button2">
                     <?php }else{ ?>
-                    <input type="button" id="btnBookNow" value="<?php echo $lang=="vi" ? "Đặt vé" : "Book now"; ?>" class="button2">
+                    <input type="button" id="btnBookNow" value="{datve}" class="button2">
                     <?php }
                     } ?>
                   </div>
