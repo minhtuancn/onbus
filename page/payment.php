@@ -121,8 +121,8 @@ if(!empty($_SESSION['bookticket'])){
                             </li>
                         </ul>
                         <div class="right cost_payment">
-                        	<a href="<?php echo $lang; ?>/terms-and-conditions.html">{quydinhvexe}</a>
-                            <a href="<?php echo $lang; ?>/pay-policy.html">{dieukhoanthanhtoan}</a>
+                        	<a target="_blank" href="<?php echo $lang; ?>/terms-and-conditions.html">{quydinhvexe}</a>
+                            <a target="_blank" href="<?php echo $lang; ?>/pay-policy.html">{dieukhoanthanhtoan}</a>
                         </div>
                     </div>
                     <div class="clear"></div>
