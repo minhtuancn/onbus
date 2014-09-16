@@ -2591,6 +2591,8 @@ ul.triptype li.selected input:before {
 	display: inline-block;
 	width: 70%;
 	padding-right: 10px
+;
+	padding-bottom: 20px;
 }
 .subscriber .subscribe-form .input input {
 	color: #000;
@@ -7791,4 +7793,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c3778', end
 	width: 79px;
 	text-align:center;
 	border: 1px solid #ECECEC;
+}
+.subscriber .subscribe-form p{
+	float:left;
+	width:100%;
+	margin-top: 5px;
+	color: #fff;
+	font-size: 18px;
+	
+	line-height: 100%;
 }
