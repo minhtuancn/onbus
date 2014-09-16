@@ -2,32 +2,22 @@
             <div class="contact_content">
 			<div class="left_col">
             	<div class="frm_contact">
-                	<form role="form">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Câu hỏi*</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Chi tiết yêu cầu*</label>
-                        <textarea class="form-control" rows="3"></textarea>
-                      </div>
-                      <div class="form-inline">
+                	<form role="form">                                                                  
                       <div class="form-group">
                         <label for="exampleInputEmail1">Tên*</label>
                         <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                       </div>
-                      <div class="form-group right">
+                      <div class="form-group">
                         <label for="exampleInputEmail1">Địa chỉ email*</label>
                         <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                      </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Số đơn hàng*</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                      </div>
+                      </div>                      
                       <div class="form-group">
                         <label for="exampleInputEmail1">Số điện thoại*</label>
                         <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Nội dung*</label>
+                        <textarea class="form-control" rows="3"></textarea>
                       </div>
                       <button type="submit" class="btn btn-default">Gửi</button>
                     </form>

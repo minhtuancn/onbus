@@ -238,6 +238,40 @@
 
 
         </li>
+        <li>
+
+
+
+            <a href="<?php echo BASE_URL; ?>newsletter&act=list">
+
+
+
+                <i class="fa fa-th"></i> <span>Newsletter</span> <!--<small class="badge pull-right bg-green">new</small>-->
+
+
+
+            </a>
+
+
+
+        </li>
+        <li>
+
+
+
+            <a href="<?php echo BASE_URL; ?>feedback&act=list">
+
+
+
+                <i class="fa fa-th"></i> <span>Feedback</span> <!--<small class="badge pull-right bg-green">new</small>-->
+
+
+
+            </a>
+
+
+
+        </li>
 
         <?php if($_SESSION['user_id']==1) { ?>
 
