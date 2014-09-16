@@ -50,7 +50,7 @@ if(isset($_GET['troute_id'])){
 
 
 
-    $detail = $model->getDetailTroute($route_id);
+    $detail = $model->getDetailTroute($troute_id);
 
 
 
@@ -90,7 +90,7 @@ if(isset($_GET['troute_id'])){
 
 
 
-                <h3 class="box-title"><?php echo ($route_id > 0) ? "Cập nhật" : "Tạo mới" ?> tuyến đường pho bien</h3>
+                <h3 class="box-title"><?php echo ($route_id > 0) ? "Cập nhật" : "Tạo mới" ?> tuyến đường phổ biến</h3>
 
 
 
@@ -141,9 +141,9 @@ if(isset($_GET['troute_id'])){
                 </div> 
                 <div class="form-group">
 
-                        <label>Tuyen duong<span class="required"> ( * ) </span></label>
+                        <label>Tuyến đường<span class="required"> ( * ) </span></label>
 
-                        <select class="form-control required" name="nhaxe_id" id="nhaxe_id">
+                        <select class="form-control required" name="route_id" id="route_id">
 
                             <option value="0">---chọn---</option> 
 
@@ -174,11 +174,7 @@ if(isset($_GET['troute_id'])){
 
                             <label>First Bus<span class="required"> ( * ) </span></label>
 
-
-
                             <input type="text" name="min_time" class="form-control required" value="<?php echo (isset($detail['min_time']))  ? $detail['min_time'] : "" ?>"/>
-
-
 
                         </div>
 

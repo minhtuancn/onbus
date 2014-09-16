@@ -5,6 +5,10 @@ require_once "model/Route.php";
 
 
 $model = new Route;
+require_once "model/Troute.php";
+
+
+$modelTroute = new Troute;
 
 
 require_once "model/Tinh.php";
@@ -19,7 +23,7 @@ require_once "model/Nhaxe.php";
 $modelNhaxe = new Nhaxe;
 
 
-$link = "index.php?mod=route&act=list";
+$link = "index.php?mod=troute&act=list";
 
 
 
@@ -31,7 +35,7 @@ $link = "index.php?mod=route&act=list";
 
 
 
-$arrNhaxe = $modelNhaxe->getListNhaxe('',-1, -1, -1);
+$arrListNhaxe = $modelNhaxe->getListNhaxe('',-1, -1, -1);
 
 
 /* end get ds nha xe */
@@ -40,46 +44,19 @@ $arrNhaxe = $modelNhaxe->getListNhaxe('',-1, -1, -1);
 
 
 
-/* get ds tinh */
+if (isset($_GET['nhaxe_id']) && $_GET['nhaxe_id'] > -1) {
 
 
-$arrListTinhKey = array();
+    $nhaxe_id = (int) $_GET['nhaxe_id'];      
 
 
-$arrListTinh = $modelTinh->getListTinh(-1,'',-1,-1,-1);
-
-
-if(!empty($arrListTinh)){
-
-
-    foreach ($arrListTinh['data'] as $value) {
-
-
-        $arrListTinhKey[$value['tinh_id']] = $value;
-
-
-    }
-
-
-}
-
-
-/* end get ds tinh */
-
-
-if (isset($_GET['hot']) && $_GET['hot'] > -1) {
-
-
-    $hot = (int) $_GET['hot'];      
-
-
-    $link.="&hot=$hot";
+    $link.="&nhaxe_id=$nhaxe_id";
 
 
 } else {
 
 
-    $hot = -1;
+    $nhaxe_id = 0;
 
 
 }
@@ -88,67 +65,8 @@ if (isset($_GET['hot']) && $_GET['hot'] > -1) {
 
 
 
-if (isset($_GET['keyword']) && trim($_GET['keyword']) != '') {
 
-
-    $keyword = $_GET['keyword'];      
-
-
-    $link.="&keyword=$keyword";
-
-
-} else {
-
-
-    $keyword = '';
-
-
-}
-
-
-
-
-
-if (isset($_GET['tinh_id_start']) && $_GET['tinh_id_start'] > 0) {
-
-
-    $tinh_id_start = (int) $_GET['tinh_id_start'];      
-
-
-    $link.="&tinh_id_start=$tinh_id_start";
-
-
-} else {
-
-
-    $tinh_id_start = -1;
-
-
-}
-
-
-if (isset($_GET['tinh_id_end']) && $_GET['tinh_id_end'] > 0) {
-
-
-    $tinh_id_end = (int) $_GET['tinh_id_end'];      
-
-
-    $link.="&tinh_id_end=$tinh_id_end";
-
-
-} else {
-
-
-    $tinh_id_end = -1;
-
-
-}
-
-
-
-
-
-$arrTotal = $model->getListRoute($keyword,$tinh_id_start,$tinh_id_end,$hot, -1, -1);
+$arrTotal = $modelTroute->getListTroute($nhaxe_id, -1, -1);
 
 
 
@@ -172,7 +90,7 @@ $offset = LIMIT * ($page - 1);
 
 
 
-$arrList = $model->getListRoute($keyword,$tinh_id_start,$tinh_id_end,$hot, $offset, LIMIT);
+$arrList = $modelTroute->getListTroute($nhaxe_id, $offset, LIMIT);
 
 
 
@@ -190,13 +108,13 @@ $arrList = $model->getListRoute($keyword,$tinh_id_start,$tinh_id_end,$hot, $offs
     <div class="col-md-12">
 
 
-    <button class="btn btn-primary btn-sm right" onclick="location.href='index.php?mod=route&act=form'">Tạo mới</button>        
+    <button class="btn btn-primary btn-sm right" onclick="location.href='index.php?mod=troute&act=form'">Tạo mới</button>        
 
 
          <div class="box-header">
 
 
-                <h3 class="box-title">Danh sách tuyến đường</h3>
+                <h3 class="box-title">Danh sách tuyến đường phổ biến</h3>
 
 
             </div><!-- /.box-header -->
@@ -205,69 +123,30 @@ $arrList = $model->getListRoute($keyword,$tinh_id_start,$tinh_id_end,$hot, $offs
         <div class="box">
 
 
-            <div class="box_search">                                    
+            <div class="box_search"> 
+
+                    Nhà xe 
 
 
-                   Tên tuyến đường &nbsp;
+                    <select class="event_change select_search" name="nhaxe_id" id="nhaxe_id">
 
+                        <option value="0">---chọn---</option> 
 
-                   <input type="text" class="text_search" id="keyword" name="keyword" value="<?php echo (trim($keyword)!='') ? $keyword: ""; ?>" /> 
+                         <?php if(!empty($arrListNhaxe['data'])){
 
+                            foreach ($arrListNhaxe['data'] as $value) {
 
-                    &nbsp;&nbsp;&nbsp;Nơi đi 
+                                ?>
 
+                                <option <?php echo $_GET['nhaxe_id'] == $value['nhaxe_id'] ? "selected" : ""; ?> value="<?php echo $value['nhaxe_id']; ?>"><?php echo $value['nhaxe_name_vi']; ?></option> 
 
-                    <input type="hidden" name="tinh_id_start" id="tinh_id_start" value="<?php echo (isset($_GET['tinh_id_start'])) ? $_GET['tinh_id_start'] : "" ;?>" />
+                                <?php 
 
+                            }}
 
-                    <input type="text" name="diem_xp" id="diem_xp" 
-
-
-                    value="<?php echo isset($_GET['tinh_id_start']) ? $arrListTinhKey[$_GET['tinh_id_start']]['tinh_name_vi'] : ""; ?>"  />
-
-
-                    &nbsp;&nbsp;&nbsp;
-
-
-                    &nbsp;&nbsp;&nbsp;Nơi đến
-
-
-                    <input type="hidden" name="tinh_id_end" id="tinh_id_end" value="<?php echo (isset($_GET['tinh_id_end'])) ? $_GET['tinh_id_end'] : "" ;?>" />
-
-
-                    <input type="text" name="diem_den" id="diem_den" 
-
-
-                    value="<?php echo isset($_GET['tinh_id_end']) ? $arrListTinhKey[$_GET['tinh_id_end']]['tinh_name_vi'] : ""; ?>" />
-
-
-                    &nbsp;&nbsp;&nbsp;
-
-
-                    Loại 
-
-
-                    <select name="hot" class="event_change select_search" id="hot">
-
-
-                        <option value="-1">Tất cả</option>  
-
-
-                        <option value="0" <?php echo ($hot==0) ? "selected" : ""; ?>>Bình thường</option>   
-
-
-                        <option value="1" <?php echo ($hot==1) ? "selected" : ""; ?>>Phổ biến</option>        
-
+                            ?>                           
 
                     </select>
-
-
-                    <button class="btn btn-primary btn-sm right" id="btnSearch" type="button">Tìm kiếm</button>
-
-
-                
-
-
             </div>
 
 
@@ -286,19 +165,13 @@ $arrList = $model->getListRoute($keyword,$tinh_id_start,$tinh_id_end,$hot, $offs
                         <th style="width: 10px">No.</th>
 
 
-                        <th>Tên <img src="<?php echo STATIC_URL?>img/vi.png"/></th>
+                        <th>Nhà xe</th>
 
 
-                        <th>Tên <img src="<?php echo STATIC_URL?>img/uk_.png"/></th>
-                        <th>CODE</th>
-
-
-                        <th>Nơi đi</th>
-
-
-                        <th>Nơi đến</th>
-
-
+                        <th>Tuyến đường</th>
+                      
+                        <th>First Bus</th>   
+                        <th>Last Bus</th>   
                         <th>Ngày tạo</th>                        
 
 
@@ -335,35 +208,25 @@ $arrList = $model->getListRoute($keyword,$tinh_id_start,$tinh_id_end,$hot, $offs
                         <td>
 
 
-                            <a href="index.php?mod=route&act=form&route_id=<?php echo $row['route_id']; ?>">
+                            
 
 
-                                <?php echo $row['route_name_vi']; ?>
+                                <?php echo $modelNhaxe->getNhaxeNameByID($row['nhaxe_id']); ?>
 
 
                             </a>
-
-
-                            <?php if($row['hot']==1) { ?>
-
-
-                            &nbsp;&nbsp;&nbsp;<img src="static/img/ok.gif" width="20" alt="Tuyến đường phổ biến" title="Tuyến đường phổ biến"/>
-
-
-                            <?php } ?>
-
+                            
 
                         </td>
 
 
-                        <td><?php echo $row['route_name_en']; ?></td>
+                        <td>
+<a href="index.php?mod=troute&act=form&troute_id=<?php echo $row['troute_id']; ?>">
+                            <?php echo $model->getRouteNameByID($row['route_id']); ?>
+                        </a></td>
 
-                        <td><?php echo $row['abbreviation']; ?></td> 
-                        <td><?php echo $modelTinh->getTinhNameByID($row['tinh_id_start']); ?></td>
-
-
-                        <td><?php echo $modelTinh->getTinhNameByID($row['tinh_id_end']); ?></td>
-
+                        <td><?php echo $row['min_time']; ?></td>  
+                        <td><?php echo $row['max_time']; ?></td>  
                         
 
                         <td><?php echo date('d-m-Y',$row['creation_time']); ?></td>                        
@@ -372,7 +235,7 @@ $arrList = $model->getListRoute($keyword,$tinh_id_start,$tinh_id_end,$hot, $offs
                         <td style="white-space:nowrap">
 
 
-                            <a href="index.php?mod=route&act=form&route_id=<?php echo $row['route_id']; ?>">
+                            <a href="index.php?mod=troute&act=form&troute_id=<?php echo $row['troute_id']; ?>">
 
 
                                 <i class="fa fa-fw fa-edit"></i>
@@ -381,7 +244,7 @@ $arrList = $model->getListRoute($keyword,$tinh_id_start,$tinh_id_end,$hot, $offs
                             </a>
 
 
-                            <a href="javascript:;" alias="<?php echo $row['route_name_vi']; ?>" id="<?php echo $row['route_id']; ?>" mod="route" class="link_delete" >    
+                            <a href="javascript:;" alias="<?php echo $row['troute_name_vi']; ?>" id="<?php echo $row['troute_id']; ?>" mod="troute" class="link_delete" >    
 
 
                                 <i class="fa fa-fw fa-trash-o"></i>
@@ -467,250 +330,36 @@ $arrList = $model->getListRoute($keyword,$tinh_id_start,$tinh_id_end,$hot, $offs
 
  <script type="text/javascript">
 
+function search(){
 
-  $(function() {
 
+        var str_link = "index.php?mod=troute&act=list";
 
 
-
-
-    var arrTinh = [
-
-
-    <?php foreach($arrListTinh['data'] as $tinh){ ?> 
-
-
-      {
-
-
-        value: "<?php echo $tinh['tinh_id']; ?>",
-
-
-        label: "<?php echo $tinh['tinh_name_vi']; ?>"      
-
-
-      },
-
-
-      <?php } ?>
-
-
-      
-
-
-    ];
-
-
-    $("#diem_xp" ).blur(function(){
-
-
-        if($.trim($(this).val())==''){
-
-
-            $('#tinh_id_start').val(0);
-
-
-        }
-
-
-    });
-
-
-    $("#diem_den" ).blur(function(){
-
-
-        if($.trim($(this).val())==''){
-
-
-            $('#tinh_id_end').val(0);
-
-
-        }
-
-
-    });
-
-
-    $("#diem_xp" ).autocomplete({
-
-
-      minLength: 0,
-
-
-      source: arrTinh,
-
-
-      focus: function( event, ui ) {
-
-
-        $( "#diem_xp" ).val( ui.item.label );
-
-
-        return false;
-
-
-      },
-
-
-      select: function( event, ui ) {
-
-
-        $( "#diem_xp" ).val( ui.item.label );
-
-
-        $( "#tinh_id_start" ).val( ui.item.value );      
-
-
-        return false;
-
-
-      }
-
-
-    })
-
-
-    .autocomplete( "instance" )._renderItem = function( ul, item ) {
-
-
-      return $( "<li>" )
-
-
-        .append(item.label)
-
-
-        .appendTo( ul );
-
-
-    };
-
-
-    $("#diem_den" ).autocomplete({
-
-
-      minLength: 0,
-
-
-      source: arrTinh,
-
-
-      focus: function( event, ui ) {
-
-
-        $( "#diem_den" ).val( ui.item.label );
-
-
-        return false;
-
-
-      },
-
-
-      select: function( event, ui ) {
-
-
-        $( "#diem_den" ).val( ui.item.label );
-
-
-        $( "#tinh_id_end" ).val( ui.item.value );      
-
-
-        return false;
-
-
-      }
-
-
-    })
-
-
-    .autocomplete( "instance" )._renderItem = function( ul, item ) {
-
-
-      return $( "<li>" )
-
-
-        .append(item.label)
-
-
-        .appendTo( ul );
-
-
-    };
-
-
-
-
-
-  });
-
-
-
-
-
-    function search(){
-
-
-        var str_link = "index.php?mod=route&act=list";
-
-
-        var tmp = $('#hot').val();
+        var tmp = $('#nhaxe_id').val();
 
 
         if(tmp > -1){
 
 
-            str_link += "&hot=" + tmp ;
+            str_link += "&nhaxe_id=" + tmp ;
 
 
-        }
-
-
-        tmp = $.trim($('#keyword').val());
-
-
-        if(tmp != ''){
-
-
-            str_link += "&keyword=" + tmp ;   
-
-
-        }
-
-
-        tmp = $('#tinh_id_start').val();
-
-
-        if(tmp > 0){
-
-
-            str_link += "&tinh_id_start=" + tmp ;
-
-
-        }
-
-
-        tmp = $('#tinh_id_end').val();
-
-
-        if(tmp > 0){
-
-
-            str_link += "&tinh_id_end=" + tmp ;
-
-
-        }
+        }     
 
 
         location.href= str_link;
 
 
     }
+  $(function() {
+
+    
 
 
-    $('#hot').change(function(){
+    $('#nhaxe_id').change(function(){
 
-
+        
         search();
 
 
@@ -725,20 +374,6 @@ $arrList = $model->getListRoute($keyword,$tinh_id_start,$tinh_id_end,$hot, $offs
 
     });
 
-
-    $('#keyword').keypress(function (e) {
-
-
-      if (e.which == 13) {
-
-
-        search();
-
-
-      }
-
-
-    });
-
+});
 
   </script>
