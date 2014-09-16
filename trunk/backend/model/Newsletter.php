@@ -17,6 +17,13 @@ class Newsletter extends Db {
             $sql .= " LIMIT $offset,$limit";
         $rs = mysql_query($sql) or die(mysql_error());
         return $rs;
+    }
+    function getListFeedbackByStatus($status=-1,$offset = -1, $limit = -1) {
+        $sql = "SELECT * FROM feedback WHERE (status = $status OR $status = -1) ";
+        if ($limit > 0 && $offset >= 0)
+            $sql .= " LIMIT $offset,$limit";
+        $rs = mysql_query($sql) or die(mysql_error());
+        return $rs;
     }    
    
 
