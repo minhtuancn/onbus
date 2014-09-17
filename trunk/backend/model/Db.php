@@ -4,17 +4,17 @@ require_once('phpmailer/class.phpmailer.php');
 define('GUSER', 'onbusvn@gmail.com');
 define('GPWD', 'onbus123');
 class db {
-
+    /*
     private $host = "localhost";   
     private $user = "onbus_onbusvn";
     private $pass = "lpt!@#lpt";
     private $db = "onbus_onbusvn";
-/*
+    */
     private $host = "localhost";   
     private $user = "root";
     private $pass = "root";
     private $db = "onbus";
-    */
+
 
     function __construct() {
 		mysql_connect($this->host, $this->user, $this->pass) or die("Can't connect to server");
