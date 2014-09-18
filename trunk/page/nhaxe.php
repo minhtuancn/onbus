@@ -1,5 +1,5 @@
 <?php 
-$arrNhaxe = $modelNhaxe->getListNhaxe("",-1,-1,-1);
+$arrNhaxe = $model->getListNhaxe("",-1,-1,-1);
 ?>
 <div class="page_profile">
             <div class="block_search_nhaxe">

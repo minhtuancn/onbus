@@ -3,8 +3,8 @@ if(!isset($_SESSION)){
   session_start();
 }
 $lang = $_SESSION['lang'];
-require_once "../backend/model/Route.php";
-$model = new Route();
+require_once "../backend/model/Home.php";
+$model = new Home();
 $type = (int) $_POST['type'];
 $vstart = (int) $_POST['vstart'];
 $arrResult = $model->getEndByStartID($vstart);

@@ -35,7 +35,15 @@ class Code extends Db {
         $sql = "UPDATE promotion_code
                     SET  code= '$code',
                     type = '$type',
-                    value  = '$value'                    
+                    code_value  = '$value',
+                    amount = $amount                    
+                    WHERE code_id = $id ";
+        mysql_query($sql) or die(mysql_error() . $sql);
+    }
+    function updateStatus($id,$status){
+        $time = time();
+        $sql = "UPDATE promotion_code
+                    SET  status = $status                                   
                     WHERE code_id = $id ";
         mysql_query($sql) or die(mysql_error() . $sql);
     }

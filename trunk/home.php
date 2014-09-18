@@ -1,47 +1,14 @@
 <?php 
 include "defined.php"; 
 
-require_once "backend/model/Ticket.php";
-$modelTicket = new Ticket;
+$arrNhaXeUyTin = $model->getListNhaxe('',1,0,8);
 
-require_once "backend/model/Tinh.php";
+$arrNhaXe = $model->getListNhaxe('',-1,-1,-1);
 
-$modelTinh = new Tinh;
+$arrNoidi = $model->getListTinh(-1,'',-1,-1, -1);
+$arrDiemDenHot = $model->getListTinh(-1,'',1,0, 9);
 
-require_once "backend/model/Nhaxe.php";
-
-$modelNhaxe = new Nhaxe;
-require_once "backend/model/Place.php";
-
-$modelPlace = new Place;
-
-require_once "backend/model/Car.php";
-
-$modelCar = new Car;
-
-require_once "backend/model/Services.php";
-
-$modelService = new Services;
-
-require_once "backend/model/Time.php";
-
-$modelTime = new Time;
-
-require_once "backend/model/Route.php";
-
-$modelRoute = new Route;
-
-require_once "backend/model/Image.php";
-
-$modelImage = new Image;
-$arrNhaXeUyTin = $modelNhaxe->getListNhaxe('',1,0,8);
-
-$arrNhaXe = $modelNhaxe->getListNhaxe('',-1,-1,-1);
-
-$arrNoidi = $modelTinh->getListTinh(-1,'',-1,-1, -1);
-$arrDiemDenHot = $modelTinh->getListTinh(-1,'',1,0, 9);
-
-$arrRoute = $modelRoute->getListRoute('',-1,-1,1, 0, 8);
+$arrRoute = $model->getListRoute('',-1,-1,1, 0, 8);
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

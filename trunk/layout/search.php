@@ -1,5 +1,5 @@
 <?php 
-$arrTinhHaveTicket = $modelTinh->getListTinhHaveTicket($vstart);
+$arrTinhHaveTicket = $model->getListTinhHaveTicket($vstart);
 if(!empty($arrTinhHaveTicket)){
 foreach ($arrTinhHaveTicket as $value) {      
     if($value['mien_id']==1){

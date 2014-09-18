@@ -1,9 +1,8 @@
 <?php 
-require_once '../backend/model/Newsletter.php';
-$model = new Newsletter;
+require_once '../backend/model/Home.php';
+$model = new Home;
 
-
-$arrMod = array("newsletter","feedback");
+$arrMod = array("newsletter","feedback",'code');
 
 $mod = isset($_POST['mod']) ? $model->processData($_POST['mod']) : "";
 

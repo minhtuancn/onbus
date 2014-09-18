@@ -10,7 +10,7 @@ if(!empty($_SESSION['bookticket'])){
         $amount+=$value['amount'];
         $arrTime[$value['ticket_id']] = $value['time'];
         $ticket_id = $value['ticket_id'];
-        $arrTicket[$ticket_id] = $modelTicket->getDetailTicket($ticket_id);
+        $arrTicket[$ticket_id] = $model->getDetailTicket($ticket_id);
         $total+=$value['total'];
     }        
 }
@@ -52,8 +52,8 @@ if(!empty($_SESSION['bookticket'])){
                             <span class="thu"><?php echo date('D',$value['date_start']); ?></span>
                         </div>
                         <div class="left detail_tuyen">
-                            <h2><?php echo $modelTinh->getTinhNameByID($value['tinh_id_start'],$lang); ?> - <?php echo $modelTinh->getTinhNameByID($value['tinh_id_end'],$lang); ?></h2>
-                            <div class="nhaxe"><i class="icon_cart"></i> <?php echo $modelNhaxe->getNhaxeNameByID($value['nhaxe_id']); ?></div>
+                            <h2><?php echo $model->getTinhNameByID($value['tinh_id_start'],$lang); ?> - <?php echo $model->getTinhNameByID($value['tinh_id_end'],$lang); ?></h2>
+                            <div class="nhaxe"><i class="icon_cart"></i> <?php echo $model->getNhaxeNameByID($value['nhaxe_id']); ?></div>
                             <div class="time_move">
                                 <div class="left">{soluongve}: <?php echo $arrAmount[$value['ticket_id']]; ?></div>
                                 <span>|</span>
@@ -63,9 +63,9 @@ if(!empty($_SESSION['bookticket'])){
                         <div class="clear"></div>
                         <div title="" data-toggle="tooltip" class="left icon_start" data-original-title="Khởi hành"></div>
                         <div class="left time_diadiem">
-                            <h4><?php echo $modelTime->getTimeByID($arrTime[$value['ticket_id']]);?></h4>
-                            <p><span><?php echo $modelPlace->getPlaceNameByID($value['place_id_start'],$lang); ?> (<?php echo $modelPlace->getAddressByID($value['place_id_start'],$lang); ?>)</span>
-                                <a href="javascript:;" class="right" onclick="return loadmap('<?php echo $modelPlace->getAddressByID($value['place_id_start'],'vi'); ?>','<?php echo $modelPlace->getAddressByID($value['place_id_start'],'vi'); ?>');" data-target="#mymap" data-toggle="modal">{xemthongtin}</a></p>
+                            <h4><?php echo $model->getTimeByID($arrTime[$value['ticket_id']]);?></h4>
+                            <p><span><?php echo $model->getPlaceNameByID($value['place_id_start'],$lang); ?> (<?php echo $model->getAddressByID($value['place_id_start'],$lang); ?>)</span>
+                                <a href="javascript:;" class="right" onclick="return loadmap('<?php echo $model->getAddressByID($value['place_id_start'],'vi'); ?>','<?php echo $model->getAddressByID($value['place_id_start'],'vi'); ?>');" data-target="#mymap" data-toggle="modal">{xemthongtin}</a></p>
                         </div>
                         <div class="clear"></div>
                         <div title="" data-toggle="tooltip" class="left icon_end" data-original-title="Điểm đến"></div>
@@ -75,7 +75,7 @@ if(!empty($_SESSION['bookticket'])){
                             $duration = $value['duration']; 
                             $duration = str_replace("'", "", $duration);
                             $arrTmp = explode("h",$duration);
-                            $arrTmp_start = explode(':',$modelTime->getTimeByID($arrTime[$value['ticket_id']]));
+                            $arrTmp_start = explode(':',$model->getTimeByID($arrTime[$value['ticket_id']]));
                             $h_end = $arrTmp[0] + $arrTmp_start[0];
                             $h_end = ($h_end > 24) ? (30-24) : $h_end;
                             
@@ -88,8 +88,8 @@ if(!empty($_SESSION['bookticket'])){
                             $h_end = str_pad($h_end, 2, "0", STR_PAD_LEFT);                             
                             ?>
                             <h4><?php echo $h_end?>:<?php echo $m_end; ?></h4>
-                            <p><span><?php echo $modelPlace->getPlaceNameByID($value['place_id_end'],$lang); ?> (<?php echo $modelPlace->getAddressByID($value['place_id_end'],$lang); ?>)</span>
-                            <a href="javascript:;" class="right" onclick="return loadmap('<?php echo $modelPlace->getAddressByID($value['place_id_end'],'vi'); ?>','<?php echo $modelPlace->getAddressByID($value['place_id_end'],'vi'); ?>');" data-toggle="modal" data-target="#mymap">{xemthongtin}</a>
+                            <p><span><?php echo $model->getPlaceNameByID($value['place_id_end'],$lang); ?> (<?php echo $model->getAddressByID($value['place_id_end'],$lang); ?>)</span>
+                            <a href="javascript:;" class="right" onclick="return loadmap('<?php echo $model->getAddressByID($value['place_id_end'],'vi'); ?>','<?php echo $model->getAddressByID($value['place_id_end'],'vi'); ?>');" data-toggle="modal" data-target="#mymap">{xemthongtin}</a>
                         </p>
                         </div>
                         <div class="line_center"></div>

@@ -1,10 +1,7 @@
 <?php
-require_once 'backend/model/Ticket.php';
-$model = new Ticket;
-require_once 'backend/model/Tinh.php';
-$modelTinh = new Tinh;
-require_once 'backend/model/Nhaxe.php';
-$modelNhaxe = new Nhaxe;
+require_once 'backend/model/Home.php';
+$model = new Home;
+
 function checkCat($uri) {    
     $p_detail = '#details/[a-z0-9\-]+\-\d+.html#';
     $p_tag = '#/tag/[a-z\-]+.html#';
@@ -21,8 +18,7 @@ function checkCat($uri) {
     $p_promotion =  '#/promotion+.html#';
     $p_tour =  '#/tour-and-travel+.html#';
     $p_hot_detail =  '#/diem-den-[a-z-\]+.html#';
-
-    //ve-xe-khach-di-tu-ho-chi-minh-den-ba-ria-vung-tau-ngay-29-08-2014-den-29-09-2014-2-1t3l19.html
+        
     $p_search = "#/ve-xe-khach-[a-z\-]+.html#";
 
     $mod = "home";
@@ -138,18 +134,18 @@ switch ($mod) {
         break;   
     case "hot-detail":
         $tinh_name_safe_vi = str_replace("diem-den-", "", $tmp_uri[2]);
-        $tinh_id = $modelTinh->getIDByTinhNameSafe($tinh_name_safe_vi);
+        $tinh_id = $model->getIDByTinhNameSafe($tinh_name_safe_vi);
         $sql = "SELECT * FROM page WHERE tinh_id = $tinh_id";
         $rs = mysql_query($sql);
         $row_hot = mysql_fetch_assoc($rs);
         break;
     case "detail-nhaxe":
         $nhaxe_name_safe_vi = str_replace("chi-tiet-nha-xe-", "", $tmp_uri[2]);
-        $nhaxe_id = (int) $modelNhaxe->getIDByNameSafe($nhaxe_name_safe_vi);                
-        $row_nhaxe = $modelNhaxe->getDetailNhaxe($nhaxe_id);        
+        $nhaxe_id = (int) $model->getIDByNameSafe($nhaxe_name_safe_vi);                
+        $row_nhaxe = $model->getDetailNhaxe($nhaxe_id);        
         break;    
     case "page":                
-        $rs_article = $modelHome->getDetailPage($page_id);         
+        $rs_article = $model->getDetailPage($page_id);         
         $arrDetailPage = mysql_fetch_assoc($rs_article); 
         $title = $arrDetailPage["title"];
         $metaD = $arrDetailPage["meta_d"];

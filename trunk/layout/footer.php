@@ -35,10 +35,10 @@ Share with us your journey, we will help you choose your ticket with best price 
         <div class="medBox">
             <h4 class="smallBoxHeader">{tuyenduongphobien}</h4>
             <ul>
-                <?php foreach ($arrRoute['data'] as $key => $value) {
-                    //ve-xe-khach-di-tu-ho-chi-minh-den-ba-ria-vung-tau-ngay-30-09-2014-1_1t3.html
+                
+                <?php foreach ($arrRoute['data'] as $key => $value) {                    
                 ?>
-                    <li><a href="<?php echo $lang;?>/ve-xe-khach-di-tu-<?php echo $modelTinh->getTinhNameSafeByID($value['tinh_id_start']);?>-den-<?php echo $modelTinh->getTinhNameSafeByID($value['tinh_id_end'])?>-ngay-<?php echo date('d-m-Y',strtotime('tomorrow')); ?>-1_<?php echo $value['tinh_id_start'];?>t<?php echo $value['tinh_id_end']?>.html"><?php echo str_replace("-","→",$value['route_name_'.$lang]); ?></a></li>
+                    <li><a href="<?php echo $lang;?>/ve-xe-khach-di-tu-<?php echo $model->getTinhNameSafeByID($value['tinh_id_start']);?>-den-<?php echo $model->getTinhNameSafeByID($value['tinh_id_end'])?>-ngay-<?php echo date('d-m-Y',strtotime('tomorrow')); ?>-1_<?php echo $value['tinh_id_start'];?>t<?php echo $value['tinh_id_end']?>.html"><?php echo str_replace("-","→",$value['route_name_'.$lang]); ?></a></li>
                 <?php } ?>                
           </ul>
         </div>
