@@ -4,38 +4,17 @@ if(!isset($_SESSION)){
     session_start();
 }
 $lang = $_SESSION['lang'];
-require_once "../backend/model/Ticket.php";
-$modelTicket = new Ticket();
+require_once "../backend/model/Home.php";
 
-require_once "../backend/model/Nhaxe.php";
-
-$modelNhaxe = new Nhaxe;
-require_once "../backend/model/Place.php";
-
-$modelPlace = new Place;
-
-require_once "../backend/model/Car.php";
-
-$modelCar = new Car;
-
-require_once "../backend/model/Services.php";
-
-$modelService = new Services;
-
-require_once "../backend/model/Time.php";
-
-$modelTime = new Time;
-require_once "../backend/model/Route.php";
-
-$modelRoute = new Route;
+$model = new Home;
 
 if(isset($_POST['ticket_id'])){
     $ticket_id = (int) $_POST['ticket_id'];
 }
 $tab = (int) $_POST['tab'];
-$arrDetail = $modelTicket->getDetailTicket($ticket_id);
-$routeDetail = $modelRoute->detailRoute($arrDetail['tinh_id_start'],$arrDetail['tinh_id_end']);
- $arrServiceTicket = $modelTicket->getServiceTicket($ticket_id);  
+$arrDetail = $model->getDetailTicket($ticket_id);
+$routeDetail = $model->detailRoute($arrDetail['tinh_id_start'],$arrDetail['tinh_id_end']);
+ $arrServiceTicket = $model->getServiceTicket($ticket_id);  
 ?>
 <div class="modal-dialog">
     <?php //var_dump($arrDetail);?>
@@ -68,27 +47,27 @@ $routeDetail = $modelRoute->detailRoute($arrDetail['tinh_id_start'],$arrDetail['
                             elseif($ser==4) $classIcon = "icon-chan";
                             elseif($ser==5) $classIcon = "icon-wc";
                         ?>
-                        <li><i  data-toggle="tooltip" title="<?php echo $modelService->getServiceNameByID($ser,$lang); ?>" class="<?php echo $classIcon; ?>"></i></li>
+                        <li><i  data-toggle="tooltip" title="<?php echo $model->getServiceNameByID($ser,$lang); ?>" class="<?php echo $classIcon; ?>"></i></li>
                         <?php }}?>
                 </ul>
                 <h1><?php echo $routeDetail['route_name_'.$lang]; ?></h1>
                 <div class="clear"></div>
             </div>
             <div class="abc-dkh"><b><?php echo ($lang=="vi") ? "Điểm khởi hành" : "Depart"; ?>:</b>
-                <?php echo $modelPlace->getPlaceNameByID($arrDetail['place_id_start'],$lang); ?> (<?php echo $modelPlace->getAddressByID($arrDetail['place_id_start'],$lang); ?>)<a href="#" class="right">(<?php echo ($lang=="vi") ? "Xem bản đồ" : "View on map"; ?>)</a></div>
+                <?php echo $model->getPlaceNameByID($arrDetail['place_id_start'],$lang); ?> (<?php echo $model->getAddressByID($arrDetail['place_id_start'],$lang); ?>)<a href="#" class="right">(<?php echo ($lang=="vi") ? "Xem bản đồ" : "View on map"; ?>)</a></div>
             <div class="abc-dkh"><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?>:</b>
-                <?php echo $modelPlace->getPlaceNameByID($arrDetail['place_id_end'],$lang); ?> (<?php echo $modelPlace->getAddressByID($arrDetail['place_id_end'],$lang); ?>)<a href="#" class="right">(<?php echo ($lang=="vi") ? "Xem bản đồ" : "View on map"; ?>)</a></div>
+                <?php echo $model->getPlaceNameByID($arrDetail['place_id_end'],$lang); ?> (<?php echo $model->getAddressByID($arrDetail['place_id_end'],$lang); ?>)<a href="#" class="right">(<?php echo ($lang=="vi") ? "Xem bản đồ" : "View on map"; ?>)</a></div>
             <div class="type-ticket" id="time_popup_<?php echo $arrDetail['ticket_id']; ?>">
                 <p><?php echo ($lang=="vi") ? "Chọn thời gian khởi hành trước khi mua vé" : "Choose your departure time before booking tickets"; ?>*</p>
                 <ul>
-                    <?php $arrTimeTicket = $modelTicket->getTimeTicket($arrDetail['ticket_id']); 
+                    <?php $arrTimeTicket = $model->getTimeTicket($arrDetail['ticket_id']); 
 
                     ?>
                     <?php if(!empty($arrTimeTicket)) { 
                         foreach ($arrTimeTicket as $time) {                                                   
                         
                     ?>
-                    <li><a href="javascript:void(0)" data-value="<?php echo $time; ?>"><?php echo $modelTime->getTimeByID($time);?></a></li>
+                    <li><a href="javascript:void(0)" data-value="<?php echo $time; ?>"><?php echo $model->getTimeByID($time);?></a></li>
                     <?php } }?>
                 </ul>
                 <div class="clear"></div>
@@ -107,7 +86,7 @@ $routeDetail = $modelRoute->detailRoute($arrDetail['tinh_id_start'],$arrDetail['
             <div class="right abc-sche">
                 <h1><?php echo ($lang=="vi") ? "GIÁ" : "PRICE"; ?>:</h1>
                 <div class="abc-price">
-                    <span><?php echo $modelTicket->cal($arrDetail['price'],$_SESSION['onbustigia']); ?><span><?php echo ($tigia == 1) ? "VNĐ" : "USD"; ?></span></span>
+                    <span><?php echo $model->cal($arrDetail['price'],$_SESSION['onbustigia']); ?><span><?php echo ($tigia == 1) ? "VNĐ" : "USD"; ?></span></span>
                 </div>
             </div>
         </div>

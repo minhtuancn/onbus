@@ -2,7 +2,7 @@
     <h1>{topdiemden}</h1>
     <ul>
         <?php foreach ($arrDiemDenHot['data'] as $key => $value) {
-        	$check = $modelTinh->checkHavePage($value['tinh_id']);
+        	$check = $model->checkHavePage($value['tinh_id']);
         	if($check==true){
         		$link_hot = $lang."/"."diem-den-".$value['tinh_name_safe_vi'].".html";
         	}else{

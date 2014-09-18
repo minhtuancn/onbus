@@ -73,9 +73,9 @@ $arrList = $model->getListCode($status,$offset, $limit);
 
                         <option value="-1">Tất cả</option>  
 
-                        <option value="1" <?php echo ($status==1) ? "selected" : ""; ?>>Chua duyet</option>   
+                        <option value="1" <?php echo ($status==1) ? "selected" : ""; ?>>Chưa duyệt</option>   
 
-                        <option value="2" <?php echo ($status==2) ? "selected" : ""; ?>>Da duyet</option>        
+                        <option value="2" <?php echo ($status==2) ? "selected" : ""; ?>>Đã duyệt</option>        
 
                     </select>                   
 
@@ -93,7 +93,9 @@ $arrList = $model->getListCode($status,$offset, $limit);
 
                         <th width="300">Code</th>
                         <th width="140">Type</th>
-                        <th width="140">Value</th>                                              
+                        <th width="140">Amount</th>
+                        <th width="140">Value</th>
+                        <th width="1%">Status</th>                                              
 
                         <th style="width: 40px">Action</th>
 
@@ -113,18 +115,33 @@ $arrList = $model->getListCode($status,$offset, $limit);
 
                     <tr>
 
-                        <td><?php echo $i; ?></td>                        
+                        <td align="center"><?php echo $i; ?></td>                        
 
                         <td>
                         <?php echo $row['code']; ?>
                        </td>
                             
                         <td>
-                        <?php echo $row['type']; ?>
+                        <?php echo $row['type']==1 ? "Giảm giá" : ($row['type']==2 ? "Trừ tiền" : "Quà tặng"); ?>
                         </td>
                         <td>
+                        <?php echo $row['amount']; ?>
+                        </td>
+                                                              
+                        <td>
                         <?php echo $row['code_value']; ?>
-                        </td>                                       
+                        </td>    
+                        <td align="center">
+                        <?php if($row['status']==1){ ?>
+                            <img src="<?php echo STATIC_URL; ?>/img/ok.png" title="Đã kích hoạt" alt="Đã kích hoạt" class="active" 
+                            data-id="<?php echo $row['code_id']; ?>" data-status="2" style="cursor:pointer"
+                            />
+                        <?php }else{ ?>
+                            <img src="<?php echo STATIC_URL; ?>/img/error.png" title="Chưa kích hoạt" alt="Chưa kích hoạt" class="active" 
+                            data-id="<?php echo $row['code_id']; ?>" data-status="1" style="cursor:pointer"
+                            />
+                        <?php } ?>
+                        </td>                                    
 
                         <td style="white-space:nowrap">                            
 
@@ -134,7 +151,7 @@ $arrList = $model->getListCode($status,$offset, $limit);
 
                             </a>
 
-                            <a href="javascript:;" alias="<?php echo $row['title']; ?>" id="<?php echo $row['code_id']; ?>" mod="promotion_code" class="link_delete" >    
+                            <a href="javascript:;" alias="<?php echo $row['code']; ?>" id="<?php echo $row['code_id']; ?>" mod="promotion_code" class="link_delete" >    
 
                                 <i class="fa fa-fw fa-trash-o"></i>
 
@@ -160,23 +177,7 @@ $arrList = $model->getListCode($status,$offset, $limit);
 
             </div><!-- /.box-body -->
 
-            <div class="box-footer clearfix">
-
-                <!--
-
-                <ul class="pagination pagination-sm no-margin pull-right">
-
-                    <li><a href="#">«</a></li>
-
-                    <li><a href="#">1</a></li>
-
-                    <li><a href="#">2</a></li>
-
-                    <li><a href="#">3</a></li>
-
-                    <li><a href="#">»</a></li>
-
-                </ul>-->
+            <div class="box-footer clearfix">           
 
                 <?php echo $model->phantrang($page, PAGE_SHOW, $total_page, $link); ?>
 
@@ -189,3 +190,32 @@ $arrList = $model->getListCode($status,$offset, $limit);
    
 
 </div>
+<script type="text/javascript">
+$(function(){
+    $('img.active').click(function(){
+        var obj = $(this);
+        var status = obj.attr('data-status');
+        var str_confirm = (status==2) ? "Bạn có chắc chắn bỏ kích hoạt ?" : "Bạn có chắc chắn kích hoạt ?";
+        var src_img = (status==2) ? "<?php echo STATIC_URL; ?>/img/error.png" : "<?php echo STATIC_URL; ?>/img/ok.png";
+        if(confirm(str_confirm)){
+            $.ajax({
+                url: "ajax/process.php",
+                type: "POST",
+                async: true,
+                data: {
+                    'code_id' : obj.attr('data-id'),
+                    'status' : status,
+                    'mod' : 'code',
+                    'action' : 'active'
+                },
+                success: function(data){                    
+                    obj.attr('src',src_img);
+                    alert(data);                    
+                }
+            });
+        }else{
+            return false;
+        }
+    });
+});
+</script>

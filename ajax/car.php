@@ -3,8 +3,8 @@ if(!isset($_SESSION)){
 	session_start();
 }
 $lang = $_SESSION['lang'];
-require_once "../backend/model/Nhaxe.php";
-$model = new Nhaxe();
+require_once "../backend/model/Home.php";
+$model = new Home();
 $vend = (int) $_POST['vend'];
 $vstart = (int) $_POST['vstart'];
 if(isset($_POST['dstart'])){

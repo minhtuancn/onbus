@@ -1,9 +1,5 @@
 <?php 
-
-require_once "backend/model/Question.php";
-
-$modelQuestion = new Question;
-$arrQuestion = $modelQuestion->getListQuestion();
+$arrQuestion = $model->getListQuestion();
 
 ?>
 

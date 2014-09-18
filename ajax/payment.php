@@ -1,8 +1,8 @@
 <?php 
 session_start();
 include "../defined.php";
-require_once "../backend/model/Db.php";
-$model = new Db();
+require_once "../backend/model/Home.php";
+$model = new Home();
 
 $fullname = $model->processData($_POST['fullname']);
 $email = $model->processData($_POST['email']);

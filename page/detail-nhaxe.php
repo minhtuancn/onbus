@@ -1,7 +1,5 @@
 <?php 
-require_once "backend/model/Image.php";
-$modelImage = new Image;
-$arrImage = $modelImage->getListImageByNhaxe($nhaxe_id,-1,-1);
+$arrImage = $model->getListImageByNhaxe($nhaxe_id,-1,-1);
 $row = mysql_fetch_assoc($arrImage);
 ?>
 <div class="detail-nhaxe">

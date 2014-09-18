@@ -4,30 +4,9 @@ if(!isset($_SESSION)){
     session_start();
 }
 $lang= $_SESSION['lang'];
-require_once "../backend/model/Ticket.php";
-$modelTicket = new Ticket();
+require_once "../backend/model/Home.php";
+$model = new Home();
 
-require_once "../backend/model/Nhaxe.php";
-
-$modelNhaxe = new Nhaxe;
-require_once "../backend/model/Place.php";
-
-$modelPlace = new Place;
-
-require_once "../backend/model/Car.php";
-
-$modelCar = new Car;
-
-require_once "../backend/model/Services.php";
-
-$modelService = new Services;
-
-require_once "../backend/model/Time.php";
-
-$modelTime = new Time;
-require_once "../backend/model/Image.php";
-
-$modelImage = new Image;
 $vstart = $vend = $dstart = $dend = -1;
 $car = $service = ""; 
 $page_show = 5;
@@ -47,42 +26,42 @@ if(isset($_POST['vend'])){
     $link.="&vend=".$vend;
 }
 if(isset($_POST['car']) && trim($_POST['car']!="") && trim($_POST['car']!="Chọn nhà xe")){
-    $car = $modelTicket->processData($_POST['car']);
+    $car = $model->processData($_POST['car']);
     $link.="&car=".$car;
     $arrCarSearch = explode(',',$car);
 }
 if(isset($_POST['service']) && trim($_POST['service']!="")){
-    $service = $modelTicket->processData($_POST['service']);
+    $service = $model->processData($_POST['service']);
     $link.="&service=".rtrim($service,",");
     $arrServiceSearch = explode(',',rtrim($service,","));
 }
 if(isset($_POST['dstart'])){
-    $dstart = $modelTicket->processData($_POST['dstart']);
+    $dstart = $model->processData($_POST['dstart']);
     $link.="&dstart=".$dstart;
     $dstart = strtotime($dstart);
 }
 if(isset($_POST['dend'])){
-    $dend = $modelTicket->processData($_POST['dend']);
+    $dend = $model->processData($_POST['dend']);
     $link.="&dend=".$dend;
     $dend = strtotime($dend);
 }
 $tab = (int) $_POST['tab'];
 if($tab==1){
-$arrTicket_start_total = $modelTicket->getListTicketFE($car,$vstart,$vend,$dstart,$service,-1,-1);
+$arrTicket_start_total = $model->getListTicketFE($car,$vstart,$vend,$dstart,$service,-1,-1);
 $total_page = ceil($arrTicket_start_total['total'] / $limit);
-$arrTicket_end = $modelTicket->getListTicketFE($car,$vstart,$vend,$dstart,$service,$offset,$limit);
+$arrTicket_end = $model->getListTicketFE($car,$vstart,$vend,$dstart,$service,$offset,$limit);
 }else{
-    $arrTicket_end_total = $modelTicket->getListTicketFE($car,$vend,$vstart,$dend,$service,-1,-1);
+    $arrTicket_end_total = $model->getListTicketFE($car,$vend,$vstart,$dend,$service,-1,-1);
     $total_page = ceil($arrTicket_end_total['total'] / $limit);
-    $arrTicket_end = $modelTicket->getListTicketFE($car,$vend,$vstart,$dend,$service,$offset,$limit);
+    $arrTicket_end = $model->getListTicketFE($car,$vend,$vstart,$dend,$service,$offset,$limit);
 }
 ?>
 
 <?php if(!empty($arrTicket_end['data'])){ 
     foreach($arrTicket_end['data']  as $ticket){
-        $arrServiceTicket = $modelTicket->getServiceTicket($ticket['ticket_id']);                                 
-         $arrTimeTicket = $modelTicket->getTimeTicket($ticket['ticket_id']);
-         $arrDetailNhaxe = $modelNhaxe->getDetailNhaxe($ticket['nhaxe_id']);                                 
+        $arrServiceTicket = $model->getServiceTicket($ticket['ticket_id']);                                 
+         $arrTimeTicket = $model->getTimeTicket($ticket['ticket_id']);
+         $arrDetailNhaxe = $model->getDetailNhaxe($ticket['nhaxe_id']);                                 
     ?>
     <div class="items">
     <div class=" infor-tuyen-search">
@@ -91,7 +70,7 @@ $arrTicket_end = $modelTicket->getListTicketFE($car,$vstart,$vend,$dstart,$servi
                 <div data-toggle="tooltip" title="Click để xem hình" class="wrap-slider">
                 <div class="slider_nx">
                     <div class="slide"><a href="<?php echo $arrDetailNhaxe['image_url']?>" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo $arrDetailNhaxe['image_url']?>" /></a></div>
-                    <?php $arrRsImg = $modelImage->getListImageByNhaxe($ticket['nhaxe_id'],-1,-1);
+                    <?php $arrRsImg = $model->getListImageByNhaxe($ticket['nhaxe_id'],-1,-1);
                                             if(mysql_num_rows($arrRsImg) >0) {
                                             while($row = mysql_fetch_assoc($arrRsImg)){    
                                             ?>
@@ -113,7 +92,7 @@ $arrTicket_end = $modelTicket->getListTicketFE($car,$vstart,$vend,$dstart,$servi
                             elseif($ser==4) $classIcon = "icon-chan";
                             elseif($ser==5) $classIcon = "icon-wc";
                         ?>
-                        <li><i  data-toggle="tooltip" title="<?php echo $modelService->getServiceNameByID($ser,$lang); ?>" class="<?php echo $classIcon; ?>"></i></li>
+                        <li><i  data-toggle="tooltip" title="<?php echo $model->getServiceNameByID($ser,$lang); ?>" class="<?php echo $classIcon; ?>"></i></li>
                         <?php }}?> 
                 </ul>
                 <div class="right rating">
@@ -135,8 +114,8 @@ $arrTicket_end = $modelTicket->getListTicketFE($car,$vstart,$vend,$dstart,$servi
                     </li>                                            
                 </ul>
                 <div class="clear"></div>
-                <p><b><?php echo ($lang=="vi") ? "Điểm khởi hành" : "Depart"; ?>:</b><?php echo $modelPlace->getPlaceNameByID($ticket['place_id_start'],$lang); ?> (<?php echo $modelPlace->getAddressByID($ticket['place_id_start'],$lang); ?>)<?php echo $modelPlace->getPlaceNameByID($ticket['place_id_end'],$lang); ?> ()</p>
-                <p><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?>:</b><?php echo $modelPlace->getPlaceNameByID($ticket['place_id_end'],$lang); ?> (<?php echo $modelPlace->getAddressByID($ticket['place_id_end'],$lang); ?>)</p>
+                <p><b><?php echo ($lang=="vi") ? "Điểm khởi hành" : "Depart"; ?>:</b><?php echo $model->getPlaceNameByID($ticket['place_id_start'],$lang); ?> (<?php echo $model->getAddressByID($ticket['place_id_start'],$lang); ?>)<?php echo $model->getPlaceNameByID($ticket['place_id_end'],$lang); ?> ()</p>
+                <p><b><?php echo ($lang=="vi") ? "Điểm đến" : "Arrive"; ?>:</b><?php echo $model->getPlaceNameByID($ticket['place_id_end'],$lang); ?> (<?php echo $model->getAddressByID($ticket['place_id_end'],$lang); ?>)</p>
                 <a href="#" class="right show_map" data-url-map="https://dl.dropboxusercontent.com/u/43486987/Hoang/HTML/<?php echo STATIC_URL; ?>/images/map.jpg" data-toggle="modal" data-target="">
                     <?php echo $lang=="vi" ? "Xem lộ trình" : "Route details"?></a>
                 <div class="type-ticket" id="time_<?php echo $ticket['ticket_id']; ?>">
@@ -160,8 +139,8 @@ $arrTicket_end = $modelTicket->getListTicketFE($car,$vstart,$vend,$dstart,$servi
     <div class=" x-right">
         <div class="book-btn">
             <div class="d-price">
-                <input type="hidden" id="price_<?php echo $ticket['ticket_id']; ?>" value="<?php echo $_SESSION['onbustigia'] == 2 ? $modelTicket->cal($ticket['price'],$_SESSION['onbustigia']) : $ticket['price']; ?>"/>
-                <span><?php echo $modelTicket->cal($ticket['price'],$_SESSION['onbustigia']); ?><span><?php echo ($_SESSION['onbustigia'] == 1) ? "VNĐ" : "USD"; ?></span></span>
+                <input type="hidden" id="price_<?php echo $ticket['ticket_id']; ?>" value="<?php echo $_SESSION['onbustigia'] == 2 ? $model->cal($ticket['price'],$_SESSION['onbustigia']) : $ticket['price']; ?>"/>
+                <span><?php echo $model->cal($ticket['price'],$_SESSION['onbustigia']); ?><span><?php echo ($_SESSION['onbustigia'] == 1) ? "VNĐ" : "USD"; ?></span></span>
             </div>
             <div class="clear"></div>
             <a href="javascript:void(0)" data-value="<?php echo $ticket['ticket_id']; ?>" data-toggle="modal" data-target="#popup_book_ticket" class="btn-muave"><?php echo $lang=="vi" ? "Đặt vé" : "Book now"; ?></a>
@@ -171,7 +150,7 @@ $arrTicket_end = $modelTicket->getListTicketFE($car,$vstart,$vend,$dstart,$servi
     <div class="clear"></div>
 </div>  <!--items-->  
 <?php } 
-echo $modelTicket->pagination($page,$page_show,$total_page,$link,2);
+echo $model->pagination($page,$page_show,$total_page,$link,2);
  } ?>  
 <script type="text/javascript">
 $('.slider_nx').bxSlider({

@@ -40,28 +40,29 @@ if(isset($_GET['code_id'])){
         <div class="box-body">            
             <div class="form-group">
 
+                    <label>CODE <span class="required"> ( * ) </span></label>
+
+                    <input type="text" name="code" class="form-control required" value="<?php echo isset($detail['code'])  ? $detail['code'] : "" ?>">
+
+            </div>    
+            <div class="form-group">
+
                 <label>Type <span class="required"> ( * ) </span></label>
 
                 <select class="form-control required" name="type" id="type">
 
                     <option value="0">---chọn---</option>
 
-                    <option value="1" <?php echo ($detail['type']==1) ? "selected" : ""; ?>>Giam gia</option>
+                    <option value="1" <?php echo ($detail['type']==1) ? "selected" : ""; ?>>Giảm giá</option>
 
-                    <option value="2" <?php echo ($detail['type']==2) ? "selected" : ""; ?>>Tru tien</option>
+                    <option value="2" <?php echo ($detail['type']==2) ? "selected" : ""; ?>>Trừ tiền</option>
 
-                    <option value="3" <?php echo ($detail['type']==3) ? "selected" : ""; ?>>Qua tang</option>
+                    <option value="3" <?php echo ($detail['type']==3) ? "selected" : ""; ?>>Quà tặng</option>
 
                 </select>
 
             </div>    
-            <div class="form-group">
-
-                    <label>CODE <span class="required"> ( * ) </span></label>
-
-                    <input type="text" name="code" class="form-control required" value="<?php echo isset($detail['code'])  ? $detail['code'] : "" ?>">
-
-            </div>
+            
             <div class="form-group">
 
                 <label>Value <span class="required"> ( * ) </span></label>                        
@@ -71,12 +72,20 @@ if(isset($_GET['code_id'])){
             </div>
             <div class="form-group">
 
-                <label>Ghi chu </label>                        
+                    <label>Amount <span class="required"> ( * ) </span></label>
+
+                    <input type="text" name="amount" class="form-control required" value="<?php echo isset($detail['amount'])  ? $detail['amount'] : "" ?>">
+
+            </div>
+            <div class="form-group">
+
+                <label>Ghi chú </label>                        
 
                 <div>
-                    <p>Neu Type la "Giam gia"  thi nhap nhu VD sau : 30% </p>
-                    <p>Neu Type la "Tru tien"  thi nhap nhu VD sau : 30000 hoac 0.5 USD </p>
-                    <p>Neu Type la "Qua tang"  thi nhap nhu VD sau : Tang gau bong onbus </p>
+                    <p>Type = "Giam gia"  thì nhập Value như VD sau : <span style="color:red">30%</span> </p>
+                    <p>Type = "Trừ tiền"  thì nhập Value như VD sau : <span style="color:red">30000</span> 
+                        hoặc <span style="color:red">0.5 USD<span> </p>
+                    <p>Type = "Quà tặng"  thi nhập Value như VD sau : <span style="color:red">Tặng gấu bông onbus </span></p>
                 </div>
 
             </div>
