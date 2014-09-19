@@ -78,4 +78,9 @@ define("chongiokhoihanh","Chọn giờ khởi hành");
 define("errortime","Chọn thời gian khởi hành trước khi mua vé.");
 define("tong","Tổng");
 define("dongythanhtoan","Thanh toán");
+define("chatluongxe","Chất lượng xe");
+define("thaido","Thái độ phục vụ");
+define("dunggio","Đúng giờ");
+define("antoan","An toàn");
+
 ?>

@@ -32,61 +32,60 @@ class Home extends Db {
         $totalRow = mysql_num_rows($rs);
         $terrible = $poor = $average = $good = $excel = 0 ; 
         $total1 = $total2 = $total3 = $total4 = $diemTB = 0;
+        if($totalRow>0){
+            while($row = mysql_fetch_assoc($rs)){
+                
+                $total1 += $row['point1'];
+                $total2 += $row['point2'];
+                $total3 += $row['point3'];
+                $total4 += $row['point4'];
 
-        while($row = mysql_fetch_assoc($rs)){
-            
-            $total1 += $row['point1'];
-            $total2 += $row['point2'];
-            $total3 += $row['point3'];
-            $total4 += $row['point4'];
-
-            $totalDiem = $row['point1'] +   $row['point2'] + $row['point3'] + $row['point4'];
-            $diemTB = $totalDiem/5;
-            if($diemTB >= 1 && $diemTB < 2){
-                $terrible++;
-            }elseif($diemTB >= 2 && $diemTB < 3){
-                $poor++;
-            }elseif($diemTB >= 3 && $diemTB < 4){
-                $average++;
-            }elseif($diemTB >= 4 && $diemTB <= 4.5){
-                $good++;
-            }else{
-                $excel++;
+                $totalDiem = $row['point1'] +   $row['point2'] + $row['point3'] + $row['point4'];
+                $diemTB = $totalDiem/5;
+                if($diemTB >= 1 && $diemTB < 2){
+                    $terrible++;
+                }elseif($diemTB >= 2 && $diemTB < 3){
+                    $poor++;
+                }elseif($diemTB >= 3 && $diemTB < 4){
+                    $average++;
+                }elseif($diemTB >= 4 && $diemTB <= 4.5){
+                    $good++;
+                }else{
+                    $excel++;
+                }
             }
+            $sao1 = $total1/$totalRow;
+            $sao2 = $total2/$totalRow;
+            $sao3 = $total3/$totalRow;
+            $sao4 = $total4/$totalRow;
+            
+
+            $sao1 = $this->tinhsao(round($total1/$totalRow,1));
+            $sao2 = $this->tinhsao(round($total2/$totalRow,1));
+            $sao3 = $this->tinhsao(round($total3/$totalRow,1));
+            $sao4 = $this->tinhsao(round($total4/$totalRow,1));        
+
+            $arrReturn['terrible']['vote'] = $terrible;
+            $arrReturn['terrible']['percent'] = round($terrible*100/$totalRow);
+
+            $arrReturn['poor']['vote'] = $poor;
+            $arrReturn['poor']['percent'] = round($poor*100/$totalRow);
+
+            $arrReturn['average']['vote'] = $average;
+            $arrReturn['average']['percent'] = round($average*100/$totalRow);
+
+            $arrReturn['good']['vote'] = $good;
+            $arrReturn['good']['percent'] = round($good*100/$totalRow);
+
+            $arrReturn['excel']['vote'] = $excel;
+            $arrReturn['excel']['percent'] = round($excel*100/$totalRow);
+            $arrReturn['sao'][1] = $sao1;
+            $arrReturn['sao'][2] = $sao2;
+            $arrReturn['sao'][3] = $sao3;
+            $arrReturn['sao'][4] = $sao4;
+
+            $arrReturn['total'] = $totalRow;
         }
-        $sao1 = $total1/$totalRow;
-        $sao2 = $total2/$totalRow;
-        $sao3 = $total3/$totalRow;
-        $sao4 = $total4/$totalRow;
-        $sao5 = $total5/$totalRow;
-
-        $sao1 = $this->tinhsao(round($total1/$totalRow,1));
-        $sao2 = $this->tinhsao(round($total2/$totalRow,1));
-        $sao3 = $this->tinhsao(round($total3/$totalRow,1));
-        $sao4 = $this->tinhsao(round($total4/$totalRow,1));
-        $sao5 = $this->tinhsao(round($total5/$totalRow,1));
-
-        $arrReturn['terrible']['vote'] = $terrible;
-        $arrReturn['terrible']['percent'] = round($terrible*100/$totalRow);
-
-        $arrReturn['poor']['vote'] = $poor;
-        $arrReturn['poor']['percent'] = round($poor*100/$totalRow);
-
-        $arrReturn['average']['vote'] = $average;
-        $arrReturn['average']['percent'] = round($average*100/$totalRow);
-
-        $arrReturn['good']['vote'] = $good;
-        $arrReturn['good']['percent'] = round($good*100/$totalRow);
-
-        $arrReturn['excel']['vote'] = $excel;
-        $arrReturn['excel']['percent'] = round($excel*100/$totalRow);
-        $arrReturn['sao'][1] = $sao1;
-        $arrReturn['sao'][2] = $sao2;
-        $arrReturn['sao'][3] = $sao3;
-        $arrReturn['sao'][4] = $sao4;
-        $arrReturn['sao'][5] = $sao5;
-
-        $arrReturn['total'] = $totalRow;
 
         return $arrReturn;
     }

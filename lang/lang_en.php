@@ -73,9 +73,14 @@ define("whichevermethod","Whichever method you choose, you can rest assured that
 define("youmustclick","You must click here to indicate that you have read and accepted the fare Rule and Purchase Conditions");
 define("chonsoluongve","Please choose the number of passengers from the drop down list below.");
 define("datve","Book now");
-define("chonvechieuconlai","Đặt vé");
-define("chongiokhoihanh","Chọn giờ khởi hành");
+define("chonvechieuconlai","Dat ve chieu con lai");
+define("chongiokhoihanh","Select depart time");
 define("errortime","Choose your departure time before booking tickets.");
 define("tong","Total");
 define("dongythanhtoan","Submit Payment");
+
+define("chatluongxe","Bus quality");
+define("thaido","Staff behavious");
+define("dunggio","Punctuality");
+define("antoan","Safety");
 ?>
