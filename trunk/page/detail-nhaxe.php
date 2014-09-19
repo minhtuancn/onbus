@@ -38,8 +38,11 @@ $row = mysql_fetch_assoc($arrImage);
                 </ul>
                 <div class="tab-content">
                   <div class="tab-pane fade in active" id="danhgia">
+                    <?php $arrRating = $model->rating($nhaxe_id);
+                    $arrDiem = array(0,1,2,3,4,5);                
+                    ?>
                   	<div class="left col_review">
-                    	<h3>3,211 people have reviewed this hotel</h3>
+                    	<h3><?php echo number_format($arrRating['total']); ?> people have reviewed this bus operator</h3>
                         <div class="content wrap trip_type_layout">
                         	<div class="composite">
                                 <div class="colTitle">Traveler rating</div>
@@ -48,66 +51,39 @@ $row = mysql_fetch_assoc($arrImage);
                                             <span class="rdoSet">
                                                 <label class=" selected" for="com1"><span class="text">Excellent</span></label>
                                             </span>
-                                            <div class="line clickable"><div class="fill" style="width:70%"></div></div>
-                                            <span class="compositeCount selected">2,676</span>
+                                            <div class="line clickable"><div class="fill" style="width:<?php echo $arrRating['excel']['percent']; ?>%"></div></div>
+                                            <span class="compositeCount selected"><?php echo number_format($arrRating['excel']['percent']); ?></span>
                                         </li>
                                         <li class="wrap">
                                             <span class="rdoSet">
                                                 <label class=" selected" for="com1"><span class="text">Very good</span></label>
                                             </span>
-                                            <div class="line clickable"><div class="fill" style="width:10%"></div></div>
-                                            <span class="compositeCount selected">2,676</span>
+                                            <div class="line clickable"><div class="fill" style="width:<?php echo $arrRating['good']['percent']; ?>%"></div></div>
+                                            <span class="compositeCount selected"><?php echo number_format($arrRating['good']['percent']); ?></span>
                                         </li>
                                         <li class="wrap">
                                             <span class="rdoSet">
                                                 <label class=" selected" for="com1"><span class="text">Average</span></label>
                                             </span>
-                                            <div class="line clickable"><div class="fill" style="width:40%"></div></div>
-                                            <span class="compositeCount selected">2,676</span>
+                                            <div class="line clickable"><div class="fill" style="width:<?php echo $arrRating['average']['percent']; ?>%"></div></div>
+                                            <span class="compositeCount selected"><?php echo number_format($arrRating['average']['percent']); ?></span>
                                         </li>
                                         <li class="wrap">
                                             <span class="rdoSet">
                                                 <label class=" selected" for="com1"><span class="text">Poor</span></label>
                                             </span>
-                                            <div class="line clickable"><div class="fill" style="width:4%"></div></div>
-                                            <span class="compositeCount selected">2,676</span>
+                                            <div class="line clickable"><div class="fill" style="width:<?php echo $arrRating['poor']['percent']; ?>%"></div></div>
+                                            <span class="compositeCount selected"><?php echo number_format($arrRating['poor']['percent']); ?></span>
                                         </li>
                                         <li class="wrap">
                                             <span class="rdoSet">
                                                 <label class=" selected" for="com1"><span class="text">Terrible</span></label>
                                             </span>
-                                            <div class="line clickable"><div class="fill" style="width:2%"></div></div>
-                                            <span class="compositeCount selected">2,676</span>
+                                            <div class="line clickable"><div class="fill" style="width:<?php echo $arrRating['terrible']['percent']; ?>%"></div></div>
+                                            <span class="compositeCount selected"><?php echo number_format($arrRating['terrible']['percent']); ?></span>
                                         </li>
                                     </ul> 
-                                </div>
-                            <!--<div class="trip_type">
-                                <div class="colTitle">See reviews for</div>
-                                <div class="segment segment1">
-                                    <div class="filter_connection_wrapper">
-                                        <div class="sprite-tt-family-active-refresh filter_selection taLnk hvrIE6 ulBlueLinks">Families</div>
-                                        <div class="value">266</div>
-                                    </div>
-                                </div>
-                                <div class="segment segment2">
-                                    <div class="filter_connection_wrapper">
-                                        <div class="sprite-tt-couples-active-refresh filter_selection taLnk hvrIE6 ulBlueLinks">Couples</div>
-                                        <div class="value">1963</div>
-                                    </div>
-                                </div>
-                                <div class="segment segment3">
-                                    <div class="filter_connection_wrapper">
-                                        <div class="sprite-tt-solo-active-refresh filter_selection taLnk hvrIE6 ulBlueLinks">Solo</div>
-                                        <div class="value">52</div>
-                                    </div>
-                                </div>
-                                <div class="segment segment4">
-                                    <div class="filter_connection_wrapper">
-                                        <div class="sprite-tt-business-active-refresh filter_selection taLnk hvrIE6 ulBlueLinks">Business</div>
-                                        <div class="value">34</div>
-                                    </div>
-                                </div>
-                        	</div>-->
+                                </div>                            
                             <div class="clear"></div>
                         </div>
                         <div class="roomTip">
@@ -118,57 +94,81 @@ $row = mysql_fetch_assoc($arrImage);
                         	<div class="colTitle">Rating summary</div>
                             <ul>
                                 <li>
-                                    <div class="name">Sleep Quality</div>
+                                    <div class="name">{chatluongxe}</div>
                                     <div class="rate sprite-rating_s rating_s">
+                                        <?php $tmp = $arrRating['sao'][1] - 0.5;
+                                            if(in_array($tmp,$arrDiem)){
+                                                $chan = $tmp;
+                                                $le = 1;
+                                            }else{
+                                                $chan=$arrRating['sao'][1];
+                                            }
+                                         ?>
+                                        <?php for($i=0;$i<$chan;$i++){ ?>
                                     	<span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
+                                        <?php } ?>
+                                        <?php if($le==1) {?>
+                                        <span style="width:9px !important"></span>
+                                        <?php } ?>
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="name">Location</div>
+                                    <div class="name">{thaido}</div>
                                     <div class="rate sprite-rating_s rating_s">
-                                    	<span></span>
+                                        <?php $tmp1 = $arrRating['sao'][2] - 0.5;
+                                            if(in_array($tmp1,$arrDiem)){
+                                                $chan1 = $tmp1;
+                                                $le1 = 1;
+                                            }else{
+                                                $chan1=$arrRating['sao'][2];
+                                            }
+                                         ?>
+                                        <?php for($i=0;$i<$chan1;$i++){ ?>
                                         <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
+                                        <?php } ?>
+                                        <?php if($le1==1) {?>
+                                        <span style="width:9px !important"></span>
+                                        <?php } ?>
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="name">Rooms</div>
+                                    <div class="name">{dunggio}</div>
                                     <div class="rate sprite-rating_s rating_s">
-                                    	<span></span>
+                                        <?php $tmp2 = $arrRating['sao'][3] - 0.5;
+                                            if(in_array($tmp2,$arrDiem)){
+                                                $chan2 = $tmp2;
+                                                $le2 = 1;
+                                            }else{
+                                                $chan2=$arrRating['sao'][3];
+                                            }
+                                         ?>
+                                        <?php for($i=0;$i<$chan2;$i++){ ?>
                                         <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
+                                        <?php } ?>
+                                        <?php if($le2==1) {?>
+                                        <span style="width:9px !important"></span>
+                                        <?php } ?>
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="name">Service</div>
+                                    <div class="name">{antoan}</div>
                                     <div class="rate sprite-rating_s rating_s">
-                                    	<span></span>
+                                        <?php $tmp3 = $arrRating['sao'][4] - 0.5;
+                                            if(in_array($tmp3,$arrDiem)){
+                                                $chan3 = $tmp3;
+                                                $le3 = 1;
+                                            }else{
+                                                $chan3=$arrRating['sao'][4];
+                                            }
+                                         ?>
+                                        <?php for($i=0;$i<$chan3;$i++){ ?>
+                                        <span></span>
+                                        <?php } ?>
+                                        <?php if($le3==1) {?>
+                                        <span style="width:9px !important"></span>
+                                        <?php } ?>
                                     </div>
-                                </li>
-                                <li>
-                                    <div class="name">Value</div>
-                                    <div class="rate sprite-rating_s rating_s">
-                                    	<span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="name">Cleanliness</div>
-                                    <div class="rate sprite-rating_s rating_s">
-                                    	<span></span>
-                                        <span></span>
-                                    </div>
-                                </li>
+                                </li>                                
                             </ul>
                         </div>
                     </div>
