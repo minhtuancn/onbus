@@ -7950,7 +7950,8 @@ p.error_time{display: none;font-style: italic;}
 	border-top:1px dashed #333;
 	margin-top:20px;
 	margin-bottom:50px;
-	text-align:center;
+	text-align:left;
+	margin-left:30px;
 	padding-top:10px;
 }
 .btn_footer_review input{

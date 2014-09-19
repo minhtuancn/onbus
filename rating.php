@@ -11,7 +11,7 @@ $error = $arrData['error'];
 $nhaxe_id = $arrData['nhaxe_id'];
 $email_id = $arrData['email_id'];
 if(isset($_POST['btnSave'])){
-        
+    
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -143,6 +143,28 @@ if(isset($_POST['btnSave'])){
         </form>
         <?php } ?>
     </div>
-    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('#btnSave').click(function(){
+                var p1 = $('input[name="question1"]:checked').val();
+                var p2 = $('input[name="question2"]:checked').val();
+                var p3 = $('input[name="question3"]:checked').val();
+                var p4 = $('input[name="question4"]:checked').val();
+                var p5 = $('input[name="question5"]:checked').val();
+                if(p1 == undefined || p2 == undefined || p3 == undefined || p4 == undefined || p5 == undefined){
+                    alert('Vui lòng đánh giá điểm đầy đủ.'); return false;
+                }
+                var title = $.trim($('#title').val());
+                var name = $.trim($('#name').val());
+                var address = $.trim($('#address').val());
+                var content = $.trim($('#content').val());
+                if(title == '' || name == '' || address == '' || content == ''){
+                    alert('Vui lòng nhập đầy đủ thông tin'); return false;
+                }
+               
+            });
+        });
+    </script>
 </body>
 </html>
