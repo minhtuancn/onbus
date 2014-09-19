@@ -5,7 +5,7 @@ class Home extends Db {
     function checkCodeRating($code){
         try{
             $email = $nhaxe_id = 0;
-            $sql = "SELECT status,email,nhaxe_id FROM email_rating WHERE code = '$code'";
+            $sql = "SELECT status,email,nhaxe_id,email_id FROM email_rating WHERE code = '$code'";
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());  
             $no = mysql_num_rows($rs);
             if($no==0){
