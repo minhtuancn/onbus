@@ -1,4 +1,5 @@
 <?php 
+ini_set('display_errors',1);
 include("backend/model/Payment.php");
 $payment = new Payment();
 $payment->setSecureSecret("198BE3F2E8C75A53F38C1C4A5B6DBA27");

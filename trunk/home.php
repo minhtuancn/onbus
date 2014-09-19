@@ -86,10 +86,9 @@ $arrRoute = $model->getListRoute('',-1,-1,1, 0, 8);
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/customAutoComplete1.0.min.js"></script>
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/jquery.customSelect.min.js"></script>
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/searchWidget1.0.min.js"></script>
-    <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/helper1.0.min.js"></script> 
-    <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/jquery.bxslider.js"></script>   
+    <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/helper1.0.min.js"></script>    
     <?php } ?>
-    
+    <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/jquery.bxslider.js"></script>
     <?php if($mod=="detail-nhaxe"){ ?>
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/jquery.slimscroll.js"></script>
     <?php } ?>

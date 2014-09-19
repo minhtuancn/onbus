@@ -168,7 +168,23 @@
 
         </li>
 
+        <li>
 
+
+
+            <a href="<?php echo BASE_URL; ?>rating&act=list">
+
+
+
+                <i class="fa fa-th"></i> <span>Đánh giá nhà xe</span> <!--<small class="badge pull-right bg-green">new</small>-->
+
+
+
+            </a>
+
+
+
+        </li>
 
         <li>
 
