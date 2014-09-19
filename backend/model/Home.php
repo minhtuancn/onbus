@@ -27,11 +27,21 @@ class Home extends Db {
     }
     function getRatingDetailOfNhaxe($nhaxe_id){
         $arrResult = array();
-        $sql = "SELECT * FROM rating_detail WHERE nhaxe_id = $nhaxe_id AND status = 1";
+        $sql = "SELECT * FROM rating_detail WHERE nhaxe_id = $nhaxe_id AND status = 1 ORDER BY detail_id DESC ";
         $rs = mysql_query($sql);
         $arrResult['total'] = mysql_num_rows($rs);
         while($row = mysql_fetch_assoc($rs)){
             $arrResult['data'][$row['detail_id']] = $row; 
+        }
+        return $arrResult;
+    }
+    function getListTroute($nhaxe_id){
+        $arrResult = array();
+        $sql = "SELECT * FROM troute WHERE nhaxe_id = $nhaxe_id AND status = 1 ORDER BY troute_id DESC LIMIT 0,15";
+        $rs = mysql_query($sql);
+        $arrResult['total'] = mysql_num_rows($rs);
+        while($row = mysql_fetch_assoc($rs)){
+            $arrResult['data'][$row['troute_id']] = $row; 
         }
         return $arrResult;
     }
@@ -98,6 +108,14 @@ class Home extends Db {
         }
 
         return $arrReturn;
+    }
+    function countStarByDetail($detail_id){
+        $sql = "SELECT * FROM rating_detail WHERE detail_id = $detail_id AND status = 1";
+        $rs = mysql_query($sql);
+        $row = mysql_fetch_assoc($rs);
+        $total = $row['point1'] + $row['point2'] + $row['point4'] + $row['point3'];
+        $sao = $this->tinhsao(round($total/4,1));
+        return $sao;
     }
     function tinhsao($val){
         if($val<5 && $val >=4.5) $val = 4.5;
@@ -520,6 +538,24 @@ class Home extends Db {
         $str.="</ul></div></div>";
         return $str;       
                             
+    }
+    function getRouteNameByID($id,$lang="vi") {
+        $sql = "SELECT route_name_vi,route_name_en FROM route WHERE route_id = $id";
+        $rs = mysql_query($sql) or die(mysql_error());
+        $row = mysql_fetch_assoc($rs);
+        return $row['route_name_'.$lang];
+    }
+    function countReviewByEmailID($email_id) {
+        $sql = "SELECT count(detail_id) as total FROM rating_detail WHERE email_id = $email_id AND status = 1";
+        $rs = mysql_query($sql) or die(mysql_error());
+        $row = mysql_fetch_assoc($rs);
+        return $row['total'];
+    }
+    function countUsefulByEmailID($email_id) {
+        $sql = "SELECT count(detail_id) as total FROM rating_detail WHERE email_id = $email_id AND status = 1 AND is_helpful = 1";
+        $rs = mysql_query($sql) or die(mysql_error());
+        $row = mysql_fetch_assoc($rs);
+        return $row['total'];
     }
     function getListNhaxeHaveTicket($vstart,$vend,$dstart){
         $arrResult = array();
