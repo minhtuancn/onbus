@@ -37,7 +37,7 @@ if(isset($_POST['btnSave'])){
         mysql_query($sql) or die(mysql_error());
         $detail_id = mysql_insert_id();
         if($detail_id > 0){
-            mysql_query("UPDATE email_rating SET status = 1 WHERE code = '$code'") or die(mysql_error());
+            mysql_query("UPDATE email_rating SET status = 2 WHERE code = '$code'") or die(mysql_error());
             $error= 4;            
         }
     } 
