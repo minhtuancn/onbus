@@ -2,6 +2,29 @@
 require_once "Db.php";
 class Home extends Db {
 
+    function checkCodeRating($code){
+        try{
+            $email = $nhaxe_id = 0;
+            $sql = "SELECT status,email,nhaxe_id FROM email_rating WHERE code = '$code'";
+            $rs = mysql_query($sql) or $this->throw_ex(mysql_error());  
+            $no = mysql_num_rows($rs);
+            if($no==0){
+                $error = 1; 
+            }else{
+                $row = mysql_fetch_assoc($rs);
+                $email = $row['email'];
+                $nhaxe_id = $row['nhaxe_id'];
+                $email_id = $row['email_id'];
+                if($row['status']==2) $error = 0; // chua danh gia
+                if($row['status'] ==1 ) $error = 2; // da danh gia
+                if($row['status'] ==0 ) $error = 3; // ma bi xoa
+            }
+            return array("error"=> $error, 'email' => $email, 'nhaxe_id' => $nhaxe_id,'email_id' => $email_id);
+        }catch(Exception $ex){            
+            $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Home','function' => 'checkCodeRating' , 'error'=>$ex->getMessage(),'sql'=>$sql);
+            $this->logError($arrLog);
+        }
+    }
     function getListNhaxe($keyword = '',$hot = -1,$offset = -1, $limit = -1) {
         try{
             $arrResult = array();
