@@ -77,6 +77,7 @@ $arrRoute = $model->getListRoute('',-1,-1,1, 0, 8);
 <!-- InstanceEndEditable --> 
 
     <!-- InstanceBeginEditable name="JS" -->
+    <?php if($mod!="detail-nhaxe") { ?>
     <?php if($lang=='vi'){?>
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/customDatePicker1.0.min.js"></script>
     <?php }else{ ?>
@@ -85,14 +86,16 @@ $arrRoute = $model->getListRoute('',-1,-1,1, 0, 8);
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/customAutoComplete1.0.min.js"></script>
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/jquery.customSelect.min.js"></script>
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/searchWidget1.0.min.js"></script>
-    <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/helper1.0.min.js"></script>    
-    <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/jquery.bxslider.js"></script>
+    <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/helper1.0.min.js"></script> 
+    <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/jquery.bxslider.js"></script>   
+    <?php } ?>
+    
     <?php if($mod=="detail-nhaxe"){ ?>
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/jquery.slimscroll.js"></script>
     <?php } ?>
     <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/common.js"></script> 
 
-    <?php if($mod!="payment") {?>   
+    <?php if(!in_array($mod, array('payment','detail-nhaxe'))) {?>   
     <script type="text/javascript">
     <?php if($mod=="home" || $mod =="search") { ?>
         var statecity = [
@@ -120,11 +123,12 @@ foreach ($arrTinhHaveTicket as $value) {
             auto: true,
             pause: 3000
           });
-          $(function () {
+          
+        });
+        $(function () {
            
             initSearchTicketWidget();           
          });
-        });
     function tripunicode(str){        
     str= str.toLowerCase();
     str= str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g,"a");

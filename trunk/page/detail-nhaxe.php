@@ -172,88 +172,31 @@ $row = mysql_fetch_assoc($arrImage);
                             </ul>
                         </div>
                     </div>
-                    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 500px;"><div class="left col_comment_review" style="overflow: hidden; width: auto; height: 500px;">
-                    	<div class="items_comment_review">
-                            <div class="col1of2">
-                                <div class="member_info">
-                                    <div class="memberOverlayLink">
-                                        <div class="avatar">
-                                        <a><img height="74" width="74" class="avatar potentialFacebookAvatar" src="http://media-cdn.tripadvisor.com/media/photo-l/01/2e/70/57/avatar030.jpg"></a>
-                                        </div>
-                                        <div class="username mo">
-                                            <span class="expand_inline scrname">marc l</span>
-                                        </div>
-                                    </div>
-                                    <div class="location">Manalapan, New Jersey</div>
-                                </div>
-                                <div class="memberBadging">
-                                <div class="totalReviewBadge no_cpu">
-                                <div class="reviewerTitle">Senior Contributor</div>
-                                <ul>
-                                    <li>
-                                        <span class="icon lazy badge_srcontributor sprite-badge_srcontributor"></span><span class="badgeText">21 reviews</span>    
-                                    </li>
-                                    <li>
-                                        <span class="icon lazy badge_hotels_2nd sprite-badge_hotels_2nd"></span><span class="badgeText">12 hotel reviews</span>    
-                                    </li>
-                                    <li>
-                                        <span class="icon lazy badge_helpful sprite-badge_helpful"></span><span class="badgeText">44 helpful votes</span>    
-                                    </li>
-                                    
-                                </ul>
-                                </div>
+                    <div class="left col_comment_review">
+                        <?php $arrDetail = $model->getRatingDetailOfNhaxe($nhaxe_id);
+                            if(!empty($arrDetail['data'])){
+                                foreach ($arrDetail['data'] as $data) {                                    
                                 
-                                </div>
-                                </div>
-                            <div class="col2of2">
-                            <div class="innerBubble">
-                            <div class="wrap">
-                            <div class="quote">
-                                <a href="#">“<span class="noQuotes">"Welcome Home" is not just a mantra</span>”</a>
-                            </div>
-                            <div class="rating reviewItemInline">
-                                <div class="rate sprite-rating_s rating_s">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                                <span class="ratingDate relativeDate" title="August 13, 2014">Reviewed 1 week ago</span>
-                            </div>
-                            <div class="entry">
-                            <p class="partial_entry">
-                            With the conclusion of our 4 th visit to the property in 2014, I can honestly say that things only get better. We arrived quite early before our room was ready, but immediately encouraged to use the facilities and dining options. The grounds were immaculate as aways. The food was wonderful and several recent tweats in the dining rooms only...
-                                <span class="partnerRvw">
-                                    <span class="taLnk hvrIE6 tr221568014 moreLink ulBlueLinks">More</span>
-                                </span>
-                            </p>
-                            </div>
-                            </div> </div> </div>
-                            <div class="clear"></div>
-                        </div>
+                        ?>
                         <div class="items_comment_review">
                             <div class="col1of2">
                                 <div class="member_info">
                                     <div class="memberOverlayLink">
                                         <div class="avatar">
-                                        <a><img height="74" width="74" class="avatar potentialFacebookAvatar" src="http://media-cdn.tripadvisor.com/media/photo-l/01/2e/70/57/avatar030.jpg"></a>
+                                        <a><img height="74" width="74" class="avatar potentialFacebookAvatar" 
+                                            src="http://media-cdn.tripadvisor.com/media/photo-l/01/2e/70/57/avatar030.jpg"></a>
                                         </div>
                                         <div class="username mo">
-                                            <span class="expand_inline scrname">marc l</span>
+                                            <span class="expand_inline scrname"><?php echo $data['name']; ?></span>
                                         </div>
                                     </div>
-                                    <div class="location">Manalapan, New Jersey</div>
+                                    <div class="location"><?php echo $data['address']; ?></div>
                                 </div>
                                 <div class="memberBadging">
-                                <div class="totalReviewBadge no_cpu">
-                                <div class="reviewerTitle">Senior Contributor</div>
-                                <ul>
+                                <div class="totalReviewBadge no_cpu">                                
+                                <ul>                                    
                                     <li>
-                                        <span class="icon lazy badge_srcontributor sprite-badge_srcontributor"></span><span class="badgeText">21 reviews</span>    
-                                    </li>
-                                    <li>
-                                        <span class="icon lazy badge_hotels_2nd sprite-badge_hotels_2nd"></span><span class="badgeText">12 hotel reviews</span>    
+                                        <span class="icon lazy badge_hotels_2nd sprite-badge_hotels_2nd"></span><span class="badgeText">12 reviews</span>    
                                     </li>
                                     <li>
                                         <span class="icon lazy badge_helpful sprite-badge_helpful"></span><span class="badgeText">44 helpful votes</span>    
@@ -268,7 +211,7 @@ $row = mysql_fetch_assoc($arrImage);
                             <div class="innerBubble">
                             <div class="wrap">
                             <div class="quote">
-                                <a href="#">“<span class="noQuotes">"Welcome Home" is not just a mantra</span>”</a>
+                                <a href="#">“<span class="noQuotes"><?php echo $data['title']; ?></span>”</a>
                             </div>
                             <div class="rating reviewItemInline">
                                 <div class="rate sprite-rating_s rating_s">
@@ -282,75 +225,20 @@ $row = mysql_fetch_assoc($arrImage);
                             </div>
                             <div class="entry">
                             <p class="partial_entry">
-                            With the conclusion of our 4 th visit to the property in 2014, I can honestly say that things only get better. We arrived quite early before our room was ready, but immediately encouraged to use the facilities and dining options. The grounds were immaculate as aways. The food was wonderful and several recent tweats in the dining rooms only...
+                            <?php echo $data['content']; ?>
+                                <!--
                                 <span class="partnerRvw">
                                     <span class="taLnk hvrIE6 tr221568014 moreLink ulBlueLinks">More</span>
                                 </span>
+                            -->
                             </p>
                             </div>
                             </div> </div> </div>
                             <div class="clear"></div>
-                        </div>
-                        <div class="items_comment_review">
-                            <div class="col1of2">
-                                <div class="member_info">
-                                    <div class="memberOverlayLink">
-                                        <div class="avatar">
-                                        <a><img height="74" width="74" class="avatar potentialFacebookAvatar" src="http://media-cdn.tripadvisor.com/media/photo-l/01/2e/70/57/avatar030.jpg"></a>
-                                        </div>
-                                        <div class="username mo">
-                                            <span class="expand_inline scrname">marc l</span>
-                                        </div>
-                                    </div>
-                                    <div class="location">Manalapan, New Jersey</div>
-                                </div>
-                                <div class="memberBadging">
-                                <div class="totalReviewBadge no_cpu">
-                                <div class="reviewerTitle">Senior Contributor</div>
-                                <ul>
-                                    <li>
-                                        <span class="icon lazy badge_srcontributor sprite-badge_srcontributor"></span><span class="badgeText">21 reviews</span>    
-                                    </li>
-                                    <li>
-                                        <span class="icon lazy badge_hotels_2nd sprite-badge_hotels_2nd"></span><span class="badgeText">12 hotel reviews</span>    
-                                    </li>
-                                    <li>
-                                        <span class="icon lazy badge_helpful sprite-badge_helpful"></span><span class="badgeText">44 helpful votes</span>    
-                                    </li>
-                                    
-                                </ul>
-                                </div>
-                                
-                                </div>
-                                </div>
-                            <div class="col2of2">
-                            <div class="innerBubble">
-                            <div class="wrap">
-                            <div class="quote">
-                                <a href="#">“<span class="noQuotes">"Welcome Home" is not just a mantra</span>”</a>
-                            </div>
-                            <div class="rating reviewItemInline">
-                                <div class="rate sprite-rating_s rating_s">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                                <span class="ratingDate relativeDate" title="August 13, 2014">Reviewed 1 week ago</span>
-                            </div>
-                            <div class="entry">
-                            <p class="partial_entry">
-                            With the conclusion of our 4 th visit to the property in 2014, I can honestly say that things only get better. We arrived quite early before our room was ready, but immediately encouraged to use the facilities and dining options. The grounds were immaculate as aways. The food was wonderful and several recent tweats in the dining rooms only...
-                                <span class="partnerRvw">
-                                    <span class="taLnk hvrIE6 tr221568014 moreLink ulBlueLinks">More</span>
-                                </span>
-                            </p>
-                            </div>
-                            </div> </div> </div>
-                            <div class="clear"></div>
-                        </div>
-                    </div><div class="slimScrollBar ui-draggable" style="width: 7px; position: absolute; opacity: 0.7; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; right: 1px; top: 0px; height: 330.687830687831px; display: block; background: rgb(159, 2, 52);"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: block; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(51, 51, 51);"></div></div>
+                        </div> 
+                        <?php } } ?>                    
+                       
+                    </div>
                     <div class="clear"></div>
                   </div>
                   <div class="tab-pane fade" id="hinhanh">
@@ -702,3 +590,4 @@ $row = mysql_fetch_assoc($arrImage);
             </div>
             <div class="clear"></div>
         </div>
+      

@@ -25,6 +25,16 @@ class Home extends Db {
             $this->logError($arrLog);
         }
     }
+    function getRatingDetailOfNhaxe($nhaxe_id){
+        $arrResult = array();
+        $sql = "SELECT * FROM rating_detail WHERE nhaxe_id = $nhaxe_id AND status = 1";
+        $rs = mysql_query($sql);
+        $arrResult['total'] = mysql_num_rows($rs);
+        while($row = mysql_fetch_assoc($rs)){
+            $arrResult['data'][$row['detail_id']] = $row; 
+        }
+        return $arrResult;
+    }
     function rating($nhaxe_id){
         $arrReturn = array();
         $sql = "SELECT * FROM rating_detail WHERE nhaxe_id = $nhaxe_id AND status = 1";
