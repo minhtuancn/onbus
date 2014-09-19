@@ -7931,6 +7931,7 @@ p.error_time{display: none;font-style: italic;}
 	width:70%;
 	resize:none;
 	margin-left:15px;
+	height:25px;
 }
 .group_field .wrap_frm .noted{
 	color: #AFAFAF;
