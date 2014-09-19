@@ -33,7 +33,7 @@ if(isset($_POST['btnSave'])){
     $time = time();
     
     if( ($p1 > 0 && $p1<6) && ($p2 > 0 && $p2<6) && ($p3 > 0 && $p3<6) && ($p4 > 0 && $p4<6) && $title !='' && $name!='' && $address!='' && $content!=''){
-        $sql = "INSERT INTO rating_detail VALUES(NULL,$email_id,$nhaxe_id,$p1,$p2,$p3,$p4,'$name','$address','$title','$content',$time,2)";
+        $sql = "INSERT INTO rating_detail VALUES(NULL,$email_id,$nhaxe_id,$p1,$p2,$p3,$p4,'$name','$address','$title','$content',$time,2,0)";
         mysql_query($sql) or die(mysql_error());
         $detail_id = mysql_insert_id();
         if($detail_id > 0){
