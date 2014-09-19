@@ -1,16 +1,29 @@
 <?php 
 $arrImage = $model->getListImageByNhaxe($nhaxe_id,-1,-1);
 $row = mysql_fetch_assoc($arrImage);
+$arrRating = $model->rating($nhaxe_id);
+$totalSaoNhaxe = $arrRating['sao'][1] +  $arrRating['sao'][2] + $arrRating['sao'][3] + $arrRating['sao'][4];
+$saoTB = $model->tinhsao(round($totalSaoNhaxe/4,1));
+$arrDiem = array(0,1,2,3,4,5);  
 ?>
 <div class="detail-nhaxe">
         	<div class="header_top">
         	<div id="holiday-product-left-top">
             	<div class="rate sprite-rating_s rating_s">
+                    <?php $tmpN = $saoTB - 0.5;
+                        if(in_array($tmpN,$arrDiem)){
+                            $chanN = $tmpN;
+                            $leN = 1;
+                        }else{
+                            $chanN=$saoTB;
+                        }
+                     ?>
+                    <?php for($i=0;$i<$chanN;$i++){ ?>
                     <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                    <?php } ?>
+                    <?php if($leN==1) {?>
+                    <span style="width:9px !important"></span>
+                    <?php } ?>
                 </div>
                 <h1><?php echo $row_nhaxe['nhaxe_name_'.$lang]; ?></h1>
                 <div style="text-align:justify">
@@ -38,9 +51,7 @@ $row = mysql_fetch_assoc($arrImage);
                 </ul>
                 <div class="tab-content">
                   <div class="tab-pane fade in active" id="danhgia">
-                    <?php $arrRating = $model->rating($nhaxe_id);
-                    $arrDiem = array(0,1,2,3,4,5);                
-                    ?>
+                  
                   	<div class="left col_review">
                     	<h3><?php echo number_format($arrRating['total']); ?> people have reviewed this bus operator</h3>
                         <div class="content wrap trip_type_layout">
@@ -51,36 +62,36 @@ $row = mysql_fetch_assoc($arrImage);
                                             <span class="rdoSet">
                                                 <label class=" selected" for="com1"><span class="text">Excellent</span></label>
                                             </span>
-                                            <div class="line clickable"><div class="fill" style="width:<?php echo $arrRating['excel']['percent']; ?>%"></div></div>
-                                            <span class="compositeCount selected"><?php echo number_format($arrRating['excel']['percent']); ?></span>
+                                            <div class="line clickable"><div class="fill" style="width:<?php echo isset($arrRating['excel']['percent']) ? $arrRating['excel']['percent'] : "0" ; ?>%"></div></div>
+                                            <span class="compositeCount selected"><?php echo number_format($arrRating['excel']['vote']); ?></span>
                                         </li>
                                         <li class="wrap">
                                             <span class="rdoSet">
                                                 <label class=" selected" for="com1"><span class="text">Very good</span></label>
                                             </span>
-                                            <div class="line clickable"><div class="fill" style="width:<?php echo $arrRating['good']['percent']; ?>%"></div></div>
-                                            <span class="compositeCount selected"><?php echo number_format($arrRating['good']['percent']); ?></span>
+                                            <div class="line clickable"><div class="fill" style="width:<?php echo isset($arrRating['good']['percent']) ? $arrRating['good']['percent'] : "0" ; ?>%"></div></div>
+                                            <span class="compositeCount selected"><?php echo number_format($arrRating['good']['vote']); ?></span>
                                         </li>
                                         <li class="wrap">
                                             <span class="rdoSet">
                                                 <label class=" selected" for="com1"><span class="text">Average</span></label>
                                             </span>
-                                            <div class="line clickable"><div class="fill" style="width:<?php echo $arrRating['average']['percent']; ?>%"></div></div>
-                                            <span class="compositeCount selected"><?php echo number_format($arrRating['average']['percent']); ?></span>
+                                            <div class="line clickable"><div class="fill" style="width:<?php echo isset($arrRating['average']['percent']) ? $arrRating['average']['percent'] : "0" ; ?>%"></div></div>
+                                            <span class="compositeCount selected"><?php echo number_format($arrRating['average']['vote']); ?></span>
                                         </li>
                                         <li class="wrap">
                                             <span class="rdoSet">
                                                 <label class=" selected" for="com1"><span class="text">Poor</span></label>
                                             </span>
-                                            <div class="line clickable"><div class="fill" style="width:<?php echo $arrRating['poor']['percent']; ?>%"></div></div>
-                                            <span class="compositeCount selected"><?php echo number_format($arrRating['poor']['percent']); ?></span>
+                                            <div class="line clickable"><div class="fill" style="width:<?php echo isset($arrRating['poor']['percent']) ? $arrRating['poor']['percent'] : "0" ; ?>%"></div></div>
+                                            <span class="compositeCount selected"><?php echo number_format($arrRating['poor']['vote']); ?></span>
                                         </li>
                                         <li class="wrap">
                                             <span class="rdoSet">
                                                 <label class=" selected" for="com1"><span class="text">Terrible</span></label>
                                             </span>
-                                            <div class="line clickable"><div class="fill" style="width:<?php echo $arrRating['terrible']['percent']; ?>%"></div></div>
-                                            <span class="compositeCount selected"><?php echo number_format($arrRating['terrible']['percent']); ?></span>
+                                            <div class="line clickable"><div class="fill" style="width:<?php echo isset($arrRating['terrible']['percent']) ? $arrRating['terrible']['percent'] : "0" ; ?>%"></div></div>
+                                            <span class="compositeCount selected"><?php echo number_format($arrRating['terrible']['vote']); ?></span>
                                         </li>
                                     </ul> 
                                 </div>                            
@@ -196,10 +207,10 @@ $row = mysql_fetch_assoc($arrImage);
                                 <div class="totalReviewBadge no_cpu">                                
                                 <ul>                                    
                                     <li>
-                                        <span class="icon lazy badge_hotels_2nd sprite-badge_hotels_2nd"></span><span class="badgeText">12 reviews</span>    
+                                        <span class="icon lazy badge_hotels_2nd sprite-badge_hotels_2nd"></span><span class="badgeText"><?php echo $model->countReviewByEmailID($data['email_id']); ?> reviews</span>    
                                     </li>
                                     <li>
-                                        <span class="icon lazy badge_helpful sprite-badge_helpful"></span><span class="badgeText">44 helpful votes</span>    
+                                        <span class="icon lazy badge_helpful sprite-badge_helpful"></span><span class="badgeText"><?php echo $model->countUsefulByEmailID($data['email_id']); ?> helpful votes</span>    
                                     </li>
                                     
                                 </ul>
@@ -215,13 +226,25 @@ $row = mysql_fetch_assoc($arrImage);
                             </div>
                             <div class="rating reviewItemInline">
                                 <div class="rate sprite-rating_s rating_s">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
+                                    <?php $sao = $model->countStarByDetail($data['detail_id']);
+                                     $tmp = $sao - 0.5;
+                                            if(in_array($tmp,$arrDiem)){
+                                                $chan = $tmp;
+                                                $le10 = 1;
+                                            }else{
+                                                $chan=$sao;
+                                            }
+                                         ?>
+                                        <?php for($i=0;$i<$chan;$i++){ ?>
+                                        <span></span>
+                                        <?php } ?>
+                                        <?php if($le10==1) {?>
+                                        <span style="width:9px !important"></span>
+                                        <?php } ?>                                    
                                 </div>
-                                <span class="ratingDate relativeDate" title="August 13, 2014">Reviewed 1 week ago</span>
+                                <span class="ratingDate relativeDate" title="August 13, 2014">
+                                    Reviewed <?php echo date('M d Y', $data['creation_time']); ?>
+                                </span>
                             </div>
                             <div class="entry">
                             <p class="partial_entry">
@@ -233,7 +256,8 @@ $row = mysql_fetch_assoc($arrImage);
                             -->
                             </p>
                             </div>
-                            </div> </div> </div>
+                            </div> </div>
+                             </div>
                             <div class="clear"></div>
                         </div> 
                         <?php } } ?>                    
@@ -285,304 +309,37 @@ $row = mysql_fetch_assoc($arrImage);
                   	<table class="table table-hover">
                     	<thead>
 						<tr>
-                        	<th style="width:30%;">Route</th>
-                            <th>Services</th>
+                        	<th style="width:50%;">Route</th>
+                           
                             <th>First Bus</th>
-                            <th>Last Bus</th>
-                            <th style="width:15%;">Best Rated Bus</th>
+                            <th>Last Bus</th>                           
                             <th></th>
                         </tr>
                         </thead>
-                        <tbody><tr>
-                        	<td>
-                            	<p>Parshwanath Travels Ahmedabad for</p>
-                                <a href="#">Udaipur to Ahmedabad</a>
+                        <tbody>
+                            <?php 
+                            $listTroute = $model->getListTroute($nhaxe_id);
+                            if(!empty($listTroute['data'])){
+                                foreach ($listTroute['data'] as $key => $value) {                                    
+                            ?>
+                            <tr>
+                        	<td>                            	
+                                <a href="#"><?php echo $model->getRouteNameByID($value['route_id'],$lang)?></a>
                              </td>
-                            <td>10 Buses</td>
+                           
                             <td>
-                            	<span class="time_tpb">12:20 AM</span>
+                            	<span class="time_tpb"><?php echo $value['min_time']; ?></span>
                             </td>
                             <td>
-                            	<span class="time_tpb">12:20 AM</span>
+                            	<span class="time_tpb"><?php echo $value['max_time']; ?></span>
                             </td>
-                            <td>
-                            	<div>
-                                	<b>4.9</b>
-                                    <div class="rate sprite-rating_s rating_s">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </div>
-                                </div>
-                                <div>Based on <i>6</i> ratings</div>
-                            </td>
+                            
                             <td class="td_end">
                             	<a href="#" class="btn-muave">book now</a>
                             </td>
                         </tr>
-                        <tr>
-                        	<td>
-                            	<p>Parshwanath Travels Ahmedabad for</p>
-                                <a href="#">Udaipur to Ahmedabad</a>
-                             </td>
-                            <td>10 Buses</td>
-                            <td>
-                            	<span class="time_tpb">12:20 AM</span>
-                            </td>
-                            <td>
-                            	<span class="time_tpb">12:20 AM</span>
-                            </td>
-                            <td>
-                            	<div>
-                                	<b>4.9</b>
-                                    <div class="rate sprite-rating_s rating_s">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </div>
-                                </div>
-                                <div>Based on <i>6</i> ratings</div>
-                            </td>
-                            <td class="td_end">
-                            	<a href="#" class="btn-muave">book now</a>
-                            </td>
-                        </tr>
-                        <tr>
-                        	<td>
-                            	<p>Parshwanath Travels Ahmedabad for</p>
-                                <a href="#">Udaipur to Ahmedabad</a>
-                             </td>
-                            <td>10 Buses</td>
-                            <td>
-                            	<span class="time_tpb">12:20 AM</span>
-                            </td>
-                            <td>
-                            	<span class="time_tpb">12:20 AM</span>
-                            </td>
-                            <td>
-                            	<div>
-                                	<b>4.9</b>
-                                    <div class="rate sprite-rating_s rating_s">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </div>
-                                </div>
-                                <div>Based on <i>6</i> ratings</div>
-                            </td>
-                            <td class="td_end">
-                            	<a href="#" class="btn-muave">book now</a>
-                            </td>
-                        </tr>
-                        <tr>
-                        	<td>
-                            	<p>Parshwanath Travels Ahmedabad for</p>
-                                <a href="#">Udaipur to Ahmedabad</a>
-                             </td>
-                            <td>10 Buses</td>
-                            <td>
-                            	<span class="time_tpb">12:20 AM</span>
-                            </td>
-                            <td>
-                            	<span class="time_tpb">12:20 AM</span>
-                            </td>
-                            <td>
-                            	<div>
-                                	<b>4.9</b>
-                                    <div class="rate sprite-rating_s rating_s">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </div>
-                                </div>
-                                <div>Based on <i>6</i> ratings</div>
-                            </td>
-                            <td class="td_end">
-                            	<a href="#" class="btn-muave">book now</a>
-                            </td>
-                        </tr>
-                        <tr>
-                        	<td>
-                            	<p>Parshwanath Travels Ahmedabad for</p>
-                                <a href="#">Udaipur to Ahmedabad</a>
-                             </td>
-                            <td>10 Buses</td>
-                            <td>
-                            	<span class="time_tpb">12:20 AM</span>
-                            </td>
-                            <td>
-                            	<span class="time_tpb">12:20 AM</span>
-                            </td>
-                            <td>
-                            	<div>
-                                	<b>4.9</b>
-                                    <div class="rate sprite-rating_s rating_s">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </div>
-                                </div>
-                                <div>Based on <i>6</i> ratings</div>
-                            </td>
-                            <td class="td_end">
-                            	<a href="#" class="btn-muave">book now</a>
-                            </td>
-                        </tr>
-                        <tr>
-                        	<td>
-                            	<p>Parshwanath Travels Ahmedabad for</p>
-                                <a href="#">Udaipur to Ahmedabad</a>
-                             </td>
-                            <td>10 Buses</td>
-                            <td>
-                            	<span class="time_tpb">12:20 AM</span>
-                            </td>
-                            <td>
-                            	<span class="time_tpb">12:20 AM</span>
-                            </td>
-                            <td>
-                            	<div>
-                                	<b>4.9</b>
-                                    <div class="rate sprite-rating_s rating_s">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </div>
-                                </div>
-                                <div>Based on <i>6</i> ratings</div>
-                            </td>
-                            <td class="td_end">
-                            	<a href="#" class="btn-muave">book now</a>
-                            </td>
-                        </tr>
-                        <tr>
-                        	<td>
-                            	<p>Parshwanath Travels Ahmedabad for</p>
-                                <a href="#">Udaipur to Ahmedabad</a>
-                             </td>
-                            <td>10 Buses</td>
-                            <td>
-                            	<span class="time_tpb">12:20 AM</span>
-                            </td>
-                            <td>
-                            	<span class="time_tpb">12:20 AM</span>
-                            </td>
-                            <td>
-                            	<div>
-                                	<b>4.9</b>
-                                    <div class="rate sprite-rating_s rating_s">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </div>
-                                </div>
-                                <div>Based on <i>6</i> ratings</div>
-                            </td>
-                            <td class="td_end">
-                            	<a href="#" class="btn-muave">book now</a>
-                            </td>
-                        </tr>
-                        <tr>
-                        	<td>
-                            	<p>Parshwanath Travels Ahmedabad for</p>
-                                <a href="#">Udaipur to Ahmedabad</a>
-                             </td>
-                            <td>10 Buses</td>
-                            <td>
-                            	<span class="time_tpb">12:20 AM</span>
-                            </td>
-                            <td>
-                            	<span class="time_tpb">12:20 AM</span>
-                            </td>
-                            <td>
-                            	<div>
-                                	<b>4.9</b>
-                                    <div class="rate sprite-rating_s rating_s">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </div>
-                                </div>
-                                <div>Based on <i>6</i> ratings</div>
-                            </td>
-                            <td class="td_end">
-                            	<a href="#" class="btn-muave">book now</a>
-                            </td>
-                        </tr>
-                        <tr>
-                        	<td>
-                            	<p>Parshwanath Travels Ahmedabad for</p>
-                                <a href="#">Udaipur to Ahmedabad</a>
-                             </td>
-                            <td>10 Buses</td>
-                            <td>
-                            	<span class="time_tpb">12:20 AM</span>
-                            </td>
-                            <td>
-                            	<span class="time_tpb">12:20 AM</span>
-                            </td>
-                            <td>
-                            	<div>
-                                	<b>4.9</b>
-                                    <div class="rate sprite-rating_s rating_s">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </div>
-                                </div>
-                                <div>Based on <i>6</i> ratings</div>
-                            </td>
-                            <td class="td_end">
-                            	<a href="#" class="btn-muave">book now</a>
-                            </td>
-                        </tr>
-                        <tr>
-                        	<td>
-                            	<p>Parshwanath Travels Ahmedabad for</p>
-                                <a href="#">Udaipur to Ahmedabad</a>
-                             </td>
-                            <td>10 Buses</td>
-                            <td>
-                            	<span class="time_tpb">12:20 AM</span>
-                            </td>
-                            <td>
-                            	<span class="time_tpb">12:20 AM</span>
-                            </td>
-                            <td>
-                            	<div>
-                                	<b>4.9</b>
-                                    <div class="rate sprite-rating_s rating_s">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </div>
-                                </div>
-                                <div>Based on <i>6</i> ratings</div>
-                            </td>
-                            <td class="td_end">
-                            	<a href="#" class="btn-muave">book now</a>
-                            </td>
-                        </tr>
+                        <?php }}?>
+                        
                     </tbody></table>
                   </div>
                   
