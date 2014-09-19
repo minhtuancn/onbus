@@ -25,16 +25,15 @@ if(isset($_POST['btnSave'])){
     $p1 = (int) $_POST['question1'];
     $p2 = (int) $_POST['question2'];
     $p3 = (int) $_POST['question3'];
-    $p4 = (int) $_POST['question4'];
-    $p5 = (int) $_POST['question5'];
+    $p4 = (int) $_POST['question4'];    
     $title =  $model->processData($_POST['title']);
     $name =  $model->processData($_POST['name']);
     $address =  $model->processData($_POST['address']);
     $content =  $model->processData($_POST['content']);
     $time = time();
     
-    if( ($p1 > 0 && $p1<6) && ($p2 > 0 && $p2<6) && ($p3 > 0 && $p3<6) && ($p4 > 0 && $p4<6) && ($p5 > 0 && $p5<6) && $title !='' && $name!='' && $address!='' && $content!=''){
-        $sql = "INSERT INTO rating_detail VALUES(NULL,$email_id,$nhaxe_id,$p1,$p2,$p3,$p4,$p5,'$name','$address','$title','$content',$time,2)";
+    if( ($p1 > 0 && $p1<6) && ($p2 > 0 && $p2<6) && ($p3 > 0 && $p3<6) && ($p4 > 0 && $p4<6) && $title !='' && $name!='' && $address!='' && $content!=''){
+        $sql = "INSERT INTO rating_detail VALUES(NULL,$email_id,$nhaxe_id,$p1,$p2,$p3,$p4,'$name','$address','$title','$content',$time,2)";
         mysql_query($sql) or die(mysql_error());
         $detail_id = mysql_insert_id();
         if($detail_id > 0){
@@ -79,8 +78,7 @@ if(isset($_POST['btnSave'])){
         </div>
         <div class="padding_common content_review">
         	<div class="dot_9x9">
-            	<p>Please rate the Sky Express Hotel Bukit Bingtang (5 being the best score).<span class="start_red">*</span></p>
-                <span>If you didn't use the dining faccilities, please five the average score for Food/Dining</span>
+            	<p>Please rate the Sky Express Hotel Bukit Bingtang (5 being the best score).<span class="start_red">*</span></p>                
              </div>
              <table>
              	<tr>
@@ -122,15 +120,7 @@ if(isset($_POST['btnSave'])){
                     <td><input type="radio" name="question4" value="3"/></td>
                     <td><input type="radio" name="question4" value="4"/></td>
                     <td><input type="radio" name="question4" value="5"/></td>
-                </tr>
-             	<tr>
-                	<td>Cơ sở vật chất và tiện ích nhà xe tại các trạm xe khởi hành, dừng chân và kết thúc</td>
-                    <td><input type="radio" name="question5" value="1"/></td>
-                    <td><input type="radio" name="question5" value="2"/></td>
-                    <td><input type="radio" name="question5" value="3"/></td>
-                    <td><input type="radio" name="question5" value="4"/></td>
-                    <td><input type="radio" name="question5" value="5"/></td>
-                </tr>                
+                </tr>             	              
              </table>
              
              
@@ -183,9 +173,8 @@ if(isset($_POST['btnSave'])){
                 var p1 = $('input[name="question1"]:checked').val();
                 var p2 = $('input[name="question2"]:checked').val();
                 var p3 = $('input[name="question3"]:checked').val();
-                var p4 = $('input[name="question4"]:checked').val();
-                var p5 = $('input[name="question5"]:checked').val();
-                if(p1 == undefined || p2 == undefined || p3 == undefined || p4 == undefined || p5 == undefined){
+                var p4 = $('input[name="question4"]:checked').val();                
+                if(p1 == undefined || p2 == undefined || p3 == undefined || p4 == undefined){
                     alert('Vui lòng đánh giá điểm đầy đủ.'); return false;
                 }
                 var title = $.trim($('#title').val());
