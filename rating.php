@@ -2,6 +2,17 @@
 include "defined.php";
 require_once 'backend/model/Home.php';
 $model = new Home;
+/*
+for($i=12; $i<= 40;$i++){
+    $email = "emailtest".$i."@gmail.com";
+    $time = time();
+    $code = md5($email.time());
+    $sql = "INSERT INTO email_rating VALUES (NULL,'$email',$time,'$code',20,2)";    
+    mysql_query($sql);
+}
+
+die('123');
+*/
 
 $code = $_GET['code'];
 $code = $model->processData($code);
@@ -11,7 +22,27 @@ $error = $arrData['error'];
 $nhaxe_id = $arrData['nhaxe_id'];
 $email_id = $arrData['email_id'];
 if(isset($_POST['btnSave'])){
+    $p1 = (int) $_POST['question1'];
+    $p2 = (int) $_POST['question2'];
+    $p3 = (int) $_POST['question3'];
+    $p4 = (int) $_POST['question4'];
+    $p5 = (int) $_POST['question5'];
+    $title =  $model->processData($_POST['title']);
+    $name =  $model->processData($_POST['name']);
+    $address =  $model->processData($_POST['address']);
+    $content =  $model->processData($_POST['content']);
+    $time = time();
     
+    if( ($p1 > 0 && $p1<6) && ($p2 > 0 && $p2<6) && ($p3 > 0 && $p3<6) && ($p4 > 0 && $p4<6) && ($p5 > 0 && $p5<6) && $title !='' && $name!='' && $address!='' && $content!=''){
+        $sql = "INSERT INTO rating_detail VALUES(NULL,$email_id,$nhaxe_id,$p1,$p2,$p3,$p4,$p5,'$name','$address','$title','$content',$time,2)";
+        mysql_query($sql) or die(mysql_error());
+        $detail_id = mysql_insert_id();
+        if($detail_id > 0){
+            mysql_query("UPDATE email_rating SET status = 1 WHERE code = '$code'") or die(mysql_error());
+            $error= 4;            
+        }
+    } 
+
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -37,6 +68,8 @@ if(isset($_POST['btnSave'])){
             <p style="color:red;margin-bottom:30px">Quý khách đã tham gia đánh giá.</p>
             <?php }elseif($error==3 || $error == 1){ ?>
             <p style="color:red;margin-bottom:30px">Mã đánh giá không hợp lệ.</p>
+            <?php }elseif($error==4){ ?>
+            <p style="color:red;margin-bottom:30px">Cảm ơn quý khách đã tham gia đánh giá.</p>
             <?php } ?>
         </div>
         <?php if($error == 0) { ?>
