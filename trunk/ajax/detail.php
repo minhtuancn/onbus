@@ -32,7 +32,11 @@ $routeDetail = $model->detailRoute($arrDetail['tinh_id_start'],$arrDetail['tinh_
                     echo ($lang=="vi") ? "Chiều về" : "Return Trip"; 
                  } 
                  ?>
-            </span></h1>            
+            </span>
+            <a href="javascript:;" data-toggle="modal" data-type="detail" data-target="#popup_book_ticket" class="btn-muave btn-muave-detail"
+            data-value="<?php echo $ticket_id; ?>"
+            ><?php echo ($lang=="vi") ? "Đặt vé" : "Book now";  ?></a>
+        </h1>            
         </div>
         <div class="left detail-a">
             <h1 class="bg-x"><span><?php echo ($lang=="vi") ? "Chi tiết" : "Detail"; ?></span></h1>
@@ -70,6 +74,7 @@ $routeDetail = $model->detailRoute($arrDetail['tinh_id_start'],$arrDetail['tinh_
                     <li><a href="javascript:void(0)" data-value="<?php echo $time; ?>"><?php echo $model->getTimeByID($time);?></a></li>
                     <?php } }?>
                 </ul>
+                <p class="error_time" id="error_time_popup_<?php echo $arrDetail['ticket_id']; ?>"><?php echo ($lang=="vi") ? "Chọn thời gian khởi hành trước khi mua vé" : "Choose your departure time before booking tickets"; ?></p>
                 <div class="clear"></div>
             </div>
             <div class="left abc-sche">
@@ -154,5 +159,33 @@ $('.type-ticket ul li a').unbind( "click" ).bind("click",function(){
     }
     return false;
 });  
+
+$('.btn-muave-detail').on('click',function(){   
+    var obj = $(this);
+    var ticket_id = obj.attr('data-value');
+    var check_time = $('#time_popup_' + ticket_id).find('a.active').length;
+    var tab = $('#tab').val();
+    var type = $('#type').val();
+    if(check_time==0){
+        $('#error_time_popup_' + ticket_id).show();
+        return false;
+    }else{
+        $('#error_time_popup_' + ticket_id).hide();
+        var data_type= obj.attr('data-type');
+        if(data_type=='detail'){        
+            $('.close-popup').click();
+        }
+        $('#time_book').val($('#time_popup_' + ticket_id).find('a.active').attr('data-value'));
+        $('#ticket_id_book').val(ticket_id);   
+        $('#price_book').val($('#price_' + ticket_id).val());                        
+        <?php if($type==2 && count($_SESSION['bookticket'])==0) { ?>
+            var t = (tab==1) ? " chiều về " : " chiều đi";
+            $('#booktoo').val("Chọn vé" + t);
+        <?php } ?>
+        return true;
+    }
+    
+
+});
 
 </script>

@@ -64,7 +64,13 @@ if(!empty($_SESSION['bookticket'])){
                         <div title="" data-toggle="tooltip" class="left icon_start" data-original-title="Khởi hành"></div>
                         <div class="left time_diadiem">
                             <h4><?php echo $model->getTimeByID($arrTime[$value['ticket_id']]);?></h4>
-                            <p><span><?php echo $model->getPlaceNameByID($value['place_id_start'],$lang); ?> (<?php echo $model->getAddressByID($value['place_id_start'],$lang); ?>)</span>
+                            <p><span><?php echo $model->getPlaceNameByID($value['place_id_start'],$lang); ?> 
+                                
+                                </span>
+                                &nbsp;&nbsp;<i data-toggle="tooltip" class="icon_info" title="" data-original-title="<?php echo $model->getAddressByID($value['place_id_start'],$lang); ?>">
+                                 <img src="<?php echo STATIC_URL;?>/images/info.png" />   
+                                </i>
+                                
                                 <a href="javascript:;" class="right" onclick="return loadmap('<?php echo $model->getAddressByID($value['place_id_start'],'vi'); ?>','<?php echo $model->getAddressByID($value['place_id_start'],'vi'); ?>');" data-target="#mymap" data-toggle="modal">{xemthongtin}</a></p>
                         </div>
                         <div class="clear"></div>
@@ -88,7 +94,12 @@ if(!empty($_SESSION['bookticket'])){
                             $h_end = str_pad($h_end, 2, "0", STR_PAD_LEFT);                             
                             ?>
                             <h4><?php echo $h_end?>:<?php echo $m_end; ?></h4>
-                            <p><span><?php echo $model->getPlaceNameByID($value['place_id_end'],$lang); ?> (<?php echo $model->getAddressByID($value['place_id_end'],$lang); ?>)</span>
+                            <p><span><?php echo $model->getPlaceNameByID($value['place_id_end'],$lang); ?> 
+
+                            </span>
+                            &nbsp;&nbsp;<i data-toggle="tooltip" class="icon_info" title="" data-original-title="<?php echo $model->getAddressByID($value['place_id_end'],$lang); ?>">
+                                 <img src="<?php echo STATIC_URL;?>/images/info.png" />   
+                                </i>
                             <a href="javascript:;" class="right" onclick="return loadmap('<?php echo $model->getAddressByID($value['place_id_end'],'vi'); ?>','<?php echo $model->getAddressByID($value['place_id_end'],'vi'); ?>');" data-toggle="modal" data-target="#mymap">{xemthongtin}</a>
                         </p>
                         </div>
@@ -166,6 +177,7 @@ if(!empty($_SESSION['bookticket'])){
                               <span class="glyphicon glyphicon-ok form-control-feedback"></span>
                       </div>
                         <div class="clear"></div>
+                        <p class="error_time" id="error_info"  style="color:red">Please fill contact information.</p>
                     </div>
                 </div>                
                 <div id="orther_payment_card" class="box_payment payment_money">
@@ -174,6 +186,7 @@ if(!empty($_SESSION['bookticket'])){
                     </div>
                     <div class="content_payment">                    	                        
                         <div class="left icon_nh">
+                            <p class="error_time" id="error_method"  style="color:red">Please select payment method.</p>
                             {whenchoosingthis}
                             <div class="radio">
                               <label>
@@ -237,10 +250,10 @@ if(!empty($_SESSION['bookticket'])){
                                     <input type="text" class="form-control" id="phone_contact" name="phone_contact" />
                                 </div>
                               </div>
+                              <p class="error_time" id="error_address"  style="color:red">Please fill information.</p>
                         </div>
-                        <div class="clear"></div>
-                        {whichevermethod}
-                        
+                        <div class="clear"></div>                        
+                        <p class="error_time" id="error_accept"  style="color:red">You must accept...</p>
                     </div>
                 </div>                
                 <div class="checkbox bottom_frm">
@@ -270,36 +283,56 @@ if(!empty($_SESSION['bookticket'])){
 
 <script type="text/javascript">
 $(function(){    
+    if ($('.icon_info').length > 0) {
+        $(".icon_info").tooltip({
+            placement: 'top'
+        });
+    }
     $('#btnProcess').click(function(){
         var fullname = $.trim($('#fullname').val());
         var phone = $.trim($('#phone').val());
         var email = $.trim($('#email').val());
-        if(fullname=='' || phone=='' || email==''){            
-            $('#fullname').focus();
+        if(fullname=='' || phone=='' || email==''){    
+            $('#error_info').show(); 
+            setTimeout(function(){
+                $('#error_info').hide();       
+                $('#fullname').focus();         
+            }, 4000);  
+            $('#fullname').focus();          
             return false;
 
         }
         var payment = $('input[name="payment_card"]:checked').length;
         if(payment==0){
-            alert('Please choose payment method');return false;
+            $('#error_method').show(); 
+            setTimeout(function(){
+                $('#error_method').hide();                             
+            }, 4000);              
+            return false;
         }else{
             if($('input[name="payment_card"]:checked').val()==1){
                 var address = $.trim($('#address').val());
                 var phone_contact = $.trim($('#phone_contact').val());
                 if(address=='' || phone_contact == ''){
-                    <?php if($lang=="en"){ ?>
-                    alert('Please enter address and phone contact!');
-                    <?php }else{ ?>
-                        alert('Vui lòng nhập địa chỉ và số điện thoại liên hệ!');
-                    <?php } ?>    
-                    $('#address').focus();
+
+                    $('#error_address').show(); 
+                    setTimeout(function(){
+                        $('#error_address').hide();       
+                        $('#address').focus();         
+                    }, 4000);  
+                    $('#address').focus();                   
+                    
                     return false;
                 }
             }
         }
 
         if($('input[name="accept"]:checked').length==0){
-            alert('You must accept the fare Rule and Purchase Conditions');
+            $('#error_accept').show(); 
+            setTimeout(function(){
+                $('#error_accept').hide();       
+                $('#error_accept').focus();         
+            }, 4000);  
             return false;
         }
 

@@ -3,12 +3,12 @@ session_start();
 include "../defined.php";
 require_once "../backend/model/Home.php";
 $model = new Home();
-
+$lang = $_SESSION['lang'];
 $fullname = $model->processData($_POST['fullname']);
 $email = $model->processData($_POST['email']);
 $phone = $model->processData($_POST['phone']);
 $method = (int) $_POST['payment_card'];
-var_dump($method);die;
+
 $pickup = (int) $_POST['pickup'];
 
 if($pickup==1){
@@ -59,7 +59,7 @@ if($method==1){
 	VALUES (NULL,'$order_code_new',$amount,$total,'$fullname','$phone','$email','$address','$phone_contact',2,$time,1)";
 	mysql_query($sql) or die(mysql_error());
 	$order_id = mysql_insert_id();
-	header('location:'.HOST.'/'.$lang.'/thanks-you.html');
+	header('location:http://onbus.vn/'.$lang.'/thanks-you.html');
 
 }elseif($method== 2){
 	

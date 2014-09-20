@@ -22,7 +22,7 @@ class Articles extends Db {
             if(trim($keyword) != ''){
                 $sql.= " AND title LIKE '%".$keyword."%' " ;
             }    
-            $sql.=" AND status = 1 ";
+            $sql.=" AND status = 1 ORDER BY article_id DESC ";
             if ($limit > 0 && $offset >= 0)
                 $sql .= " LIMIT $offset,$limit";
             
@@ -40,13 +40,13 @@ class Articles extends Db {
     }
    
 
-    function insertArticles($title,$title_safe,$image_url,$description,$content,$category_id,$hot,$lang_id,$tinh_id=0) {
+    function insertArticles($title,$title_safe,$image_url,$description,$content,$category_id,$hot,$lang_id) {
         try{
         $user_id = $_SESSION['user_id'];
         $time = time();
         $sql = "INSERT INTO articles VALUES
                         (NULL,'$title','$title_safe','$image_url','$description','$content',
-                            $category_id,'$hot',$lang_id,$time,$time,1,$user_id,$tinh_id)";
+                            $category_id,'$hot',$lang_id,$time,$time,1,$user_id)";
         $rs = mysql_query($sql) or $this->throw_ex(mysql_error());       
         }catch(Exception $ex){            
             $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Articles','function' => 'insertArticle' , 'error'=>$ex->getMessage(),'sql'=>$sql);
