@@ -6585,6 +6585,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c3778', end
 	background: url('images/icon_rating.png') no-repeat top left;
 	margin-right: 5px;
 }
+.header_top .sprite-rating_s span {
+	background: url('images/icon_rating_yellow.png') no-repeat top left;
+}
+.header_top .sprite-rating_s span.part_icon_rating {
+	background: url('images/icon_rating_part_yellow.png') no-repeat top left;
+}
 .col_comment_review {
 	width: 53%;
 	padding-left: 2%;
@@ -6641,11 +6647,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c3778', end
 	margin-top: 4px;
 }
 .sprite-badge_helpful {
-	background-image: url('images/member_badges_pack-v42ad8d467cf538e7eba5233b101d3849.png');
-	background-position: left -336px;
+	background: url('images/icon_huychuong.png') no-repeat top left;
 	width: 25px;
-	height: 24px;
-	background-repeat: no-repeat;
+	height: 28px;
 	float: left;
 }
 .col1of2 {
@@ -6713,6 +6717,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c3778', end
 .reviewItemInline .sprite-rating_s span {
 	margin-right: 0px;
 	margin-top: 0px;
+	background: url('images/icon_rating_yellow.png') no-repeat top left;
+}
+.reviewItemInline .sprite-rating_s span.part_icon_rating{
+	background: url('images/icon_rating_part_yellow.png') no-repeat top left;
 }
 .items_comment_review {
 	margin-bottom: 20px;
@@ -6751,17 +6759,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c3778', end
 	top: 5px;
 }
 .list-ticket-search .items .infor-tuyen-search .img-logo .sprite-rating_s {
-	float: right;
 	line-heigth: 100%;
 	width: 100%;
 	margin-top: 5px;
+	float:left;
+	text-align:right;
 }
 .list-ticket-search .items .infor-tuyen-search .img-logo .sprite-rating_s span {
-	float: right;
 	margin-right: 2px;
 	height: 13px;
 	width: 13px;
 	background: url('images/icon_rating_small.png') no-repeat top left;
+	display:inline-block;
+}
+.list-ticket-search .items .infor-tuyen-search .img-logo .sprite-rating_s span.part_icon_rating{
+	background: url('images/icon_rating_part_small.png') no-repeat top left;
 }
 .table thead {
 	color: #fff;
@@ -7510,7 +7522,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c3778', end
 	text-align:center;
 }
 .list_box li .sprite-rating_s span{
-	background:url('images/icon_rating_tran.png') no-repeat top left;
+	background:url('images/icon_rating_yellow.png') no-repeat top left;
 }
 .menu-header .nav-pills li .submenu{
 	position:absolute;
@@ -8024,6 +8036,9 @@ a.btn-muave:hover{
 	background: -ms-linear-gradient(top, #8c3778 0%, #A84491 100%);
 	background: linear-gradient(to bottom, #8c3778 0%, #A84491 100%);
  	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8c3778', endColorstr='#A84491', GradientType=0);
+}
+.sprite-rating_s span.part_icon_rating{
+	background: url('images/icon_rating_part.png') no-repeat top left;
 }
 .map_canvas{
 	height:100% !important;
