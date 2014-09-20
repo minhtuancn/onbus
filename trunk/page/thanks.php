@@ -164,7 +164,7 @@ if(!isset($_GET['e'])){
             
         </div>';
 
-        var_dump($modelTicket->smtpmailer($email, 'lahavafashion2013@gmail.com', 'ONBUS.VN',$tieudethu,$noidungthu));	
+        var_dump($model->smtpmailer($email, 'onbusvn@gmail.com', 'ONBUS.VN',$tieudethu,$noidungthu));	
 	
 		session_destroy();
 	}

@@ -117,14 +117,14 @@ if(!empty($_SESSION['bookticket'])){
                     <div class="content_sidebar">
                     	<div class="total_price">
                         	<h2 class="left"><b>{tong}:</b></h2>
-                            <span class="price"><?php echo ($_SESSION['onbustigia'] == 1) ? number_format($total) : $total; ?> <?php echo ($_SESSION['onbustigia'] == 1) ? "VNĐ" : "USD"; ?></span>
+                            <span class="price"><?php echo number_format($total); ?> VNĐ</span>
                          </div>
                         <h3>{tongsove}: <?php echo $amount; ?></h3>
                         <h3>{tienvetongcong}:</h3>
                         <ul>
                             <li>
                                 <div class="left">{tienve}</div>
-                                <div class="right"><?php echo ($_SESSION['onbustigia'] == 1) ? number_format($total) : $total; ?> <?php echo ($_SESSION['onbustigia'] == 1) ? "VNĐ" : "USD"; ?></div>
+                                <div class="right"><?php echo number_format($total); ?> VNĐ</div>
                             </li>                            
                             <li>
                             	<div class="left"><h3>{giamgia}</h3></div>

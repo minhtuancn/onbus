@@ -323,7 +323,7 @@ $routeDetail = $model->detailRoute($vstart,$vend);
                                 <div class="book-btn">
                                     <div class="d-price">                                        
                                         <input type="hidden" id="price_<?php echo $ticket['ticket_id']; ?>" value="<?php echo $_SESSION['onbustigia'] == 2 ? $model->cal($ticket['price'],$_SESSION['onbustigia']) : $ticket['price']; ?>"/>
-                                        <span><?php echo $model->cal($ticket['price'],$_SESSION['onbustigia']); ?><span><?php echo ($_SESSION['onbustigia'] == 1) ? "VNĐ" : "USD"; ?></span></span>
+                                        <span><?php echo $model->cal($ticket['price'],1); ?><span> VNĐ</span></span>
                                     </div>
                                     <div class="clear"></div>
                                     <a href="javascript:void(0)" data-value="<?php echo $ticket['ticket_id']; ?>" data-toggle="modal" data-target="#popup_book_ticket" class="btn-muave">{datve}</a>
@@ -414,7 +414,7 @@ $routeDetail = $model->detailRoute($vstart,$vend);
                             <div class=" x-right">
                                 <div class="book-btn">
                                     <div class="d-price">
-                                        <span><?php echo $model->cal($ticket['price'],$_SESSION['onbustigia']); ?><span><?php echo ($_SESSION['onbustigia'] == 1) ? "VNĐ" : "USD"; ?></span></span>
+                                        <span><?php echo $model->cal($ticket['price'],1); ?><span> VNĐ</span></span>
                                         <input type="hidden" id="price_<?php echo $ticket['ticket_id']; ?>" value="<?php echo $_SESSION['onbustigia'] == 2 ? $model->cal($ticket['price'],$_SESSION['onbustigia']) : $ticket['price']; ?>"/>
                                     </div>
                                     <div class="clear"></div>

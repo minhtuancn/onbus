@@ -115,7 +115,8 @@ font-weight: bold;
           <div class="button-control action-start hover-stop"><span></span></div>
 	 </div> 
         <?php 
-        $rs = mysql_query("SELECT * FROM articles WHERE status > 0 ");
+        $lang_id = $_SESSION['lang'] == 'vi' ? 1 : 2;        
+        $rs = mysql_query("SELECT * FROM articles WHERE lang_id = $lang_id AND status > 0 ");
         while($row = mysql_fetch_assoc($rs)){
         ?>
 				<div class="post archive">

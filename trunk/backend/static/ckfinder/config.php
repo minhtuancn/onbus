@@ -83,7 +83,7 @@ Examples:
 ATTENTION: The trailing slash is required.
 */
 //$baseDir = "/home/thietken/public_html/marinehotel.com.vn/upload/";
-$baseDir = "C:/Appserv/www/onbus/upload/";
+$baseDir = "/home/onbus/domains/onbus.vn/public_html/upload/";
 //$baseDir = "/home/tungtt/public_html/tamtang/upload/";
 
 /*
