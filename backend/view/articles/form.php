@@ -117,6 +117,12 @@ function SetFileField( fileUrl, data ){
 
                     <button class="btn btn-primary" type="button" onclick="BrowseServer('Images:/','image_url')" >Chọn ảnh</button>
 
+<div style="color:red;font-size:19px">
+Tin thường : 280 x 185 px<br />
+Tin HOT : 475 x 300 px<br />
+</div>
+
+
                 </div>
             <div class="checkbox" style="margin-bottom:20px">
 
@@ -128,21 +134,7 @@ function SetFileField( fileUrl, data ){
 
                 </label>                                                
 
-                </div>
-            <div class="form-group">
-
-                <label>Điểm đến HOT</label>
-
-                <select class="form-control" name="tinh_id" id="tinh_id">
-
-                    <option value="0">---chọn---</option>
-                    <?php foreach($arrHot as $hot){ ?>
-                    <option value="<?php echo $hot['tinh_id']; ?>" <?php echo ($detail['tinh_id']==$hot['tinh_id']) ? "selected" : ""; ?>><?php echo $hot['tinh_name_vi']; ?></option>
-                    <?php } ?>                        
-
-                </select>
-
-            </div>    
+                </div>                
             <div class="form-group">
 
                 <label>Nội dung <span class="required"> ( * ) </span></label>                        
