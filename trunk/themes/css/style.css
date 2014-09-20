@@ -4872,7 +4872,7 @@ input[type=radio], input[type=checkbox] {
 	-moz-border-radius: 3px;
 	-ms-border-radius: 3px;
 	position: relative;
-	z-index: 2;
+	/* z-index: 2; */
 }
 .process_bar.nav li span {
 	/* width: 20px; */
@@ -7519,6 +7519,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c3778', end
 	padding-top:20px;
 	width:270px;
 	display:none;
+	z-index: 100;
 }
 .menu-header .nav-pills li .submenu .wrap_sub{
 	background: #75083c;
@@ -8024,4 +8025,7 @@ a.btn-muave:hover{
 	background: -ms-linear-gradient(top, #8c3778 0%, #A84491 100%);
 	background: linear-gradient(to bottom, #8c3778 0%, #A84491 100%);
  	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8c3778', endColorstr='#A84491', GradientType=0);
+}
+.form-control-feedback{
+	z-index:0;
 }
