@@ -3,7 +3,7 @@ $arrNhaxe = $model->getListNhaxe("",-1,-1,-1);
 ?>
 <div class="page_profile">
             <div class="block_search_nhaxe">
-                <input type="text" id="txtSearch" placeholder="Tìm kiếm nhà xe..." class="form-control">
+                <input type="text" id="txtSearch" placeholder="{timkiemnhaxe}..." class="form-control">
                 <input type="button" id="btn_search_nhaxe" value="">
             </div>
             <div class="clear"></div>

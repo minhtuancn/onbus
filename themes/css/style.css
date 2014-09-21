@@ -7234,7 +7234,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c3778', end
 }
 .faq_page {
 	background: #fff;
-	min-height: 768px;
+	min-height: 450px;
 }
 .faq_page .title_faq {
 	background: #5C0E63;
