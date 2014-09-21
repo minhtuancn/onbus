@@ -13,9 +13,9 @@
             </div>
 
             <div class="left"><h4 class="smallBoxHeader">{datvequaonbus}</h4>
-<p><?php if($lang=="vi") { ?>Chia sẻ cùng chúng tôi hành trình của bạn, chúng tôi sẽ giúp bạn có được giá vé và chất lượng dịch vụ tốt nhất từ những thương hiệu nhà xe uy tín hàng đầu. Đảm bảo cho bạn sự tiện lợi, an toàn và tiết kiệm.
+<p><?php if($lang=="vi") { ?>Chia sẻ cùng chúng tôi hành trình của bạn, <br />chúng tôi sẽ giúp bạn có được giá vé và chất lượng dịch vụ tốt nhất từ những thương hiệu nhà xe uy tín hàng đầu. Đảm bảo cho bạn sự tiện lợi, an toàn và tiết kiệm.
 <?php }else{ ?>
-Share with us your journey, we will help you choose your ticket with best price and the best quality service from the prestige bus cooperator. Ensure your convenience, safety and savings.
+Share with us your journey,<br /> we will help you choose your ticket with best price and the best quality service from the prestige bus cooperator. Ensure your convenience, safety and savings.
 <?php } ?>
 
 </p>

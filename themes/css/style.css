@@ -2660,7 +2660,7 @@ body.wide .w1-4 {
 }
 footer p {
 	color: #e3dacf;
-	font-size: 13px
+	font-size: 1.1em	
 }
 footer ul li a {
 	display: -moz-inline-stack;
@@ -2671,11 +2671,11 @@ footer ul li a {
 	margin: 0;
 	text-decoration: none
 ;
-	font-size: 1.1em;
+	font-size: 1.2em;
 }
 .smallBoxHeader {
 	color: #ffad5b;
-	font-size: 1.1em;
+	font-size: 1.2em;
 	margin-bottom: 10px;
 	padding: 0;
 	font-weight: 300
