@@ -265,7 +265,7 @@ $routeDetail = $model->detailRoute($vstart,$vend);
                                                 $arrImg[$ticket['ticket_id']][] = $row['image_url'];                                            
                                             ?>
                                                 <?php if($count==1){ ?>
-                                                <a href="<?php echo $row['image_url']?>" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img hs-result-photo">
+                                                <a onclick="return loadslide(<?php echo $ticket['nhaxe_id']; ?>);" href="javascript:;" data-target="#slideshow" data-toggle="modal" class="showslide wrap-img hs-result-photo">
                                                     <img src="<?php echo $row['image_url']?>" data-width="166" data-height="105" data-hotelid="<?php echo $ticket['ticket_id']; ?>"  />
                                                 </a>
                                                 <?php } ?>
@@ -480,6 +480,18 @@ $routeDetail = $model->detailRoute($vstart,$vend);
     </div>
   </div>
 </div>
+<div class="modal fade" id="slideshow">
+  <div class="modal-dialog" style="width:600px !important;margin-top:2%;height:500px !important">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="popup_detail">
+            <div class="wrap-popup" id="loadslideshow" style="padding:0px !important;">               
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="modal fade" id="popup_book_ticket">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -536,7 +548,9 @@ $routeDetail = $model->detailRoute($vstart,$vend);
 <script type="text/javascript">
          $(document).ready(function(){
               $(function () {
+                $('.showslide').click(function(){
 
+                });
                 initSearchTicketWidget();    
                 clickOutsideSelector("#departPlaceSelector2");
                 clickOutsideSelector("#destinationSelector2");
@@ -930,6 +944,17 @@ function loadmap(start,end){
         }
     });
 }
+function loadslide(id){
+    $.ajax({
+        url: "ajax/slide.php",
+        type: "POST",
+        async: false,                             
+        data: {'id':id},
+        success: function(data){ 
+            $('#loadslideshow').html(data);
+        }
+    });
+}
 </script>   
 <script src="<?php echo STATIC_URL; ?>/js/rotate.js" type="text/javascript"></script>
 <?php if(!empty($arrImg)){ ?>
@@ -952,7 +977,4 @@ $(document).ready(function(){
 //]]>
 </script>
 <?php } ?>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=vi"></script>     
-<?php 
-var_dump("<pre>",$arrImg);
-?>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=vi"></script>
