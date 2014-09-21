@@ -22,7 +22,7 @@ define("topdiemden", "Top destination");
 define("nhaxehangdau", "Top bus operator");
 define("vechungtoi", "About Onbus");
 define("lienhe", "Contact");
-define("hoidap", "Question&Answer");
+define("hoidap", "FAQ");
 define("chinhsachthanhtoan", "Payment Policy");
 define("phanhoi", "Feedback");
 define("chinhsachriengtu", "Privacy Policy");

@@ -24,21 +24,32 @@ $is_pay = $error == 0 ? 1 : 0;
 ?>
 <div class="wrap_thanks">
 	<?php if($error == 0 ) {?>
-    <h1>Congratulation !!!</h1>
-	<p>Hệ thống xác nhận đơn hàng: <b><?php echo $_SESSION['order_code']; ?></b> 
-        của quý khách đã được thanh toán thành công. </p>    
+        <h1><?php echo $lang=='vi' ? "Chúc mừng bạn!!!" : "Congratulation!!!"?></h1>
+    	<?php if($lang=='vi') { ?>
+        <p>Hệ thống xác nhận đơn hàng: <b><?php echo $_SESSION['order_code']; ?></b> 
+            của quý khách đã được thanh toán thành công. </p>    
+        <p>
+            <?php }else{ ?>
+        Our system confirm your approval successful. Your code is : <b><?php echo $_SESSION['order_code']; ?></b></p>    
+        <?php } ?>
+        <p><?php echo $lang=='vi' ? "Thông tin sẽ được chuyển về email" : "The information will send to email"?>: <a href="#"><?php echo $_SESSION['email']; ?></a></p>
+    <p><?php echo $lang=="vi" ? "Chân thành cám ơn quý khách đã sử dụng dịch vụ đặt vé của Onbus." : "Thank you for using Onbus service."; ?></p>
     <?php } else{ ?>
-    <h1>Thanh toán không thành công!</h1>
-    <p>Hệ thống xác nhận đơn hàng: <b><?php echo $_SESSION['order_code']; ?></b> 
-        của quý khách đã được lưu lại để xác nhận sau. </p>    
+        <?php if($lang=='vi') { ?>
+        <h1>Thanh toán không thành công!</h1>
+        <p>Hệ thống không thể xác nhận đơn hàng.Vui lòng kiểm tra lại thông tin thanh toán của quý khách. </p>    
+        <?php }else{ ?>
+        <h1>Payment unsuccessful!</h1>
+        <p>Our system can not confirm your ticket order.Please check your payment information again. </p>    
+        <?php } ?>
     <?php } ?>
-    <p>Thông tin sẽ được chuyển về email: <a href="#"><?php echo $_SESSION['email']; ?></a></p>
-    <p>Chân thành cám ơn quý khách đã sử dụng dịch vụ đặt vé của Onbus.</p>
-    <p>Chi tiết vui lòng liên hệ: 00112223344</p>
+
+    
+    <p><?php echo $lang=="vi" ? "Chi tiết vui lòng liên hệ" : "Hotline"; ?>: 08 6650 3399</p>
     <p class="img_thanks"><img src="<?php echo STATIC_URL; ?>/images/bus-grape-icon.png"></p>
 </div>
 <?php 
-
+if($error == 0){
 $e = $_GET['e'];
 if(!isset($_GET['e'])){
 	//thanh cong
@@ -65,7 +76,7 @@ if(!isset($_GET['e'])){
         fullname,phone,email,status,creation_time,method_id,is_pay)
 	VALUES (NULL,'$order_code',$amount,$total,'$fullname','$phone','$email',2,$time,1,$is_pay)";
 	mysql_query($sql) or die(mysql_error());
-
+    /*
 	// gui mail
 	$tieudethu="ONBUS ticket confirmation";
 	$noidungthu = '<div style="width:800px;padding:20px"><div style="float:left"><img src="http://onbus.vn/themes/images/logo2_final.png" width="150px" />
@@ -165,8 +176,10 @@ if(!isset($_GET['e'])){
         </div>';
 
         var_dump($model->smtpmailer($email, 'onbusvn@gmail.com', 'ONBUS.VN',$tieudethu,$noidungthu));	
-	
-		session_destroy();
+	   */
+		
 	}
+    }
+    session_destroy();
 }
 ?>

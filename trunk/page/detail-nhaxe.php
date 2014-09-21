@@ -22,7 +22,7 @@ $arrDiem = array(0,1,2,3,4,5);
                     <span></span>
                     <?php } ?>
                     <?php if($leN==1) {?>
-                    <span style="width:9px !important"></span>
+                    <span class="part_icon_rating"></span>
                     <?php } ?>
                 </div>
                 <h1><?php echo $row_nhaxe['nhaxe_name_'.$lang]; ?></h1>
@@ -119,7 +119,7 @@ $arrDiem = array(0,1,2,3,4,5);
                                     	<span></span>
                                         <?php } ?>
                                         <?php if($le==1) {?>
-                                        <span style="width:9px !important"></span>
+                                        <span class="part_icon_rating"></span>
                                         <?php } ?>
                                     </div>
                                 </li>
@@ -138,7 +138,7 @@ $arrDiem = array(0,1,2,3,4,5);
                                         <span></span>
                                         <?php } ?>
                                         <?php if($le1==1) {?>
-                                        <span style="width:9px !important"></span>
+                                        <span class="part_icon_rating"></span>
                                         <?php } ?>
                                     </div>
                                 </li>
@@ -157,7 +157,7 @@ $arrDiem = array(0,1,2,3,4,5);
                                         <span></span>
                                         <?php } ?>
                                         <?php if($le2==1) {?>
-                                        <span style="width:9px !important"></span>
+                                        <span class="part_icon_rating"></span>
                                         <?php } ?>
                                     </div>
                                 </li>
@@ -176,7 +176,7 @@ $arrDiem = array(0,1,2,3,4,5);
                                         <span></span>
                                         <?php } ?>
                                         <?php if($le3==1) {?>
-                                        <span style="width:9px !important"></span>
+                                        <span class="part_icon_rating"></span>
                                         <?php } ?>
                                     </div>
                                 </li>                                
@@ -239,7 +239,7 @@ $arrDiem = array(0,1,2,3,4,5);
                                         <span></span>
                                         <?php } ?>
                                         <?php if($le10==1) {?>
-                                        <span style="width:9px !important"></span>
+                                        <span class="part_icon_rating"></span>
                                         <?php } ?>                                    
                                 </div>
                                 <span class="ratingDate relativeDate" title="August 13, 2014">
