@@ -54,17 +54,18 @@ class Articles extends Db {
         }
     }    
 
-    function updateArticles($article_id,$title,$title_safe,$image_url,$description,$content,$category_id,$hot,$lang_id,$tinh_id) {
+    function updateArticles($article_id,$title,$title_safe,$image_url,$description,$content,$category_id,$hot,$lang_id) {
        try{
         $user_id = $_SESSION['user_id'];
         $time = time();
+        
         $sql = "UPDATE articles
                     SET title = '$title',title_safe = '$title_safe',
-                    image_url = '$image_url',description = '$description',content = '$content',                    
+                    image_url = '$image_url',
+                    description = '$description',content = '$content',                    
                     category_id = $category_id, hot = $hot, lang_id = $lang_id,
                     update_time = $time,
-                    user_id = $user_id,
-                    tinh_id = $tinh_id               
+                    user_id = $user_id              
                     WHERE article_id = $article_id ";
         mysql_query($sql)  or $this->throw_ex(mysql_error());       
         }catch(Exception $ex){            

@@ -20,15 +20,13 @@ $lang_id = (int) $_POST['lang_id'];
 
 $hot = (int) $_POST['hot'];
 
-$tinh_id = (int) $_POST['tinh_id'];
-
 $category_id = 1;
 
 $image_url = str_replace("../", "", $model->processData($_POST['image_url']));
 
 if($article_id > 0) {	
 
-	$model->updateArticles($article_id,$title,$title_safe,$image_url,$description,$content,$category_id,$hot,$lang_id,$tinh_id);
+	$model->updateArticles($article_id,$title,$title_safe,$image_url,$description,$content,$category_id,$hot,$lang_id);
 
 	header('location:'.$url);
 

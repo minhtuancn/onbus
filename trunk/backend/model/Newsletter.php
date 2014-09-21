@@ -12,7 +12,7 @@ class Newsletter extends Db {
    
 
     function getListContentByStatus($type, $status=-1,$offset = -1, $limit = -1) {
-        $sql = "SELECT * FROM sendcontent WHERE type = $type AND (status = $status OR $status = -1) ";
+        $sql = "SELECT * FROM sendcontent WHERE type = $type AND (status = $status OR $status = -1) ORDER BY id DESC ";
         if ($limit > 0 && $offset >= 0)
             $sql .= " LIMIT $offset,$limit";
         $rs = mysql_query($sql) or die(mysql_error());
