@@ -90,4 +90,5 @@ define("kotimthaydulieu","Not found data.");
 define("noidung","Content");
 define("gui","Send");
 define("lienheonbus","Contacting Onbus.vn");
+define("timkiemnhaxe","Search bus operator");
 ?>

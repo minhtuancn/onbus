@@ -3,10 +3,11 @@ $arrNhaxe = $model->getListNhaxe("",-1,-1,-1);
 ?>
 <div class="page_profile">
             <div class="block_search_nhaxe">
-                <input type="text" placeholder="Tìm kiếm nhà xe..." class="form-control">
-                <input type="submit" id="btn_search_nhaxe" value="">
+                <input type="text" id="txtSearch" placeholder="Tìm kiếm nhà xe..." class="form-control">
+                <input type="button" id="btn_search_nhaxe" value="">
             </div>
-            <ul class="list_box">
+            <div class="clear"></div>
+            <ul class="list_box" id="rs_nhaxe">
                 <?php foreach ($arrNhaxe['data'] as $xe) {
                   $img = (strlen($xe['thumbnail_url']) > 10) ? $xe['thumbnail_url'] :  STATIC_URL."/images/bus-2.jpg"; 
                 ?>
@@ -25,5 +26,25 @@ $arrNhaxe = $model->getListNhaxe("",-1,-1,-1);
                 <?php } ?>
                 
             </ul>
+          
             <div class="clear"></div>
         </div>
+
+<script type="text/javascript">
+$(function(){
+    $("#txtSearch").keyup(function() {
+      var keyword = $.trim($(this).val());
+      
+        $.ajax({
+            url: "ajax/bus.php",
+            type: "POST",
+            async: false,                             
+            data: {"keyword":keyword},
+            success: function(data){                    
+                $("#rs_nhaxe").html(data);
+            }
+        });
+      
+    });
+});
+</script>        

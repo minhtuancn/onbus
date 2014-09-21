@@ -117,5 +117,6 @@ $onbus = str_replace("{kotimthaydulieu}" , kotimthaydulieu , $onbus);
 $onbus = str_replace("{noidung}" , noidung , $onbus);
 $onbus = str_replace("{gui}" , gui , $onbus);
 $onbus = str_replace("{lienheonbus}" , lienheonbus , $onbus);
+$onbus = str_replace("{timkiemnhaxe}" , timkiemnhaxe , $onbus);
 echo $onbus;
 ?>
