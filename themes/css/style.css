@@ -6297,9 +6297,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c3778', end
 }
 .wrap_thanks p {
 	line-height: 23px;
-	margin-bottom: 1px;
-	font-style: italic;
-	text-align: center;
+	margin-bottom: 1px;		
 }
 .wrap_thanks p b {
 	font-size: 1.2em;

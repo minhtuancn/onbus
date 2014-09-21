@@ -147,6 +147,12 @@ class Ticket extends Db {
 
             
     }
+    function getAbbreviationRoute($tinh_id_start,$tinh_id_end){
+        $sql = "SELECT abbreviation FROM route WHERE tinh_id_start = $tinh_id_start AND tinh_id_end = $tinh_id_end"; 
+        $rs = mysql_query($sql);
+        $row = mysql_fetch_assoc($rs);
+        return $row['abbreviation']; 
+    }
     function insertTicket($nhaxe_id,$tinh_id_start,$tinh_id_end,$place_id_start,$place_id_end,$price,$type,$duration,$amount,$car_type,$stop,$note,$arrSer,$arrTime,$arrDates,$key_all,$str_month){        
         $user_id = $_SESSION['user_id'];
         if(!empty($arrDates)){
@@ -159,6 +165,16 @@ class Ticket extends Db {
                         $amount,$car_type,$stop,'$note','$date_start',$time,$time,1,$user_id,'$key_all','$str_month')";        
                     $rs = mysql_query($sql) or $this->throw_ex(mysql_error());  
                     $ticket_id = mysql_insert_id();
+                    //update code
+                    $month = date('m',$date_start);
+                    $day = date('d',$date_start);
+                    $tmp = str_pad($ticket_id, 3, "0", STR_PAD_LEFT);
+
+                    $abbreviation = $this->getAbbreviationRoute($tinh_id_start,$tinh_id_end);
+                    $code = $abbreviation.'-'.$day.$month.$tmp;
+
+                    mysql_query("UPDATE ticket SET code = '$code' WHERE ticket_id = $ticket_id");
+                    
                     if(!empty($arrTime)){
                         foreach ($arrTime as $time_id) {
                             $this->insertTimeTicket($ticket_id,$time_id);
