@@ -110,5 +110,9 @@ $onbus = str_replace("{chatluongxe}" , chatluongxe , $onbus);
 $onbus = str_replace("{thaido}" , thaido , $onbus);
 $onbus = str_replace("{dunggio}" , dunggio , $onbus);
 $onbus = str_replace("{antoan}" , antoan , $onbus);
+$onbus = str_replace("{tinhtrangve}" , tinhtrangve , $onbus);
+$onbus = str_replace("{tieptuc}" , tieptuc , $onbus);
+$onbus = str_replace("{mave}" , mave , $onbus);
+$onbus = str_replace("{kotimthaydulieu}" , kotimthaydulieu , $onbus);
 echo $onbus;
 ?>

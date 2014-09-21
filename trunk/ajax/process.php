@@ -2,11 +2,18 @@
 require_once '../backend/model/Home.php';
 $model = new Home;
 
-$arrMod = array("newsletter","feedback",'code');
+$arrMod = array("newsletter","feedback",'code','myticket');
 
 $mod = isset($_POST['mod']) ? $model->processData($_POST['mod']) : "";
 
 if(in_array($mod,$arrMod)){
+	if($mod=="myticket"){
+		$phone = isset($_POST['phone']) ? $model->processData($_POST['phone']) : "";
+		$code = isset($_POST['code']) ? $model->processData($_POST['code']) : "";
+		if($phone!='' && $code!=''){
+			$result = $model->getInfoTicket($phone,$code);
+		}
+	}
 	if($mod=="newsletter"){
 		$email = isset($_POST['email']) ? $model->processData($_POST['email']) : "";
 		if(!filter_var($email, FILTER_VALIDATE_EMAIL))

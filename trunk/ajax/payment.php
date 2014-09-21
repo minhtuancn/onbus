@@ -67,15 +67,16 @@ if($method=="1"){
 			$price = $value['price'];
 			$time = $value['time'];
 			$amount = $value['amount'];
+			$type= $value['type'];
 			$time=time();
-			$sql = "INSERT INTO order_detail VALUES(NULL,$order_id,$ticket_id,$time,'$code',$amount,$price,$time,2)";
+			$sql = "INSERT INTO order_detail VALUES(NULL,$order_id,$ticket_id,$time,'$code',$amount,$price,$time,2,$type)";
 			mysql_query($sql);
 		}
 	}
 	$_SESSION['mave'] = $arrCode;
 
 	
-	header('location:http://onbus.vn/'.$lang.'/thanks-you.html');
+	header('location:http://localhost/onbus/'.$lang.'/thanks-you.html');
 
 }elseif($method== "2"){
 	

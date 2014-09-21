@@ -71,9 +71,10 @@ if($error == 0 && $method_id > 1){
             $price = $value['price'];
             $time = $value['time'];
             $amount = $value['amount'];
+            $type = $value['type'];
             $time=time();
-            $sql = "INSERT INTO order_detail VALUES(NULL,$order_id,$ticket_id,$time,'$code',$amount,$price,$time,2)";
-            mysql_query($sql);
+            echo $sql = "INSERT INTO order_detail VALUES(NULL,$order_id,$ticket_id,$time,'$code',$amount,$price,$time,2,$type)";
+            mysql_query($sql) or die(mysql_error());
         }
     }
     $_SESSION['mave'] = $arrCode;

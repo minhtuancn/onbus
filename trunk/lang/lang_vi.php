@@ -82,5 +82,8 @@ define("chatluongxe","Chất lượng xe");
 define("thaido","Thái độ phục vụ");
 define("dunggio","Đúng giờ");
 define("antoan","An toàn");
-
+define("tinhtrangve","Tình trạng vé");
+define("mave","Mã vé");
+define("tieptuc","Tiếp tục");
+define("kotimthaydulieu","Không tìm thấy dữ liệu.");
 ?>

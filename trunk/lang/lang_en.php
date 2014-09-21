@@ -83,4 +83,8 @@ define("chatluongxe","Bus quality");
 define("thaido","Staff behavious");
 define("dunggio","Punctuality");
 define("antoan","Safety");
+define("tinhtrangve","Ticket status");
+define("mave","Code Ticket");
+define("tieptuc","Continue");
+define("kotimthaydulieu","Not found data.");
 ?>

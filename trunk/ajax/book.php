@@ -12,6 +12,7 @@ $_SESSION['bookticket'][$key]['price'] = $price;
 $_SESSION['bookticket'][$key]['time'] = $time;
 $_SESSION['bookticket'][$key]['amount'] = $amount;
 $_SESSION['bookticket'][$key]['total'] = $amount*$price;
+$_SESSION['bookticket'][$key]['type'] = $tab;
 $_SESSION['tab'] = $tab;
 
 ?>
