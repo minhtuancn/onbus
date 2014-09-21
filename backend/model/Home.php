@@ -25,6 +25,27 @@ class Home extends Db {
             $this->logError($arrLog);
         }
     }
+    function getInfoTicket($phone,$code){
+        $arrReturn = $arrDetail = $arrOrder = array();
+        $sql = "SELECT order_detail.id,order_detail.order_id FROM orders,order_detail WHERE order_detail.code = '$code' AND orders.phone = '$phone'";
+        $rs = mysql_query($sql);
+        $no = mysql_num_rows($rs);
+        if($no > 0){
+            $row = mysql_fetch_assoc($rs);
+            $order_id = $row['order_id'];
+            $sql = "SELECT * FROM orders WHERE order_id = $order_id  AND status > 0 ";
+            $rs_order = mysql_query($sql);
+            $arrOrder = mysql_fetch_assoc($rs_order);
+
+            $sql = "SELECT * FROM order_detail WHERE order_id = $order_id AND status > 0";
+            $rs_detail = mysql_query($sql);
+            while($row_detail = mysql_fetch_assoc($rs_detail)){
+                $arrDetail[$row_detail['type']] = $row_detail;
+            }
+        }
+        return array('arrOrder' => $arrOrder,'arrDetail' => $arrDetail);
+        
+    }
     function getRatingDetailOfNhaxe($nhaxe_id){
         $arrResult = array();
         $sql = "SELECT * FROM rating_detail WHERE nhaxe_id = $nhaxe_id AND status = 1 ORDER BY detail_id DESC ";

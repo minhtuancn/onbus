@@ -23,20 +23,22 @@
                     <div class="submenu">
                       <div class="wrap_sub">
                           <div class="title">
-                              <h2>Tình trạng vé</h2>
+                              <h2>{tinhtrangve}</h2>
                                 <a href="javascript:void(0)" class="close_icon"><span class="glyphicon glyphicon-remove"></span></a>
                             </div>
                             <form role="form">
                               <div class="form-group">
-                                <label for="exampleInputEmail1">Điện thoại</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                <label for="exampleInputEmail1">{dienthoai}</label>
+                                <input type="text" class="form-control" id="phone_myticket" placeholder="Enter phone">
                               </div>
                               <div class="form-group">
-                                <label for="exampleInputEmail1">Mã vé</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                <label for="exampleInputEmail1">{mave}</label>
+                                <input type="text" class="form-control" id="code_myticket" placeholder="Enter code ticket">
                               </div>
-                              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#popup_myticket">Tiếp tục</button>
+                              <button type="button" id="btnCheckTicket" class="btn btn-default" data-toggle="modal" data-target="#popup_myticket">{tieptuc}</button>
+                              <p style="margin-top:10px;font-style:italic;" id="error_myticket" class="error_time">{thongtinkochinhxac}</p>                               
                             </form>
+
                         </div>
                     </div>
                   </li>
@@ -57,6 +59,31 @@ $(function(){
       $('#dropdownMenu1').html($(this).html()+'<span class="caret"></span>');   
       var lang = $(this).attr('data-value');
       location.href="<?php echo HOST; ?>/" + lang + '/'; 
+  });
+  $('#btnCheckTicket').on('click',function(){
+      var flag = true;
+      var phone = $.trim($("#phone_myticket").val());
+      var code = $.trim($("#code_myticket").val());    
+      if(phone =="" || code == ""){
+        flag = false;
+      }else{
+        $.ajax({
+              url: "ajax/myticket.php",
+              type: "POST",
+              async: true,              
+              data: {
+                  'phone':phone,
+                  'code': code,
+                  'mod' : 'myticket'             
+              },
+              success: function(data){                             
+                  $('#loadmyticket').html(data);
+              }
+              
+          });
+      }//else
+      console.log(flag);
+      return flag;
+    });   
   });  
-});
     </script>

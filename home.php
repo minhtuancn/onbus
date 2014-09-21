@@ -206,90 +206,8 @@ foreach ($arrTinhHaveTicket as $value) {
           </div>
       <div class="modal-body">
         <div class="popup_detail">
-            <div class="wrap-popup">
-                <a href="#" class="close-popup" data-dismiss="modal"></a>
-                <div class="box_myticket left">
-                    <h1>Thông tin khách hàng</h1>
-                    <ul>
-                        <li>
-                            <span class="bg_full">Tên khách hàng</span>
-                            <span>Điển Trương Hoàng</span>
-                        </li>
-                        <li>
-                            <span class="bg_full">Email</span>
-                            <span>Điển Trương Hoàng</span>
-                        </li>
-                        <li>
-                            <span class="bg_full">Số điện thoại</span>
-                            <span>Điển Trương Hoàng</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="box_myticket left logo">
-                    <a class="logo_contact" href="#"><img src="<?php echo STATIC_URL; ?>/images/logo2_final.png" width="250"></a>
-                </div>
-                <div class="clear"></div>
-                <div class="box_myticket left">
-                    <h1>Vé chiều đi<p>hồ chí minh - bến tre - số lượng: 01</p></h1>
-                    
-                    <ul>
-                    <li>
-                            <span class="bg_full">Mã vé</span>
-                            <span>Điển Trương Hoàng</span>
-                        </li>
-                    <li>
-                        <span class="bg_full">Điểm khởi hành</span>
-                        <span>Điển Trương Hoàng</span>
-                    </li>
-                    <li>
-                        <span class="bg_full">Điểm đến</span>
-                        <span>Điển Trương Hoàng</span>
-                    </li>
-                    <li>
-                            <span class="bg_full">Ngày & Giờ khởi hàng</span>
-                            <span>Điển Trương Hoàng</span>
-                        </li>
-                    <li>
-                        <span class="bg_full">Số ghế</span>
-                        <span>Điển Trương Hoàng</span>
-                    </li>
-                    <li>
-                        <span class="bg_full">Số xe</span>
-                        <span>Điển Trương Hoàng</span>
-                    </li>
-                    </ul>
-                    <div id="newsletter-signup-button" class="submit-form left"><span class="label">Hủy vé</span></div>
-                </div>
-                <div class="box_myticket left">
-                    <h1>Vé chiều về<p>hồ chí minh - bến tre - số lượng: 01</p></h1>
-                    <ul>
-                    <li>
-                            <span class="bg_full">Mã vé</span>
-                            <span>Điển Trương Hoàng</span>
-                        </li>
-                    <li>
-                        <span class="bg_full">Điểm khởi hành</span>
-                        <span>Điển Trương Hoàng</span>
-                    </li>
-                    <li>
-                        <span class="bg_full">Điểm đến</span>
-                        <span>Điển Trương Hoàng</span>
-                    </li>
-                    <li>
-                            <span class="bg_full">Ngày & Giờ khởi hàng</span>
-                            <span>Điển Trương Hoàng</span>
-                        </li>
-                    <li>
-                        <span class="bg_full">Số ghế</span>
-                        <span>Điển Trương Hoàng</span>
-                    </li>
-                    <li>
-                        <span class="bg_full">Số xe</span>
-                        <span>Điển Trương Hoàng</span>
-                    </li>
-                    </ul>
-                </div>
-                <div class="clear"></div>    
+            <div class="wrap-popup" id="loadmyticket">
+                 
             </div>
         </div>
       </div>
@@ -382,7 +300,7 @@ $(function(){
                         }, 4000);                        
                     }
                 }
-                });
+            });
         }else{
             $('#mess_feedback').show();
             $('#f_email').focus();

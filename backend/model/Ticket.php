@@ -162,7 +162,7 @@ class Ticket extends Db {
                     $time = time();
                     $sql = "INSERT INTO ticket VALUES(NULL,$nhaxe_id,$tinh_id_start,$tinh_id_end,$place_id_start,$place_id_end,
                         '$price',$type,'$duration',
-                        $amount,$car_type,$stop,'$note','$date_start',$time,$time,1,$user_id,'$key_all','$str_month')";        
+                        $amount,$car_type,$stop,'$note','$date_start',$time,$time,1,$user_id,'$key_all','$str_month','')";        
                     $rs = mysql_query($sql) or $this->throw_ex(mysql_error());  
                     $ticket_id = mysql_insert_id();
                     //update code
