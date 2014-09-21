@@ -206,7 +206,7 @@ $routeDetail = $model->detailRoute($vstart,$vend);
                             <div class="control">
                                 <label>
                                     <input type="checkbox" name="car[]" <?php if(is_array($arrCarSearch) && in_array($row['nhaxe_id'],$arrCarSearch)) echo "checked"; ?> value="<?php echo $row['nhaxe_id']?>">
-                                    <?php echo $row['nhaxe_name_vi']?>
+                                    <?php echo $row['nhaxe_name_'.$lang]?>
                                 </label>                                
                             </div>                            
                          </div>
@@ -279,20 +279,23 @@ $routeDetail = $model->detailRoute($vstart,$vend);
                                             </div>
                                         </div>
                                         </div>
-                                        <ul class="icon-tien-ich">
-                                            <?php if(!empty($arrServiceTicket)) { 
-                                                foreach ($arrServiceTicket as $ser) {         
-                                                                                        
-                                                if($ser==1) $classIcon = "icon-nuoc";
-                                                elseif($ser==2) $classIcon = "icon-wifi";
-                                                elseif($ser==3) $classIcon = "icon-khan";
-                                                elseif($ser==4) $classIcon = "icon-chan";
-                                                elseif($ser==5) $classIcon = "icon-wc";
-                                            ?>
-                                            <li><i  data-toggle="tooltip" title="<?php echo $model->getServiceNameByID($ser,$lang); ?>" class="<?php echo $classIcon; ?>"></i></li>
-                                            <?php }}?>                                           
-                                            
-                                        </ul>
+                                        <div class="left">
+                                            <ul class="icon-tien-ich">
+                                                <?php if(!empty($arrServiceTicket)) { 
+                                                    foreach ($arrServiceTicket as $ser) {         
+                                                                                            
+                                                    if($ser==1) $classIcon = "icon-nuoc";
+                                                    elseif($ser==2) $classIcon = "icon-wifi";
+                                                    elseif($ser==3) $classIcon = "icon-khan";
+                                                    elseif($ser==4) $classIcon = "icon-chan";
+                                                    elseif($ser==5) $classIcon = "icon-wc";
+                                                ?>
+                                                <li><i  data-toggle="tooltip" title="<?php echo $model->getServiceNameByID($ser,$lang); ?>" class="<?php echo $classIcon; ?>"></i></li>
+                                                <?php }}?>                                           
+                                                
+                                            </ul><br />
+                                            <span><?php echo $ticket['car_type']==1 ? "Giường nằm" : "Ghế ngồi"; ?></span>
+                                        </div>
                                         <div class="right rating">
                                             <span>Good: 8.3</span>
                                             <span class="num-rating">(105 rating)</span>
@@ -381,19 +384,22 @@ $routeDetail = $model->detailRoute($vstart,$vend);
                                             </div>
                                         </div>
                                         </div>
-                                        <ul class="icon-tien-ich">
-                                            <?php if(!empty($arrServiceTicket)) { 
-                                                foreach ($arrServiceTicket as $ser) {         
-                                                                                        
-                                                if($ser==1) $classIcon = "icon-nuoc";
-                                                elseif($ser==2) $classIcon = "icon-wifi";
-                                                elseif($ser==3) $classIcon = "icon-khan";
-                                                elseif($ser==4) $classIcon = "icon-chan";
-                                                elseif($ser==5) $classIcon = "icon-wc";
-                                            ?>
-                                            <li><i  data-toggle="tooltip" title="<?php echo $model->getServiceNameByID($ser,$lang); ?>" class="<?php echo $classIcon; ?>"></i></li>
-                                            <?php }}?> 
-                                        </ul>
+                                        <div class="left">
+                                            <ul class="icon-tien-ich">
+                                                <?php if(!empty($arrServiceTicket)) { 
+                                                    foreach ($arrServiceTicket as $ser) {         
+                                                                                            
+                                                    if($ser==1) $classIcon = "icon-nuoc";
+                                                    elseif($ser==2) $classIcon = "icon-wifi";
+                                                    elseif($ser==3) $classIcon = "icon-khan";
+                                                    elseif($ser==4) $classIcon = "icon-chan";
+                                                    elseif($ser==5) $classIcon = "icon-wc";
+                                                ?>
+                                                <li><i  data-toggle="tooltip" title="<?php echo $model->getServiceNameByID($ser,$lang); ?>" class="<?php echo $classIcon; ?>"></i></li>
+                                                <?php }}?> 
+                                            </ul>
+                                            <span><?php echo $ticket['car_type']==1 ? "Giường nằm" : "Ghế ngồi"; ?></span>
+                                        </div>
                                         <div class="right rating">
                                             <span>Good: 8.3</span>
                                             <span class="num-rating">(105 rating)</span>
