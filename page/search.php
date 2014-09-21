@@ -371,7 +371,7 @@ $routeDetail = $model->detailRoute($vstart,$vend);
                                             $count++;
                                             ?>
                                              <?php if($count==1){ ?>
-                                                <a href="<?php echo $row['image_url']?>" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img hs-result-photo">
+                                                <a onclick="return loadslide(<?php echo $ticket['nhaxe_id']; ?>);" href="javascript:;" data-target="#slideshow" data-toggle="modal" class="showslide wrap-img hs-result-photo">
                                                     <img src="<?php echo $row['image_url']?>" data-width="166" data-height="105" data-hotelid="<?php echo $ticket['ticket_id']; ?>"  />
                                                 </a>
                                                 <?php } ?>
