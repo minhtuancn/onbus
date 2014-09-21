@@ -55,11 +55,11 @@ $sove = count($arrDetail);
         </li>
     <li>
         <span class="bg_full"><?php echo $lang=="vi" ? "Điểm khởi hành" : "From"; ?></span>
-        <span><?php echo $model->getPlaceNameByID($detailTicketdi['place_id_start']); ?></span>
+        <span><?php echo $model->getPlaceNameByID($detailTicketdi['place_id_start'],$lang); ?></span>
     </li>
     <li>
         <span class="bg_full"><?php echo $lang=="vi" ? "Điểm đến" : "To"; ?></span>
-        <span><?php echo $model->getPlaceNameByID($detailTicketdi['place_id_end']); ?></span>
+        <span><?php echo $model->getPlaceNameByID($detailTicketdi['place_id_end'],$lang); ?></span>
     </li>
     <li>
             <span class="bg_full"><?php echo $lang=="vi" ? "Ngày & Giờ khởi hành" : "Date and Time"; ?></span>
@@ -90,11 +90,11 @@ $sove = count($arrDetail);
         </li>
     <li>
         <span class="bg_full"><?php echo $lang=="vi" ? "Điểm khởi hành" : "From"; ?></span>
-        <span><?php echo $model->getPlaceNameByID($detailTicketve['place_id_start']); ?></span>
+        <span><?php echo $model->getPlaceNameByID($detailTicketve['place_id_start'],$lang); ?></span>
     </li>
     <li>
         <span class="bg_full"><?php echo $lang=="vi" ? "Điểm đến" : "To"; ?></span>
-        <span><?php echo $model->getPlaceNameByID($detailTicketve['place_id_end']); ?></span>
+        <span><?php echo $model->getPlaceNameByID($detailTicketve['place_id_end'],$lang); ?></span>
     </li>
     <li>
             <span class="bg_full"><?php echo $lang=="vi" ? "Ngày & Giờ khởi hành" : "Date and Time"; ?></span>
