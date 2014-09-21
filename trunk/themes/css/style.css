@@ -3317,8 +3317,8 @@ a.book_step span {
 }
 .icon-wifi {
 	display: block;
-	width: 12px;
-	height: 12px;
+	width: 20px;
+	height: 14px;
 	background: url(images/icon_wifi.png) no-repeat;
 	margin-top: 2px;
 }
@@ -4972,7 +4972,7 @@ input[type=radio], input[type=checkbox] {
 .icon-wc {
 	width: 16px;
 	height: 16px;
-	background: url(images/icon_tolect.png) no-repeat;
+	background: url(images/wc.png) no-repeat;
 	display: block;
 }
 .icon-ta {
@@ -7835,13 +7835,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c3778', end
 }
 .vxr-loading-overlay{background:none repeat scroll 0 0 #FFFFFF;height:100%;opacity:0.5;position:fixed;text-align:center;width:100%;z-index:9999;top:0;left:0;display:none}.vxr-loading-overlay img{margin-top:40%}
 .icon-nuoc {
-    width: 16px;
+    width: 9px;
     height: 16px;
     background: url(images/nuoc.png) no-repeat;
     display: block;
 }
 .icon-khan {
-    width: 16px;
+    width: 14px;
     height: 16px;
     background: url(images/khan.png) no-repeat;
     display: block;
