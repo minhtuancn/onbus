@@ -66,7 +66,7 @@ Share with us your journey,<br /> we will help you choose your ticket with best 
         -->
         <li><a target="_blank" href="http://onbusvn.blogspot.com/">Blog</a></li>
     </ul>
-    <div style="text-align:left">Copyright @ 2014 Onbus.vn</div>    
+    <div style="text-align:center">Copyright @ 2014 Onbus.vn</div>    
 </div>
 
 

@@ -107,4 +107,5 @@ define("tuyenduong","Tuyến đường");
 define("chuyendau","Chuyến đầu");
 define("chuyencuoi","Chuyến cuối");
 define("bando","Bản đồ");
+define("giave","Giá vé");
 ?>
