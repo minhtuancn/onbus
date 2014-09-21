@@ -19,6 +19,7 @@
                         <label for="exampleInputEmail1">{noidung}*</label>
                         <textarea class="form-control" rows="3" id="content_contact"></textarea>
                       </div>
+                      <p style="color:red" class="error_time" id="mess_contact"><?php echo $lang=="vi" ? "Vui lòng nhập đầy đủ thông tin!" : "Please fill all information!"; ?></p>
                       <button type="button" id="btnSendContact" class="btn btn-default">{gui}</button>
                     </form>
                 </div>                
@@ -34,3 +35,46 @@
             </div><!--right_col-->
       	</div>
             <div class="clear"></div>
+<script type="text/javascript">
+$(function(){
+  $('#btnSendContact').click(function(){ 
+      var  name = $.trim($('#name_contact').val());    
+      var  email = $.trim($('#email_contact').val());
+      var  mobile = $.trim($('#phone_contact').val());
+      var  content = $.trim($('#content_contact').val());
+
+      if(email!='' && mobile !='' && content !='' && name != ''){
+          $.ajax({
+              url: "ajax/process.php",
+              type: "POST",
+              async: true,
+              data: {
+                  'mod':'contact',
+                  'email': email,
+                  'mobile' : mobile,
+                  'content' : content,
+                  'name' : name
+              },
+              success: function(data){
+                  var mess = '<?php echo $lang=="vi" ? "Gửi liên hệ thành công." : "Send contact susccessful."; ?>';
+                  if($.trim(data)!=''){
+                      $('#mess_contact').html(data).show();
+                      if($.trim(data)=="Gửi liên hệ thành công." || $.trim(data)=="Send contact susccessful."){
+                          $('#name_contact, #phone_contact,#email_contact, #content_contact').val('');  
+
+                      }  
+                      setTimeout(function(){
+                            $('#mess_contact').hide();                                                        
+                        }, 4000);                      
+                                              
+                  }
+              }
+          });
+      }else{
+          $('#mess_contact').show();          
+          setTimeout(function(){$('#mess_contact').hide();}, 4000);            
+          return false;
+      }
+  });
+});
+</script>            
