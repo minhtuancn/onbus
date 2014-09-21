@@ -35,7 +35,7 @@ $arrRoute = $model->getListRoute('',-1,-1,1, 0, 8);
     <a id="youtube" href="#" title="Subscribe to momondo on YouTube" target="_blank">
         <span>YouTube</span>
     </a>
-    <a id="facebook" href="#" title="Follow momondo on Facebook" target="_blank">
+    <a id="facebook" href="https://www.facebook.com/onbus.vn" title="Follow momondo on Facebook" target="_blank">
         <span>Facebook</span>
     </a>
     <a id="twitter" href="#" title="Follow momondo on Twitter" target="_blank">
@@ -59,8 +59,8 @@ $arrRoute = $model->getListRoute('',-1,-1,1, 0, 8);
     <div class="faq_page">
         <div class="title_faq">
             <div class="w-center">
-            <h2>FAQ Accordion</h2>
-            <p>Find answers and help fast</p>
+            <h2>{cauhoithuonggap}</h2>
+            <p>{thamkhao}</p>
             </div>
         </div>
     <?php } ?>

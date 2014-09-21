@@ -5746,7 +5746,7 @@ font-size: .74375rem;
 .sologan_txt {
 	color: #fff;
 	height: 35px;
-	font: 700 1em/35px 'arial';
+	font: 600 1em/35px 'arial';
 	padding-left: 25px;
 }
 .place-selector .region-col.last ul {
@@ -7383,11 +7383,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c3778', end
 }
 .contact_content h2 {
 	font-size: 17px;
-	text-transform: uppercase;
-	border-bottom: 2px dashed #999999;
+	text-transform: uppercase;	
 	font-weight: bold;
-	color: orange;
-	padding-bottom: 10px;
 	margin: 0 0 20px 2px;
 	float: left;
 	width: 100%;

@@ -91,4 +91,10 @@ define("noidung","Content");
 define("gui","Send");
 define("lienheonbus","Contacting Onbus.vn");
 define("timkiemnhaxe","Search bus operator");
+define("cauhoithuonggap","FAQ Accordion");
+define("thamkhao","Find answers and help fast");
+define("tintucganday","Recent Post");
+define("khachhanghoi","Existing Customer Questions");
+define("tencongty","Onbus company limited");
+define("diachicongty","64 Nguyen Dinh Chieu, Da Kao Ward, District 1, Ho Chi Minh City");
 ?>

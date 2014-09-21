@@ -5,7 +5,7 @@ $arrQuestion = $model->getListQuestion();
 
 <div class="left col_question">
     	<div class="box_question">
-        	<h1>Existing Customer Questions</h1>
+        	<h1>{khachhanghoi}</h1>
             <ul>
                 <?php foreach ($arrQuestion['data'] as $q) {
                     ?>
@@ -20,7 +20,7 @@ $arrQuestion = $model->getListQuestion();
         </div>                
     </div>
     <div class="right recent_post">
-    	<h1>Recent Post</h1>
+    	<h1>{tintucganday}</h1>
         <ul>
         	<li><a href="#">Standard Post Format</a></li>
             <li><a href="#">Standard Post Format</a></li>
