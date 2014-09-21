@@ -10,7 +10,7 @@
         </ul>
     </div>
     <div class="box-ads box-common-border">
-        <!--<a href="#" class="wrap-img"><img src="<?php echo STATIC_URL; ?>/images/banner-doc.jpg" /></a>-->
+        <img src="<?php echo STATIC_URL; ?>/images/call-center.jpg" />
     </div>
     <div class="clear"></div>
 </div>

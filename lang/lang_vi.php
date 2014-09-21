@@ -90,4 +90,10 @@ define("noidung","Nội dung");
 define("gui","Gửi");
 define("lienheonbus","Liên hệ với Onbus.vn");
 define("timkiemnhaxe","Tìm kiếm nhà xe");
+define("cauhoithuonggap","Các câu hỏi thường gặp");
+define("thamkhao","Tham khảo các câu trả lời và hỗ trợ từ onbus.vn thật nhanh chóng");
+define("tintucganday","Tin tức gần đây");
+define("khachhanghoi","Khách hàng hỏi, Onbus trả lời");
+define("tencongty","Công ty TNHH dịch vụ Onbus.vn");
+define("diachicongty","64 Nguyễn Đình Chiểu, phường Đa Kao, Quận 1, TP.HCM");
 ?>

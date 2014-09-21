@@ -118,5 +118,11 @@ $onbus = str_replace("{noidung}" , noidung , $onbus);
 $onbus = str_replace("{gui}" , gui , $onbus);
 $onbus = str_replace("{lienheonbus}" , lienheonbus , $onbus);
 $onbus = str_replace("{timkiemnhaxe}" , timkiemnhaxe , $onbus);
+$onbus = str_replace("{cauhoithuonggap}" , cauhoithuonggap , $onbus);
+$onbus = str_replace("{thamkhao}" , thamkhao , $onbus);
+$onbus = str_replace("{tintucganday}" , tintucganday , $onbus);
+$onbus = str_replace("{khachhanghoi}" , khachhanghoi , $onbus);
+$onbus = str_replace("{tencongty}" , tencongty , $onbus);
+$onbus = str_replace("{diachicongty}" , diachicongty , $onbus);
 echo $onbus;
 ?>
