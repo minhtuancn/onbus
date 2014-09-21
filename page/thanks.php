@@ -73,7 +73,7 @@ if($error == 0 && $method_id > 1){
             $amount = $value['amount'];
             $type = $value['type'];
             $time=time();
-            echo $sql = "INSERT INTO order_detail VALUES(NULL,$order_id,$ticket_id,$time,'$code',$amount,$price,$time,2,$type)";
+            $sql = "INSERT INTO order_detail VALUES(NULL,$order_id,$ticket_id,$time,'$code',$amount,$price,$time,2,$type)";
             mysql_query($sql) or die(mysql_error());
         }
     }
@@ -142,5 +142,105 @@ foreach ($arrCode as $mave) {
 </div>
 <p class="img_thanks" style="text-align:center"><img src="<?php echo STATIC_URL; ?>/images/bus-grape-icon.png"></p>
 </div>
+<?php 
+// gui mail
+    $tieudethu="ONBUS ticket confirmation";
+    $noidungthu = '<div style="width:800px;padding:20px"><div style="float:left"><img src="http://onbus.vn/themes/images/logo2_final.png" width="150px" />
+            <div>
+            <div>
+                <p><strong>Dear Mr/Ms '.$fullname.',</strong></p> 
 
+<p><strong>Your booking with Onbus.vn is confirmed and completed.</strong></p>
+
+<p>Please present either an electronic or paper copy of your ticket attachedbelow upon check-in.</p>
+
+<p>If you experience problems downloading or opening theticket, please click here to install Adobe Reader </p>
+<p>Should you need for more information, please contact our hotline: 08 66503399</p>
+
+            </div>    
+                <div>
+                    <table width="600px">
+                        <tr>
+                            <td colspan="2" align="center"><h3>BOOKING INFORMATION</h3></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left"><p style="color:blue">General</p></td>
+                        </tr>
+                        <tr>
+                            <td width="200px">Lead Guest:</td>
+                            <td>'.$fullname.'</td>
+                        </tr>
+                        <tr>
+                            <td>Special Notes:</td>
+                            <td>All special requests are subject to availability upon arrival.</td>
+                        </tr>
+                        <tr>
+                            <td>Promotion code:</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Total charged:</td>
+                            <td> VND '.number_format($total).'</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left"><p style="color:blue">Arrival Ticket</p></td>
+                        </tr>
+                        <tr>
+                            <td width="200px">Bus operator: </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Date:</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Departure Time:</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Location:</td>
+                            <td>HCM city</td>
+                        </tr>
+                        <tr>
+                            <td>No.of ticket:</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Special Notes:</td>
+                            <td>All special requests are subject to availability upon arrival.</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left"><p style="color:blue">Return Ticket</p></td>
+                        </tr>
+                        <tr>
+                            <td width="200px">Bus operator:</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Return date:</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Departure Time:</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Location:</td>
+                            <td>HCM city</td>
+                        </tr>
+                        <tr>
+                            <td>No.of ticket:</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Special Notes:</td>
+                            <td>All special requests are subject to availability upon arrival.</td>
+                        </tr>
+                        
+                </div>
+            
+        </div>';
+
+        $model->smtpmailer($email, 'onbusvn@gmail.com', 'ONBUS.VN',$tieudethu,$noidungthu); 
+?>
 <?php session_destroy(); ?>

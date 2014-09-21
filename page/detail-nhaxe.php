@@ -45,18 +45,18 @@ $arrDiem = array(0,1,2,3,4,5);
             </div>
             <div class="tab_profile">
             	<ul class="nav nav-tabs" role="tablist">
-                  <li class="active"><a href="#danhgia" role="tab" data-toggle="tab">Đánh giá</a></li>
-                  <li><a href="#hinhanh" role="tab" data-toggle="tab">Hình ảnh</a></li>
-                  <li><a href="#tuyenphobien" role="tab" data-toggle="tab">Các tuyến phổ biến</a></li>
+                  <li class="active"><a href="#danhgia" role="tab" data-toggle="tab">{danhgia}</a></li>
+                  <li><a href="#hinhanh" role="tab" data-toggle="tab">{hinhanh}</a></li>
+                  <li><a href="#tuyenphobien" role="tab" data-toggle="tab">{cactuyenphobien}</a></li>
                 </ul>
                 <div class="tab-content">
                   <div class="tab-pane fade in active" id="danhgia">
                   
                   	<div class="left col_review">
-                    	<h3><?php echo number_format($arrRating['total']); ?> people have reviewed this bus operator</h3>
+                    	<h3><?php echo number_format($arrRating['total']); ?> {danhanxet}</h3>
                         <div class="content wrap trip_type_layout">
                         	<div class="composite">
-                                <div class="colTitle">Traveler rating</div>
+                                <div class="colTitle">{tuhanhkhach}</div>
                                     <ul class="barChart">
                                         <li class="wrap">
                                             <span class="rdoSet">
@@ -97,12 +97,9 @@ $arrDiem = array(0,1,2,3,4,5);
                                 </div>                            
                             <div class="clear"></div>
                         </div>
-                        <div class="roomTip">
-                            <span class="ugc">Traveler tips help you choose the right room. </span> &nbsp;
-                            <span class="taLnk ulBlueLinks">Room tips (737)</span>
-                        </div>
+                        
                         <div id="SUMMARYBOX" class="wrap subrating">
-                        	<div class="colTitle">Rating summary</div>
+                        	<div class="colTitle">{tongketdanhgia}</div>
                             <ul>
                                 <li>
                                     <div class="name">{chatluongxe}</div>
@@ -207,10 +204,10 @@ $arrDiem = array(0,1,2,3,4,5);
                                 <div class="totalReviewBadge no_cpu">                                
                                 <ul>                                    
                                     <li>
-                                        <span class="icon lazy badge_hotels_2nd sprite-badge_hotels_2nd"></span><span class="badgeText"><?php echo $model->countReviewByEmailID($data['email_id']); ?> reviews</span>    
+                                        <span class="icon lazy badge_hotels_2nd sprite-badge_hotels_2nd"></span><span class="badgeText"><?php echo $model->countReviewByEmailID($data['email_id']); ?> {danhgia}</span>    
                                     </li>
                                     <li>
-                                        <span class="icon lazy badge_helpful sprite-badge_helpful"></span><span class="badgeText"><?php echo $model->countUsefulByEmailID($data['email_id']); ?> helpful votes</span>    
+                                        <span class="icon lazy badge_helpful sprite-badge_helpful"></span><span class="badgeText"><?php echo $model->countUsefulByEmailID($data['email_id']); ?> {danhgiahuuich}</span>    
                                     </li>
                                     
                                 </ul>
@@ -309,10 +306,10 @@ $arrDiem = array(0,1,2,3,4,5);
                   	<table class="table table-hover">
                     	<thead>
 						<tr>
-                        	<th style="width:50%;">Route</th>
+                        	<th style="width:50%;">{tuyenduong}</th>
                            
-                            <th>First Bus</th>
-                            <th>Last Bus</th>                           
+                            <th>{chuyendau}</th>
+                            <th>{chuyencuoi}</th>                           
                             <th></th>
                         </tr>
                         </thead>
@@ -335,7 +332,7 @@ $arrDiem = array(0,1,2,3,4,5);
                             </td>
                             
                             <td class="td_end">
-                            	<a href="#" class="btn-muave">book now</a>
+                            	<a href="#" class="btn-muave">{datve}</a>
                             </td>
                         </tr>
                         <?php }}?>

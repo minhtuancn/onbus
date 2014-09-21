@@ -124,5 +124,17 @@ $onbus = str_replace("{tintucganday}" , tintucganday , $onbus);
 $onbus = str_replace("{khachhanghoi}" , khachhanghoi , $onbus);
 $onbus = str_replace("{tencongty}" , tencongty , $onbus);
 $onbus = str_replace("{diachicongty}" , diachicongty , $onbus);
+
+$onbus = str_replace("{danhanxet}" , danhanxet , $onbus);
+$onbus = str_replace("{tuhanhkhach}" , tuhanhkhach , $onbus);
+$onbus = str_replace("{danhgia}" , danhgia , $onbus);
+$onbus = str_replace("{hinhanh}" , hinhanh , $onbus);
+$onbus = str_replace("{cactuyenphobien}" , cactuyenphobien , $onbus);
+$onbus = str_replace("{tongketdanhgia}" , tongketdanhgia , $onbus);
+$onbus = str_replace("{danhgiahuuich}" , danhgiahuuich , $onbus);
+$onbus = str_replace("{tuyenduong}" , tuyenduong , $onbus);
+$onbus = str_replace("{chuyendau}" , chuyendau , $onbus);
+$onbus = str_replace("{chuyencuoi}" , chuyencuoi , $onbus);
+$onbus = str_replace("{bando}" , bando , $onbus);
 echo $onbus;
 ?>

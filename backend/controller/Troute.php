@@ -12,13 +12,14 @@ $route_id = (int) $_POST['route_id'];
 $min_time = $_POST['min_time'];
 
 $max_time = $_POST['max_time'];
+$price = $_POST['price'];
 
 
 
 if($troute_id > 0) {	
 
 
-	$model->updateTroute($troute_id,$nhaxe_id,$route_id,$min_time,$max_time);
+	$model->updateTroute($troute_id,$nhaxe_id,$route_id,$min_time,$max_time,$price);
 
 
 	header('location:'.$url."&nhaxe_id=".$nhaxe_id);
@@ -29,7 +30,7 @@ if($troute_id > 0) {
 
 
 
-	$model->insertTroute($nhaxe_id,$route_id,$min_time,$max_time);
+	$model->insertTroute($nhaxe_id,$route_id,$min_time,$max_time,$price);
 
 
 

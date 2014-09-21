@@ -96,4 +96,15 @@ define("tintucganday","Tin tức gần đây");
 define("khachhanghoi","Khách hàng hỏi, Onbus trả lời");
 define("tencongty","Công ty TNHH dịch vụ Onbus.vn");
 define("diachicongty","64 Nguyễn Đình Chiểu, phường Đa Kao, Quận 1, TP.HCM");
+define("danhanxet","hành khách đã nhận xét về hãng xe");
+define("tuhanhkhach","Đánh giá từ hành khách");
+define("danhgia","Đánh giá");
+define("hinhanh","Hình ảnh");
+define("cactuyenphobien","Các tuyến phổ biến");
+define("tongketdanhgia","Tổng kết đánh giá");
+define("danhgiahuuich","đánh giá hữu ích");
+define("tuyenduong","Tuyến đường");
+define("chuyendau","Chuyến đầu");
+define("chuyencuoi","Chuyến cuối");
+define("bando","Bản đồ");
 ?>

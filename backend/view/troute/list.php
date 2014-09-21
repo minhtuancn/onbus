@@ -171,7 +171,8 @@ $arrList = $modelTroute->getListTroute($nhaxe_id, $offset, LIMIT);
                         <th>Tuyến đường</th>
                       
                         <th>First Bus</th>   
-                        <th>Last Bus</th>   
+                        <th>Last Bus</th>
+                        <th>Price</th>   
                         <th>Ngày tạo</th>                        
 
 
@@ -226,7 +227,8 @@ $arrList = $modelTroute->getListTroute($nhaxe_id, $offset, LIMIT);
                         </a></td>
 
                         <td><?php echo $row['min_time']; ?></td>  
-                        <td><?php echo $row['max_time']; ?></td>  
+                        <td><?php echo $row['max_time']; ?></td>
+                        <td><?php echo number_format($row['price']); ?></td>  
                         
 
                         <td><?php echo date('d-m-Y',$row['creation_time']); ?></td>                        
