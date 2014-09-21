@@ -248,22 +248,35 @@ $routeDetail = $model->detailRoute($vstart,$vend);
                             foreach($arrTicket_start['data']  as $ticket){
                                 $arrServiceTicket = $model->getServiceTicket($ticket['ticket_id']);                                 
                                  $arrTimeTicket = $model->getTimeTicket($ticket['ticket_id']);
-									$arrDetailNhaxe = $model->getDetailNhaxe($ticket['nhaxe_id']);
+									$arrDetailNhaxe = $model->getDetailNhaxe($ticket['nhaxe_id']);                                    
                             ?>
                             <div class="items">
                             <div class=" infor-tuyen-search">
                                 <div class="b-infor">
                                     <div class="img-logo left">
                                         <div data-toggle="tooltip" title="Click để xem hình" class="wrap-slider">
-                                        <div class="slider_nx">                                           
+                                        <div>                                           
+                                            <div class="slide">
                                             <?php $arrRsImg = $model->getListImageByNhaxe($ticket['nhaxe_id'],-1,-1);
-                                            if(mysql_num_rows($arrRsImg) >0) {                                       
-                                            while($row = mysql_fetch_assoc($arrRsImg)){                                                 
+                                            if(mysql_num_rows($arrRsImg) >0) {    
+                                            $count = 0;                                   
+                                            while($row = mysql_fetch_assoc($arrRsImg)){
+                                                $count++;
+                                                $arrImg[$ticket['ticket_id']][] = $row['image_url'];                                            
                                             ?>
-                                            <div class="slide"><a href="<?php echo $row['image_url']?>" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo $row['image_url']?>" /></a></div>
+                                                <?php if($count==1){ ?>
+                                                <a href="<?php echo $row['image_url']?>" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img hs-result-photo">
+                                                    <img src="<?php echo $row['image_url']?>" data-width="166" data-height="105" data-hotelid="<?php echo $ticket['ticket_id']; ?>"  />
+                                                </a>
+                                                <?php } ?>
+                                            
                                             <?php }}else{ ?>
-                                            <div class="slide"><a href="<?php echo $arrDetailNhaxe['image_url']?>" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo $arrDetailNhaxe['image_url']?>" /></a></div>
+                                            
+                                                <a href="<?php echo $arrDetailNhaxe['image_url']?>" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img">
+                                                    <img src="<?php echo $arrDetailNhaxe['image_url']?>" /></a>
+                                            
                                             <?php } ?>
+                                            </div>
                                         </div>
                                         </div>
                                         <ul class="icon-tien-ich">
@@ -348,15 +361,24 @@ $routeDetail = $model->detailRoute($vstart,$vend);
                                 <div class="b-infor">
                                     <div class="img-logo left">
                                         <div data-toggle="tooltip" title="Click để xem hình" class="wrap-slider">
-                                        <div class="slider_nx">                                            
+                                        <div>   
+                                            <div class="slide">                                        
                                             <?php $arrRsImg = $model->getListImageByNhaxe($ticket['nhaxe_id'],-1,-1);
-                                            if(mysql_num_rows($arrRsImg) >0) {                                         
-                                            while($row = mysql_fetch_assoc($arrRsImg)){                                             
+                                            if(mysql_num_rows($arrRsImg) >0) {      
+                                            $count=0;                                   
+                                            while($row = mysql_fetch_assoc($arrRsImg)){   
+                                            $arrImg[$ticket['ticket_id']][] = $row['image_url'];                                         
+                                            $count++;
                                             ?>
-                                            <div class="slide"><a href="<?php echo $row['image_url']?>" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo $row['image_url']?>" /></a></div>
+                                             <?php if($count==1){ ?>
+                                                <a href="<?php echo $row['image_url']?>" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img hs-result-photo">
+                                                    <img src="<?php echo $row['image_url']?>" data-width="166" data-height="105" data-hotelid="<?php echo $ticket['ticket_id']; ?>"  />
+                                                </a>
+                                                <?php } ?>
                                             <?php } }else{ ?>
-                                            <div class="slide"><a href="<?php echo $arrDetailNhaxe['image_url']?>" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo $arrDetailNhaxe['image_url']?>" /></a></div>
+                                            <a href="<?php echo $arrDetailNhaxe['image_url']?>" data-lightbox="example-set-<?php echo $ticket['ticket_id']; ?>" class="wrap-img"><img src="<?php echo $arrDetailNhaxe['image_url']?>" /></a>
                                             <?php } ?>
+                                            </div>
                                         </div>
                                         </div>
                                         <ul class="icon-tien-ich">
@@ -909,4 +931,28 @@ function loadmap(start,end){
     });
 }
 </script>   
+<script src="<?php echo STATIC_URL; ?>/js/rotate.js" type="text/javascript"></script>
+<?php if(!empty($arrImg)){ ?>
+<script type="text/javascript" charset="utf-8">
+var operatorImages;
+
+operatorImages = <?php echo json_encode($arrImg); ?>;
+var rotatorOptions = {
+    images: operatorImages,
+    duration:500,
+    timeout:1000,
+    zIndex: 1
+};
+
+
+$(document).ready(function(){   
+    $('.hs-result-photo').imageRotator(rotatorOptions);  
+});
+
+//]]>
+</script>
+<?php } ?>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=vi"></script>     
+<?php 
+var_dump("<pre>",$arrImg);
+?>
