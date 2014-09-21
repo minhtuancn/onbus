@@ -76,7 +76,7 @@ if($method=="1"){
 	$_SESSION['mave'] = $arrCode;
 
 	
-	header('location:http://localhost/onbus/'.$lang.'/thanks-you.html');
+	header('location:http://onbus.vn/'.$lang.'/thanks-you.html');
 
 }elseif($method== "2"){
 	

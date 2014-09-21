@@ -1,5 +1,5 @@
 <?php 
-ini_set('display_errors',1);
+//ini_set('display_errors',1);
 include("backend/model/Payment.php");
 $method_id = $_SESSION['method_id'];
 if($method_id > 1){

@@ -87,4 +87,7 @@ define("tinhtrangve","Ticket status");
 define("mave","Code Ticket");
 define("tieptuc","Continue");
 define("kotimthaydulieu","Not found data.");
+define("noidung","Content");
+define("gui","Send");
+define("lienheonbus","Contacting Onbus.vn");
 ?>

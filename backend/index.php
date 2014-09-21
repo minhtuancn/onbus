@@ -1,5 +1,4 @@
 <?php
-var_dump($_SERVER['DOCUMENT_ROOT']);
 ob_start(); 
 session_start();
 if(!isset($_SESSION)) 
