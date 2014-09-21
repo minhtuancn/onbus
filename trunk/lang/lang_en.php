@@ -97,4 +97,23 @@ define("tintucganday","Recent Post");
 define("khachhanghoi","Existing Customer Questions");
 define("tencongty","Onbus company limited");
 define("diachicongty","64 Nguyen Dinh Chieu, Da Kao Ward, District 1, Ho Chi Minh City");
+
+define("xuatsac","Excellent");
+define("rattot","Very good");
+define("trungbinh","Average");
+define("te","Poor");
+define("ratte","Terrible");
+
+define("danhanxet","people have reviewed this bus operator");
+define("tuhanhkhach","Traveler rating");
+define("danhgia","Rating");
+define("hinhanh","Gallery");
+define("cactuyenphobien","Popular route");
+define("tongketdanhgia","Rating summary");
+define("danhgiahuuich","helpful votes");
+define("tuyenduong","Route");
+define("chuyendau","First bus");
+define("chuyencuoi","Last bus");
+define("bando","Map");
+
 ?>

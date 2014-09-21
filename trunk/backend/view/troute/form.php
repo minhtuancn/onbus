@@ -196,6 +196,27 @@ if(isset($_GET['troute_id'])){
                     </div>
 
                 </div>
+                <div class="row">
+
+                    <div class="col-md-6" >
+
+                        <div class="form-group">
+
+                            <label>Price<span class="required"> ( * ) </span></label>
+
+                            <input type="text" name="price" class="form-control required" value="<?php echo (isset($detail['price']))  ? $detail['price'] : "" ?>"/>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+
+
+                    </div>
+
+                </div>
               
 
             </div>

@@ -71,7 +71,7 @@ if(!empty($_SESSION['bookticket'])){
                                  <img src="<?php echo STATIC_URL;?>/images/info.png" />   
                                 </i>
                                 
-                                <a href="javascript:;" class="right" onclick="return loadmap('<?php echo $model->getAddressByID($value['place_id_start'],'vi'); ?>','<?php echo $model->getAddressByID($value['place_id_start'],'vi'); ?>');" data-target="#mymap" data-toggle="modal">{xemthongtin}</a></p>
+                                <a href="javascript:;" class="right" onclick="return loadmap('<?php echo $model->getAddressByID($value['place_id_start'],'vi'); ?>','<?php echo $model->getAddressByID($value['place_id_start'],'vi'); ?>');" data-target="#mymap" data-toggle="modal">{bando}</a></p>
                         </div>
                         <div class="clear"></div>
                         <div title="" data-toggle="tooltip" class="left icon_end" data-original-title="Điểm đến"></div>
@@ -100,7 +100,7 @@ if(!empty($_SESSION['bookticket'])){
                             &nbsp;&nbsp;<i data-toggle="tooltip" class="icon_info" title="" data-original-title="<?php echo $model->getAddressByID($value['place_id_end'],$lang); ?>">
                                  <img src="<?php echo STATIC_URL;?>/images/info.png" />   
                                 </i>
-                            <a href="javascript:;" class="right" onclick="return loadmap('<?php echo $model->getAddressByID($value['place_id_end'],'vi'); ?>','<?php echo $model->getAddressByID($value['place_id_end'],'vi'); ?>');" data-toggle="modal" data-target="#mymap">{xemthongtin}</a>
+                            <a href="javascript:;" class="right" onclick="return loadmap('<?php echo $model->getAddressByID($value['place_id_end'],'vi'); ?>','<?php echo $model->getAddressByID($value['place_id_end'],'vi'); ?>');" data-toggle="modal" data-target="#mymap">{bando}</a>
                         </p>
                         </div>
                         <div class="line_center"></div>

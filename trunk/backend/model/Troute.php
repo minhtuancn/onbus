@@ -70,7 +70,7 @@ class Troute extends Db {
     }       
 
 
-    function updateTroute($troute_id,$nhaxe_id,$route_id,$min_time,$max_time) {        
+    function updateTroute($troute_id,$nhaxe_id,$route_id,$min_time,$max_time,$price) {        
 
         $time = time();
         try{
@@ -83,6 +83,7 @@ class Troute extends Db {
                     min_time  = '$min_time',
 
                     max_time = '$max_time',               
+                    price = '$price',               
 
                     update_time =  $time
 
@@ -100,7 +101,7 @@ class Troute extends Db {
 
     }
 
-    function insertTroute($nhaxe_id,$route_id,$min_time,$max_time){
+    function insertTroute($nhaxe_id,$route_id,$min_time,$max_time,$price){
 
         try{
 
@@ -108,7 +109,7 @@ class Troute extends Db {
 
             $time = time();
 
-            $sql = "INSERT INTO troute VALUES(NULL,$nhaxe_id,$route_id,'$min_time','$max_time',$time,$time,1)";
+            $sql = "INSERT INTO troute VALUES(NULL,$nhaxe_id,$route_id,'$min_time','$max_time','$price',$time,$time,1)";
 
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());       
 
