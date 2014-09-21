@@ -25,6 +25,20 @@ class Home extends Db {
             $this->logError($arrLog);
         }
     }
+    function searchBus($keyword,$lang){
+        $arrReturn = array();
+        $column = $lang == 1 ? "nhaxe_name_vi" : "nhaxe_name_en";
+        if($keyword!=''){
+            $sql = "SELECT * FROM nhaxe WHERE status = 1 AND $column LIKE '$keyword%' ";
+        }else{
+            $sql = "SELECT * FROM nhaxe WHERE status = 1";
+        }
+        $rs = mysql_query($sql);
+        while($row = mysql_fetch_assoc($rs)){
+            $arrReturn[$row['nhaxe_id']] = $row;
+        }
+        return $arrReturn;
+    }
     function getInfoTicket($phone,$code){
         $arrReturn = $arrDetail = $arrOrder = array();
         $sql = "SELECT order_detail.id,order_detail.order_id FROM orders,order_detail WHERE order_detail.code = '$code' AND orders.phone = '$phone'";

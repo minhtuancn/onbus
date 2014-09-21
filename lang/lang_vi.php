@@ -89,4 +89,5 @@ define("kotimthaydulieu","Không tìm thấy dữ liệu.");
 define("noidung","Nội dung");
 define("gui","Gửi");
 define("lienheonbus","Liên hệ với Onbus.vn");
+define("timkiemnhaxe","Tìm kiếm nhà xe");
 ?>
