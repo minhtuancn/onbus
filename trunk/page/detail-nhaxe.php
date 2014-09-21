@@ -309,7 +309,8 @@ $arrDiem = array(0,1,2,3,4,5);
                         	<th style="width:50%;">{tuyenduong}</th>
                            
                             <th>{chuyendau}</th>
-                            <th>{chuyencuoi}</th>                           
+                            <th>{chuyencuoi}</th>
+                            <th>{giave}</th>                           
                             <th></th>
                         </tr>
                         </thead>
@@ -330,7 +331,9 @@ $arrDiem = array(0,1,2,3,4,5);
                             <td>
                             	<span class="time_tpb"><?php echo $value['max_time']; ?></span>
                             </td>
-                            
+                            <td>
+                                <span class="time_tpb"><?php echo number_format($value['price']); ?> VNĐ</span>
+                            </td>
                             <td class="td_end">
                             	<a href="#" class="btn-muave">{datve}</a>
                             </td>

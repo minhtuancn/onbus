@@ -115,5 +115,6 @@ define("tuyenduong","Route");
 define("chuyendau","First bus");
 define("chuyencuoi","Last bus");
 define("bando","Map");
+define("giave","Price");
 
 ?>
