@@ -6,10 +6,7 @@ $model = new Home();
 $nhaxe_id = (int) $_POST['id'];
 
 ?>
-<script src="http://onbus.vn/themes/js/jquery-1.11.0.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/jssor.core.js"></script>
-<script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/jssor.utils.js"></script>
-<script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/jssor.slider.js"></script>
 <script type="text/javascript">
         jQuery(document).ready(function ($) {      
 
