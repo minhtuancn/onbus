@@ -64,7 +64,7 @@ Share with us your journey,<br /> we will help you choose your ticket with best 
         <li><a href="<?php echo $lang; ?>/method.html">{phuongthucthanhtoan}</a></li>
         <li><a href="<?php echo $lang; ?>/privacy-policy.html">{chinhsachriengtu}</a></li>
         -->
-        <li><a href="#">Blog</a></li>
+        <li><a href="http://onbusvn.blogspot.com/">Blog</a></li>
     </ul>
 </div>
 
