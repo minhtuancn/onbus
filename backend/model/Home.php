@@ -490,12 +490,12 @@ class Home extends Db {
     function insertemailnewsletter($email){
         $date = time();
         try{
-        $sql = "INSERT INTO newsletter VALUES (NULL,'$email',$date,$date,1)";
+        $sql = "INSERT INTO sendcontent VALUES (NULL,'','$email','','',1,$date,$date,1)";
         $rs = mysql_query($sql) or $this->throw_ex(mysql_error());       
 
         }catch(Exception $ex){            
 
-            $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Newsletter','function' => 'insertemailnewsletter' , 'error'=>$ex->getMessage(),'sql'=>$sql);
+            $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Home','function' => 'insertemailnewsletter' , 'error'=>$ex->getMessage(),'sql'=>$sql);
 
             $this->logError($arrLog);
 
@@ -504,11 +504,24 @@ class Home extends Db {
     function insertFeedback($email,$mobile,$content){
         $date = time();
         try{
-        $sql = "INSERT INTO feedback VALUES (NULL,'$email','$mobile','$content',$date,$date,1)";
+        $sql = "INSERT INTO sendcontent VALUES (NULL,'','$email','$mobile','$content',2,$date,$date,1)";
         $rs = mysql_query($sql) or $this->throw_ex(mysql_error());       
 
         }catch(Exception $ex){                        
-            $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Newsletter','function' => 'insertFeedback' , 'error'=>$ex->getMessage(),'sql'=>$sql);
+            $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Home','function' => 'insertFeedback' , 'error'=>$ex->getMessage(),'sql'=>$sql);
+
+            $this->logError($arrLog);
+
+        }
+    }
+    function insertContact($name,$email,$mobile,$content){
+        $date = time();
+        try{
+        $sql = "INSERT INTO sendcontent VALUES (NULL,'$name','$email','$mobile','$content',3,$date,$date,1)";
+        $rs = mysql_query($sql) or $this->throw_ex(mysql_error());       
+
+        }catch(Exception $ex){                        
+            $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Home','function' => 'insertContact' , 'error'=>$ex->getMessage(),'sql'=>$sql);
 
             $this->logError($arrLog);
 

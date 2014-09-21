@@ -1,7 +1,7 @@
 <?php
 require_once "model/Newsletter.php";
 $model = new Newsletter;
-$link = "index.php?mod=newsletter&act=list";
+$link = "index.php?mod=feedback&act=list";
 
 if (isset($_GET['status']) && $_GET['status'] > 0) {
     $lang_id = (int) $_GET['status'];      
@@ -10,7 +10,7 @@ if (isset($_GET['status']) && $_GET['status'] > 0) {
     $status = -1;
 }
 
-$listTotal = $model->getListContentByStatus(1, $status, -1, -1);
+$listTotal = $model->getListContentByStatus(3,$status, -1, -1);
 
 $total_record = mysql_num_rows($listTotal);
 
@@ -20,13 +20,13 @@ $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
 
 $offset = LIMIT * ($page - 1);
 
-$list = $model->getListContentByStatus(1, $status, $offset, LIMIT);
+$list = $model->getListContentByStatus(3,$status, $offset, LIMIT);
 
 ?>
 <div class="row">
     <div class="col-md-12">    
          <div class="box-header">
-                <h3 class="box-title">Danh sách newsletter</h3>
+                <h3 class="box-title">Danh sách liên hệ</h3>
             </div><!-- /.box-header -->
         <div class="box">
            
@@ -34,8 +34,11 @@ $list = $model->getListContentByStatus(1, $status, $offset, LIMIT);
                 <table class="table table-bordered table-striped">
                     <tbody><tr>
                         <th style="width: 10px">No.</th>
-                        <th>Email</th>                        
-                        <th>Ngày DK</th>                        
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th style="width:40%">Content</th>                        
+                        <th>Date</th>                        
                         <th style="width: 1%">Action</th>
                     </tr>
                     <?php
@@ -45,10 +48,13 @@ $list = $model->getListContentByStatus(1, $status, $offset, LIMIT);
                     ?>
                     <tr>
                         <td><?php echo $i; ?></td>
-                        <td><?php echo $row['email']; ?></td>                        
+                        <td><?php echo $row['name']; ?></td>
+                        <td><?php echo $row['email']; ?></td>
+                        <td><?php echo $row['mobile']; ?></td>
+                        <td><?php echo $row['content']; ?></td>                        
                         <td><?php echo date('d-m-Y H:i',$row['creation_time']); ?></td>                        
                         <td style="white-space:nowrap;text-align:center">                            
-                            <a href="javascript:;" alias="<?php echo $row['email']; ?>" id="<?php echo $row['id']; ?>" mod="newsletter" class="link_delete" >    
+                            <a href="javascript:;" alias="<?php echo $row['email']; ?>" id="<?php echo $row['id']; ?>" mod="sendcontent" class="link_delete" >    
                                 <i class="fa fa-fw fa-trash-o"></i>
                             </a>    
                             

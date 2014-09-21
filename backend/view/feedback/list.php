@@ -10,7 +10,7 @@ if (isset($_GET['status']) && $_GET['status'] > 0) {
     $status = -1;
 }
 
-$listTotal = $model->getListFeedbackByStatus($status, -1, -1);
+$listTotal = $model->getListContentByStatus(2,$status, -1, -1);
 
 $total_record = mysql_num_rows($listTotal);
 
@@ -20,7 +20,7 @@ $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
 
 $offset = LIMIT * ($page - 1);
 
-$list = $model->getListFeedbackByStatus($status, $offset, LIMIT);
+$list = $model->getListContentByStatus(2, $status, $offset, LIMIT);
 
 ?>
 <div class="row">

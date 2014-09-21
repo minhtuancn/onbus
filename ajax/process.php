@@ -2,16 +2,28 @@
 require_once '../backend/model/Home.php';
 $model = new Home;
 
-$arrMod = array("newsletter","feedback",'code','myticket');
+$arrMod = array("newsletter","feedback",'code','contact');
 
 $mod = isset($_POST['mod']) ? $model->processData($_POST['mod']) : "";
 
 if(in_array($mod,$arrMod)){
-	if($mod=="myticket"){
-		$phone = isset($_POST['phone']) ? $model->processData($_POST['phone']) : "";
-		$code = isset($_POST['code']) ? $model->processData($_POST['code']) : "";
-		if($phone!='' && $code!=''){
-			$result = $model->getInfoTicket($phone,$code);
+	if($mod=="contact"){
+		$name = isset($_POST['name']) ? $model->processData($_POST['name']) : "";
+		$email = isset($_POST['email']) ? $model->processData($_POST['email']) : "";
+		$mobile = isset($_POST['mobile']) ? $model->processData($_POST['mobile']) : "";
+		$content = isset($_POST['content']) ? $model->processData($_POST['content']) : "";
+		if($email=='' || $mobile == '' || $content==''){
+			echo "Quý khách cần nhập đầy đủ thông tin.";exit();
+		}else{
+			if(!filter_var($email, FILTER_VALIDATE_EMAIL))
+			{
+			  echo "Email không hợp lệ!"; exit();
+			}else{
+				
+				$model->insertContact($name, $email,$mobile,$content);
+				echo $lang=="vi" ? "Gửi liên hệ thành công." : "Send contact susccessful." ;exit();
+				
+			}
 		}
 	}
 	if($mod=="newsletter"){
