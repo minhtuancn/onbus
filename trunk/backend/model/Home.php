@@ -379,6 +379,14 @@ class Home extends Db {
         $row = mysql_fetch_assoc($rs);
         return $row; 
     }
+    function getCodeTicket($ticket_id){
+        $rs = mysql_query("SELECT * FROM ticket WHERE ticket_id = $ticket_id");
+        $row = mysql_fetch_assoc($rs);
+        $month = date('m',$row['date_start']);
+        $day = date('d',$row['date_start']);
+        $tmp = str_pad($ticket_id, 3, "0", STR_PAD_LEFT); 
+        var_dump($day,$month,$ticket_id);die;
+    }
     function getListServiceByStatus($status=-1,$offset = -1, $limit = -1) {
 
         $sql = "SELECT * FROM services WHERE (status = $status OR $status = -1)  AND status > 0 ";

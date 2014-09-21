@@ -256,7 +256,7 @@ $routeDetail = $model->detailRoute($vstart,$vend);
                                     <div class="img-logo left">
                                         <div data-toggle="tooltip" title="Click để xem hình" class="wrap-slider">
                                         <div>                                           
-                                            <div class="slide">
+                                            <div class="slide-search">
                                             <?php $arrRsImg = $model->getListImageByNhaxe($ticket['nhaxe_id'],-1,-1);
                                             if(mysql_num_rows($arrRsImg) >0) {    
                                             $count = 0;                                   
@@ -365,7 +365,7 @@ $routeDetail = $model->detailRoute($vstart,$vend);
                                     <div class="img-logo left">
                                         <div data-toggle="tooltip" title="Click để xem hình" class="wrap-slider">
                                         <div>   
-                                            <div class="slide">                                        
+                                            <div class="slide-search">                                        
                                             <?php $arrRsImg = $model->getListImageByNhaxe($ticket['nhaxe_id'],-1,-1);
                                             if(mysql_num_rows($arrRsImg) >0) {      
                                             $count=0;                                   
