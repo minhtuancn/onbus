@@ -14,6 +14,26 @@ font-weight: bold;
             <div class="button-previous">Previous</div>
               <div class="main-slider-content">
                 <div class="sliders-wrapper" style="width: 700px;"><ul class="sliders-wrap-inner" style="left: 0px; width: 4200px;">
+                    <?php if($_SESSION['lang']=="en"){ ?>
+                    <?php 
+                    $lang_id = $_SESSION['lang'] == 'vi' ? 1 : 2;        
+                    $rs = mysql_query("SELECT * FROM articles WHERE lang_id = $lang_id AND status > 0 AND hot = 1 ORDER BY article_id DESC LIMIT 0,4 ");
+                    while($row = mysql_fetch_assoc($rs)){
+                    ?>
+                    <li style="width: 700px;">
+                      <div class="wrap-img-slider">
+                        <a href="<?php echo $lang; ?>/details/<?php echo $row['title_safe']?>-<?php echo $row['article_id'];?>.html"><img src="<?php echo $row['image_url']; ?>" 
+                        title="<?php echo $row['title']; ?>"> </a>           </div>
+                        <div class="slider-description">
+                            <h1><a href="<?php echo $lang; ?>/details/<?php echo $row['title_safe']?>-<?php echo $row['article_id'];?>.html"><?php echo $row['title']; ?></a></h1>
+                            <div><?php echo $row['description']; ?>...</div>
+                            <a class="readmore" href="<?php echo $lang; ?>/details/<?php echo $row['title_safe']?>-<?php echo $row['article_id'];?>.html">Read more </a>
+                            <p></p>
+                         </div>
+                    </li> 
+                    <?php } ?>
+
+                    <?php }else{ ?>
                     <li style="width: 700px;">
                           <div class="wrap-img-slider"><img src="<?php echo STATIC_URL;?>/images/jj.jpg" title="Newsflash 2"></div>
                           <div class="slider-description">
@@ -68,13 +88,28 @@ font-weight: bold;
                             <a class="readmore" href="#">Read more </a>
                             <p></p>
                          </div>
-                    </li> 
+                    </li>
+                    <?php } ?> 
                 
                   </ul></div>  	
             </div>
            	<div class="navigator-content">
                   <div class="navigator-wrapper" style="height: 300px; width: 120px;">
                         <ul class="navigator-wrap-inner" style="height: 600px; top: 0px;">
+                          <?php if($_SESSION['lang']=="en"){ ?>
+                    <?php 
+                    $lang_id = $_SESSION['lang'] == 'vi' ? 1 : 2;        
+                    $rs = mysql_query("SELECT * FROM articles WHERE lang_id = $lang_id AND status > 0 AND hot = 1 ORDER BY article_id DESC LIMIT 0,4 ");
+                    $i = 0;
+                    while($row = mysql_fetch_assoc($rs)){
+                      $i++;
+                    ?>
+                    <li class="<?php echo $i==1? "active" : "";?>" style="height: 100px; width: 120px;">
+                                <div>
+                                    <img src="<?php echo $row['image_url']; ?>" title="<?php echo $row['title']; ?>">     
+                                </div>    
+                            </li>
+                    <?php } }else{ ?>
                           <li class="active" style="height: 100px; width: 120px;">
                                 <div>
                                     <img src="<?php echo STATIC_URL;?>/images/jj.jpg" title="Newsflash 2">     
@@ -106,7 +141,8 @@ font-weight: bold;
                                 <div>
                                 	<img src="<?php echo STATIC_URL;?>/images/generic.jpg" title="Newsflash 5">            
                                 </div>
-                            </li>     		
+                            </li> 
+                            <?php } ?>    		
                         </ul>
                   </div>
    
@@ -116,14 +152,14 @@ font-weight: bold;
 	 </div> 
         <?php 
         $lang_id = $_SESSION['lang'] == 'vi' ? 1 : 2;        
-        $rs = mysql_query("SELECT * FROM articles WHERE lang_id = $lang_id AND status > 0 ");
+        $rs = mysql_query("SELECT * FROM articles WHERE lang_id = $lang_id AND status > 0 AND hot = 0 ");
         while($row = mysql_fetch_assoc($rs)){
         ?>
 				<div class="post archive">
 				
 					<div class="post-tnail">
             <a href="<?php echo $lang; ?>/details/<?php echo $row['title_safe']?>-<?php echo $row['article_id'];?>.html">
-              <img src="<?php echo $row['image_url']; ?>" class="attachment-post-thumbnail wp-post-image" alt="Praesent Placerat Risus Quis Eros"><span>&nbsp;</span></a></div>					
+              <img src="<?php echo $row['image_url']; ?>" class="attachment-post-thumbnail wp-post-image" alt="<?php echo $row['title']; ?>"><span>&nbsp;</span></a></div>					
 					<div class="post-content">
 						<h2><a style="font-weight:bold" href="<?php echo $lang; ?>/details/<?php echo $row['title_safe']?>-<?php echo $row['article_id'];?>.html"><?php echo $row['title']; ?></a></h2>
 						<div class="post-date"><?php echo date('M d,Y',$row['creation_time']); ?> <span>|</span> <a href="#">4 Comments</a></div>
@@ -140,22 +176,16 @@ font-weight: bold;
 			</div>
 			<div id="sidebar2" class="sidebar">
 <div class="widget">
-	<h3>Recent Articles</h3>
+	<h3>{tintucganday}</h3>
 	<ul>
-						<li><a href="#"><strong>Nam Convallis Pellentesque Nisl</strong>
-		<span>Thursday, December 22, 2011</span></a></li>
-				<li><a href="#"><strong>Cras Iaculis Ultricies Nulla</strong>
-		<span>Thursday, September 22, 2011</span></a></li>
-				<li><a href="#"><strong>Integer Vitae Libero Ac Risus Egestas Placerat</strong>
-		<span>Monday, August 22, 2011</span></a></li>
-				<li><a href="#"><strong>Praesent Placerat Risus Quis Eros</strong>
-		<span>Wednesday, February 22, 2012</span></a></li>
-				<li><a href="#"><strong>Ut Aliquam Sollicitudin Leo</strong>
-		<span>Wednesday, February 22, 2012</span></a></li>
-				<li><a href="#"><strong>Fusce Lobortis Lorem At Ipsum Semper Sagittis</strong>
-		<span>Tuesday, November 22, 2011</span></a></li>
-				<li><a href="#"><strong>Donec Quis Dui At Dolor Tempor Interdum</strong>
-		<span>Saturday, October 22, 2011</span></a></li>
+    <?php 
+        $lang_id = $_SESSION['lang'] == 'vi' ? 1 : 2;        
+        $rs = mysql_query("SELECT * FROM articles WHERE lang_id = $lang_id AND status > 0 AND hot = 0 ORDER BY RAND() LIMIT 0,7");
+        while($row = mysql_fetch_assoc($rs)){
+        ?>
+						<li><a href="<?php echo $lang; ?>/details/<?php echo $row['title_safe']?>-<?php echo $row['article_id'];?>.html"><strong><?php echo $row['title']; ?></strong>
+		<span><?php echo date('M d,Y',$row['creation_time']); ?></span></a></li>			
+    <?php } ?>
 			</ul>
 </div>
 <div class="widget" id="ad-bigbox"><a href="#" target="_top" rel="nofollow"><img src="<?php echo STATIC_URL;?>/images/Untitled-5.jpg"></a></div>
