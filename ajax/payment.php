@@ -20,6 +20,10 @@ if(!empty($_SESSION['bookticket'])){
         $total+=$value['total'];
     }        
 }
+
+$total = $_SESSION['pay'];
+$discount = $_SESSION['discount'];
+$code_id = $_SESSION['code_id'];
 //get order code
 $sql = "SELECT order_code FROM orders ORDER BY order_id DESC limit 0,1";
 $rs = mysql_query($sql) or die(mysql_error());
@@ -52,8 +56,8 @@ if($method=="1"){
 	$time = time();
 	// insert order
 
-	$sql = "INSERT INTO orders (order_id,order_code,total_amount,total_price,fullname,phone,email,address,phone_contact,status,creation_time,method_id)
-	VALUES (NULL,'$order_code_new',$amount,$total,'$fullname','$phone','$email','$address','$phone_contact',2,$time,$method)";
+	$sql = "INSERT INTO orders (order_id,order_code,total_amount,total_price,fullname,phone,email,address,phone_contact,status,creation_time,method_id,discount,code_id)
+	VALUES (NULL,'$order_code_new',$amount,$total,'$fullname','$phone','$email','$address','$phone_contact',2,$time,$method,'$discount',$code_id)";
 	mysql_query($sql) or die(mysql_error());
 
 	$order_id = mysql_insert_id();
@@ -65,18 +69,18 @@ if($method=="1"){
 			$code = $detail['code'];
 			$arrCode[] = $code;
 			$price = $value['price'];
-			$time = $value['time'];
+			$time_id = $value['time'];
 			$amount = $value['amount'];
 			$type= $value['type'];
-			$time=time();
-			$sql = "INSERT INTO order_detail VALUES(NULL,$order_id,$ticket_id,$time,'$code',$amount,$price,$time,2,$type)";
+			$time=time();			
+			$sql = "INSERT INTO order_detail VALUES(NULL,$order_id,$ticket_id,$time_id,'$code',$amount,$price,$time,2,$type)";
 			mysql_query($sql);
 		}
 	}
 	$_SESSION['mave'] = $arrCode;
 
 	
-	header('location:http://onbus.vn/'.$lang.'/thanks-you.html');
+	header('location:'.HOST.'/'.$lang.'/thanks-you.html');
 
 }elseif($method== "2"){
 	

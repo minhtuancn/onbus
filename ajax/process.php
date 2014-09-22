@@ -1,8 +1,9 @@
 <?php 
+session_start();
 require_once '../backend/model/Home.php';
 $model = new Home;
 
-$arrMod = array("newsletter","feedback",'code','contact');
+$arrMod = array("newsletter","feedback",'code','contact','promotion');
 
 $mod = isset($_POST['mod']) ? $model->processData($_POST['mod']) : "";
 
@@ -40,6 +41,33 @@ if(in_array($mod,$arrMod)){
 				echo "Email đã được đăng ký trước đó.";exit();
 			}
 		}
+	}
+	if($mod=="promotion"){
+		$code = isset($_POST['code']) ? $model->processData($_POST['code']) : "";		
+		$total_amount = $_SESSION['total_amount'];
+		$total_price = $_SESSION['total_price'];
+
+		$code_id = $model->checkPromotionCode($code);
+		if($code_id > 0){
+			$row = $model->getDetailPromotionCode($code_id);
+			if($row['type']==1){
+				$percent =  (int) str_replace("%","",$row['code_value']);
+				$discount = $percent*$total_price/100;
+							
+			}elseif($row['type']==2){
+				$discount = $row['code_value']*$total_amount;
+
+			}
+			$total_pay = $total_price - $discount;	
+			$_SESSION['pay'] = $total_pay;
+			$_SESSION['code_id'] = $code_id;
+			$_SESSION['discount'] = $discount;
+
+			echo json_encode(array('pay'=> number_format($total_pay),'discount' => number_format($discount)));
+		}else{
+			echo "0";
+		}
+		
 	}
 	if($mod=="feedback"){
 		$email = isset($_POST['email']) ? $model->processData($_POST['email']) : "";

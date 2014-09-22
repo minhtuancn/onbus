@@ -13,6 +13,8 @@ if(!empty($_SESSION['bookticket'])){
         $arrTicket[$ticket_id] = $model->getDetailTicket($ticket_id);
         $total+=$value['total'];
     }        
+    $_SESSION['total_amount'] = $amount;
+    $_SESSION['total_price'] = $total;
 }
 ?>
 <div id="payment">
@@ -128,7 +130,11 @@ if(!empty($_SESSION['bookticket'])){
                             </li>                            
                             <li>
                             	<div class="left"><h3>{giamgia}</h3></div>
-                                
+                                <div class="right" id="div_discount"></div>
+                            </li>
+                            <li>
+                                <div class="left"><h3>Total Pay</h3></div>
+                                <div class="right" id="div_pay" style="color:blue;font-weight:bold"></div>
                             </li>
                         </ul>
                         <div class="right cost_payment">
@@ -173,8 +179,8 @@ if(!empty($_SESSION['bookticket'])){
                         </div>
                         <div class="form-group promo_box">
                             <label for="" class="col-sm-4 control-label">{nhapmakhuyenmai}:</label>
-                            <input type="text" class="form-control" id="">
-                              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            <input type="text" class="form-control" id="promotion">
+                              <p id="error_code" style="color:red" class="error_time">Code is invalid!</p>
                       </div>
                         <div class="clear"></div>
                         <p class="error_time" id="error_info"  style="color:red">Please fill contact information.</p>
@@ -288,6 +294,34 @@ $(function(){
             placement: 'top'
         });
     }
+    $('#promotion').blur(function(){
+        var code = $.trim($(this).val());
+        if(code!=''){
+            $.ajax({
+                url: "ajax/process.php",
+                type: "POST",
+                async: false,  
+                dataType : 'json',                           
+                data: {'mod':'promotion','code':code},
+                success: function(data){ 
+                    console.log(data);
+                    if(data=="0"){
+                        $('#error_code').show(); 
+                        setTimeout(function(){
+                            $('#error_code').hide();       
+                            $('#promotion').focus();         
+                        }, 4000);  
+                        $('#promotion').focus();          
+                        return false; 
+                    }else{
+                        $('#error_code').html("<span style='color:blue'>Code valid.</span>").show();
+                        $('#div_discount').html(data.discount + ' VNĐ');
+                        $('#div_pay').html(data.pay + ' VNĐ'); 
+                    }                                    
+                }
+            });
+        }
+    })
     $('#btnProcess').click(function(){
         var fullname = $.trim($('#fullname').val());
         var phone = $.trim($('#phone').val());
