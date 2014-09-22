@@ -154,6 +154,23 @@
 
 
 
+            <a href="<?php echo BASE_URL; ?>order&act=list">
+
+
+
+                <i class="fa fa-th"></i> <span>Report</span> <!--<small class="badge pull-right bg-green">new</small>-->
+
+
+
+            </a>
+
+
+
+        </li>
+        <li>
+
+
+
             <a href="<?php echo BASE_URL; ?>route&act=list">
 
 
@@ -321,6 +338,7 @@
                 <li><a href="<?php echo BASE_URL; ?>feedback&act=list"><i class="fa fa-angle-double-right"></i> Feedback</a></li>
                 <li><a href="<?php echo BASE_URL; ?>newsletter&act=list"><i class="fa fa-angle-double-right"></i> Newsletter</a></li>
                 <li><a href="<?php echo BASE_URL; ?>contact&act=list"><i class="fa fa-angle-double-right"></i> Contact</a></li>
+                <li><a href="<?php echo BASE_URL; ?>promotion_code&act=list"><i class="fa fa-angle-double-right"></i> Promotion code</a></li>
 
                 <li><a href="<?php echo BASE_URL; ?>tinh&act=list"><i class="fa fa-angle-double-right"></i> Nơi đi/nơi đến</a></li>                
 

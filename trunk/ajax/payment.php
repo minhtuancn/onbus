@@ -13,15 +13,10 @@ $email = $model->processData($_POST['email']);
 $phone = $model->processData($_POST['phone']);
 $method = $_POST['payment_card'];
 
-$amount=$total = 0;
-if(!empty($_SESSION['bookticket'])){    
-    foreach ($_SESSION['bookticket'] as $key => $value) {                   
-        $amount+= $value['amount'];        
-        $total+=$value['total'];
-    }        
-}
+$amount = $_SESSION['total_amount'];
+$total = $_SESSION['total_price'];
+$total_pay = $_SESSION['pay'];
 
-$total = $_SESSION['pay'];
 $discount = $_SESSION['discount'];
 $code_id = $_SESSION['code_id'];
 //get order code
@@ -56,8 +51,8 @@ if($method=="1"){
 	$time = time();
 	// insert order
 
-	$sql = "INSERT INTO orders (order_id,order_code,total_amount,total_price,fullname,phone,email,address,phone_contact,status,creation_time,method_id,discount,code_id)
-	VALUES (NULL,'$order_code_new',$amount,$total,'$fullname','$phone','$email','$address','$phone_contact',2,$time,$method,'$discount',$code_id)";
+	$sql = "INSERT INTO orders (order_id,order_code,total_amount,total_price,fullname,phone,email,address,phone_contact,status,creation_time,method_id,discount,code_id,total_pay)
+	VALUES (NULL,'$order_code_new',$amount,$total,'$fullname','$phone','$email','$address','$phone_contact',2,$time,$method,'$discount',$code_id,$total_pay)";
 	mysql_query($sql) or die(mysql_error());
 
 	$order_id = mysql_insert_id();
