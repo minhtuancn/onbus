@@ -46,7 +46,7 @@ $list = $model->getListImageByNhaxe($nhaxe_id, $offset, 8);
                     $i++;
                     ?>
                     <div style="float:left;height:107px;margin:10px;text-align:center">
-                        <img src="<?php echo "../".$row['image_url_3']; ?>" height="107" />
+                        <img src="<?php echo "../".$row['image_url']; ?>" height="107" />
                         <br />
                         <p>
                             <a href="javascript:;" alias="ảnh" id="<?php echo $row['image_id']; ?>" mod="image" class="link_delete" >    

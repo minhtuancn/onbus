@@ -316,7 +316,7 @@ $arrList = $model->getListTicket($nhaxe_id,$tinh_id_start,$tinh_id_end,$ngaydi,$
 
                             </a>
 
-                            <a href="javascript:;" alias="<?php echo $row['ticket_name_vi']; ?>" id="<?php echo $row['ticket_id']; ?>" mod="ticket" class="link_delete" >    
+                            <a href="javascript:;" alias="tất cả vé tương tự" id="<?php echo $row['key_all']; ?>" mod="ticketshort" class="link_delete" >    
 
                                 <i class="fa fa-fw fa-trash-o"></i>
 
@@ -510,7 +510,7 @@ $arrList = $model->getListTicket($nhaxe_id,$tinh_id_start,$tinh_id_end,$ngaydi,$
 
     function search(){
 
-        var str_link = "index.php?mod=ticket&act=list";
+        var str_link = "index.php?mod=ticket&act=listshort";
 
         var tmp = $('#nhaxe_id').val();
 
