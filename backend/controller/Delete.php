@@ -166,6 +166,15 @@ elseif($mod=='page'){
 
 
 }
+elseif($mod=='troute'){
+
+
+
+	$pk = 'troute_id';
+
+
+
+}
 
 
 
@@ -188,6 +197,20 @@ $sql = "UPDATE ".$mod."
 
 
                     WHERE ".$pk." = ".$id;
+
+                  if($mod=="troute"){
+                  	$sql = "UPDATE ".$mod."
+
+
+
+                    SET status = 0
+
+                       
+
+
+
+                    WHERE ".$pk." = ".$id;
+                  }  
 
 
 
