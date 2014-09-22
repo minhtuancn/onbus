@@ -39,6 +39,7 @@ $list = $model->getListImageByNhaxe($nhaxe_id, $offset, 8);
         <div class="box">
            
             <div class="box-body">
+                <p style="color:red;font-size:20px">Kích thước upload chuẩn : 700 x 450px</p>
                 <?php
                     $i = ($page-1) * 8;;
                     while ($row = mysql_fetch_assoc($list)) {                       
