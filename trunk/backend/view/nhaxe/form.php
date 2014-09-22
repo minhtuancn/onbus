@@ -103,6 +103,8 @@ function SetFileField2( fileUrl, data ){
                     <input type="text" name="phone" class="form-control required" value="<?php echo isset($detail['phone'])  ? $detail['phone'] : "" ?>">
                 </div>
                 <div class="form-group">
+                    <p style="color:red;font-size:20px">Logo chuẩn : 150 x 100px<br />
+                        Hình đại diện chuẩn : 540 x 375px<br /></p>
                     <label>Logo &nbsp;&nbsp;&nbsp;</label>
                     <input type="hidden" name="image_url" id="image_url" class="form-control" value="<?php echo isset($detail['image_url'])  ? $detail['image_url'] : "" ?>">
                     <img src="<?php echo isset($detail['image_url'])  ? "../".$detail['image_url'] : "" ?>" id="hinh_dai_dien" width="200" style="<?php echo isset($detail['image_url'])  ? "" : "display:none;" ?>margin-top:5px"/>
