@@ -44,8 +44,8 @@ $list = $model->getListImageByNhaxe($nhaxe_id, $offset, 8);
                     while ($row = mysql_fetch_assoc($list)) {                       
                     $i++;
                     ?>
-                    <div style="float:left;height:170px;margin:10px;text-align:center">
-                        <img src="<?php echo "../".$row['image_url']; ?>" height="150" />
+                    <div style="float:left;height:107px;margin:10px;text-align:center">
+                        <img src="<?php echo "../".$row['image_url_3']; ?>" height="107" />
                         <br />
                         <p>
                             <a href="javascript:;" alias="ảnh" id="<?php echo $row['image_id']; ?>" mod="image" class="link_delete" >    

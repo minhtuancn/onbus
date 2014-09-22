@@ -73,7 +73,7 @@ class Order extends Db {
               
             if ($limit > 0 && $offset >= 0)
                 $sql .= " LIMIT $offset,$limit";              
-            echo $sql; 
+            //echo $sql; 
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());  
             while($row = mysql_fetch_assoc($rs)){
                 $arrResult['data'][] = $row; 
