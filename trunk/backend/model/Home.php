@@ -639,5 +639,19 @@ class Home extends Db {
         $row = mysql_fetch_assoc($rs);
         return $row;
     }
+    function checkPromotionCode($code){
+        $code_id = 0;
+        $sql = "SELECT code_id FROM promotion_code WHERE code = '$code'";
+        $rs = mysql_query($sql) or die(mysql_error());
+        $row = mysql_fetch_assoc($rs);
+        $no = mysql_num_rows($rs);
+        return $row > 0 ? $row['code_id'] : 0; 
+    }
+    function getDetailPromotionCode($code_id){
+        $sql = "SELECT * FROM promotion_code WHERE code_id = $code_id";
+        $rs = mysql_query($sql) or die(mysql_error());
+        $row = mysql_fetch_assoc($rs);         
+        return $row;
+    }
 }
 ?>
