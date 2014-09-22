@@ -24,7 +24,7 @@ $model = new Db;
 
 
 
-$id = (int) $_POST['id'];
+$id = $_POST['id'];
 
 
 
@@ -166,6 +166,9 @@ elseif($mod=='page'){
 
 
 }
+elseif($mod="ticketshort"){
+	$pk = 'key_all';
+}
 elseif($mod=='troute'){
 
 
@@ -210,7 +213,10 @@ $sql = "UPDATE ".$mod."
 
 
                     WHERE ".$pk." = ".$id;
-                  }  
+                  } 
+                  if($mod == "ticketshort"){
+                  	$sql = "UPDATE ticket SET status = 0 , update_time = $time WHERE key_all = '$id' ";
+                  } 
 
 
 
