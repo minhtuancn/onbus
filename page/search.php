@@ -516,7 +516,7 @@ $routeDetail = $model->detailRoute($vstart,$vend);
   </div>
 </div>
 <div class="modal fade" id="slideshow">
-  <div class="modal-dialog" style="width:600px !important;margin-top:2%;height:500px !important">
+  <div class="modal-dialog" style="width:700px !important;margin-top:2%;height:500px !important">
     <div class="modal-content">
       <div class="modal-body">
         <div class="popup_detail">
@@ -582,10 +582,7 @@ $routeDetail = $model->detailRoute($vstart,$vend);
 <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/lightbox.min.js"></script>
 <script type="text/javascript">
          $(document).ready(function(){
-              $(function () {
-                $('.showslide').click(function(){
-
-                });
+              $(function () {            
                 initSearchTicketWidget();    
                 clickOutsideSelector("#departPlaceSelector2");
                 clickOutsideSelector("#destinationSelector2");

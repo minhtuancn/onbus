@@ -29,11 +29,11 @@ class Image extends Db {
         mysql_query($sql) or die(mysql_error() . $sql);
     }
    
-    function insertImage($image_url,$nhaxe_id){
+    function insertImage($image_url,$img_2,$img_3,$nhaxe_id){
         try{
             $user_id = $_SESSION['user_id'];
             $time = time();
-            $sql = "INSERT INTO image VALUES(NULL,$nhaxe_id,'$image_url',$time,$time,1,$user_id)";
+            $sql = "INSERT INTO image VALUES(NULL,$nhaxe_id,'$image_url','$img_2','$img_3',$time,$time,1,$user_id)";
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());       
         }catch(Exception $ex){            
             $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Image','function' => 'insertImage' , 'error'=>$ex->getMessage(),'sql'=>$sql);

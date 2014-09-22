@@ -79,7 +79,7 @@ $nhaxe_id = (int) $_POST['id'];
             function ScaleSlider() {
                 var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
                 if (parentWidth)
-                    jssor_slider1.$SetScaleWidth(Math.min(parentWidth, 600));
+                    jssor_slider1.$SetScaleWidth(Math.min(parentWidth, 700));
                 else
                     window.setTimeout(ScaleSlider, 30);
             }
@@ -100,7 +100,7 @@ $nhaxe_id = (int) $_POST['id'];
     <!-- Jssor Slider Begin -->
     <!-- You can move inline styles to css file or css block. -->
     <a href="javascript:void(0)" class="close-popup" data-dismiss="modal"></a>    
-    <div id="slider1_container" style="position: relative; width: 600px; height: 500px; background-color: #DCDCDC; overflow: hidden; ">
+    <div id="slider1_container" style="position: relative; width: 700px; height: 500px; background-color: #DCDCDC; overflow: hidden; ">
 
         <!-- Loading Screen -->
         <div u="loading" style="position: absolute; top: 0px; left: 0px;">
@@ -113,7 +113,7 @@ $nhaxe_id = (int) $_POST['id'];
         </div>
 
         <!-- Slides Container -->
-        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px; height: 500px;
+        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 700px; height: 500px;
             overflow: hidden;">
             <?php $arrRsImg = $model->getListImageByNhaxe($nhaxe_id,-1,-1);
             if(mysql_num_rows($arrRsImg) >0) {    
