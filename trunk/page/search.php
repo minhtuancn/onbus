@@ -248,7 +248,13 @@ $routeDetail = $model->detailRoute($vstart,$vend);
                             foreach($arrTicket_start['data']  as $ticket){
                                 $arrServiceTicket = $model->getServiceTicket($ticket['ticket_id']);                                 
                                  $arrTimeTicket = $model->getTimeTicket($ticket['ticket_id']);
-									$arrDetailNhaxe = $model->getDetailNhaxe($ticket['nhaxe_id']);                                    
+									$arrDetailNhaxe = $model->getDetailNhaxe($ticket['nhaxe_id']); 
+
+                                    $arrRating = $model->rating($ticket['nhaxe_id']);
+                                    $totalSaoNhaxe = $arrRating['sao'][1] +  $arrRating['sao'][2] + $arrRating['sao'][3] + $arrRating['sao'][4];
+                                    $saoTB = $model->tinhsao(round($totalSaoNhaxe/4,1));
+                                    $arrDiem = array(0,1,2,3,4,5); 
+
                             ?>
                             <div class="items">
                             <div class=" infor-tuyen-search">
@@ -301,11 +307,20 @@ $routeDetail = $model->detailRoute($vstart,$vend);
                                             <span class="num-rating">(105 rating)</span>
                                         </div>
                                         <div class="rate sprite-rating_s rating_s">
+                                            <?php $tmpN = $saoTB - 0.5;
+                                                if(in_array($tmpN,$arrDiem)){
+                                                    $chanN = $tmpN;
+                                                    $leN = 1;
+                                                }else{
+                                                    $chanN=$saoTB;
+                                                }
+                                             ?>
+                                            <?php for($i=0;$i<$chanN;$i++){ ?>
                                             <span></span>
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
+                                            <?php } ?>
+                                            <?php if($leN==1) {?>
+                                            <span class="part_icon_rating"></span>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                     <div class="left a-right">
@@ -357,7 +372,12 @@ $routeDetail = $model->detailRoute($vstart,$vend);
                             foreach($arrTicket_end['data']  as $ticket){
                                 $arrServiceTicket = $model->getServiceTicket($ticket['ticket_id']);                                 
                                  $arrTimeTicket = $model->getTimeTicket($ticket['ticket_id']);       
-                                 $arrDetailNhaxe = $model->getDetailNhaxe($ticket['nhaxe_id']);                          
+                                 $arrDetailNhaxe = $model->getDetailNhaxe($ticket['nhaxe_id']);  
+
+                                  $arrRating = $model->rating($ticket['nhaxe_id']);
+                                    $totalSaoNhaxe = $arrRating['sao'][1] +  $arrRating['sao'][2] + $arrRating['sao'][3] + $arrRating['sao'][4];
+                                    $saoTB1 = $model->tinhsao(round($totalSaoNhaxe/4,1));
+                                    $arrDiem = array(0,1,2,3,4,5);                         
                             ?>
                             <div class="items">
                             <div class=" infor-tuyen-search">
@@ -405,11 +425,20 @@ $routeDetail = $model->detailRoute($vstart,$vend);
                                             <span class="num-rating">(105 rating)</span>
                                         </div>
                                         <div class="rate sprite-rating_s rating_s">
+                                            <?php $tmpN1 = $saoTB1 - 0.5;
+                                                if(in_array($tmpN1,$arrDiem)){
+                                                    $chanN1 = $tmpN1;
+                                                    $leN1 = 1;
+                                                }else{
+                                                    $chanN1=$saoTB1;
+                                                }
+                                             ?>
+                                            <?php for($i=0;$i<$chanN1;$i++){ ?>
                                             <span></span>
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
+                                            <?php } ?>
+                                            <?php if($leN1==1) {?>
+                                            <span class="part_icon_rating"></span>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                     <div class="left a-right">
