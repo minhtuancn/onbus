@@ -116,9 +116,15 @@ select.select_search{
 }
 
 </style>
+<script type="text/javascript">
+$(function(){
+    <?php if($mod=="order") { ?>
+       setTimeout(function(){$('a.navbar-btn').click();},2000); 
+    <?php } ?>    
+});
+</script>
 <div class="row">
-    <div class="col-md-12">
-    <button class="btn btn-primary btn-sm right" onclick="location.href='index.php?mod=order&act=form'">Tạo mới</button>        
+    <div class="col-md-12">    
          <div class="box-header">
                 <h3 class="box-title">List order</h3>
             </div><!-- /.box-header -->
@@ -153,7 +159,7 @@ select.select_search{
                             <td>
                                 <select name="method_id" class="select_search" id="method_id">
                                     <option value="-1">Tất cả</option>
-                                    <option value="1" <?php echo ($_GET['method_id']==1) ? "selected" : ""; ?>>Tien mat</option>                        
+                                    <option value="1" <?php echo ($_GET['method_id']==1) ? "selected" : ""; ?>>Tiền mặt</option>                        
                                     <option value="3" <?php echo ($_GET['method_id']==3) ? "selected" : ""; ?>>Interner banking</option>                        
                                     <option value="2" <?php echo ($_GET['method_id']==2) ? "selected" : ""; ?>>Visa/Master</option>                        
                                 </select>
@@ -162,18 +168,18 @@ select.select_search{
                             <td>
                                 <select name="status" class="select_search" id="status">
                                     <option value="-1">Tất cả</option>
-                                    <option value="1" <?php echo ($_GET['status']==1) ? "selected" : ""; ?>>Da duyet</option>                        
-                                    <option value="2" <?php echo ($_GET['status']==2) ? "selected" : ""; ?>>Chua duyet</option>                        
-                                    <option value="3" <?php echo ($_GET['status']==3) ? "selected" : ""; ?>>Khach hang y/c huy</option>
-                                    <option value="4" <?php echo ($_GET['status']==4) ? "selected" : ""; ?>>Da huy</option>
+                                    <option value="1" <?php echo ($_GET['status']==1) ? "selected" : ""; ?>>Đã duyệt</option>                        
+                                    <option value="2" <?php echo ($_GET['status']==2) ? "selected" : ""; ?>>Chưa duyệt</option>                        
+                                    <option value="3" <?php echo ($_GET['status']==3) ? "selected" : ""; ?>>KH y/c hủy</option>
+                                    <option value="4" <?php echo ($_GET['status']==4) ? "selected" : ""; ?>>Đã hủy</option>
                                 </select>
                             </td>
                             <td>Pay</td>
                             <td>
                                 <select name="is_pay" class="select_search" id="is_pay">
                                     <option value="-1">Tất cả</option>
-                                    <option value="1" <?php echo ($_GET['is_pay']==1) ? "selected" : ""; ?>>Da thanh toan</option>                        
-                                    <option value="0" <?php echo ($_GET['is_pay']==0) ? "selected" : ""; ?>>Chua thanh toan</option>
+                                    <option value="1" <?php echo ($_GET['is_pay']==1) ? "selected" : ""; ?>>Đã thanh toán</option>                        
+                                    <option value="0" <?php echo ($_GET['is_pay']==0) ? "selected" : ""; ?>>Chưa thanh toán</option>
                                 </select>
                             </td>
 
@@ -196,11 +202,16 @@ select.select_search{
                     <tbody><tr>
                         <th style="width: 1%">No.</th>
                         <th width="90">Order code</th>
+                        <?php if($code != '') {?>
+                        <th width="90">Ticket code</th>
+                        <?php } ?>
                         <th>Fullname</th>
                         <th>Email</th>
                         <th align="right">Phone</th>                  
                         <th align="right">Total price</th>
                         <th align="right">Amount</th>
+                        <th align="right">Discount</th>
+                        <th align="right">Total Pay</th>
                         <th>Status</th>
                         <th>Pay</th>                  
                         <th>Date</th>                        
@@ -215,21 +226,26 @@ select.select_search{
                     <tr>
                         <td><?php echo $i; ?></td>
                         <td><?php echo $row['order_code']; ?></td>
+                        <?php if($code != '') {?>
+                        <td style="white-space:nowrap"><?php echo $row['code']; ?></td>
+                        <?php } ?>
                         <td><?php echo $row['fullname']; ?></td>
                         <td><?php echo $row['email']; ?></td>
                         <td align="right"><?php echo $row['phone']; ?></td>
                         <td align="right"><?php echo number_format($row['total_price']); ?></td>
                         <td align="right"><?php echo $row['total_amount']; ?></td>
+                        <td align="right"><?php echo number_format($row['discount']); ?></td>
+                        <td align="right"><?php echo number_format($row['total_pay']); ?></td>
                         <td><?php 
                         $status = $row['status'];
-                        if($status == 1) echo "Da duyet";
-                        if($status == 2) echo "Chua duyet";
-                        if($status == 3) echo "KH y/c huy";
-                        if($status == 4) echo "Da huy";
+                        if($status == 1) echo "Đã duyệt";
+                        if($status == 2) echo "Chưa duyet";
+                        if($status == 3) echo "KH y/c hủy";
+                        if($status == 4) echo "Đã hủy";
                         ?>
                         </td>
                         <td>
-                            <?php echo $row['is_pay']==0 ? "Chua thanh toan" : "Da thanh toan" ; ?>
+                            <?php echo $row['is_pay']==0 ? "Chưa thanh toán" : "Đã thanh toán" ; ?>
                         </td>
 
                         <td><?php echo date('d-m-Y',$row['creation_time']); ?></td>                        
@@ -333,6 +349,10 @@ select.select_search{
         tmp = $.trim($('#order_code').val());
         if(tmp != ''){
             str_link += "&order_code=" + tmp ;   
+        }
+        tmp = $.trim($('#code').val());
+        if(tmp != ''){
+            str_link += "&code=" + tmp ;   
         }
         tmp = $.trim($('#fullname').val());
         if(tmp != ''){

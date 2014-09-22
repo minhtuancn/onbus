@@ -12,7 +12,7 @@ if(!empty($_SESSION['bookticket'])){
         $ticket_id = $value['ticket_id'];
         $arrTicket[$ticket_id] = $model->getDetailTicket($ticket_id);
         $total+=$value['total'];
-    }        
+    }           
     $_SESSION['total_amount'] = $amount;
     $_SESSION['total_price'] = $total;
 }

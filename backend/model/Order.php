@@ -38,15 +38,22 @@ class Order extends Db {
 
         try{
             $sql = "SELECT orders.* FROM orders WHERE (orders.status = $status OR $status = -1) AND (is_pay = $is_pay OR $is_pay = -1) ";
+            if($mave != ''){
+                $sql = "SELECT orders.*,order_detail.* FROM orders,order_detail WHERE (orders.status = $status OR $status = -1) AND (is_pay = $is_pay OR $is_pay = -1) ";
+            }
             $sql.=" AND ( method_id = $method_id OR $method_id = -1 ) ";         
+            
             if($fullname !=''){
-                $sql.=" AND fullname LIKE '%$fullname%'";
+                $sql.=" AND orders.fullname LIKE '%$fullname%'";
+            }
+            if($order_code !=''){
+                $sql.=" AND orders.order_code = '$order_code' ";
             }
             if($phone !=''){
-                $sql.=" AND phone = '$phone' ";
+                $sql.=" AND orders.phone = '$phone' ";
             }
             if($email !=''){
-                $sql.=" AND email = '$email' ";
+                $sql.=" AND orders.email = '$email' ";
             }            
             if($mave != ''){
                 $sql .= " AND orders.order_id = order_detail.order_id AND order_detail.code = '$mave'";
@@ -66,7 +73,7 @@ class Order extends Db {
               
             if ($limit > 0 && $offset >= 0)
                 $sql .= " LIMIT $offset,$limit";              
-            //echo $sql; 
+            echo $sql; 
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());  
             while($row = mysql_fetch_assoc($rs)){
                 $arrResult['data'][] = $row; 

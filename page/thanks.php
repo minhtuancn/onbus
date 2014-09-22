@@ -44,10 +44,16 @@ if($error == 0 && $method_id > 1){
             $vedi = $value['ticket_id'];
         }if($i==2){
             $veve = $value['ticket_id'];
-        }
-        $amount+= $value['amount'];        
-        $total+=$value['total'];
-    } 
+        }    
+    }
+
+    $amount = $_SESSION['total_amount'];
+    $total = $_SESSION['total_price'];
+    $total_pay = $_SESSION['pay'];
+
+    $discount = $_SESSION['discount'];
+    $code_id = $_SESSION['code_id'];
+
     $fullname = $_SESSION['fullname'];
     $email = $_SESSION['email'];
     $phone = $_SESSION['phone'];
@@ -56,8 +62,8 @@ if($error == 0 && $method_id > 1){
 
     $time = time();
     $sql = "INSERT INTO orders (order_id,order_code,total_amount,total_price,
-        fullname,phone,email,status,creation_time,method_id,is_pay)
-    VALUES (NULL,'$order_code',$amount,$total,'$fullname','$phone','$email',2,$time,$method_id,1)";
+        fullname,phone,email,status,creation_time,method_id,is_pay,discount,code_id,total_pay)
+    VALUES (NULL,'$order_code',$amount,$total,'$fullname','$phone','$email',2,$time,$method_id,1,'$discount',$code_id,$total_pay)";
     mysql_query($sql) or die(mysql_error());
     $order_id = mysql_insert_id();
     if($order_id > 0){
@@ -69,11 +75,11 @@ if($error == 0 && $method_id > 1){
             $code = $detail['code'];
             $arrCode[$i] = $code;
             $price = $value['price'];
-            $time = $value['time'];
+            $time_id = $value['time'];
             $amount = $value['amount'];
             $type = $value['type'];
             $time=time();
-            $sql = "INSERT INTO order_detail VALUES(NULL,$order_id,$ticket_id,$time,'$code',$amount,$price,$time,2,$type)";
+            $sql = "INSERT INTO order_detail VALUES(NULL,$order_id,$ticket_id,$time_id,'$code',$amount,$price,$time,2,$type)";
             mysql_query($sql) or die(mysql_error());
         }
     }
