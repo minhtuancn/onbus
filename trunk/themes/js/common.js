@@ -38,54 +38,6 @@ $(document).ready(function() {
             $boxShow = _this.parents('.donkhach').find('.dvdonkh');
         $boxShow.toggleClass('hide').toggleClass('show');
     });
-    
-    //var topFirstBox = $('.scrollbar_fixed').length > 0 ? $item.offset().top : 0;
-    /*$(window).on('scroll', function() {
-        
-        var $item = $('.scrollbar_fixed'),
-            topItem = $('.scrollbar_fixed').length > 0 ? $item.offset().top : 0,
-            wItem = $item.outerWidth(),
-            hItem = $item.outerHeight(),
-            hWrap = $('.hBoxBig').length > 0 ? $('.hBoxBig').height() : 0,
-            topWrap = $('.hBoxBig').length > 0 ? $('.hBoxBig').offset().top : 0,
-            hW = $(window).outerHeight(),
-            topW = window.scrollY, 
-            topScroll = topWrap + topW + hItem,
-            topWrapTotal = topWrap + hWrap,
-            topBoxFooter = $('.bottom_frm').length > 0 ? $('.bottom_frm').outerHeight() : 0,
-            topBox = topWrap + hWrap - hItem - topBoxFooter + 10;
-
-        if (topScroll >= topWrapTotal) {
-            $item.css({
-                position: 'absolute',
-                top: topBox+'px'
-            }); 
-            if ($item.next('.col_margin_left').length > 0 && $item.parent('.block-subpage-col').length > 0) {
-                $item.next('.col_margin_left').css('margin-left', wItem + 'px');
-                $item.parent('.block-subpage-col').css('background', '#1F1F1F');
-            }
-        }else if(topW == 0){
-            $item.css({
-                position: 'static',
-                top: '0px'
-            });
-            if ($item.next('.col_margin_left').length > 0 && $item.parent('.block-subpage-col').length > 0) {
-                $item.next('.col_margin_left').css('margin-left', '0px');
-                $item.parent('.block-subpage-col').css('background', '#acafbf');
-            }
-        }else{
-            $item.css({
-                position: 'fixed',
-                top: '20px'
-            });
-            if ($item.next('.col_margin_left').length > 0 && $item.parent('.block-subpage-col').length > 0) {
-                $item.next('.col_margin_left').css('margin-left', wItem + 'px');
-                $item.parent('.block-subpage-col').css('background', '#1F1F1F');
-            }
-        }
-    });*/
-
-    /**/
     var slideItems = [];
     $('#vechieudi .slider_nx').each(function(){
         var _this = $(this), test;
@@ -217,17 +169,34 @@ $(document).ready(function() {
         var _this = $(this);
         _this.parent('li').addClass('active');
         _this.parent('li').find('.submenu').show();
+        return false;
     });
     $('.menu-header .nav-pills li .submenu .wrap_sub .title a span').on('click',function(e){
         e.stopPropagation();
         var _this = $(this);
         _this.parents('li').find('.submenu').hide();
         _this.parents('li').removeClass('active');
+        return false;
     });
 
     $('.submenu').clickoutside(function(){
         $(this).hide();
         $(this).parent('li').removeClass('active');
+    });
+
+    var valScroll = 0;
+    $(window).on('scroll',function(){
+        valScroll = $(this).scrollTop();
+        var wrap_content = $('#wrapper-container'),
+            itemScroll = $('header'),
+            hItemScroll = itemScroll.outerHeight();
+        if(valScroll >= hItemScroll){
+            wrap_content.addClass('desti_top');
+            itemScroll.addClass('active_scroll');
+        }else{
+            wrap_content.removeClass('desti_top');
+            itemScroll.removeClass('active_scroll');
+        }
     });
 
 });
