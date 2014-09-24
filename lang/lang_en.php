@@ -116,5 +116,6 @@ define("chuyendau","First bus");
 define("chuyencuoi","Last bus");
 define("bando","Map");
 define("giave","Price");
+define("tongtienthanhtoan","Total Pay");
 
 ?>

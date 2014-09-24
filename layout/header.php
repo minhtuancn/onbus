@@ -58,7 +58,10 @@ $(function(){
   $('.changelang').click(function(){
       $('#dropdownMenu1').html($(this).html()+'<span class="caret"></span>');   
       var lang = $(this).attr('data-value');
-      location.href="<?php echo HOST; ?>/" + lang + '/'; 
+      var cut = lang=="vi" ? "en" : "vi";
+      var url = "http://<?php echo $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']; ?>";
+      url = url.replace(cut, lang);
+      location.href=url; 
   });
   $('#btnCheckTicket').on('click',function(){
       var flag = true;
