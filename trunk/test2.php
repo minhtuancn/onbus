@@ -1,37 +1,16 @@
 <?php 
-require_once('phpmailer/class.phpmailer.php');
+echo strip_tags('<select id="site_id" name="site_id"><option value="0"> - - - </option>
+                                             <optgroup label="VnExpress"><option value="1003159">Kinh Doanh</option><option value="1002691">Giải Trí</option><option value="1002565">Thể Thao</option><option value="1002966">Đời sống</option><option value="1002592">Số Hóa</option><option value="1003231">Du Lịch</option><option value="slideshow">Build slideshow</option><option value="vonguyengiap">Build Top Võ Nguyên Giáp</option><option value="slideshow_gd">Build Bữa Cơm Gia Đình</option><option value="toprich">Build Top Người giàu</option><option value="topevent">Build Top New Zealand</option></optgroup>                                            <option value="1002835">Ngôi Sao</option>
+                                                                                        <option value="1002764">iOne</option>
+                                                                                        <option value="1003530">Chúng Ta</option>
+                                                                                                                                <optgroup label="BuildTop TVOL">
+                                                <option value="1003596">Tư vấn rối loạn mỡ máu</option>
+                                                <option value="1003595">Tư vấn sức khỏe và sinh lý nữ</option>
+                                                <option value="1003618">Tư vấn sức khoẻ sinh lý nam</option>        
 
-function smtpmailer($to, $from, $from_name, $subject, $body) { 
-		 
-	ini_set('display_errors',1);
-    global $error;
-    $mail = new PHPMailer(); 
-    $mail->IsSMTP(); 
-    $mail->SMTPDebug = 1;
-    $mail->SMTPAuth = true; 
-    $mail->SMTPSecure = 'ssl'; 
-    $mail->Host = 'smtp.gmail.com';
-    $mail->Port = 465; 
-    $mail->Username = "onbustest@gmail.com";  
-    $mail->Password = "onbus123";           
-    $mail->SetFrom($from, $from_name);
-    $mail->Subject = $subject;
-    $mail->Body = $body;
-    $mail->CharSet="utf-8";
-    $mail->IsHTML(true);
-    $mail->AddAddress($to);		
-	var_dump($mail->ErrorInfo);
-    if(!$mail->Send()) {
-        $error = 'Gởi mail bị lỗi : '.$mail->ErrorInfo; 
-        return false;
-    } else {
-        $error = 'Thư của bạn đã được gởi đi !';
-        return true;
-    }
-}
+<option value="1003625">Tu van khop</option>
+<option value="1003671">Tu van suy giam tri nho</option>
 
-$tieudethu="ONBUS ticket confirmation";
-$noidungthu = 'abcd';
-
-var_dump(smtpmailer('hoangnhonline@gmail.com', 'onbustest@gmail.com', 'ONBUS.VN',$tieudethu,$noidungthu));	
-?>
+                                            </optgroup> 
+                                                  
+                                        </select>');
