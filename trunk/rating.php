@@ -75,7 +75,7 @@ if(isset($_POST['btnSave'])){
         <?php if($error == 0) { ?>
         <form action="" method="post" name="frmRating" id="frmRating" >
         <div class="padding_common wrap_line">
-        	<p><?php echo $lang == 1 ? "Ấn tượng của bạn về nhà xe điều hành" : "The expression of the Bus operator"; ?></p>
+        	<p><?php echo $lang == 1 ? "Ấn tượng của bạn về nhà xe điều hành" : "The impression of the Bus operator"; ?></p>
         </div>
         <div class="padding_common content_review">
         	<div class="dot_9x9">
@@ -99,7 +99,7 @@ if(isset($_POST['btnSave'])){
                     <td><input type="radio" name="question1" value="5"/></td>
                 </tr>
              	<tr>
-                	<td><?php echo $lang == 1 ? "Mức độ chuyên nghiệp của quy trình dịch vụ" : "Staff behavious"; ?></td>
+                	<td><?php echo $lang == 1 ? "Mức độ chuyên nghiệp của quy trình dịch vụ" : "Staff behaviors"; ?></td>
                     <td><input type="radio" name="question2" value="1" /></td>
                     <td><input type="radio" name="question2" value="2"/></td>
                     <td><input type="radio" name="question2" value="3"/></td>
@@ -153,7 +153,7 @@ if(isset($_POST['btnSave'])){
             </div>
             <div class="group_field">
                 <div class="dot_9x9">
-                	<p><?php echo $lang == 1 ? "Chia sẻ với chúng tôi hành trình của bạn" : "Please share with us about your journey by Bus in VietNam"; ?>.</p>                    
+                	<p><?php echo $lang == 1 ? "Chia sẻ với chúng tôi hành trình của bạn" : "Please tell us about your journey by Bus"; ?>.</p>                    
                 </div>
                 <div class="wrap_frm">
                     <textarea name="content" id="content"></textarea>
