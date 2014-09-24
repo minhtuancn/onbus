@@ -1,15 +1,10 @@
 <header>
         <div class="w-center header-wrap">
             <div class="right">                
-                <div class="dropdown">
-                <div class="cell_header">Language</div>
-                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                     <?php echo ($lang=="vi") ? "Tiếng Việt" : "English" ; ?>
-                     <span class="caret"></span>                     
-                  </button>
-                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                    <li role="presentation"><a data-value="vi" role="menuitem" tabindex="-1" href="javascript:;" class="changelang"><span class="flag-vn"></span>Tiếng Việt</a></li>
-                    <li role="presentation"><a data-value="en" role="menuitem" tabindex="-1" href="javascript:;" class="changelang"><span class="flag-en"></span>English &nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                <div class="dropdown">                       
+                  <ul>
+                    <li role="presentation" style="display:inline;margin-right:7px"><a role="menuitem" tabindex="-1" href="javascript:;" ><img data-value="vi" class="changelang" src="<?php echo STATIC_URL; ?>/css/images/flag-vn.jpg" title="Vietnamese"></a></li>
+                    <li role="presentation" style="display:inline"><a role="menuitem" tabindex="-1" href="javascript:;" ><img data-value="en" class="changelang" src="<?php echo STATIC_URL; ?>/css/images/flag-en.jpg" title="English"></a></li>
                   </ul>
                 </div>
                 <div class="clear"></div>
@@ -55,12 +50,17 @@
     </header>
     <script type="text/javascript">
 $(function(){
-  $('.changelang').click(function(){
-      $('#dropdownMenu1').html($(this).html()+'<span class="caret"></span>');   
+  $('.changelang').click(function(){    
       var lang = $(this).attr('data-value');
       var cut = lang=="vi" ? "en" : "vi";
       var url = "http://<?php echo $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']; ?>";
-      url = url.replace(cut, lang);
+      var n = url.indexOf(cut);
+      if(n > 0){
+        url = url.replace(cut, lang);  
+      }else{
+        url = "<?php echo HOST;?>/" + lang;
+      }
+      
       location.href=url; 
   });
   $('#btnCheckTicket').on('click',function(){
