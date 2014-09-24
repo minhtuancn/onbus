@@ -123,7 +123,7 @@ body {
 	font-family: Calibri, Arial !important;
 }
 .w-center {
-	width: 71.2em;
+	width: 1139px;
 	margin: 0 auto
 }
 .logo-header {
@@ -137,7 +137,15 @@ header {
 	background-image: -ms-linear-gradient(bottom, rgba(0,0,0,0.8) -20px, rgba(16,16,17,0.9) 40%);
 	background-image: -o-linear-gradient(bottom, rgba(0,0,0,0.8) -20px, rgba(16,16,17,0.9) 40%);
 	background-image: linear-gradient(bottom, rgba(0,0,0,0.8) -20px, rgba(16,16,17,0.9) 40%);
-	min-height: 110px
+	height: 110px;
+	-webkit-transition: all .3s;
+	-moz-transition: all .3s;
+	transition: all .3s;
+	position:fixed;
+	width:100%;
+	top:0px;
+	left:0px;
+	z-index:99999;
 }
 @font-face {
 	font-family: 'vipbus';
@@ -432,7 +440,7 @@ header .dropdown .btn .caret {
 	padding: 10px
 }
 #wrapper-container {
-	padding-top: 10px;
+	padding-top: 120px;
 }
 .box-css3 {
 	border-radius: 3px;
@@ -6987,7 +6995,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c3778', end
 }
 .page_detail h1 {
 	font-size: 2em;
-	line-height: 20px;
+	line-height: 30px;
 	margin-bottom: 10px;
 }
 .group_tab {
@@ -7587,19 +7595,32 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c3778', end
 }
 .menu-header .nav-pills li .submenu .wrap_sub form button{
 	display:block;
-	padding:0px;
+	padding:5px 10px;
 	margin:0px;
-	border-radius:0px;
-	-webkit-border-radius:0px;
-	-moz-border-radius:0px;
-	-ms-border-radius:0px;
-	-khtml-border-radius:0px;
-	width:109px;
-	height:26px;
-	background: url('images/btn_tieptuc.png');
-	text-indent:-99999px;
+	border-radius:3px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	-ms-border-radius:3px;
+	-khtml-border-radius:3px;
 	border:none;
 	margin-top:25px;
+	background: #feb301;
+	background: -moz-linear-gradient(top, #feb301 0%, #f37b00 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #feb301), color-stop(100%, #f37b00));
+	background: -webkit-linear-gradient(top, #feb301 0%, #f37b00 100%);
+	background: -o-linear-gradient(top, #feb301 0%, #f37b00 100%);
+	background: -ms-linear-gradient(top, #feb301 0%, #f37b00 100%);
+	background: linear-gradient(to bottom, #feb301 0%, #f37b00 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#feb301', endColorstr='#f37b00', GradientType=0);
+	color:#fff;
+	text-shadow:none;
+	-wekbit-text-shadow:none;
+	-moz-text-shadow:none;
+	font-weight:bold;
+	text-transform:uppercase;
+}
+.menu-header .nav-pills li .submenu .wrap_sub form button:hover{
+	background: #D8A11E;
 }
 #popup_feedback .modal-dialog{
 	width:610px;
@@ -8069,4 +8090,28 @@ div.slide-search{
 	height:105px;
 	width: 166px;
 	overflow: hidden; 
+}
+header.active_scroll{
+	position:fixed;
+	z-index:9999;
+	height: 68px;
+	background-image: -webkit-linear-gradient(bottom, rgba(20, 20, 20, 0.8) -20px, rgba(0, 0, 0, 0.9) 40%);
+	background-image: -moz-linear-gradient(bottom, rgba(20, 20, 20, 0.8) -20px, rgba(0, 0, 0, 0.9) 40%);
+	background-image: -ms-linear-gradient(bottom, rgba(20, 20, 20, 0.8) -20px, rgba(0, 0, 0, 0.9) 40%);
+	background-image: -o-linear-gradient(bottom, rgba(20, 20, 20, 0.8) -20px, rgba(0, 0, 0, 0.9) 40%);
+	background-image: linear-gradient(bottom, rgba(20, 20, 20, 0.8) -20px, rgba(0, 0, 0, 0.9) 40%);
+	font-size: 90%;
+}
+.active_scroll .dropdown{
+	display:none;
+}
+.active_scroll .menu-header{
+	margin-top: 30px;
+	float: left;
+	width: 855px;
+}
+.active_scroll .logo-header{
+	margin: 13px 20px 0px 0px;
+	padding:0px;
+	width:150px;
 }
