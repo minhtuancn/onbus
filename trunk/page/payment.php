@@ -133,7 +133,7 @@ if(!empty($_SESSION['bookticket'])){
                                 <div class="right" id="div_discount"></div>
                             </li>
                             <li>
-                                <div class="left"><h3>Total Pay</h3></div>
+                                <div class="left"><h3>{tongtienthanhtoan}</h3></div>
                                 <div class="right" id="div_pay" style="color:blue;font-weight:bold"></div>
                             </li>
                         </ul>
