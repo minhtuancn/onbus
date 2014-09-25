@@ -168,8 +168,7 @@ $(document).ready(function() {
         e.stopPropagation();
         var _this = $(this);
         _this.parent('li').addClass('active');
-        _this.parent('li').find('.submenu').show();
-        return false;
+        _this.parent('li').find('.submenu').show();        
     });
     $('.menu-header .nav-pills li .submenu .wrap_sub .title a span').on('click',function(e){
         e.stopPropagation();
