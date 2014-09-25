@@ -138,5 +138,6 @@ $onbus = str_replace("{chuyencuoi}" , chuyencuoi , $onbus);
 $onbus = str_replace("{bando}" , bando , $onbus);
   $onbus = str_replace("{giave}" , giave , $onbus);
   $onbus = str_replace("{tongtienthanhtoan}" , tongtienthanhtoan , $onbus);
+  $onbus = str_replace("{kiemtrave}" , kiemtrave , $onbus);
 echo $onbus;
 ?>

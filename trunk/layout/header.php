@@ -30,7 +30,7 @@
                                 <label for="exampleInputEmail1">{mave}</label>
                                 <input type="text" class="form-control" id="code_myticket" placeholder="Enter code ticket">
                               </div>
-                              <button type="button" id="btnCheckTicket" class="btn btn-default" data-toggle="modal" data-target="#popup_myticket">{tieptuc}</button>
+                              <button type="button" id="btnCheckTicket" class="btn btn-default" data-toggle="modal" data-target="#popup_myticket">{kiemtrave}</button>
                               <p style="margin-top:10px;font-style:italic;" id="error_myticket" class="error_time">{thongtinkochinhxac}</p>                               
                             </form>
 
