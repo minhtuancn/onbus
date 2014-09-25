@@ -60,7 +60,7 @@ $arrDiem = array(0,1,2,3,4,5);
                                     <ul class="barChart">
                                         <li class="wrap">
                                             <span class="rdoSet">
-                                                <label class=" selected" for="com1"><span class="text">Excellent</span></label>
+                                                <label class=" selected" for="com1"><span class="text"></span></label>
                                             </span>
                                             <div class="line clickable"><div class="fill" style="width:<?php echo isset($arrRating['excel']['percent']) ? $arrRating['excel']['percent'] : "0" ; ?>%"></div></div>
                                             <span class="compositeCount selected"><?php echo number_format($arrRating['excel']['vote']); ?></span>

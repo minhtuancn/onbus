@@ -72,6 +72,48 @@ class Rating extends Db {
             $this->logError($arrLog);
         }
     }    
+    function insertMailNhanCode($code_id,$list_email){
+        try{            
+            $time = time();
+            $tmp = explode(";",$list_email);
+            $code = $this->getCodeByID($code_id);
+            foreach ($tmp as $email) {
+                $email = trim($email); 
+                $sql = "INSERT INTO email_code VALUES(NULL,'$email',$code_id,'$code',1)";
+                $rs = mysql_query($sql) or $this->throw_ex(mysql_error()); 
+            }
+                  
+        }catch(Exception $ex){            
+            $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Rating','function' => 'insertMailNhanCode' , 'error'=>$ex->getMessage(),'sql'=>$sql);
+            $this->logError($arrLog);
+        }
+    }
+    function getCodeByID($code_id){
+        $sql = "SELECT code FROM promotion_code WHERE code_id = $code_id";
+        $rs = mysql_query($sql) or die(mysql_error());
+        $row = mysql_fetch_assoc($rs);
+        return $row['code'];
+    }
+    function getListEmailNhanCode($code_id=-1,$status = -1, $offset = -1, $limit = -1) {
+        try{
+            $arrResult = array();
+            $sql = "SELECT * FROM email_code WHERE (status = $status OR $status = -1 )
+            AND (code_id = $code_id OR $code_id = -1 )  ORDER BY id DESC ";            
+            if ($limit > 0 && $offset >= 0)
+                $sql .= " LIMIT $offset,$limit";        
+            $rs = mysql_query($sql) or $this->throw_ex(mysql_error());  
+            while($row = mysql_fetch_assoc($rs)){
+                $arrResult['data'][] = $row; 
+            }
+
+            $arrResult['total'] = mysql_num_rows($rs);     
+        }catch(Exception $ex){            
+            $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Rating','function' => 'getListRating' , 'error'=>$ex->getMessage(),'sql'=>$sql);
+            $this->logError($arrLog);
+        }
+        
+        return $arrResult;
+    }
 
 }
 

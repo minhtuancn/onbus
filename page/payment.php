@@ -16,6 +16,7 @@ if(!empty($_SESSION['bookticket'])){
     $_SESSION['total_amount'] = $amount;
     $_SESSION['total_price'] = $total;
 }
+$_SESSION['code_id'] = $_SESSION['discount'] = $_SESSION['pay'] = 0;
 ?>
 <div id="payment">
         	<div class="process_bar nav">
@@ -119,7 +120,7 @@ if(!empty($_SESSION['bookticket'])){
                     <div class="content_sidebar">
                     	<div class="total_price">
                         	<h2 class="left"><b>{tong}:</b></h2>
-                            <span class="price"><?php echo number_format($total); ?> VNĐ</span>
+                            <span class="price" id="div_pay"><?php echo number_format($total); ?> VNĐ</span>
                          </div>
                         <h3>{tongsove}: <?php echo $amount; ?></h3>
                         <h3>{tienvetongcong}:</h3>
@@ -131,11 +132,7 @@ if(!empty($_SESSION['bookticket'])){
                             <li>
                             	<div class="left"><h3>{giamgia}</h3></div>
                                 <div class="right" id="div_discount"></div>
-                            </li>
-                            <li>
-                                <div class="left"><h3>{tongtienthanhtoan}</h3></div>
-                                <div class="right" id="div_pay" style="color:blue;font-weight:bold"></div>
-                            </li>
+                            </li>                           
                         </ul>
                         <div class="right cost_payment">
                         	<a target="_blank" href="<?php echo $lang; ?>/terms-and-conditions.html">{quydinhvexe}</a>
@@ -294,15 +291,22 @@ $(function(){
             placement: 'top'
         });
     }
+    $("#promotion").focus(function(){
+        if($.trim($('#email').val())==''){
+            $('#email').focus();
+            return false;
+        }
+    });
     $('#promotion').blur(function(){
         var code = $.trim($(this).val());
+        var email = $.trim($('#email').val());
         if(code!=''){
             $.ajax({
                 url: "ajax/process.php",
                 type: "POST",
                 async: false,  
                 dataType : 'json',                           
-                data: {'mod':'promotion','code':code},
+                data: {'mod':'promotion','code':code,'email' :email},
                 success: function(data){ 
                     console.log(data);
                     if(data=="0"){

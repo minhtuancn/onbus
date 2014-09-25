@@ -56,6 +56,16 @@ class Code extends Db {
             $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Code','function' => 'insertCode' , 'error'=>$ex->getMessage(),'sql'=>$sql);
             $this->logError($arrLog);
         }
+    }
+    function insertEmailNhanCode($code,$amount, $type,$value,$status){
+        try{
+            $time = time();
+            $sql = "INSERT INTO promotion_code VALUES(NULL,'$code',$amount,$type,'$value',2)";
+            $rs = mysql_query($sql) or $this->throw_ex(mysql_error());       
+        }catch(Exception $ex){            
+            $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Code','function' => 'insertCode' , 'error'=>$ex->getMessage(),'sql'=>$sql);
+            $this->logError($arrLog);
+        }
     }    
 
 }

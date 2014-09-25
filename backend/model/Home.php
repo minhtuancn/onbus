@@ -152,6 +152,12 @@ class Home extends Db {
         $sao = $this->tinhsao(round($total/4,1));
         return $sao;
     }
+    function countRating($nhaxe_id){
+        $sql = "SELECT count(detail_id) as total FROM rating_detail WHERE nhaxe_id = $nhaxe_id AND status = 1";
+        $rs = mysql_query($sql);
+        $row = mysql_fetch_assoc($rs);
+        return $row['total'];
+    }
     function tinhsao($val){
         if($val<5 && $val >=4.5) $val = 4.5;
         elseif($val >4 && $val <4.5) $val = 4;
@@ -164,6 +170,21 @@ class Home extends Db {
         elseif($val <1 && $val >=0.5) $val = 0.5;
         elseif($val >0 && $val <0.5) $val = 0;
         return $val;
+    }
+    function xeploai($diemTB){
+        $loai = 0;
+        if($diemTB >= 1 && $diemTB < 2){            
+            $loai = 5;
+        }elseif($diemTB >= 2 && $diemTB < 3){
+            $loai = 4;            
+        }elseif($diemTB >= 3 && $diemTB < 4){
+            $loai = 3;            ;
+        }elseif($diemTB >= 4 && $diemTB <= 4.5){
+            $loai = 2;            
+        }elseif($diemTB > 4.5 && $diemTB <=5){
+            $loai = 1;            
+        }
+        return $loai;
     }
     function getListNhaxe($keyword = '',$hot = -1,$offset = -1, $limit = -1) {
         try{
@@ -374,7 +395,7 @@ class Home extends Db {
         return $row['address_'.$lang];
 
     }
-    function getListTicketFE($nhaxe_id="",$tinh_id_start=-1,$tinh_id_end=-1,$date_start=-1,$service="",$offset = -1, $limit = -1) {
+    function getListTicketFE($sort = 1, $nhaxe_id="",$tinh_id_start=-1,$tinh_id_end=-1,$date_start=-1,$service="",$offset = -1, $limit = -1) {
         $arrResult = array();
 
         try{
@@ -389,8 +410,8 @@ class Home extends Db {
             }
             $sql.=" AND (t1.tinh_id_start = $tinh_id_start OR $tinh_id_start = -1)
             AND (t1.tinh_id_end = $tinh_id_end OR $tinh_id_end = -1) AND  (t1.date_start = $date_start OR $date_start = -1)";
-            
-             $sql.="ORDER BY t1.update_time ASC ";            
+            $order = ($sort ==1 ) ? " t1.price DESC " : " t1.price ASC ";
+             $sql.="ORDER BY $order ";            
               
             if ($limit > 0 && $offset >= 0)
                 $sql .= " LIMIT $offset,$limit";              
@@ -639,9 +660,9 @@ class Home extends Db {
         $row = mysql_fetch_assoc($rs);
         return $row;
     }
-    function checkPromotionCode($code){
+    function checkPromotionCode($code,$email){
         $code_id = 0;
-        $sql = "SELECT code_id FROM promotion_code WHERE code = '$code'";
+        $sql = "SELECT code_id FROM email_code WHERE code = '$code' AND email = '$email' AND status = 1 ";
         $rs = mysql_query($sql) or die(mysql_error());
         $row = mysql_fetch_assoc($rs);
         $no = mysql_num_rows($rs);

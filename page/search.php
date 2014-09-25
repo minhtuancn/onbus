@@ -29,21 +29,21 @@ $arrNhaXeID = array();
 $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
 $offset = $limit * ($page - 1);
 
-$arrTicket_start_nhaxe = $model->getListTicketFE("",$vstart,$vend,$dstart,$service,-1,-1);
+$arrTicket_start_nhaxe = $model->getListTicketFE($sort,"",$vstart,$vend,$dstart,$service,-1,-1);
 if(!empty($arrTicket_start_nhaxe['data'])){
     foreach ($arrTicket_start_nhaxe['data'] as $ticket) {
         $arrNhaXeID[$ticket['nhaxe_id']] = $ticket['nhaxe_id'];
     }
 }
 
-$arrTicket_start_total = $model->getListTicketFE($car,$vstart,$vend,$dstart,$service,-1,-1);
+$arrTicket_start_total = $model->getListTicketFE($sort,$car,$vstart,$vend,$dstart,$service,-1,-1);
 $total_page_start = ceil($arrTicket_start_total['total'] / $limit);
-$arrTicket_start = $model->getListTicketFE($car,$vstart,$vend,$dstart,$service,$offset,$limit);
+$arrTicket_start = $model->getListTicketFE($sort,$car,$vstart,$vend,$dstart,$service,$offset,$limit);
 
 if($type==2){
-    $arrTicket_end_total = $model->getListTicketFE($car,$vend,$vstart,$dend,$service,-1,-1);
+    $arrTicket_end_total = $model->getListTicketFE($sort,$car,$vend,$vstart,$dend,$service,-1,-1);
     $total_page_end = ceil($arrTicket_end_total['total'] / $limit);
-    $arrTicket_end = $model->getListTicketFE($car,$vend,$vstart,$dend,$service,$offset,$limit);
+    $arrTicket_end = $model->getListTicketFE($sort,$car,$vend,$vstart,$dend,$service,$offset,$limit);
 }
 
 $arrNhaXeUyTin = $model->getListNhaxe('',1,0,8);
@@ -229,9 +229,9 @@ $routeDetail = $model->detailRoute($vstart,$vend);
                         <div class="infor-ticket-tn">
                             <div class="price-ticket right">
                                 <label for="departPlace">{sapxep}:</label>
-                                <select class="form-control input-sm left">
-                                    <option selected="selected">rating ̣low to high</option>
-                                    <option>rating ̣low to high</option>
+                                <select class="form-control input-sm left" id="sortby">
+                                    <option <?php echo $sort==1 ? "selected" : ""; ?> value="1">price high to low</option>
+                                    <option <?php echo $sort==2 ? "selected" : ""; ?> value="2">price ̣low to high</option>
                                 </select>
                             </div>
                             <div class="left txt-vtn">
@@ -251,7 +251,7 @@ $routeDetail = $model->detailRoute($vstart,$vend);
 									$arrDetailNhaxe = $model->getDetailNhaxe($ticket['nhaxe_id']); 
 
                                     $arrRating = $model->rating($ticket['nhaxe_id']);
-                                    $totalSaoNhaxe = $arrRating['sao'][1] +  $arrRating['sao'][2] + $arrRating['sao'][3] + $arrRating['sao'][4];
+                                    $totalSaoNhaxe = $arrRating['sao'][1] +  $arrRating['sao'][2] + $arrRating['sao'][3] + $arrRating['sao'][4];                                    
                                     $saoTB = $model->tinhsao(round($totalSaoNhaxe/4,1));
                                     $arrDiem = array(0,1,2,3,4,5); 
 
@@ -303,8 +303,19 @@ $routeDetail = $model->detailRoute($vstart,$vend);
                                             <span><?php echo $ticket['car_type']==1 ? "Giường nằm" : "Ghế ngồi"; ?></span>
                                         </div>
                                         <div class="right rating">
-                                            <span>Good: 8.3</span>
-                                            <span class="num-rating">(105 rating)</span>
+                                            <span>
+                                            <?php $loai = $model->xeploai($saoTB);
+                                            
+                                            switch($loai){
+                                                case 1 : echo "{xuatsac}:";break;
+                                                case 2 : echo "{rattot}:"; break;
+                                                case 3 : echo "{trungbinh}:"; break;
+                                                case 4 : echo "{te}:"; break;
+                                                case 5 : echo "{ratte}:"; break;
+                                                default : echo ""; break;
+                                            }
+                                            ?> <?php echo ($saoTB > 0) ? round($totalSaoNhaxe/4,1) : ""; ?></span><br/>
+                                            <span class="num-rating">(<?php echo $model->countRating($ticket['nhaxe_id']); ?> {danhgia})</span>
                                         </div>
                                         <div class="rate sprite-rating_s rating_s">
                                             <?php $tmpN = $saoTB - 0.5;
@@ -581,6 +592,20 @@ $routeDetail = $model->detailRoute($vstart,$vend);
 </div>
 <script type="text/javascript" src="<?php echo STATIC_URL; ?>/js/lightbox.min.js"></script>
 <script type="text/javascript">
+        $(function(){
+            $("#sortby").change(function(){
+                var sort = $(this).val();
+                var cut = sort==1 ? "sort=2" : "sort=1";
+                var url = "http://<?php echo $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']; ?>";
+                var n = url.indexOf(cut);
+                if(n > 0){
+                    url = url.replace(cut, "sort=" + sort);  
+                }else{
+                    url = url + "?sort=" + sort;
+                }
+                location.href = url;
+            });
+        });
          $(document).ready(function(){
               $(function () {            
                 initSearchTicketWidget();    

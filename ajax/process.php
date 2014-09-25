@@ -46,13 +46,11 @@ if(in_array($mod,$arrMod)){
 		$code = isset($_POST['code']) ? $model->processData($_POST['code']) : "";
 		$email = isset($_POST['email']) ? $model->processData($_POST['email']) : "";		
 		$total_amount = $_SESSION['total_amount'];
-		$total_price = $_SESSION['total_price'];
-
-		$code_id = $model->checkPromotionCode($code);
+		$total_price = $total_pay = $_SESSION['total_price'];
+		$code_id = $discount = 0;
+		$code_id = $model->checkPromotionCode($code,$email);
 		if($code_id > 0){
-			$row = $model->getDetailPromotionCode($code_id);
-			$is_used = $model->checkUsed()
-			if()
+			$row = $model->getDetailPromotionCode($code_id);						
 			if($row['type']==1){
 				$percent =  (int) str_replace("%","",$row['code_value']);
 				$discount = $percent*$total_price/100;
