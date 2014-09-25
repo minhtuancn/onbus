@@ -110,4 +110,9 @@ define("bando","Bản đồ");
 define("giave","Giá vé");
 define("tongtienthanhtoan","Tổng tiền thanh toán");
 define("kiemtrave","Kiểm tra vé");
+define("xuatsac","Xuất sắc");
+define("rattot","Rất tốt");
+define("trungbinh","Trung bình");
+define("te","Tệ");
+define("ratte","Rất tệ");
 ?>

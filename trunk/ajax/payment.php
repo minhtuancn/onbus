@@ -53,9 +53,11 @@ if($method=="1"){
 
 	$sql = "INSERT INTO orders (order_id,order_code,total_amount,total_price,fullname,phone,email,address,phone_contact,status,creation_time,method_id,discount,code_id,total_pay)
 	VALUES (NULL,'$order_code_new',$amount,$total,'$fullname','$phone','$email','$address','$phone_contact',2,$time,$method,'$discount',$code_id,$total_pay)";
-	mysql_query($sql) or die(mysql_error());
-
+	mysql_query($sql) or die(mysql_error().$sql);
 	$order_id = mysql_insert_id();
+	if($code_id > 0){
+		mysql_query("UPDATE email_code SET status = 2 WHERE code_id = $code_id AND email = '$email'");
+	}
 	$arrCode = array();
 	if($order_id > 0){
 		foreach ($arrTicket as $key => $value) {			

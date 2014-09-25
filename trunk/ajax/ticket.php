@@ -47,13 +47,13 @@ if(isset($_POST['dend'])){
 }
 $tab = (int) $_POST['tab'];
 if($tab==1){
-$arrTicket_start_total = $model->getListTicketFE($car,$vstart,$vend,$dstart,$service,-1,-1);
+$arrTicket_start_total = $model->getListTicketFE($sort,$car,$vstart,$vend,$dstart,$service,-1,-1);
 $total_page = ceil($arrTicket_start_total['total'] / $limit);
-$arrTicket_end = $model->getListTicketFE($car,$vstart,$vend,$dstart,$service,$offset,$limit);
+$arrTicket_end = $model->getListTicketFE($sort,$car,$vstart,$vend,$dstart,$service,$offset,$limit);
 }else{
-    $arrTicket_end_total = $model->getListTicketFE($car,$vend,$vstart,$dend,$service,-1,-1);
+    $arrTicket_end_total = $model->getListTicketFE($sort,$car,$vend,$vstart,$dend,$service,-1,-1);
     $total_page = ceil($arrTicket_end_total['total'] / $limit);
-    $arrTicket_end = $model->getListTicketFE($car,$vend,$vstart,$dend,$service,$offset,$limit);
+    $arrTicket_end = $model->getListTicketFE($sort,$car,$vend,$vstart,$dend,$service,$offset,$limit);
 }
 ?>
 

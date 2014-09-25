@@ -160,6 +160,17 @@ switch ($mod) {
         $vstart = $vend = $dstart = $dend = -1;
         $car = "";
         $str1 = strstr($tmp_uri[2], 'ngay');
+        if(strpos($str1,"?")> 0){
+            $params = strstr($str1, '?');
+            $sort = (int) str_replace("?sort=","" ,$params);            
+            if(!in_array($sort,array(1,2))){                
+                $str1 = str_replace($params, '',$str1);   
+                $sort = 1;   
+            }
+            $str1 = str_replace($params, '',$str1);
+        }else{
+            $sort=1;
+        }        
         $str1 = str_replace("ngay-", "", $str1);
         $tmp_uri = explode("-den-",$str1);        
         
@@ -186,7 +197,7 @@ switch ($mod) {
             $date_start = str_replace("-".$str2,"", $tmp_uri[0]);
             $tmp = explode("_", $str2);
             $type = (int) $tmp[0];            
-            $tmp = explode("l",$tmp[1]);
+            $tmp = explode("l",$tmp[1]);            
             if(isset($tmp[1])){
                 $car = $tmp[1];            
             }

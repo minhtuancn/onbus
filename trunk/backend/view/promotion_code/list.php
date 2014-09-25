@@ -49,6 +49,7 @@ $arrList = $model->getListCode($status,$offset, $limit);
     <div class="col-md-12">
 
     <button class="btn btn-primary btn-sm right" onclick="location.href='index.php?mod=promotion_code&act=form'">Tạo mới</button>        
+    <button class="btn btn-primary btn-sm right" onclick="location.href='index.php?mod=promotion_code&act=mail'">Gửi mail</button>        
 
          <div class="box-header">
 

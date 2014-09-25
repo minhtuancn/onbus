@@ -57,7 +57,7 @@ class Ticket extends Db {
         
         return $arrResult;
     }
-    function getListTicketFE($nhaxe_id="",$tinh_id_start=-1,$tinh_id_end=-1,$date_start=-1,$service="",$offset = -1, $limit = -1) {
+    function getListTicketFE($sort=1,$nhaxe_id="",$tinh_id_start=-1,$tinh_id_end=-1,$date_start=-1,$service="",$offset = -1, $limit = -1) {
         $arrResult = array();
 
         try{
@@ -72,12 +72,12 @@ class Ticket extends Db {
             }
             $sql.=" AND (t1.tinh_id_start = $tinh_id_start OR $tinh_id_start = -1)
             AND (t1.tinh_id_end = $tinh_id_end OR $tinh_id_end = -1) AND  (t1.date_start = $date_start OR $date_start = -1)";
-            
-             $sql.="ORDER BY t1.update_time ASC ";            
+            $order = ($sort ==1 ) ? " t1.price DESC " : " t1.price ASC ";
+             $sql.="ORDER BY $order ";            
               
             if ($limit > 0 && $offset >= 0)
                 $sql .= " LIMIT $offset,$limit";              
-            
+            echo $sql;die('1233');
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());  
             while($row = mysql_fetch_assoc($rs)){
                 $arrResult['data'][] = $row; 

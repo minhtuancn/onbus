@@ -136,8 +136,13 @@ $onbus = str_replace("{tuyenduong}" , tuyenduong , $onbus);
 $onbus = str_replace("{chuyendau}" , chuyendau , $onbus);
 $onbus = str_replace("{chuyencuoi}" , chuyencuoi , $onbus);
 $onbus = str_replace("{bando}" , bando , $onbus);
-  $onbus = str_replace("{giave}" , giave , $onbus);
-  $onbus = str_replace("{tongtienthanhtoan}" , tongtienthanhtoan , $onbus);
-  $onbus = str_replace("{kiemtrave}" , kiemtrave , $onbus);
+$onbus = str_replace("{giave}" , giave , $onbus);
+$onbus = str_replace("{tongtienthanhtoan}" , tongtienthanhtoan , $onbus);
+$onbus = str_replace("{kiemtrave}" , kiemtrave , $onbus);
+$onbus = str_replace("{xuatsac}" , xuatsac , $onbus);
+$onbus = str_replace("{rattot}" , rattot , $onbus);
+$onbus = str_replace("{trungbinh}" , trungbinh , $onbus);
+$onbus = str_replace("{te}" , te , $onbus);
+$onbus = str_replace("{ratte}" , ratte , $onbus);
 echo $onbus;
 ?>
