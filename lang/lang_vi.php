@@ -109,4 +109,5 @@ define("chuyencuoi","Chuyến cuối");
 define("bando","Bản đồ");
 define("giave","Giá vé");
 define("tongtienthanhtoan","Tổng tiền thanh toán");
+define("kiemtrave","Kiểm tra vé");
 ?>

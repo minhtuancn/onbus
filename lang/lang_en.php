@@ -117,5 +117,6 @@ define("chuyencuoi","Last bus");
 define("bando","Map");
 define("giave","Price");
 define("tongtienthanhtoan","Total Pay");
+define("kiemtrave","Check your ticket");
 
 ?>
