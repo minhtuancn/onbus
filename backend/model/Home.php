@@ -674,5 +674,12 @@ class Home extends Db {
         $row = mysql_fetch_assoc($rs);         
         return $row;
     }
+
+    function getEmailContent($lang,$phone,$code){
+        $arrReturn  = $this->getInfoTicket($phone, $code);
+        $arrOrder = $arrReturn['arrOrder'];
+        $arrDetail = $arrReturn['arrDetail'];
+        $sove = count($arrDetail);
+    }
 }
 ?>

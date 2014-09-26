@@ -28,7 +28,9 @@ if($method_id > 1){
     }
     $is_pay = $error == 0 ? 1 : 0;
 }
-if($method_id == 1 ) $error = 0;
+if($method_id == 1 ){
+    $error = 0;    
+}
 $arrCode = $_SESSION['mave'];
 ?>
 <?php 
@@ -59,12 +61,14 @@ if($error == 0 && $method_id > 1){
     $method_id = $_SESSION['method_id']; 
     $order_code = $_SESSION['order_code'];
 
-    $time = time();
+    $time = time();    
     $sql = "INSERT INTO orders (order_id,order_code,total_amount,total_price,
         fullname,phone,email,status,creation_time,method_id,is_pay,discount,code_id,total_pay)
     VALUES (NULL,'$order_code',$amount,$total,'$fullname','$phone','$email',2,$time,$method_id,1,'$discount',$code_id,$total_pay)";
     mysql_query($sql) or die(mysql_error());
     $order_id = mysql_insert_id();
+
+    $_SESSION['payghi'] = $total_pay;
     if($order_id > 0){
         $i = 0;
         foreach ($arrTicket as $key => $value) {            
@@ -88,6 +92,13 @@ if($error == 0 && $method_id > 1){
    
    // session_destroy();
 }//if
+else{
+    if($_SESSION['pay'] >0){
+        $total_pay = $_SESSION['pay'];
+    }else{
+        $total_pay = $_SESSION['total_price'];
+    }
+}
 ?>
 <div class="wrap_thanks">
     <div style="width:600px;text-align:left;margin:auto;">
@@ -347,8 +358,8 @@ $nd14 = $lang == "en" ? '</td>
                         </table>
                 </div>
             
-        </div>';
-    $total_pay = $_SESSION['pay'];
+        </div>';    
+   
     $fullname = $_SESSION['fullname'];
     $noidungthu = $nd1.$fullname.$nd2.$fullname.$nd3.number_format($total_pay).$nd4.$nd5.$nd6.$nhaxe_di.$nd7;
     $noidungthu.= $ngay_di.$nd8.$time_di;

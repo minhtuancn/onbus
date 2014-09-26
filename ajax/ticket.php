@@ -95,6 +95,10 @@ $arrTicket_end = $model->getListTicketFE($sort,$car,$vstart,$vend,$dstart,$servi
                         <li><i  data-toggle="tooltip" title="<?php echo $model->getServiceNameByID($ser,$lang); ?>" class="<?php echo $classIcon; ?>"></i></li>
                         <?php }}?> 
                 </ul>
+                <span><?php 
+                $gnam = $lang == "vi" ? "Giường nằm" : "Sleepe Bus";
+                $gngoi = $lang == "vi" ? "Ghế ngồi" : "Seating Bus";
+                echo $ticket['car_type']==1 ? $gnam : $gngoi; ?></span>
                 <div class="right rating">
                     <span>Good: 8.3</span>
                     <span class="num-rating">(105 rating)</span>
