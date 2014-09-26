@@ -93,6 +93,7 @@ CKEDITOR.plugins.add('uploadimage',
                             for (var i in files) {
                                 var elementImg = editorTemp.document.createElement('img');
                                 elementImg.$.setAttribute('src', '../' + files[i].filename);
+                                elementImg.$.style.maxWidth="750px";
                                 html = $('<table width="100%" border="0" cellpadding="3" width="1" cellspacing="0" align="center" ><tr><td style="text-align:center"></td></tr><tr><td><p style="text-align:center">[Caption]</p></td></tr></table>');
                                 html.find('td:eq(0)').append($(elementImg.$));
                                 table.append(html);

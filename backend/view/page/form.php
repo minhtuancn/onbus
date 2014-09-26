@@ -13,6 +13,7 @@ $arrHot = $modelTinh->getListTinh(-1,'',1,0, 20);
 
 <script type="text/javascript" src="static/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="static/ckfinder/ckfinder.js"></script>
+<script type="text/javascript" src="static/js/ajaxupload.js"></script>
 <script type="text/javascript">
 function BrowseServer( startupPath, functionData ){    
     var finder = new CKFinder();
