@@ -11,12 +11,9 @@ $arrDetail = $modelOrder->getDetailOrder($order_id);
 <div class="row">
     <div class="col-md-8">
         <form method="post" action="controller/Order.php">
+
         <!-- Custom Tabs -->
-
-        <button class="btn btn-primary btn-sm">Danh sách</button>
-
-
-
+        <button class="btn btn-primary btn-sm right" onclick="location.href='index.php?mod=order&amp;act=list'">Quay lại</button>    
         <div style="clear:both;margin-bottom:10px"></div>
          <div class="box-header">
 
