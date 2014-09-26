@@ -14,7 +14,7 @@ font-weight: bold;
             <div class="button-previous">Previous</div>
               <div class="main-slider-content">
                 <div class="sliders-wrapper" style="width: 700px;"><ul class="sliders-wrap-inner" style="left: 0px; width: 4200px;">
-                    <?php if($_SESSION['lang']=="en"){ ?>
+                   
                     <?php 
                     $lang_id = $_SESSION['lang'] == 'vi' ? 1 : 2;        
                     $rs = mysql_query("SELECT * FROM articles WHERE lang_id = $lang_id AND status > 0 AND hot = 1 ORDER BY article_id DESC LIMIT 0,4 ");
@@ -33,70 +33,14 @@ font-weight: bold;
                     </li> 
                     <?php } ?>
 
-                    <?php }else{ ?>
-                    <li style="width: 700px;">
-                          <div class="wrap-img-slider"><img src="<?php echo STATIC_URL;?>/images/jj.jpg" title="Newsflash 2"></div>
-                          <div class="slider-description">
-                          	<h1>EVERYTHING YOU NEED TO KNOW ABOUT NHA TRANG</h1>
-                            <div>Often called the Riviera of the South China Sea, Nha Trang has a long stretch of beautiful coastline; miles of white, sandy beaches with mountains...</div>
-                            <a class="readmore" href="#">Read more </a>
-                            <p></p>
-                         </div>
-                    </li> 
-                   <li style="width: 700px;">
-                      <div class="wrap-img-slider"><img src="<?php echo STATIC_URL;?>/images/images (1).jpg" title="Newsflash 1">           </div>
-                         <div class="slider-description">
-                          	<h1>EVERYTHING YOU NEED TO KNOW ABOUT NHA TRANG</h1>
-                            <div>Often called the Riviera of the South China Sea, Nha Trang has a long stretch of beautiful coastline; miles of white, sandy beaches with mountains...</div>
-                            <a class="readmore" href="#">Read more </a>
-                            <p></p>
-                         </div>
-                    </li> 
-                   <li style="width: 700px;">
-                      <div class="wrap-img-slider"><img src="<?php echo STATIC_URL;?>/images/sieutietkiem.jpg" title="Newsflash 3">            </div>
-                        <div class="slider-description">
-                          	<h1>EVERYTHING YOU NEED TO KNOW ABOUT NHA TRANG</h1>
-                            <div>Often called the Riviera of the South China Sea, Nha Trang has a long stretch of beautiful coastline; miles of white, sandy beaches with mountains...</div>
-                            <a class="readmore" href="#">Read more </a>
-                            <p></p>
-                         </div>
-                    </li> 
-                    <li style="width: 700px;">
-                      <div class="wrap-img-slider"><img src="<?php echo STATIC_URL;?>/images/5aaefc84-9554-4f4b-a68a-3546655f7409.jpg" title="Newsflash 5">            </div>
-                        <div class="slider-description">
-                          	<h1>EVERYTHING YOU NEED TO KNOW ABOUT NHA TRANG</h1>
-                            <div>Often called the Riviera of the South China Sea, Nha Trang has a long stretch of beautiful coastline; miles of white, sandy beaches with mountains...</div>
-                            <a class="readmore" href="#">Read more </a>
-                            <p></p>
-                         </div>
-                    </li> 
-                    <li style="width: 700px;">
-                      <div class="wrap-img-slider"><img src="<?php echo STATIC_URL;?>/images/lpa.jpg" title="Newsflash 5">            </div>
-                        <div class="slider-description">
-                          	<h1>EVERYTHING YOU NEED TO KNOW ABOUT NHA TRANG</h1>
-                            <div>Often called the Riviera of the South China Sea, Nha Trang has a long stretch of beautiful coastline; miles of white, sandy beaches with mountains...</div>
-                            <a class="readmore" href="#">Read more </a>
-                            <p></p>
-                         </div>
-                    </li> 
-                    <li style="width: 700px;">
-            
-                      <div class="wrap-img-slider"><img src="<?php echo STATIC_URL;?>/images/generic.jpg" title="Newsflash 5">            </div>
-                        <div class="slider-description">
-                          	<h1>EVERYTHING YOU NEED TO KNOW ABOUT NHA TRANG</h1>
-                            <div>Often called the Riviera of the South China Sea, Nha Trang has a long stretch of beautiful coastline; miles of white, sandy beaches with mountains...</div>
-                            <a class="readmore" href="#">Read more </a>
-                            <p></p>
-                         </div>
-                    </li>
-                    <?php } ?> 
+                  
                 
                   </ul></div>  	
             </div>
            	<div class="navigator-content">
                   <div class="navigator-wrapper" style="height: 300px; width: 120px;">
                         <ul class="navigator-wrap-inner" style="height: 600px; top: 0px;">
-                          <?php if($_SESSION['lang']=="en"){ ?>
+                        
                     <?php 
                     $lang_id = $_SESSION['lang'] == 'vi' ? 1 : 2;        
                     $rs = mysql_query("SELECT * FROM articles WHERE lang_id = $lang_id AND status > 0 AND hot = 1 ORDER BY article_id DESC LIMIT 0,4 ");
@@ -109,40 +53,7 @@ font-weight: bold;
                                     <img src="<?php echo $row['image_url']; ?>" title="<?php echo $row['title']; ?>">     
                                 </div>    
                             </li>
-                    <?php } }else{ ?>
-                          <li class="active" style="height: 100px; width: 120px;">
-                                <div>
-                                    <img src="<?php echo STATIC_URL;?>/images/jj.jpg" title="Newsflash 2">     
-                                </div>    
-                            </li>
-                             <li style="height: 100px; width: 120px;">
-                                <div>
-                                    <img src="<?php echo STATIC_URL;?>/images/images (1).jpg" title="Newsflash 1"> 
-                                </div>    
-                            </li>
-                
-                            <li style="height: 100px; width: 120px;">
-                                <div>
-                                    <img src="<?php echo STATIC_URL;?>/images/sieutietkiem.jpg" title="Newsflash 3">         
-                                </div>     
-                            </li>
-                            
-                           <li style="height: 100px; width: 120px;">
-                                <div>
-                                    <img src="<?php echo STATIC_URL;?>/images/5aaefc84-9554-4f4b-a68a-3546655f7409.jpg" title="Newsflash 5">     
-                                </div>
-                            </li>    
-                            <li style="height: 100px; width: 120px;">
-                                 <div>
-                                    <img src="<?php echo STATIC_URL;?>/images/lpa.jpg" title="Newsflash 5">          
-                                 </div>   
-                            </li>
-                           <li style="height: 100px; width: 120px;">
-                                <div>
-                                	<img src="<?php echo STATIC_URL;?>/images/generic.jpg" title="Newsflash 5">            
-                                </div>
-                            </li> 
-                            <?php } ?>    		
+                    <?php } ?>  		
                         </ul>
                   </div>
    

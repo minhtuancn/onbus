@@ -211,10 +211,7 @@ foreach ($arrCode as $mave) {
                             <td>No.of ticket:</td>
                             <td></td>
                         </tr>
-                        <tr>
-                            <td>Special Notes:</td>
-                            <td>All special requests are subject to availability upon arrival.</td>
-                        </tr>
+                    
                         <tr>
                             <td colspan="2" align="left"><p style="color:blue">Return Ticket</p></td>
                         </tr>
@@ -237,11 +234,7 @@ foreach ($arrCode as $mave) {
                         <tr>
                             <td>No.of ticket:</td>
                             <td></td>
-                        </tr>
-                        <tr>
-                            <td>Special Notes:</td>
-                            <td>All special requests are subject to availability upon arrival.</td>
-                        </tr>
+                        </tr>                       
                         
                 </div>
             
