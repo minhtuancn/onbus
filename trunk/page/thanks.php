@@ -149,27 +149,26 @@ foreach ($arrCode as $mave) {
 </div>
 <?php 
 // gui mail
-var_dump('vedi,<pre>',$_SESSION['bookticket']['di']);
-var_dump('vedi,<pre>',$_SESSION['bookticket']['ve']);
-
-
 $detailTicketdi = $model->getDetailTicket($_SESSION['bookticket']['di']['ticket_id']);
 $di_di = $model->getTinhNameByID($detailTicketdi['tinh_id_start'],$lang);
+$di_di.= " ( ".$model->getPlaceNameByID($detailTicketdi['place_id_start'],$lang)." ) ";
 $den_di = $model->getTinhNameByID($detailTicketdi['tinh_id_end'],$lang);
-
-$ngay_di = $lang == "vi" ? date('d-m-Y',$detailTicketdi['date_start']);
-$time_di = $model->getTimeByID($_SESSION['bookticket']['di']['time_id']);
+$den_di.= " ( ".$model->getPlaceNameByID($detailTicketdi['place_id_end'],$lang)." ) ";
+$ngay_di = $lang == "vi" ? date('d-m-Y',$detailTicketdi['date_start']) : date('M-d-Y',$detailTicketdi['date_start']);
+$time_di = $model->getTimeByID($_SESSION['bookticket']['di']['time']);
 $nhaxe_di = $model->getNhaxeNameByID($detailTicketdi['nhaxe_id'],$lang);
 
 if(!empty($_SESSION['bookticket']['ve'])){
     $detailTicketve = $model->getDetailTicket($_SESSION['bookticket']['ve']['ticket_id']);
     $di_ve = $model->getTinhNameByID($detailTicketve['tinh_id_start'],$lang);
+    $di_ve.= " ( ".$model->getPlaceNameByID($detailTicketve['place_id_start'],$lang)." ) ";
     $den_ve = $model->getTinhNameByID($detailTicketve['tinh_id_end'],$lang);
-    $ngay_ve = $lang == "vi" ? date('d-m-Y',$detailTicketve['date_start']);
-    $time_ve = $model->getTimeByID($_SESSION['bookticket']['ve']['time_id']);
+    $den_ve.= " ( ".$model->getPlaceNameByID($detailTicketve['place_id_end'],$lang)." ) ";
+    $ngay_ve = $lang == "vi" ? date('d-m-Y',$detailTicketve['date_start']) : date('M-d-Y',$detailTicketve['date_start']);
+    $time_ve = $model->getTimeByID($_SESSION['bookticket']['ve']['time']);
     $nhaxe_ve = $model->getNhaxeNameByID($detailTicketve['nhaxe_id'],$lang);
 }
-die;
+
     $tieudethu="ONBUS ticket confirmation";
     $nd1 = $lang=='en' ? '<div style="width:800px;padding:20px"><div style="float:left"><img src="http://onbus.vn/themes/images/logo2_final.png" width="150px" />
             <div>
@@ -349,11 +348,12 @@ $nd14 = $lang == "en" ? '</td>
                 </div>
             
         </div>';
-    $noidungthu = $nd1.$fullname.$nd2.$fullname.$nd3.number_format($_SESSION['pay']).$nd4.$nd5.$nd6.$nhaxe_di.$nd7;
+    $total_pay = $_SESSION['pay'];
+    $fullname = $_SESSION['fullname'];
+    $noidungthu = $nd1.$fullname.$nd2.$fullname.$nd3.number_format($total_pay).$nd4.$nd5.$nd6.$nhaxe_di.$nd7;
     $noidungthu.= $ngay_di.$nd8.$time_di;
     $noidungthu.= $nd9.$di_di.$nd10.$den_di.$nd11.$nd12.$nd13.$nhaxe_ve.$nd14.$ngay_ve.$nd15.$time_ve.$nd16.$di_ve.$nd17.$den_ve.$nd18.$nd19;
-
-var_dump("<pre>",$noidungthu);die;
+    $email = $_SESSION['email'];
         $model->smtpmailer($email, 'onbusvn@gmail.com', 'ONBUS.VN',$tieudethu,$noidungthu); 
 ?>
 <?php session_destroy(); ?>
