@@ -18,7 +18,7 @@ $arrHot = $modelTinh->getListTinh(-1,'',1,0, 20);
 ?>
 
 <script type="text/javascript" src="static/ckeditor/ckeditor.js"></script>
-
+<script type="text/javascript" src="static/ckfinder/ckfinder.js"></script>
 <script type="text/javascript" src="static/js/ajaxupload.js"></script>
 <div class="row">
 
@@ -129,10 +129,10 @@ Tin HOT : 475 x 300 px<br />
 </div>
 <div style="display: none" id="box_uploadimages">
     <div class="upload_wrapper block_auto">
-        <div class="note" style="text-align:center;">Hold <strong>Ctrl</strong> to select multiple image files.</div>
+        <div class="note" style="text-align:center;">Nhấn <strong>Ctrl</strong> để chọn nhiều hình.</div>
         <form id="upload_files_new" method="post" enctype="multipart/form-data" enctype="multipart/form-data" action="ajax/upload.php"> 
             <fieldset style="width: 100%; margin-bottom: 10px; height: 47px; padding: 5px;">
-                <legend><b>&nbsp;&nbsp;Insert form PC:&nbsp;&nbsp;</b></legend>
+                <legend><b>&nbsp;&nbsp;Chọn hình từ máy tính&nbsp;&nbsp;</b></legend>
                 <input style="border-radius:2px;" type="file" id="myfile" name="myfile[]" multiple/>
                 <div class="clear"></div>
                 <div class="progress_upload" style="text-align: center;border: 1px solid;border-radius: 3px;position: relative;display: none;">
@@ -145,11 +145,32 @@ Tin HOT : 475 x 300 px<br />
 </div>
 <link href="<?php echo STATIC_URL; ?>css/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
+function BrowseServer( startupPath, functionData ){    
+    var finder = new CKFinder();
+    finder.basePath = 'ckfinder/'; //Đường path nơi đặt ckfinder
+    finder.startupPath = startupPath; //Đường path hiện sẵn cho user chọn file
+    finder.selectActionFunction = SetFileField; // hàm sẽ được gọi khi 1 file được chọn
+    finder.selectActionData = functionData; //id của text field cần hiện địa chỉ hình
+    //finder.selectThumbnailActionFunction = ShowThumbnails; //hàm sẽ được gọi khi 1 file thumnail được chọn    
+    finder.popup(); // Bật cửa sổ CKFinder
+} //BrowseServer
+
+function SetFileField( fileUrl, data ){
+    document.getElementById( data["selectActionData"] ).value = fileUrl;
+    $('#hinh_dai_dien').attr('src','../' + fileUrl).show();
+}
+</script>
+<script type="text/javascript">
 var editor = CKEDITOR.replace( 'content',{
     uiColor : '#9AB8F3',
     language:'vi',
     height:400,
+    width:800,
     skin:'office2003',
+      filebrowserImageBrowseUrl: 'ckfinder/ckfinder.html?Type=Images',
+        filebrowserFlashBrowseUrl: 'ckfinder/ckfinder.html?Type=Flash',
+        filebrowserImageUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+        filebrowserFlashUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
     toolbar:[
     ['Source','-','Save','NewPage','Preview','-','Templates'],
     ['Cut','Copy','Paste','PasteText','PasteFromWord','-','Print'],
