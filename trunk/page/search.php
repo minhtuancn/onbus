@@ -300,7 +300,10 @@ $routeDetail = $model->detailRoute($vstart,$vend);
                                                 <?php }}?>                                           
                                                 
                                             </ul><br />
-                                            <span><?php echo $ticket['car_type']==1 ? "Giường nằm" : "Ghế ngồi"; ?></span>
+                                            <span><?php 
+                                            $gnam = $lang == "vi" ? "Giường nằm" : "Sleepe Bus";
+                                            $gngoi = $lang == "vi" ? "Ghế ngồi" : "Seating Bus";
+                                            echo $ticket['car_type']==1 ? $gnam : $gngoi; ?></span>
                                         </div>
                                         <div class="right rating">
                                             <span>
@@ -429,7 +432,10 @@ $routeDetail = $model->detailRoute($vstart,$vend);
                                                 <li><i  data-toggle="tooltip" title="<?php echo $model->getServiceNameByID($ser,$lang); ?>" class="<?php echo $classIcon; ?>"></i></li>
                                                 <?php }}?> 
                                             </ul>
-                                            <span><?php echo $ticket['car_type']==1 ? "Giường nằm" : "Ghế ngồi"; ?></span>
+                                            <span><?php 
+                                            $gnam = $lang == "vi" ? "Giường nằm" : "Sleepe Bus";
+                                            $gngoi = $lang == "vi" ? "Ghế ngồi" : "Seating Bus";
+                                            echo $ticket['car_type']==1 ? $gnam : $gngoi; ?></span>
                                         </div>
                                         <div class="right rating">
                                             <span>Good: 8.3</span>
