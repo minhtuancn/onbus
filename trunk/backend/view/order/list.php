@@ -250,6 +250,11 @@ $(function(){
 
                         <td><?php echo date('d-m-Y',$row['creation_time']); ?></td>                        
                         <td style="white-space:nowrap">
+                            <a href="index.php?mod=order&act=detail&order_id=<?php echo $row['order_id']; ?>"     
+
+                                <i class="fa fa-fw fa-file-text-o"></i>
+
+                            </a>
                             <a href="index.php?mod=order&act=form&order_id=<?php echo $row['order_id']; ?>">
                                 <i class="fa fa-fw fa-edit"></i>
                             </a>

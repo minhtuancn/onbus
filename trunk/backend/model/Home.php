@@ -674,6 +674,12 @@ class Home extends Db {
         $row = mysql_fetch_assoc($rs);         
         return $row;
     }
+     function getCodeByID($code_id){
+        $sql = "SELECT code FROM promotion_code WHERE code_id = $code_id";
+        $rs = mysql_query($sql) or die(mysql_error());
+        $row = mysql_fetch_assoc($rs);         
+        return $row['code'];
+    }
 
     function getEmailContent($lang,$phone,$code){
         $arrReturn  = $this->getInfoTicket($phone, $code);

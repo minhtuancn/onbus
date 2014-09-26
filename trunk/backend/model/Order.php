@@ -6,13 +6,19 @@ if(!isset($_SESSION))
 }  
 class Order extends Db {
 
-    function getDetailTicket($id) {
-        $sql = "SELECT * FROM ticket WHERE ticket_id = $id";
+    function getDetailOrder($id) {
+        $sql = "SELECT * FROM orders WHERE order_id = $id";
         $rs = mysql_query($sql) or die(mysql_error());
         $row = mysql_fetch_assoc($rs);
         return $row;
     }
-
+    function updateOrder($order_id,$status,$is_pay){
+        $sql = "UPDATE orders
+                    SET status = $status,                 
+                    is_pay =  $is_pay         
+                    WHERE order_id = $order_id ";
+        mysql_query($sql) or die(mysql_error() . $sql);
+    }
     function getTimeTicket($ticket_id){
         $arrResult = array();
         $sql = "SELECT * FROM time_ticket WHERE ticket_id = $ticket_id";
