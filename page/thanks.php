@@ -1,5 +1,4 @@
 <?php 
-//ini_set('display_errors',1);
 include("backend/model/Payment.php");
 $method_id = $_SESSION['method_id'];
 if($method_id > 1){
@@ -150,96 +149,211 @@ foreach ($arrCode as $mave) {
 </div>
 <?php 
 // gui mail
-    $tieudethu="ONBUS ticket confirmation";
-    $noidungthu = '<div style="width:800px;padding:20px"><div style="float:left"><img src="http://onbus.vn/themes/images/logo2_final.png" width="150px" />
-            <div>
-            <div>
-                <p><strong>Dear Mr/Ms '.$fullname.',</strong></p> 
+var_dump('vedi,<pre>',$_SESSION['bookticket']['di']);
+var_dump('vedi,<pre>',$_SESSION['bookticket']['ve']);
 
-<p><strong>Your booking with Onbus.vn is confirmed and completed.</strong></p>
+
+$detailTicketdi = $model->getDetailTicket($_SESSION['bookticket']['di']['ticket_id']);
+$di_di = $model->getTinhNameByID($detailTicketdi['tinh_id_start'],$lang);
+$den_di = $model->getTinhNameByID($detailTicketdi['tinh_id_end'],$lang);
+
+$ngay_di = $lang == "vi" ? date('d-m-Y',$detailTicketdi['date_start']);
+$time_di = $model->getTimeByID($_SESSION['bookticket']['di']['time_id']);
+$nhaxe_di = $model->getNhaxeNameByID($detailTicketdi['nhaxe_id'],$lang);
+
+if(!empty($_SESSION['bookticket']['ve'])){
+    $detailTicketve = $model->getDetailTicket($_SESSION['bookticket']['ve']['ticket_id']);
+    $di_ve = $model->getTinhNameByID($detailTicketve['tinh_id_start'],$lang);
+    $den_ve = $model->getTinhNameByID($detailTicketve['tinh_id_end'],$lang);
+    $ngay_ve = $lang == "vi" ? date('d-m-Y',$detailTicketve['date_start']);
+    $time_ve = $model->getTimeByID($_SESSION['bookticket']['ve']['time_id']);
+    $nhaxe_ve = $model->getNhaxeNameByID($detailTicketve['nhaxe_id'],$lang);
+}
+die;
+    $tieudethu="ONBUS ticket confirmation";
+    $nd1 = $lang=='en' ? '<div style="width:800px;padding:20px"><div style="float:left"><img src="http://onbus.vn/themes/images/logo2_final.png" width="150px" />
+            <div>
+            <div>
+                <p><strong>Dear Mr/Ms ' : '<div style="width:800px;padding:20px"><div style="float:left"><img src="http://onbus.vn/themes/images/logo2_final.png" width="150px" />
+            <div>
+            <div>
+                <p><strong>Quý khách ' ;
+    $nd2 = $lang == "en" ? ',</strong></p> 
+
+<p><strong>Congratulation!!</strong></p>
+<p>Your booking with Onbus.vn is confirmed and completed.</p>
 
 <p>Please present either an electronic or paper copy of your ticket attachedbelow upon check-in.</p>
 
-<p>If you experience problems downloading or opening theticket, please click here to install Adobe Reader </p>
-<p>Should you need for more information, please contact our hotline: 08 66503399</p>
+<p>Have a good journey,</p>
+<p>Onbus Team</p>
 
             </div>    
                 <div>
                     <table width="600px">
                         <tr>
-                            <td colspan="2" align="center"><h3>BOOKING INFORMATION</h3></td>
+                            <td colspan="2" align="center"><h3>TICKET BOOKING CONFIRMATION</h3></td>
                         </tr>
                         <tr>
                             <td colspan="2" align="left"><p style="color:blue">General</p></td>
                         </tr>
                         <tr>
                             <td width="200px">Lead Guest:</td>
-                            <td>'.$fullname.'</td>
+                            <td>' : ' thân mến,</strong></p> 
+
+<p><strong>Chúc mừng quý khách đã đặt vé thành công tại website đặt vé xe trực tuyến Onbus.vn.</strong></p>
+
+<p>Thông tin vé của quý khách đã được xác nhận trong file đính kèm.</p>
+<p>Quý khách vui lòng giữ lại thông tin trong file đính kèm để xuất trình với nhân viên tại nhà xe để đối chiếu khi nhận vé.</p>
+<p>Cần liên hệ hỗ trợ, quý khách vui lòng liên hệ trực tiếp chúng tôi qua hotline: (08) 66503399</p>
+<p>Chân thành cảm ơn,</p>
+<p>Onbus team</p>
+
+            </div>    
+                <div>
+                    <table width="600px">
+                        <tr>
+                            <td colspan="2" align="center"><h3>PHIẾU XÁC NHẬN ĐẶT VÉ</h3></td>
                         </tr>
                         <tr>
-                            <td>Special Notes:</td>
-                            <td>All special requests are subject to availability upon arrival.</td>
+                            <td colspan="2" align="left"><p style="color:blue">Thông tin hành khách</p></td>
                         </tr>
+                        <tr>
+                            <td width="200px">Họ và tên:</td>
+                            <td>';
+    $nd3 = $lang == "en" ? '</td>
+                        </tr>                       
                         <tr>
                             <td>Promotion code:</td>
                             <td></td>
                         </tr>
                         <tr>
                             <td>Total charged:</td>
-                            <td> VND '.number_format($total).'</td>
-                        </tr>
+                            <td> VND ' :  '</td>
+                        </tr>                       
                         <tr>
-                            <td colspan="2" align="left"><p style="color:blue">Arrival Ticket</p></td>
-                        </tr>
-                        <tr>
-                            <td width="200px">Bus operator: </td>
+                            <td>Mã khuyến mãi:</td>
                             <td></td>
+                        </tr>
+                        <tr>
+                            <td>Tổng tiền thanh toán:</td>
+                            <td> VND ';
+    $nd4 = '</td></tr>';
+    $nd5=$lang == "en" ? '<tr>
+                            <td colspan="2" align="left"><p style="color:blue">Arrival Ticket</p></td>
+                        </tr>' : '<tr>
+                            <td colspan="2" align="left"><p style="color:blue">Vé chiều đi</p></td>
+                        </tr>' ;
+                        $nd6=$lang == "en" ? '<tr>
+                            <td width="200px">Bus operator: </td>
+                            <td>' : '<tr>
+                            <td width="200px">Nhà xe: </td>
+                            <td>';
+$nd7 = $lang == "en" ? '</td>
                         </tr>
                         <tr>
                             <td>Date:</td>
-                            <td></td>
+                            <td>' :'</td>
+                        </tr>
+                        <tr>
+                            <td>Ngày đi:</td>
+                            <td>';
+    $nd8 = $lang=="en" ? '</td>
                         </tr>
                         <tr>
                             <td>Departure Time:</td>
-                            <td></td>
+                            <td>' : '</td>
                         </tr>
                         <tr>
-                            <td>Location:</td>
-                            <td>HCM city</td>
+                            <td>Giờ khởi hành:</td>
+                            <td>';
+    $nd9 = $lang=="en" ?'</td>
                         </tr>
                         <tr>
-                            <td>No.of ticket:</td>
-                            <td></td>
+                            <td>From:</td>
+                            <td>' : '</td>
                         </tr>
-                    
                         <tr>
+                            <td>Điểm xuất phát:</td>
+                            <td>';
+    $nd10 = $lang== "en" ? '</td>
+                        </tr>
+                        <tr>
+                            <td>To:</td>
+                            <td>' : '</td>
+                        </tr>
+                        <tr>
+                            <td>Điểm đến:</td>
+                            <td>';
+
+    $nd11 = '</td>
+                        </tr>';
+
+$nd12 = $nd13 = $nd14 = $nd15 = $nd16 = $nd17 = $nd18 = '';
+    if(count($_SESSION['bookticket']) > 1) {
+
+        $nd12=$lang == "en" ? '<tr>
                             <td colspan="2" align="left"><p style="color:blue">Return Ticket</p></td>
+                        </tr>' : '<tr>
+                            <td colspan="2" align="left"><p style="color:blue">Vé chiều về</p></td>
+                        </tr>' ;
+                        $nd13=$lang =="en" ? '<tr>
+                            <td width="200px">Bus operator: </td>
+                            <td>' : '<tr>
+                            <td width="200px">Nhà xe: </td>
+                            <td>';
+$nd14 = $lang == "en" ? '</td>
                         </tr>
                         <tr>
-                            <td width="200px">Bus operator:</td>
-                            <td></td>
+                            <td>Date:</td>
+                            <td>' :'</td>
                         </tr>
                         <tr>
-                            <td>Return date:</td>
-                            <td></td>
+                            <td>Ngày đi:</td>
+                            <td>';
+    $nd15 = $lang=="en" ? '</td>
                         </tr>
                         <tr>
                             <td>Departure Time:</td>
-                            <td></td>
+                            <td>' : '</td>
                         </tr>
                         <tr>
-                            <td>Location:</td>
-                            <td>HCM city</td>
+                            <td>Giờ khởi hành:</td>
+                            <td>';
+    $nd16 = $lang=="en" ?'</td>
                         </tr>
                         <tr>
-                            <td>No.of ticket:</td>
-                            <td></td>
-                        </tr>                       
-                        
+                            <td>From:</td>
+                            <td>' : '</td>
+                        </tr>
+                        <tr>
+                            <td>Điểm xuất phát:</td>
+                            <td>';
+    $nd17 = $lang== "en" ? '</td>
+                        </tr>
+                        <tr>
+                            <td>To:</td>
+                            <td>' : '</td>
+                        </tr>
+                        <tr>
+                            <td>Điểm đến:</td>
+                            <td>';
+
+    $nd18 = '</td>
+                        </tr>';
+
+    }
+
+                        $nd19.='                                          
+                        </table>
                 </div>
             
         </div>';
+    $noidungthu = $nd1.$fullname.$nd2.$fullname.$nd3.number_format($_SESSION['pay']).$nd4.$nd5.$nd6.$nhaxe_di.$nd7;
+    $noidungthu.= $ngay_di.$nd8.$time_di;
+    $noidungthu.= $nd9.$di_di.$nd10.$den_di.$nd11.$nd12.$nd13.$nhaxe_ve.$nd14.$ngay_ve.$nd15.$time_ve.$nd16.$di_ve.$nd17.$den_ve.$nd18.$nd19;
 
+var_dump("<pre>",$noidungthu);die;
         $model->smtpmailer($email, 'onbusvn@gmail.com', 'ONBUS.VN',$tieudethu,$noidungthu); 
 ?>
 <?php session_destroy(); ?>
