@@ -40,8 +40,7 @@ CKEDITOR.plugins.add('uploadimage',
                     width: 350,
                     height: 200,
                     draggable: true,
-                    resizable: false,
-                    position: "midle"
+                    resizable: false                    
                 });
                 var bar = $('.bar_upload');
                 var percent = $('.percent_upload');
@@ -80,16 +79,12 @@ CKEDITOR.plugins.add('uploadimage',
                         var percentVal = '0%';
                         bar.width(percentVal);
                         percent.html(percentVal);
-
-                        $('#change_content').val('1');
                         var response = jQuery.parseJSON($.trim(xhr.responseText));
-                        var files = response.fileList,
-                            url = response.url,
-                            html = "",
-                            currentEditor = window.selectedEditor,
-                            editorTemp = CKEDITOR.instances[currentEditor],
-                            edi_parent = $(CKEDITOR.instances[currentEditor].document.getBody().$),
-                            get_html,
+                        var files = response.fileList,                            
+                            html = "",                            
+                            editorTemp = CKEDITOR.instances['content'],
+                            edi_parent = $(CKEDITOR.instances['content'].document.getBody().$),
+                        get_html,
                             count_img = edi_parent.find('img').length,
                             getParentNode = editorTemp.getSelection().getRanges()[0].startContainer,
                             table = $('<div></div>'),
@@ -97,9 +92,14 @@ CKEDITOR.plugins.add('uploadimage',
                             insertMoreImg = false;
                             for (var i in files) {
                                 var elementImg = editorTemp.document.createElement('img');
-                                elementImg.$.setAttribute('src', url + files[i].filename);
-                                editorTemp.insertElement(elementImg);    
+                                elementImg.$.setAttribute('src', '../' + files[i].filename);
+                                html = $('<table width="100%" border="0" cellpadding="3" width="1" cellspacing="0" align="center" ><tr><td style="text-align:center"></td></tr><tr><td><p style="text-align:center">[Caption]</p></td></tr></table>');
+                                html.find('td:eq(0)').append($(elementImg.$));
+                                table.append(html);
+                                console.log(html);
+                                //editorTemp.insertElement(elementImg);    
                             }
+                            editorTemp.insertHtml(table.html());
                         loading.hide();
                         box.dialog('close');
                     }

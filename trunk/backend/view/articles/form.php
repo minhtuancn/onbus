@@ -143,6 +143,7 @@ Tin HOT : 475 x 300 px<br />
         </form>
     </div>
 </div>
+<link href="<?php echo STATIC_URL; ?>css/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 var editor = CKEDITOR.replace( 'content',{
     uiColor : '#9AB8F3',
