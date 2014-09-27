@@ -37,6 +37,7 @@ $arrList = $model->getListTinh($mien_id,$keyword,$hot, $offset, $limit);
 <div class="row">
     <div class="col-md-12">
     <button class="btn btn-primary btn-sm right" onclick="location.href='index.php?mod=tinh&act=form'">Tạo mới</button>        
+    <button class="btn btn-primary btn-sm right" id="capnhat_thutu">Cập nhật thứ tự</button>        
          <div class="box-header">
                 <h3 class="box-title">Danh sách nơi đi/nơi đến</h3>
             </div><!-- /.box-header -->
@@ -61,7 +62,8 @@ $arrList = $model->getListTinh($mien_id,$keyword,$hot, $offset, $limit);
                 
             </div>
             <div class="box-body">
-                <table class="table table-bordered table-striped">
+                <input type="hidden" id="str_order" value="">
+                <table class="table table-bordered table-striped" id="drag">
                     <tbody><tr>
                         <th style="width: 10px">No.</th>
                         <th width="170">Miền</th>
@@ -76,7 +78,7 @@ $arrList = $model->getListTinh($mien_id,$keyword,$hot, $offset, $limit);
                     foreach($arrList['data'] as $row){
                     $i++;
                     ?>
-                    <tr>
+                    <tr id="rows_<?php echo $row['tinh_id']; ?>">
                         <td><?php echo $i; ?></td>
                         <td><?php if($row['mien_id'] == 1) echo "Miền Nam" ;
                             elseif ($row['mien_id']==2 ) echo "Miền Trung- Tây Nguyên" ;
@@ -121,8 +123,22 @@ $arrList = $model->getListTinh($mien_id,$keyword,$hot, $offset, $limit);
     </div><!-- /.col -->
    
 </div>
+<script type="text/javascript" src="static/js/drag.js"></script>
 <script type="text/javascript">
     $(function(){
+        $("table#drag").tableDnD({        
+            onDrop: function(table, row) {
+                var rows = table.tBodies[0].rows;
+                var strOrder = '';
+                var strTemp = '';
+                for (var i=0; i<rows.length; i++) {
+                    strTemp = rows[i].id;
+                    strOrder += strTemp.replace('rows_','') + ";";
+                }                
+                $('#str_order').val(strOrder);
+            },
+            onDragClass: "myDragClass"
+        });
         $('#mien_id,#hot').change(function(){
             search();
         });
@@ -134,6 +150,18 @@ $arrList = $model->getListTinh($mien_id,$keyword,$hot, $offset, $limit);
             search();
           }
         });
+        $('#capnhat_thutu').click(function(){
+              $.ajax({
+                  url: "controller/Tinh.php",
+                  type: "POST",
+                  async: false,
+                  data: {"str_order":$('#str_order').val(),'act':'order'},
+                  success: function(data){      
+                      alert('Cập nhật thành công');
+                      window.location.reload();
+                  }
+              });           
+          });
     });   
     function search(){
         var str_link = "index.php?mod=tinh&act=list";

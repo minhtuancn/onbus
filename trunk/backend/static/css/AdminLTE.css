@@ -3415,3 +3415,4 @@ td.error_data{color:red;font-style: italic;font-weight: bold}
 div.box_search{padding:10px;text-align:right;background-color:#CCC}
 input.text_search{width:200px;border:1px solid #ccc;height: 25px}
 select.select_search{border:1px solid #ccc;height: 25px}
+.myDragClass{background-color: orange;color:#FFF;}

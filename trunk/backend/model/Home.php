@@ -193,6 +193,7 @@ class Home extends Db {
             if($keyword!=''){
                 $sql.=" AND nhaxe_name_vi LIKE '%".$keyword."%' "; 
             }
+            $sql.=" ORDER BY display_order ";
             if ($limit > 0 && $offset >= 0)
                 $sql .= " LIMIT $offset,$limit";        
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());  
@@ -220,7 +221,7 @@ class Home extends Db {
             $sql.= " AND tinh_name_vi LIKE '%".$keyword."%' "; 
 
         }
-        $sql.="  ORDER BY hot DESC " ;
+        $sql.="  ORDER BY display_order " ;
         if ($limit > 0 && $offset >= 0)
 
             $sql .= "  LIMIT $offset,$limit";
@@ -297,7 +298,7 @@ class Home extends Db {
         }
         if($str_id){
             $str_id = rtrim($str_id,",");
-            $sql = "SELECT * FROM tinh WHERE tinh_id IN ($str_id) ORDER BY hot DESC ";
+            $sql = "SELECT * FROM tinh WHERE tinh_id IN ($str_id) ORDER BY display_order ";
             
             $rs = mysql_query($sql);
             while($row = mysql_fetch_assoc($rs)){
@@ -638,8 +639,7 @@ class Home extends Db {
         $arrResult = array();
         try{
             $sql = "SELECT nhaxe_id FROM ticket WHERE status > 0 AND tinh_id_start = $vstart AND tinh_id_end = $vend
-            AND date_start = $dstart GROUP BY nhaxe_id "  ;                      
-             
+            AND date_start = $dstart GROUP BY nhaxe_id "  ;                             
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());  
 
             while($row = mysql_fetch_assoc($rs)){
