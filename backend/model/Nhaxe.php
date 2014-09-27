@@ -41,7 +41,7 @@ class Nhaxe extends Db {
         try{
             $sql = "SELECT nhaxe_id FROM ticket WHERE status > 0 AND tinh_id_start = $vstart AND tinh_id_end = $vend
             AND date_start = $dstart GROUP BY nhaxe_id "  ;                      
-             
+  
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());  
 
             while($row = mysql_fetch_assoc($rs)){
@@ -63,6 +63,7 @@ class Nhaxe extends Db {
             if($keyword!=''){
                 $sql.=" AND nhaxe_name_vi LIKE '%".$keyword."%' "; 
             }
+            $sql.= " ORDER BY display_order ";
             if ($limit > 0 && $offset >= 0)
                 $sql .= " LIMIT $offset,$limit";        
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());  
@@ -113,7 +114,7 @@ class Nhaxe extends Db {
             $user_id = $_SESSION['user_id'];
             $time = time();
             $sql = "INSERT INTO nhaxe VALUES(NULL,'$nhaxe_name_vi','$nhaxe_name_safe_vi','$nhaxe_name_en','$nhaxe_name_safe_en','$address_vi','$address_en','$phone',
-                '$description_vi','$description_en','$image_url','$thumbnail_url',$time,$time,$hot,1,$user_id)";
+                '$description_vi','$description_en','$image_url','$thumbnail_url',$time,$time,$hot,1,$user_id,1)";
             $rs = mysql_query($sql) or $this->throw_ex(mysql_error());       
         }catch(Exception $ex){            
             $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Nhaxe','function' => 'insertNhaxe' , 'error'=>$ex->getMessage(),'sql'=>$sql);

@@ -15,7 +15,7 @@ if(isset($_GET['keyword'])){
 }else{
     $keyword='';
 }
-$limit = 20;
+$limit = 100;
 $arrTotal = $model->getListNhaxe($keyword,$hot, -1, -1);
 
 $total_page = ceil($arrTotal['total'] / $limit);
@@ -30,6 +30,7 @@ $arrList = $model->getListNhaxe($keyword,$hot,$offset, $limit);
 <div class="row">
     <div class="col-md-12">
     <button class="btn btn-primary btn-sm right" onclick="location.href='index.php?mod=nhaxe&act=form'">Tạo mới</button>        
+    <button class="btn btn-primary btn-sm right" id="capnhat_thutu">Cập nhật thứ tự</button> 
          <div class="box-header">
                 <h3 class="box-title">Danh sách nhà xe</h3>
             </div><!-- /.box-header -->
@@ -51,7 +52,8 @@ $arrList = $model->getListNhaxe($keyword,$hot,$offset, $limit);
                 </form>
             </div>
             <div class="box-body">
-                <table class="table table-bordered table-striped">
+                <input type="hidden" id="str_order" value="">
+                <table class="table table-bordered table-striped" id="drag">
                     <tbody><tr>
                         <th style="width: 10px">No.</th>
                         <th>Tên <img src="<?php echo STATIC_URL?>img/vi.png"/></th>
@@ -68,7 +70,7 @@ $arrList = $model->getListNhaxe($keyword,$hot,$offset, $limit);
                     foreach($arrList['data'] as $row){
                     $i++;
                     ?>
-                    <tr>
+                    <tr id="rows_<?php echo $row['nhaxe_id']; ?>">
                         <td><?php echo $i; ?></td>
                         <td>
                             <a href="index.php?mod=nhaxe&act=form&nhaxe_id=<?php echo $row['nhaxe_id']; ?>">
@@ -123,3 +125,33 @@ $arrList = $model->getListNhaxe($keyword,$hot,$offset, $limit);
     </div><!-- /.col -->
    
 </div>
+<script type="text/javascript" src="static/js/drag.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $("table#drag").tableDnD({        
+            onDrop: function(table, row) {
+                var rows = table.tBodies[0].rows;
+                var strOrder = '';
+                var strTemp = '';
+                for (var i=0; i<rows.length; i++) {
+                    strTemp = rows[i].id;
+                    strOrder += strTemp.replace('rows_','') + ";";
+                }                
+                $('#str_order').val(strOrder);
+            },
+            onDragClass: "myDragClass"
+        });       
+        $('#capnhat_thutu').click(function(){
+              $.ajax({
+                  url: "controller/Nhaxe.php",
+                  type: "POST",
+                  async: false,
+                  data: {"str_order":$('#str_order').val(),'act':'order'},
+                  success: function(data){      
+                      alert('Cập nhật thành công');
+                      window.location.reload();
+                  }
+              });           
+          });
+    });       
+</script>

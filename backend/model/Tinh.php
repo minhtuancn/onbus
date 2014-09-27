@@ -34,7 +34,7 @@ class Tinh extends Db {
         }
         if($str_id){
             $str_id = rtrim($str_id,",");
-            $sql = "SELECT * FROM tinh WHERE tinh_id IN ($str_id) ORDER BY hot DESC ";
+            $sql = "SELECT * FROM tinh WHERE tinh_id IN ($str_id) ORDER BY display_order ASC ";
             
             $rs = mysql_query($sql);
             while($row = mysql_fetch_assoc($rs)){
@@ -98,7 +98,7 @@ class Tinh extends Db {
             $sql.= " AND tinh_name_vi LIKE '%".$keyword."%' "; 
 
         }
-        $sql.="  ORDER BY hot DESC " ;
+        $sql.="  ORDER BY display_order ASC " ;
         if ($limit > 0 && $offset >= 0)
 
             $sql .= "  LIMIT $offset,$limit";

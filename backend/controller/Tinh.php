@@ -7,8 +7,18 @@ require_once "../model/Tinh.php";
 $model = new Tinh;
 
 $act = $_POST['act'];
-
-if($act=='getTinhByMien'){
+if($act=='order'){		
+	$arrID = explode(';',$_POST['str_order']);
+	
+	$i=0;
+	foreach($arrID as $tinh_id){
+		if($tinh_id > 0){
+	    	$i++;
+		    $sql = "UPDATE tinh SET display_order = $i WHERE tinh_id = $tinh_id";
+		    mysql_query($sql) or die(mysql_error());
+		}
+	}
+}elseif($act=='getTinhByMien'){
 
 	$mien_id = (int) $_POST['mien_id'];
 
