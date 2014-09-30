@@ -50,6 +50,9 @@ function checkCat($uri) {
     if (strpos( $uri,'terms')>-1) {        
         $mod = "term";
     } 
+    if (strpos( $uri,'tags')>-1) {        
+        $mod = "tags";
+    } 
     if (strpos( $uri,'faq')>-1) {        
         $mod = "faq";
     } 
@@ -107,8 +110,15 @@ switch ($mod) {
 		$title = $row['title'];
 		$metaD = $row['title'];
 		$metaK = $row['title'];        
-        break;   
-    
+        break;
+
+    case "tags":  
+        $tieude_id = $tmp_uri[3];
+        
+        $arr = explode("-", $tieude_id);   
+        $tag_id = (int) end($arr);
+        $str_article_id = $model->getArticleIdByTagID($tag_id);
+        break;  
     case "contact":
             $title = "Liên hệ";
             $metaD = "Liên hệ";

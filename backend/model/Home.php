@@ -687,5 +687,33 @@ class Home extends Db {
         $arrDetail = $arrReturn['arrDetail'];
         $sove = count($arrDetail);
     }
+    function getTagsByArticleId($article_id,$lang=1){
+        $arrReturn = array();
+        $sql = "SELECT tag_id FROM articles_tag WHERE article_id = $article_id AND lang = $lang";
+        $rs = mysql_query($sql);
+        while($row = mysql_fetch_assoc($rs)){
+            $tag_id = $row['tag_id'];
+            $sql = "SELECT * FROM tag WHERE tag_id = $tag_id";
+            $rs_detail = mysql_query($sql);
+            $row_detail = mysql_fetch_assoc($rs_detail);
+            $arrReturn[$tag_id] = $row_detail;
+        }        
+        return $arrReturn;
+    }
+    function getArticleIdByTagID($tag_id){
+        $str_article_id = "";
+        $arrReturn = array();
+        $sql = "SELECT article_id FROM articles_tag WHERE tag_id = $tag_id";
+        $rs = mysql_query($sql);
+        while($row = mysql_fetch_assoc($rs)){
+            $str_article_id.= $row['article_id'].",";
+        }        
+        return $str_article_id;
+    }
+    function getDetailTag($tag_id){
+        $sql = "SELECT * FROM tag WHERE tag_id = $tag_id";
+        $rs = mysql_query($sql);
+        return $rs;
+    }
 }
 ?>

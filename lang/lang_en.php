@@ -116,5 +116,6 @@ define("rattot","Very good");
 define("trungbinh","Average");
 define("te","Poor");
 define("ratte","Terrible");
+define("xemtiep","Continue reading");
 
 ?>

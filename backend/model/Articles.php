@@ -62,9 +62,29 @@ class Articles extends Db {
             $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Articles','function' => 'insertArticle' , 'error'=>$ex->getMessage(),'sql'=>$sql);
             $this->logError($arrLog);
         }
+    }
+
+    function getTagsByProductId($article_id,$lang=1){
+        $sql = "SELECT tag_id FROM articles_tag WHERE article_id = $article_id AND lang = $lang";
+        $rs = mysql_query($sql);
+        return $rs;
+    }
+    function getTagsOfProductId($article_id,$lang=1){
+        $arr = array();
+        $sql = "SELECT tag_id FROM articles_tag WHERE article_id = $article_id AND lang = $lang";
+        $rs = mysql_query($sql);
+        while($row = mysql_fetch_assoc($rs)){
+            $arr[] = $row['tag_id']; 
+        }
+        return $arr;
+    }
+    function getDetailTag($tag_id){
+        $sql = "SELECT * FROM tag WHERE tag_id = $tag_id";
+        $rs = mysql_query($sql);
+        return $rs;
     }    
 
-    function updateArticles($article_id,$title,$title_safe,$image_url,$description,$content,$category_id,$hot,$lang_id) {
+    function updateArticles($article_id,$title,$title_safe,$image_url,$description,$content,$category_id,$hot,$lang_id,$arrTag) {
        try{
         $user_id = $_SESSION['user_id'];
         $time = time();
@@ -77,7 +97,18 @@ class Articles extends Db {
                     update_time = $time,
                     user_id = $user_id              
                     WHERE article_id = $article_id ";
-        mysql_query($sql)  or $this->throw_ex(mysql_error());       
+        mysql_query($sql)  or $this->throw_ex(mysql_error());  
+
+        if(!empty($arrTag)){                  
+            mysql_query("DELETE FROM articles_tag WHERE article_id = $article_id AND lang = $lang_id");
+            foreach($arrTag as $tag){
+                $tag_id = $this->checkTagTonTai($tag,$lang_id);
+                $this->addTagToArticle($article_id,$tag_id,$lang_id);
+            }
+        }else{
+            mysql_query("DELETE FROM articles_tag WHERE article_id = $article_id AND lang = $lang_id");
+        }
+
         }catch(Exception $ex){            
             $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Articles','function' => 'updateArticle' , 'error'=>$ex->getMessage(),'sql'=>$sql);
             $this->logError($arrLog);
