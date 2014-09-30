@@ -7,35 +7,36 @@ if (isset($_GET['nhaxe_id']) && $_GET['nhaxe_id'] > 0) {
     $nhaxe_id = (int) $_GET['nhaxe_id'];      
     $link.="&nhaxe_id=$nhaxe_id";
 } else {
-    $nhaxe_id = -1;
+    $nhaxe_id = 888;
 }
 
 require_once "model/Nhaxe.php";
 $modelNhaxe = new Nhaxe;
+if($nhaxe_id > 0){
+    $listTotal = $model->getListImageByNhaxe($nhaxe_id, -1, -1);
 
-$listTotal = $model->getListImageByNhaxe($nhaxe_id, -1, -1);
+    $total_record = mysql_num_rows($listTotal);
 
-$total_record = mysql_num_rows($listTotal);
+    $total_page = ceil($total_record / 8);
 
-$total_page = ceil($total_record / 8);
+    $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
 
-$page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+    $offset = 8 * ($page - 1);
 
-$offset = 8 * ($page - 1);
+    $list = $model->getListImageByNhaxe($nhaxe_id, $offset, 8);
 
-$list = $model->getListImageByNhaxe($nhaxe_id, $offset, 8);
-
+} 
 $arrTmp = array('888' => array('id' => 888, 'name'=> 'slide show trang chu','size' => '500 x 345px'), '999' => array('id'=> 999, 'name' => 'banner trai - trang chu','size' => '228 x 0px'), 1000 => array('id'=> 1000,'name' => 'banner trang tin tuc','size' => '260 x 0px'));
 ?>
 <div class="row">
     <div class="col-md-12">
     <button class="btn btn-primary btn-sm right" 
-    onclick="location.href='index.php?mod=banner&act=list&nhaxe_id=888'">Slideshow trang chu</button>
+    onclick="location.href='index.php?mod=banner&act=list&nhaxe_id=888'">Slideshow trang chủ</button>
     <button class="btn btn-primary btn-sm right" 
-    onclick="location.href='index.php?mod=banner&act=list&nhaxe_id=999'">banner trai - trang chu</button>
+    onclick="location.href='index.php?mod=banner&act=list&nhaxe_id=999'">Banner trái - trang chủ</button>
 
-     <button class="btn btn-primary btn-sm right" 
-    onclick="location.href='index.php?mod=banner&act=list&nhaxe_id=1000">banner trang tin tuc</button>        
+   <button class="btn btn-primary btn-sm right" 
+    onclick="location.href='index.php?mod=banner&act=list&nhaxe_id=1000'">Banner trang tin tức</button>        
          <div class="box-header">
                 <h3 class="box-title">Danh sách hình ảnh : <?php echo $arrTmp[$nhaxe_id]['name']; ?> ( <?php echo $total_record; ?> ảnh )</h3>
             </div><!-- /.box-header -->

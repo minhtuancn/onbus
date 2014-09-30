@@ -334,7 +334,7 @@
 
 
             <ul class="treeview-menu">
-
+            <li><a href="<?php echo BASE_URL; ?>banner&act=list"><i class="fa fa-angle-double-right"></i> Banner</a></li>
                 <li><a href="<?php echo BASE_URL; ?>feedback&act=list"><i class="fa fa-angle-double-right"></i> Feedback</a></li>
                 <li><a href="<?php echo BASE_URL; ?>newsletter&act=list"><i class="fa fa-angle-double-right"></i> Newsletter</a></li>
                 <li><a href="<?php echo BASE_URL; ?>contact&act=list"><i class="fa fa-angle-double-right"></i> Contact</a></li>
