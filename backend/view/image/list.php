@@ -84,3 +84,19 @@ $list = $model->getListImageByNhaxe($nhaxe_id, $offset, 8);
 </div>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+<div id="div_upload" style="display:none">
+    <form id="upload_images" method="post" enctype="multipart/form-data" enctype="multipart/form-data" action="controller/Upload.php">
+        <div style="margin: auto;">       
+            <div style="text-align:center"><img src="static/img/add.jpg" id="add_images" width="32" title="Thêm hình ảnh" alt="Thêm hình ảnh" /></div>
+            <div id="wrapper_input_files">
+                <input type="file" name="images[]" /><br />
+                <input type="file" name="images[]" /><br />
+                <input type="file" name="images[]" /><br />
+            </div>            
+            <div class="clear"></div>
+            <button class="btn btn-danger btn-sm"  type="submit" id="btn_upload_images">Upload</button>       
+               
+        </div>
+        
+    </form>
+</div>
