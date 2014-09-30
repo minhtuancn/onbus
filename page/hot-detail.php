@@ -30,50 +30,21 @@
             <div class="td_social_type"><span class="td-social-icon-wrap"><a href="#"><span class="td-social-s1-32 td-s-s-32-youtube"></span></a></span><span class="td_social_info">1,046</span><span class="td_social_info">Subscribers</span><span class="td_social_button"><a href="http://www.youtube.com/user/MowMiHenek">Subscribe</a></span></div>
           </div>
           <div class="widget">
-            <h3>Tin liên quan</h3>
+            <h3>{tintucganday}</h3>
             <ul>
-                <li>
-                    <a href="#">
-                    	<div class="wrap-img left"><img src="<?php echo STATIC_URL; ?>/images/bus-1.jpg"></div>
-                    	<div class="left  tlq_items"><strong>Nam Convallis Pellentesque Nisl</strong>
-            			<span>Thursday, December 22, 2011</span></div>
-                    </a>
+              <?php 
+        $lang_id = $_SESSION['lang'] == 'vi' ? 1 : 2;        
+        $rs = mysql_query("SELECT * FROM articles WHERE lang_id = $lang_id AND status > 0 AND hot = 0 ");
+        while($row = mysql_fetch_assoc($rs)){
+        ?>
+            <li>
+                <a href="<?php echo $lang; ?>/details/<?php echo $row['title_safe']?>-<?php echo $row['article_id'];?>.html">
+                	<div class="wrap-img left"><img src="<?php echo $row['image_url']; ?>"></div>
+                	<div class="left  tlq_items"><strong><?php echo $row['title']; ?></strong>
+        			<span><?php echo date('M d,Y',$row['creation_time']); ?></span></div>
+                </a>
 		        </li>
-                <li>
-                    <a href="#">
-                    	<div class="wrap-img left"><img src="<?php echo STATIC_URL; ?>/images/bus-1.jpg"></div>
-                    	<div class="left  tlq_items"><strong>Nam Convallis Pellentesque Nisl</strong>
-            			<span>Thursday, December 22, 2011</span></div>
-                    </a>
-		        </li>
-                <li>
-                    <a href="#">
-                    	<div class="wrap-img left"><img src="<?php echo STATIC_URL; ?>/images/bus-1.jpg"></div>
-                    	<div class="left  tlq_items"><strong>Nam Convallis Pellentesque Nisl</strong>
-            			<span>Thursday, December 22, 2011</span></div>
-                    </a>
-		        </li>
-                <li>
-                    <a href="#">
-                    	<div class="wrap-img left"><img src="<?php echo STATIC_URL; ?>/images/bus-1.jpg"></div>
-                    	<div class="left  tlq_items"><strong>Nam Convallis Pellentesque Nisl</strong>
-            			<span>Thursday, December 22, 2011</span></div>
-                    </a>
-		        </li>
-                <li>
-                    <a href="#">
-                    	<div class="wrap-img left"><img src="<?php echo STATIC_URL; ?>/images/bus-1.jpg"></div>
-                    	<div class="left  tlq_items"><strong>Nam Convallis Pellentesque Nisl</strong>
-            			<span>Thursday, December 22, 2011</span></div>
-                    </a>
-		        </li>
-                <li>
-                    <a href="#">
-                    	<div class="wrap-img left"><img src="<?php echo STATIC_URL; ?>/images/bus-1.jpg"></div>
-                    	<div class="left  tlq_items"><strong>Nam Convallis Pellentesque Nisl</strong>
-            			<span>Thursday, December 22, 2011</span></div>
-                    </a>
-		        </li>
+            <?php } ?>
         	</ul>
         </div>
         </div>
