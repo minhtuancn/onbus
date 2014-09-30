@@ -27,7 +27,7 @@ font-weight: bold;
                         <div class="slider-description">
                             <h1><a href="<?php echo $lang; ?>/details/<?php echo $row['title_safe']?>-<?php echo $row['article_id'];?>.html"><?php echo $row['title']; ?></a></h1>
                             <div><?php echo $row['description']; ?>...</div>
-                            <a class="readmore" href="<?php echo $lang; ?>/details/<?php echo $row['title_safe']?>-<?php echo $row['article_id'];?>.html">Read more </a>
+                            <a class="readmore" href="<?php echo $lang; ?>/details/<?php echo $row['title_safe']?>-<?php echo $row['article_id'];?>.html">{chitiet} </a>
                             <p></p>
                          </div>
                     </li> 
@@ -75,7 +75,7 @@ font-weight: bold;
 						<h2><a style="font-weight:bold" href="<?php echo $lang; ?>/details/<?php echo $row['title_safe']?>-<?php echo $row['article_id'];?>.html"><?php echo $row['title']; ?></a></h2>
 						<div class="post-date"><?php echo date('M d,Y',$row['creation_time']); ?> <span>|</span> <a href="#">4 Comments</a></div>
 												<p><?php echo $row['description']; ?>[…]</p>
-						<p class="more"><a href="<?php echo $lang; ?>/details/<?php echo $row['title_safe']?>-<?php echo $row['article_id'];?>.html">Continue reading...</a></p>
+						<p class="more"><a href="<?php echo $lang; ?>/details/<?php echo $row['title_safe']?>-<?php echo $row['article_id'];?>.html">{xemtiep}...</a></p>
 					</div>
 					<div class="clear"></div>
 				</div>

@@ -144,5 +144,6 @@ $onbus = str_replace("{rattot}" , rattot , $onbus);
 $onbus = str_replace("{trungbinh}" , trungbinh , $onbus);
 $onbus = str_replace("{te}" , te , $onbus);
 $onbus = str_replace("{ratte}" , ratte , $onbus);
+$onbus = str_replace("{xemtiep}" , xemtiep , $onbus);
 echo $onbus;
 ?>

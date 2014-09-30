@@ -1,5 +1,5 @@
 <?php 
-
+$str_tag = "";
 if(isset($_GET['article_id'])){
 
     $article_id = (int) $_GET['article_id'];
@@ -9,6 +9,18 @@ if(isset($_GET['article_id'])){
     $model = new Articles;
 
     $detail = $model->getDetailArticle($article_id);
+
+    $lang_id = $detail['lang_id'];
+    
+    $arrTag = $model->getTagsOfProductId($article_id,$lang_id);   
+    if(!empty($arrTag)){
+        
+        foreach($arrTag as $tag_id){
+            $rs_tag = $model->getDetailTag($tag_id);
+            $row_tag = mysql_fetch_assoc($rs_tag);
+            $str_tag.=$row_tag["tag_name"]."; ";
+        }   
+    }
 
 }
 require_once "model/Tinh.php";
@@ -78,16 +90,16 @@ $arrHot = $modelTinh->getListTinh(-1,'',1,0, 20);
 
                 <label>Tags</label>                        
 
-                <textarea rows="3" class="form-control" name="tags_vi" id="tags_vi"></textarea>
+                <textarea rows="3" class="form-control" name="tags_vi" id="tags_vi"><?php echo $str_tag; ?></textarea>                
 
             </div>
             <div class="form-group tag_en">
 
                 <label>Tags</label>                        
 
-                <textarea rows="3" class="form-control" name="tags_en" id="tags_en"></textarea>
+                <textarea rows="3" class="form-control" name="tags_en" id="tags_en"><?php echo $str_tag; ?></textarea>
 
-            </div>
+            </div>            
             <div class="form-group">
 
                     <label>Hình đại diện &nbsp;&nbsp;&nbsp;</label>
@@ -160,6 +172,16 @@ $arrHot = $modelTinh->getListTinh(-1,'',1,0, 20);
 <link href="<?php echo STATIC_URL; ?>css/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 $(function(){    
+    <?php if(!empty($detail)) { ?>
+        var lang = $('#lang_id').val();
+        if(lang==1){
+            $('.tag_en').hide();
+            $('.tag_vi').show();
+        }else{
+            $('.tag_vi').hide();
+            $('.tag_en').show();
+        }
+    <?php } ?>
     $('.tag_en').hide();
     $('#lang_id').change(function(){
         var lang = $(this).val();

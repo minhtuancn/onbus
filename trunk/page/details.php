@@ -1,23 +1,28 @@
+<?php 
+$lang_id = $lang == "vi" ? 1 : 2;
+$arrTag = $model->getTagsByArticleId($article_id,$lang_id);
+?>
 <div class="page_detail" id="mid">
       <div id="mid-inner">
         <div class="content wide" id="content">
           <div class="brakum">
             <ul>
-              <li><a href="#">{trangchu}</a><span></span></li>
-              <li><a href="#">{tintuc}</a></li>              
+              <li><a href="http://onbus.vn">{trangchu}</a><span></span></li>
+              <li><a href="<?php echo $lang; ?>/tin-tuc.html">{tintuc}</a></li>              
             </ul>
           </div>
           <h1><?php echo $row_details['title']; ?></h1>
+          <?php if(!empty($arrTag)) { ?>
           <div class="group_tab">
             <ul>
-              <li><a href="#" class="tab_1">demo 1</a></li>
-              <li><a href="#" class="tab_2">demo 2</a></li>
-              <li><a href="#" class="tab_3">demo 3</a></li>
-              <li><a href="#" class="tab_1">demo 4</a></li>
-              <li class="date_post">May 4, 2014</li>
+            <?php $countTag = 0; foreach($arrTag as $tag){ $countTag++; ?>
+              <li><a href="<?php echo $lang; ?>/tags/<?php echo $tag['tag_name_kd']."-".$tag['tag_id'];?>.html" class="tab_<?php echo $countTag; ?>"><?php echo $tag['tag_name'];?></a></li>
+              <?php } ?>
+              <li class="date_post"><?php echo date('M d Y',$row_details['creation_time']); ?></li>
               <li class="end"> <span class="comment_num"><i></i>0</span> <span class="view_num"><i></i>1459</span> </li>
             </ul>
           </div>
+          <?php } ?>
           <div class="wrap_content_detail" style="margin-bottom:50px;text-align:justify"> 
               <?php echo str_replace("../", "", $row_details['content']); ?>
           </div>

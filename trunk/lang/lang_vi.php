@@ -115,4 +115,5 @@ define("rattot","Rất tốt");
 define("trungbinh","Trung bình");
 define("te","Tệ");
 define("ratte","Rất tệ");
+define("xemtiep","Xem tiếp");
 ?>
