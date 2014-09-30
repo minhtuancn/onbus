@@ -74,6 +74,20 @@ $arrHot = $modelTinh->getListTinh(-1,'',1,0, 20);
                 <textarea rows="5" class="form-control" name="description"><?php if(isset($detail['description'])) echo $detail['description']; ?></textarea>
 
             </div>
+            <div class="form-group tag_vi" >
+
+                <label>Tags</label>                        
+
+                <textarea rows="3" class="form-control" name="tags_vi" id="tags_vi"></textarea>
+
+            </div>
+            <div class="form-group tag_en">
+
+                <label>Tags</label>                        
+
+                <textarea rows="3" class="form-control" name="tags_en" id="tags_en"></textarea>
+
+            </div>
             <div class="form-group">
 
                     <label>Hình đại diện &nbsp;&nbsp;&nbsp;</label>
@@ -84,10 +98,10 @@ $arrHot = $modelTinh->getListTinh(-1,'',1,0, 20);
 
                     <button class="btn btn-primary" type="button" onclick="BrowseServer('Images:/','image_url')" >Chọn ảnh</button>
 
-<div style="color:red;font-size:19px">
-Tin thường : 280 x 185 px<br />
-Tin HOT : 475 x 300 px<br />
-</div>
+                    <div style="color:red;font-size:19px">
+                    Tin thường : 280 x 185 px<br />
+                    Tin HOT : 475 x 300 px<br />
+                    </div>
 
 
                 </div>
@@ -145,6 +159,97 @@ Tin HOT : 475 x 300 px<br />
 </div>
 <link href="<?php echo STATIC_URL; ?>css/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
+$(function(){    
+    $('.tag_en').hide();
+    $('#lang_id').change(function(){
+        var lang = $(this).val();
+        if(lang==1){
+            $('.tag_en').hide();
+            $('.tag_vi').show();
+        }else{
+            $('.tag_vi').hide();
+            $('.tag_en').show();
+        }
+    });
+    $('#tags_vi').on("keydown", function (event) {  
+        if (event.keyCode === $.ui.keyCode.TAB && $(this).data("autocomplete").menu.active) {
+            event.preventDefault();
+        }
+    }).autocomplete({
+        source: function (request, response) {
+            $.getJSON("ajax/tag.php", {
+                term: extractLast(request.term),
+                lang:1
+            }, response);
+        },
+        search: function () {
+            // custom minLength
+            var term = extractLast(this.value);
+            if (term.length < 2) {
+                return false;
+            }
+        },
+        focus: function () {
+            // prevent value inserted on focus
+            return false;
+        },
+        select: function (event, ui) {
+            var terms = split(this.value);
+            // remove the current input
+            terms.pop();
+            // add the selected item
+            terms.push(ui.item.value);
+            // add placeholder to get the comma-and-space at the end
+            terms.push("");
+            this.value = terms.join("; ");
+            return false;
+        }
+    });
+
+    $('#tags_en').on("keydown", function (event) {
+        if (event.keyCode === $.ui.keyCode.TAB && $(this).data("autocomplete").menu.active) {
+            event.preventDefault();
+        }
+    }).autocomplete({
+        source: function (request, response) {
+            $.getJSON("ajax/tag.php", {
+                term: extractLast(request.term),
+                lang:2
+            }, response);
+        },
+        search: function () {
+            // custom minLength
+            var term = extractLast(this.value);
+            if (term.length < 2) {
+                return false;
+            }
+        },
+        focus: function () {
+            // prevent value inserted on focus
+            return false;
+        },
+        select: function (event, ui) {
+            var terms = split(this.value);
+            // remove the current input
+            terms.pop();
+            // add the selected item
+            terms.push(ui.item.value);            
+            // add placeholder to get the comma-and-space at the end
+            terms.push("");
+            this.value = terms.join("; ");
+            return false;
+        }
+    }); 
+
+});
+
+function split(val) {
+    return val.split(/;\s*/);
+}
+
+function extractLast(term) {
+    return split(term).pop();
+}
 function BrowseServer( startupPath, functionData ){    
     var finder = new CKFinder();
     finder.basePath = 'ckfinder/'; //Đường path nơi đặt ckfinder

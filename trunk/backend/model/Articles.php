@@ -40,14 +40,24 @@ class Articles extends Db {
     }
    
 
-    function insertArticles($title,$title_safe,$image_url,$description,$content,$category_id,$hot,$lang_id) {
+    function insertArticles($title,$title_safe,$image_url,$description,$content,$category_id,$hot,$lang_id,$arrTag) {
         try{
-        $user_id = $_SESSION['user_id'];
-        $time = time();
-        $sql = "INSERT INTO articles VALUES
-                        (NULL,'$title','$title_safe','$image_url','$description','$content',
-                            $category_id,'$hot',$lang_id,$time,$time,1,$user_id)";
-        $rs = mysql_query($sql) or $this->throw_ex(mysql_error());       
+            $user_id = $_SESSION['user_id'];
+            $time = time();
+            $sql = "INSERT INTO articles VALUES
+                            (NULL,'$title','$title_safe','$image_url','$description','$content',
+                                $category_id,'$hot',$lang_id,$time,$time,1,$user_id)";
+            $rs = mysql_query($sql) or $this->throw_ex(mysql_error());
+            $article_id = mysql_insert_id();
+            
+            if(!empty($arrTag)){
+                foreach($arrTag as $tag){
+                    $tag = trim($tag);
+                    $tag_id = $this->checkTagTonTai($tag,$lang_id);
+                    $this->addTagToArticle($article_id,$tag_id,$lang_id);
+                }
+            }
+
         }catch(Exception $ex){            
             $arrLog = array('time'=>date('d-m-Y H:i:s'),'model'=> 'Articles','function' => 'insertArticle' , 'error'=>$ex->getMessage(),'sql'=>$sql);
             $this->logError($arrLog);
@@ -73,6 +83,31 @@ class Articles extends Db {
             $this->logError($arrLog);
         }
     }
+
+    function checkTagTonTai($tag,$lang){
+        $sql = "SELECT tag_id FROM tag WHERE BINARY tag_name LIKE '%$tag%'";
+        $rs = mysql_query($sql);
+        $row = mysql_num_rows($rs);
+        if($row == 1){
+            $row = mysql_fetch_assoc($rs);
+            $idTag = $row[tag_id];
+        }else{
+            $tag_kd = $this->changeTitle($tag);
+            $idTag = $this->insertTag($tag,$tag_kd,$lang);
+        }
+        return $idTag;
+    }
+    function insertTag($tag,$tag_kd,$lang){
+        $sql = "INSERT INTO tag VALUES (NULL,'$tag','$tag_kd',$lang)";
+        $rs = mysql_query($sql) or die(mysql_error());
+        $id= mysql_insert_id();
+        return $id;         
+    }
+    function addTagToArticle($article_id,$tag_id,$lang){
+        $sql = "INSERT INTO articles_tag VALUES ($article_id,$tag_id,$lang)";
+        mysql_query($sql) or die(mysql_error());
+    }
+    
 
 }
 
