@@ -91,7 +91,9 @@ $arrHot = $modelTinh->getListTinh(-1,'',1,0, 20);
                 <label>Tags</label>                        
 
                 <textarea rows="3" class="form-control" name="tags_vi" id="tags_vi"><?php echo $str_tag; ?></textarea>                
-
+                <div style="color:red;font-size:19px">
+                    Mỗi từ khóa cách nhau bằng dấu "; ". VD : tukhoa1; tukhoa2; tukhoa3 
+                    </div>
             </div>
             <div class="form-group tag_en">
 
