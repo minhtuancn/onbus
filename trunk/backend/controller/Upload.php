@@ -56,7 +56,14 @@ function stripUnicode($str) {
     return $str;
 }
 
-$width_1 = 700; $height_1 = 450;
+$mod == $_POST['mod'];
+if($mod=="banner"){
+    $width_1 = (int) $_POST['width'];
+    $height_1 = (int) $_POST['height'];
+}else{
+    $width_1 = 700; $height_1 = 450;
+}
+
 $width_2 = 166; $height_2 = 107;
 $width_3 = 470; $height_3 = 300;
 
@@ -102,30 +109,37 @@ for($i=0;$i<count($_FILES['images']['name']);$i++){
             $name = "{$img}.{$imgExt}";
 
             $name_1 = "{$img}_{$width_1}x{$height_1}.{$imgExt}";
-            $name_2 = "{$img}_{$width_2}x{$height_2}.{$imgExt}";
-            $name_3 = "{$img}_{$width_3}x{$height_3}.{$imgExt}";
+            if($mod!='banner'){
+                $name_2 = "{$img}_{$width_2}x{$height_2}.{$imgExt}";
+                $name_3 = "{$img}_{$width_3}x{$height_3}.{$imgExt}";
+            }else{
+                $name = $name_1; 
+            }
 
             if(move_uploaded_file($_FILES["images"]["tmp_name"][$i],$url. $name)==true){
-            	resizeHoang(
-					$url.$name,
-					$width_1,$height_1,
-					$name_1,
-					$url
-				);
-				resizeHoang(
-					$url.$name,
-					$width_2,$height_2,
-					$name_2,
-					$url
-				);
-				resizeHoang(
-					$url.$name,
-					$width_3,$height_3,
-					$name_3,
-					$url
-				);
+                if($mod!='banner'){
+                	resizeHoang(
+    					$url.$name,
+    					$width_1,$height_1,
+    					$name_1,
+    					$url
+    				);
+    				resizeHoang(
+    					$url.$name,
+    					$width_2,$height_2,
+    					$name_2,
+    					$url
+    				);
+    				resizeHoang(
+    					$url.$name,
+    					$width_3,$height_3,
+    					$name_3,
+    					$url
+    				);
+                }
 				$count++;
 				$strHinhAnh.= str_replace("../","",$url). $name_1.";";
+                $name_2 = $mod=="banner" ? $name_1 : $name_2;
 				$arrRes['text'] .="<li style='float:left;display:inline;margin-right:10px;text-align:center'>				
 					<img src='"."../".str_replace("../","",$url). $name_2."' width='166' /><br />				
 					</li>";

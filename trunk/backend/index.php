@@ -48,6 +48,25 @@ if(isset($_GET['mod']))
         <!-- jQuery UI 1.10.3 -->
         
         <script src="<?php echo STATIC_URL; ?>js/jquery-ui.js"></script>
+           <script src="<?php echo STATIC_URL; ?>js/form.js" type="text/javascript"></script>
+        <!-- Bootstrap -->
+        <script src="<?php echo STATIC_URL; ?>js/bootstrap.min.js" type="text/javascript"></script>
+
+        <!-- jvectormap -->
+     
+        <!-- fullCalendar -->
+        <script src="<?php echo STATIC_URL; ?>js/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+        <!-- jQuery Knob Chart -->
+       
+        <!-- daterangepicker -->
+        <script src="<?php echo STATIC_URL; ?>js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+       
+
+        <!-- AdminLTE App -->
+        <script src="<?php echo STATIC_URL; ?>js/AdminLTE/app.js" type="text/javascript"></script>
+        
+        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+        <script src="<?php echo STATIC_URL; ?>js/AdminLTE/dashboard.js" type="text/javascript"></script>  
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -91,48 +110,7 @@ if(isset($_GET['mod']))
 
 
       
-        <script src="<?php echo STATIC_URL; ?>js/form.js" type="text/javascript"></script>
-        <!-- Bootstrap -->
-        <script src="<?php echo STATIC_URL; ?>js/bootstrap.min.js" type="text/javascript"></script>
-        <!-- Morris.js charts -->
-        <script src="<?php echo STATIC_URL; ?>js/raphael-min.js"></script>
-        
-        <!-- Sparkline -->
-        <script src="<?php echo STATIC_URL; ?>js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
-        <!-- jvectormap -->
-        <script src="<?php echo STATIC_URL; ?>js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js" type="text/javascript"></script>
-        <script src="<?php echo STATIC_URL; ?>js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
-        <!-- fullCalendar -->
-        <script src="<?php echo STATIC_URL; ?>js/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
-        <!-- jQuery Knob Chart -->
-        <script src="<?php echo STATIC_URL; ?>js/plugins/jqueryKnob/jquery.knob.js" type="text/javascript"></script>
-        <!-- daterangepicker -->
-        <script src="<?php echo STATIC_URL; ?>js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
-        <!-- Bootstrap WYSIHTML5 -->
-        <script src="<?php echo STATIC_URL; ?>js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
-        <!-- iCheck -->
-        <script src="<?php echo STATIC_URL; ?>js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+           
 
-        <!-- AdminLTE App -->
-        <script src="<?php echo STATIC_URL; ?>js/AdminLTE/app.js" type="text/javascript"></script>
-        
-        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <script src="<?php echo STATIC_URL; ?>js/AdminLTE/dashboard.js" type="text/javascript"></script>        
-<div id="div_upload" style="display:none">
-    <form id="upload_images" method="post" enctype="multipart/form-data" enctype="multipart/form-data" action="controller/Upload.php">
-        <div style="margin: auto;">       
-            <div style="text-align:center"><img src="static/img/add.jpg" id="add_images" width="32" title="Thêm hình ảnh" alt="Thêm hình ảnh" /></div>
-            <div id="wrapper_input_files">
-                <input type="file" name="images[]" /><br />
-                <input type="file" name="images[]" /><br />
-                <input type="file" name="images[]" /><br />
-            </div>            
-            <div class="clear"></div>
-            <button class="btn btn-danger btn-sm"  type="submit" id="btn_upload_images">Upload</button>       
-               
-        </div>
-        
-    </form>
-</div>
     </body>
 </html>

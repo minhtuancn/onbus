@@ -1,7 +1,7 @@
 <?php
 require_once "model/Image.php";
 $model = new Image;
-$link = "index.php?mod=image&act=list";
+$link = "index.php?mod=banner&act=list";
 
 if (isset($_GET['nhaxe_id']) && $_GET['nhaxe_id'] > 0) {
     $nhaxe_id = (int) $_GET['nhaxe_id'];      
@@ -12,7 +12,6 @@ if (isset($_GET['nhaxe_id']) && $_GET['nhaxe_id'] > 0) {
 
 require_once "model/Nhaxe.php";
 $modelNhaxe = new Nhaxe;
-$detailNhaxe = $modelNhaxe->getDetailNhaxe($nhaxe_id);
 
 $listTotal = $model->getListImageByNhaxe($nhaxe_id, -1, -1);
 
@@ -26,20 +25,24 @@ $offset = 8 * ($page - 1);
 
 $list = $model->getListImageByNhaxe($nhaxe_id, $offset, 8);
 
+$arrTmp = array('888' => array('id' => 888, 'name'=> 'slide show trang chu','size' => '500 x 345px'), '999' => array('id'=> 999, 'name' => 'banner trai - trang chu','size' => '228 x 0px'), 1000 => array('id'=> 1000,'name' => 'banner trang tin tuc','size' => '260 x 0px'));
 ?>
 <div class="row">
     <div class="col-md-12">
     <button class="btn btn-primary btn-sm right" 
-    onclick="location.href='index.php?mod=nhaxe&act=form&nhaxe_id=<?php echo $nhaxe_id; ?>'">Chi tiết</button>
+    onclick="location.href='index.php?mod=banner&act=list&nhaxe_id=888'">Slideshow trang chu</button>
+    <button class="btn btn-primary btn-sm right" 
+    onclick="location.href='index.php?mod=banner&act=list&nhaxe_id=999'">banner trai - trang chu</button>
+
      <button class="btn btn-primary btn-sm right" 
-    onclick="location.href='index.php?mod=branch&act=list&nhaxe_id=<?php echo $nhaxe_id; ?>'">Chi nhánh</button>        
+    onclick="location.href='index.php?mod=banner&act=list&nhaxe_id=1000">banner trang tin tuc</button>        
          <div class="box-header">
-                <h3 class="box-title">Danh sách hình ảnh nhà xe : <?php echo $detailNhaxe['nhaxe_name_vi']; ?> ( <?php echo $total_record; ?> ảnh )</h3>
+                <h3 class="box-title">Danh sách hình ảnh : <?php echo $arrTmp[$nhaxe_id]['name']; ?> ( <?php echo $total_record; ?> ảnh )</h3>
             </div><!-- /.box-header -->
         <div class="box">
            
             <div class="box-body">
-                <p style="color:red;font-size:20px">Kích thước upload chuẩn : 700 x 450px</p>
+                <p style="color:red;font-size:20px">Kích thước upload chuẩn : <?php echo $arrTmp[$nhaxe_id]['size']; ?></p>
                 <?php
                     $i = ($page-1) * 8;;
                     while ($row = mysql_fetch_assoc($list)) {                       
@@ -72,6 +75,7 @@ $list = $model->getListImageByNhaxe($nhaxe_id, $offset, 8);
             </div>
             <div class="button">                
                 <input type="hidden" name="nhaxe_id" id="nhaxe_id" value="<?php echo $nhaxe_id; ?>"/>
+                
                 <div id="hinhanh"></div>
                 <div style="clear:both"></div>
                 <div class="button" id="btnSaveImage" style="display:none">
@@ -84,3 +88,32 @@ $list = $model->getListImageByNhaxe($nhaxe_id, $offset, 8);
 </div>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+<div id="div_upload" style="display:none">
+    <form id="upload_images" method="post" enctype="multipart/form-data" enctype="multipart/form-data" action="controller/Upload.php">
+        <div style="margin: auto;">       
+            <div style="text-align:center"><img src="static/img/add.jpg" id="add_images" width="32" title="Thêm hình ảnh" alt="Thêm hình ảnh" /></div>
+            <div id="wrapper_input_files">
+                <input type="file" name="images[]" /><br />
+                <input type="file" name="images[]" /><br />
+                <input type="file" name="images[]" /><br />
+            </div>            
+            <div class="clear"></div>
+            <button class="btn btn-danger btn-sm"  type="submit" id="btn_upload_images">Upload</button>       
+               
+        </div>
+        <input type="hidden" name="mod" id="mod" value="banner"/>
+        <?php if($nhaxe_id==888) { ?>
+            <input type="hidden" name="width" id="width" value="500"/>
+            <input type="hidden" name="height" id="height" value="345"/>
+        <?php } ?>
+        <?php if($nhaxe_id==999) { ?>
+            <input type="hidden" name="width" id="width" value="228"/>
+            <input type="hidden" name="height" id="height" value="0"/>
+        <?php } ?>
+        <?php if($nhaxe_id==1000) { ?>
+            <input type="hidden" name="width" id="width" value="260"/>
+            <input type="hidden" name="height" id="height" value="0"/>
+        <?php } ?>
+        
+    </form>
+</div>

@@ -100,14 +100,14 @@ $(function() {
     });
     $('#btnSaveImageToNhaXe').click(function(){
         var str_hinh_anh = $("#str_hinh_anh").val();
-        var nhaxe_id = $('#nhaxe_id').val();
+        var nhaxe_id = $('#nhaxe_id').val();  
          $.ajax({
                 url: "controller/Saveimage.php",
                 type: "POST",
                 async: true,
                 data: {
                     'str_hinh_anh' : str_hinh_anh,
-                    'nhaxe_id' : nhaxe_id
+                    'nhaxe_id' : nhaxe_id      
                 },
                 success: function(data){
                     $('#str_hinh_anh').val('');
@@ -142,8 +142,7 @@ $(function() {
         zIndex: 999999
     }).disableSelection();;
 
-    //bootstrap WYSIHTML5 - text editor
-    $(".textarea").wysihtml5();
+    //bootstrap WYSIHTML5 - text editor   
 
     $('.daterange').daterangepicker(
             {
@@ -162,92 +161,9 @@ $(function() {
         alert("You chose: " + start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
     });
 
-    /* jQueryKnob */
-    $(".knob").knob();
+ 
 
-    //jvectormap data
-    var visitorsData = {
-        "US": 398, //USA
-        "SA": 400, //Saudi Arabia
-        "CA": 1000, //Canada
-        "DE": 500, //Germany
-        "FR": 760, //France
-        "CN": 300, //China
-        "AU": 700, //Australia
-        "BR": 600, //Brazil
-        "IN": 800, //India
-        "GB": 320, //Great Britain
-        "RU": 3000 //Russia
-    };
-    //World map by jvectormap
-    $('#world-map').vectorMap({
-        map: 'world_mill_en',
-        backgroundColor: "#fff",
-        regionStyle: {
-            initial: {
-                fill: '#e4e4e4',
-                "fill-opacity": 1,
-                stroke: 'none',
-                "stroke-width": 0,
-                "stroke-opacity": 1
-            }
-        },
-        series: {
-            regions: [{
-                    values: visitorsData,
-                    scale: ["#3c8dbc", "#2D79A6"], //['#3E5E6B', '#A6BAC2'],
-                    normalizeFunction: 'polynomial'
-                }]
-        },
-        onRegionLabelShow: function(e, el, code) {
-            if (typeof visitorsData[code] != "undefined")
-                el.html(el.html() + ': ' + visitorsData[code] + ' new visitors');
-        }
-    });
-
-    //Sparkline charts
-    var myvalues = [15, 19, 20, -22, -33, 27, 31, 27, 19, 30, 21];
-    $('#sparkline-1').sparkline(myvalues, {
-        type: 'bar',
-        barColor: '#00a65a',
-        negBarColor: "#f56954",
-        height: '20px'
-    });
-    myvalues = [15, 19, 20, 22, -2, -10, -7, 27, 19, 30, 21];
-    $('#sparkline-2').sparkline(myvalues, {
-        type: 'bar',
-        barColor: '#00a65a',
-        negBarColor: "#f56954",
-        height: '20px'
-    });
-    myvalues = [15, -19, -20, 22, 33, 27, 31, 27, 19, 30, 21];
-    $('#sparkline-3').sparkline(myvalues, {
-        type: 'bar',
-        barColor: '#00a65a',
-        negBarColor: "#f56954",
-        height: '20px'
-    });
-    myvalues = [15, 19, 20, 22, 33, -27, -31, 27, 19, 30, 21];
-    $('#sparkline-4').sparkline(myvalues, {
-        type: 'bar',
-        barColor: '#00a65a',
-        negBarColor: "#f56954",
-        height: '20px'
-    });
-    myvalues = [15, 19, 20, 22, 33, 27, 31, -27, -19, 30, 21];
-    $('#sparkline-5').sparkline(myvalues, {
-        type: 'bar',
-        barColor: '#00a65a',
-        negBarColor: "#f56954",
-        height: '20px'
-    });
-    myvalues = [15, 19, -20, 22, -13, 27, 31, 27, 19, 30, 21];
-    $('#sparkline-6').sparkline(myvalues, {
-        type: 'bar',
-        barColor: '#00a65a',
-        negBarColor: "#f56954",
-        height: '20px'
-    });
+   
 
     //Date for the calendar events (dummy data)
     var date = new Date();
