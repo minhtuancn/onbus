@@ -24,6 +24,10 @@ $category_id = 1;
 
 $image_url = str_replace("../", "", $model->processData($_POST['image_url']));
 
+$arrTag = array();
+$str_tag = ($lang_id == 1) ? rtrim(trim($_POST[tags_vi]),";") : rtrim(trim($_POST[tags_en]),";") ;
+$str_tag = str_replace(',',';',$str_tag);		
+$arrTag  = explode(";",$str_tag);	
 if($article_id > 0) {	
 
 	$model->updateArticles($article_id,$title,$title_safe,$image_url,$description,$content,$category_id,$hot,$lang_id);
@@ -32,7 +36,8 @@ if($article_id > 0) {
 
 }else{
 
-	$model->insertArticles($title,$title_safe,$image_url,$description,$content,$category_id,$hot,$lang_id,$tinh_id);
+
+	$model->insertArticles($title,$title_safe,$image_url,$description,$content,$category_id,$hot,$lang_id,$arrTag);
 
 	header('location:'.$url);
 
