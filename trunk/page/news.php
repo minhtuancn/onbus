@@ -63,7 +63,7 @@ font-weight: bold;
 	 </div> 
         <?php 
         $lang_id = $_SESSION['lang'] == 'vi' ? 1 : 2;        
-        $rs = mysql_query("SELECT * FROM articles WHERE lang_id = $lang_id AND status > 0 AND hot = 0 ");
+        $rs = mysql_query("SELECT * FROM articles WHERE lang_id = $lang_id AND status > 0 AND hot = 0 ORDER BY article_id DESC LIMIT $offset,$limit");
         while($row = mysql_fetch_assoc($rs)){
         ?>
 				<div class="post archive">

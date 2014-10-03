@@ -99,6 +99,13 @@ $uri = str_replace(".html", "", $uri);
 $tmp_uri = explode("/", $uri);
 switch ($mod) {    
     
+    case "news" :          
+        $tieude_id = $tmp_uri[2];        
+        $arr = explode("-", $tieude_id);   
+        $page = (int) end($arr);
+        $page = ($page > 0 ) ? $page : 1;
+        $limit = 10;
+        $offset = ($page - 1)* $limit;
     case "details":  
 		$tieude_id = $tmp_uri[3];
         
